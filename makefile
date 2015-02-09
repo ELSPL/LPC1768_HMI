@@ -10,8 +10,7 @@ OD=arm-none-eabi-objdump
 #                   Compile Flags, Linker Script, Linker Flags
 MCFLAGS=-mcpu=cortex-m3 -mthumb -O0 
 DEFS=
-INCLUDES=-I"C:\E_Workspace\LPC1768\travis\Header_Files" \
--I"C:\E_Workspace\LPC1768\travis\CM3_Core"
+INCLUDES=-IHeader_Files -ICM3_Core
 CFLAGS=-c $(MCFLAGS) $(DEFS) $(INCLUDES)
 LDSCRIPT = ldscript_LPC1769.ld
 LDFLAGS=-T $(LDSCRIPT) -nostartfiles $(MCFLAGS)
