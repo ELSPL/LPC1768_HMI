@@ -1303,17 +1303,17 @@
  516              		.file 7 "C:\\E_Workspace\\LPC1768\\Eg7\\CM3 Core/system_LPC17xx.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 lpc17xx_clkpwr.c
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:18     .text:00000000 $t
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:23     .text:00000000 CLKPWR_SetPCLKDiv
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:123    .text:000000c4 CLKPWR_GetPCLKSEL
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:187    .text:00000118 CLKPWR_GetPCLK
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:222    .text:00000140 $d
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:228    .text:00000150 $t
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:271    .text:00000188 CLKPWR_ConfigPPWR
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:340    .text:000001fc CLKPWR_Sleep
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:381    .text:00000218 CLKPWR_DeepSleep
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:426    .text:00000244 CLKPWR_PowerDown
-C:\Users\Edu_win7\AppData\Local\Temp\cct7zFHj.s:471    .text:00000270 CLKPWR_DeepPowerDown
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:18     .text:00000000 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:23     .text:00000000 CLKPWR_SetPCLKDiv
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:123    .text:000000c4 CLKPWR_GetPCLKSEL
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:187    .text:00000118 CLKPWR_GetPCLK
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:222    .text:00000140 $d
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:228    .text:00000150 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:271    .text:00000188 CLKPWR_ConfigPPWR
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:340    .text:000001fc CLKPWR_Sleep
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:381    .text:00000218 CLKPWR_DeepSleep
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:426    .text:00000244 CLKPWR_PowerDown
+C:\Users\Edu_win7\AppData\Local\Temp\ccGzszoi.s:471    .text:00000270 CLKPWR_DeepPowerDown
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.4198839cd628579709ab94bfdf5f0d6e
                            .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
