@@ -3,7 +3,7 @@
 
 ###
 # Directory Structure
-BDIRS=$(shell find . -mindepth 1 -maxdepth 1 -type d)
+BDIRS='Debug'
 
 ###
 # Build Rules
