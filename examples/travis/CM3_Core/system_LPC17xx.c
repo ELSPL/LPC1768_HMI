@@ -280,101 +280,37 @@
 //
 // </e>
 */
-
-/*     Peripheral Clock Macros Register 0 (PCLKSEL0)         */
-//                     <0x00=> Pclk = Cclk / 4
-//                     <0x01=> Pclk = Cclk
-//                     <0x02=> Pclk = Cclk / 2
-//                     <0x03=> Pclk = Cclk / 8, except for CAN1,CAN2, and CAN filtering
-//                                              when "11" selects = Cclk / 6
-#define PCLK_WDT              0x00
-#define PCLK_TIMER0           (0x00*0x04)
-#define PCLK_TIMER1           0x00<<1
-#define PCLK_UART0            (0x00*0x04)<<1
-#define PCLK_UART1            0x00<<2
-#define PCLK_PWM1             0x00<<3
-#define PCLK_I2C0             (0x00*0x04)<<3
-#define PCLK_SPI              0x00<<4
-#define PCLK_SSP1             0x00<<5
-#define PCLK_DAC              (0x00*0x04)<<5
-#define PCLK_ADC              0x00<<6
-#define PCLK_CAN1             (0x00*0x04)<<6
-#define PCLK_CAN2             0x00<<7
-#define PCLK_ACF              (0x00*0x04)<<7
-
-
-/*     Peripheral Clock Selection Register 1 (PCLKSEL1)      */
-//                     <0x00=> Pclk = Cclk / 4
-//                     <0x01=> Pclk = Cclk
-//                     <0x02=> Pclk = Cclk / 2
-//                     <0x03=> Pclk = Cclk / 8, except for CAN1,CAN2, and CAN filtering
-//                                              when "11" selects = Cclk / 6
-#define PCLK_QEI              0x00
-#define PCLK_GPIOINT          (0x00*0x04)
-#define PCLK_PCB              0x00<<1
-#define PCLK_I2C1             (0x00*0x04)<<1
-#define PCLK_SSP0             (0x00*0x04)<<2
-#define PCLK_TIMER2           0x00<<3
-#define PCLK_TIMER3           (0x00*0x04)<<3
-#define PCLK_UART2            0x00<<4
-#define PCLK_UART3            (0x00*0x04)<<4
-#define PCLK_I2C2             0x00<<5
-#define PCLK_I2S              (0x00*0x04)<<5
-#define PCLK_RIT              (0x00*0x04)<<6
-#define PCLK_SYSCON           0x00<<7
-#define PCLK_MC               (0x00*0x04)<<7
-
-
-
-/*     Power Control Macros for Peripherals Register (PCONP)    */
-#define PCTIM0                0x00000002
-#define PCTIM1                0x00000004
-#define PCUART0               0x00000008
-#define PCUART1               0x00000010
-#define PCPWM1                0x00000040
-#define PCI2C0                0x00000080
-#define PCSPI                 0x00000100
-#define PCRTC                 0x00000200
-#define PCSSP1                0x00000400
-#define PCAD                  0x00001000
-#define PCCAN1                0x00002000
-#define PCCAN2                0x00004000
-#define PCGPIO                0x00008000
-#define PCRIT                 0x00010000
-#define PCMC                  0x00020000
-#define PCQEI                 0x00040000
-#define PCI2C1                0x00080000
-#define PCSSP0                0x00200000
-#define PCTIM2                0x00400000
-#define PCTIM3                0x00800000
-#define PCUART2               0x01000000
-#define PCUART3               0x02000000
-#define PCI2C2                0x04000000
-#define PCI2S                 0x08000000
-#define PCGPDMA               0x20000000
-#define PCENET                0x40000000
-#define PCUSB                 0x80000000
-
-
-/* Main Configuration */
-#define CLOCK_SETUP           1            //Enable
-#define SCS_Val               0x00000020   //Main Oscillator Enable
-#define CLKSRCSEL_Val         0x00000001   //Main Oscillator selected
-#define PLL0_SETUP            1            //Enable
-#define PLL0CFG_Val           0x00010018   //100 Mhz (FCC0 = 3* 100 MHz)  (old value 0x00040063)
-#define PLL1_SETUP            1            //Enable
-#define PLL1CFG_Val           0x00000013   //old value 0x00000023 (FCC01 = 192 MHz)
-#define CCLKCFG_Val           0x00000002   //pllclk/3 = 100 Mhz
-#define USBCLKCFG_Val         0x00000000   //In case of PLL1 is not connected
-#define PCLKSEL0_Val          0x00000000   //All Pclk = Cclk / 4
-#define PCLKSEL1_Val          0x00000000   //All Pclk = Cclk / 4
-#define PCONP_Val             PCGPIO | PCUART0 | PCUART2   //old value 0x042887DE
-#define CLKOUTCFG_Val         0x00000020   //CPU clock/3 as CLKOUT, Disabled
+#define CLOCK_SETUP           1
+#define SCS_Val               0x00000020
+#define CLKSRCSEL_Val         0x00000001
+#define PLL0_SETUP            1
+#define PLL0CFG_Val           0x00040063
+#define PLL1_SETUP            1
+#define PLL1CFG_Val           0x00000023
+#define CCLKCFG_Val           0x00000003
+#define USBCLKCFG_Val         0x00000000
+#define PCLKSEL0_Val          0x00000000
+#define PCLKSEL1_Val          0x00000000
+#define PCONP_Val             0x042887DE
+#define CLKOUTCFG_Val         0x00000000
 
 
 /*--------------------- Flash Accelerator Configuration ----------------------
 //
 // <e> Flash Accelerator Configuration
+//   <o1.0..1>   FETCHCFG: Fetch Configuration
+//               <0=> Instruction fetches from flash are not buffered
+//               <1=> One buffer is used for all instruction fetch buffering
+//               <2=> All buffers may be used for instruction fetch buffering
+//               <3=> Reserved (do not use this setting)
+//   <o1.2..3>   DATACFG: Data Configuration
+//               <0=> Data accesses from flash are not buffered
+//               <1=> One buffer is used for all data access buffering
+//               <2=> All buffers may be used for data access buffering
+//               <3=> Reserved (do not use this setting)
+//   <o1.4>      ACCEL: Acceleration Enable
+//   <o1.5>      PREFEN: Prefetch Enable
+//   <o1.6>      PREFOVR: Prefetch Override
 //   <o1.12..15> FLASHTIM: Flash Access Time
 //               <0=> 1 CPU clock (for CPU clock up to 20 MHz)
 //               <1=> 2 CPU clocks (for CPU clock up to 40 MHz)
@@ -386,7 +322,7 @@
 */
 #define FLASH_SETUP           1
 
-#define FLASHCFG_Val          0x00005000
+#define FLASHCFG_Val          0x0000503A
 /*
 //-------- <<< end of configuration section >>> ------------------------------
 */
@@ -414,7 +350,7 @@
    #error "PLL1CFG: Invalid values of reserved bits!"
 #endif
 
-#if (CCLKCFG_Val == 0)
+#if ((CCLKCFG_Val != 0) && (((CCLKCFG_Val - 1) % 2)))
    #error "CCLKCFG: CCLKSEL field does not contain only odd values or 0!"
 #endif
 

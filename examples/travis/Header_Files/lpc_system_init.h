@@ -33,22 +33,16 @@
 #include "lpc_types.h"
 #include "lpc17xx_nvic.h"
 #include "lpc17xx_pinsel.h"
-#include "lpc17xx_clkpwr.h"
 
 /* Peripherals Include----------------------------------------------------------*/
 #include "lpc17xx_systick.h"
 #include "lpc17xx_gpio.h"
-#include "lpc17xx_wdt.h"
+#include "lpc17xx_uart.h"
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-
-
-/************************** GLOBAL VARIABLES *************************/
-// systick
-extern uint32_t led_delay;
 
 /* Public Functions ----------------------------------------------------------- */
 /** @defgroup SYSTEM_INIT_Public_Functions SYSTEM_INIT Public Functions

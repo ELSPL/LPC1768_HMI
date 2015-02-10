@@ -45,16 +45,10 @@
  **********************************************************************/
 void System_Init(void)
 {
-
-	LPC_WDT->WDMOD &= ~WDT_WDMOD_WDEN;  // Disable Watchdog
-	SystemInit();						// Initialize system and update core clock
-	Port_Init();                        // Port Initialization
-	SYSTICK_Config();                   // Systick Initialization
-	led_delay = 1000;                   // Heart Beat rate of 1Sec toggle
-	GPIO_IntCmd(0,_BIT(19),1);          // Enable GPIO Interrupt at P0.19 Falling Edge
-	NVIC_EnableIRQ(EINT3_IRQn);         // NVIC Interrupt EINT3_IRQn for GPIO
-	NVIC_SetPriority(SysTick_IRQn, 0);  // Set SysTick as Highest Priority
-	NVIC_SetPriority(EINT3_IRQn, 4);    // Set any lower Priority than SysTick
+	Port_Init();
+	SYSTICK_Config();
+	UART_Config(LPC_UART0, 57600);
+	UART_Config(LPC_UART2, 115200);
 }
 
 /*********************************************************************//**
@@ -64,11 +58,8 @@ void System_Init(void)
  **********************************************************************/
 void Port_Init(void)
 {
-	GPIO_SetDir(3, _BIT(25), 1);        // Set HeartBeat Led P3.25 to Output
-	GPIO_SetDir(0, _BIT(10), 1);        // P0.10 Led for Interrupt Output
-	GPIO_SetValue(0,_BIT(10));          // Clear P0.10
-//	GPIO_SetDir(1, _SBF(18,0x01), 1);   // Set P1.18 to P1.25 as output
-//	GPIO_SetValue(1,_SBF(18,0x01));     // Clear P1.18 to P1.25
+  //Use P0.0 to test System Tick interrupt
+	GPIO_SetDir(1, _SBF(18,0xFF), 1); //Set P2.18 as output
 }
 
 /**
