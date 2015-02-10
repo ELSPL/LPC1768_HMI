@@ -12,7 +12,7 @@ BDIRS=$(shell find . -mindepth 1 -maxdepth 1 -type d)
 all: $(BDIRS) 
 
 $(BDIRS):
-	$(MAKE) -C $@
+	$(MAKE) -C Debug
 
 clean:
 	for d in $(BDIRS); do $(MAKE) -C $$d clean; done
