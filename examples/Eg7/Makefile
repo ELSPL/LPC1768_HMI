@@ -12,7 +12,7 @@ BDIRS='Debug'
 all: $(BDIRS) 
 
 $(BDIRS):
-	$(MAKE) -C $@
+	$(MAKE) all -C Debug
 
 clean:
 	for d in $(BDIRS); do $(MAKE) -C $$d clean; done

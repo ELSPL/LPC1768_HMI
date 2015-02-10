@@ -838,32 +838,32 @@ END GROUP
  .debug_frame   0x00000870       0x48 ./CM3 Core/system_LPC17xx.o
  .debug_frame   0x000008b8       0x70 ./startup_LPC17xx.o
 
-.debug_str      0x00000000     0xa690
+.debug_str      0x00000000     0xa6a0
  *(.debug_str)
- .debug_str     0x00000000     0x864d ./Source Files/lpc17xx_clkpwr.o
-                               0x8707 (size before relaxing)
- .debug_str     0x0000864d      0xfd7 ./Source Files/lpc17xx_gpio.o
-                               0x946d (size before relaxing)
- .debug_str     0x00009624       0x99 ./Source Files/lpc17xx_nvic.o
-                               0x738a (size before relaxing)
- .debug_str     0x000096bd      0x24b ./Source Files/lpc17xx_pinsel.o
-                               0x797f (size before relaxing)
- .debug_str     0x00009908      0x12a ./Source Files/lpc17xx_systick.o
-                               0x915a (size before relaxing)
- .debug_str     0x00009a32      0x195 ./Source Files/lpc17xx_wdt.o
-                               0x8da7 (size before relaxing)
- .debug_str     0x00009bc7       0x1d ./Source Files/lpc_global.o
-                               0x3150 (size before relaxing)
- .debug_str     0x00009be4      0x25c ./Source Files/lpc_system_init.o
-                               0x9349 (size before relaxing)
- .debug_str     0x00009e40       0x1c ./Source Files/main.o
-                               0x8ffe (size before relaxing)
- .debug_str     0x00009e5c       0x17 ./CM3 Core/core_cm3.o
-                               0x2f0d (size before relaxing)
- .debug_str     0x00009e73      0x727 ./CM3 Core/system_LPC17xx.o
-                               0x7893 (size before relaxing)
- .debug_str     0x0000a59a       0xf6 ./startup_LPC17xx.o
-                               0x233f (size before relaxing)
+ .debug_str     0x00000000     0x865d ./Source Files/lpc17xx_clkpwr.o
+                               0x8717 (size before relaxing)
+ .debug_str     0x0000865d      0xfd7 ./Source Files/lpc17xx_gpio.o
+                               0x947d (size before relaxing)
+ .debug_str     0x00009634       0x99 ./Source Files/lpc17xx_nvic.o
+                               0x739a (size before relaxing)
+ .debug_str     0x000096cd      0x24b ./Source Files/lpc17xx_pinsel.o
+                               0x798f (size before relaxing)
+ .debug_str     0x00009918      0x12a ./Source Files/lpc17xx_systick.o
+                               0x916a (size before relaxing)
+ .debug_str     0x00009a42      0x195 ./Source Files/lpc17xx_wdt.o
+                               0x8db7 (size before relaxing)
+ .debug_str     0x00009bd7       0x1d ./Source Files/lpc_global.o
+                               0x3160 (size before relaxing)
+ .debug_str     0x00009bf4      0x25c ./Source Files/lpc_system_init.o
+                               0x9359 (size before relaxing)
+ .debug_str     0x00009e50       0x1c ./Source Files/main.o
+                               0x900e (size before relaxing)
+ .debug_str     0x00009e6c       0x17 ./CM3 Core/core_cm3.o
+                               0x2f1d (size before relaxing)
+ .debug_str     0x00009e83      0x727 ./CM3 Core/system_LPC17xx.o
+                               0x78a3 (size before relaxing)
+ .debug_str     0x0000a5aa       0xf6 ./startup_LPC17xx.o
+                               0x234f (size before relaxing)
 
 .debug_loc      0x00000000      0xf20
  *(.debug_loc)
