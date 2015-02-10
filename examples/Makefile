@@ -7,9 +7,7 @@ BDIRS=$(shell find . -mindepth 1 -maxdepth 1 -type d)
 
 ###
 # Build Rules
-.PHONY: all $(BDIRS)
+.PHONY: all
 
-all: $(BDIRS) 
-
-$(BDIRS):
-	$(MAKE) -C $@
+all:
+	for d in $(BDIRS); do $(MAKE) -C $$d; done
