@@ -3,16 +3,14 @@
 
 ###
 # Directory Structure
-BDIRS=$(shell find . -mindepth 1 -maxdepth 1 -type d)
+BDIRS='Debug'
 
 ###
 # Build Rules
-.PHONY: all clean $(BDIRS)
+.PHONY: all clean
 
-all: $(BDIRS) 
-
-$(BDIRS):
-	$(MAKE) -C Debug
+all:
+	for d in $(BDIRS); do $(MAKE) -C $$d; done
 
 clean:
 	for d in $(BDIRS); do $(MAKE) -C $$d clean; done
