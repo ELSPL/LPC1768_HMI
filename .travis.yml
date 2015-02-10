@@ -6,4 +6,5 @@ before_script:
 language: c
 
 script:
+  - make clean
   - make all
