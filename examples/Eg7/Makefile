@@ -7,7 +7,7 @@ BDIRS='Debug'
 
 ###
 # Build Rules
-.PHONY: all clean $(BDIRS)
+.PHONY: all clean
 
 all: $(BDIRS) 
 
@@ -15,4 +15,4 @@ $(BDIRS):
 	$(MAKE) all -C Debug
 
 clean:
-	for d in $(BDIRS); do $(MAKE) -C $$d clean; done
+	$(MAKE) clean -C Debug

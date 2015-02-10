@@ -1062,15 +1062,15 @@
  453              		.file 4 "../CM3 Core/core_cm3.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 system_LPC17xx.c
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:23     .data:00000000 SystemCoreClock
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:20     .data:00000000 $d
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:26     .text:00000000 $t
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:31     .text:00000000 SystemCoreClockUpdate
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:65     .text:0000003c $d
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:71     .text:0000004c $t
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:186    .text:00000184 $d
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:192    .text:00000194 $t
-C:\Users\Edu_win7\AppData\Local\Temp\ccpKjIiW.s:247    .text:00000214 SystemInit
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:23     .data:00000000 SystemCoreClock
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:20     .data:00000000 $d
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:26     .text:00000000 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:31     .text:00000000 SystemCoreClockUpdate
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:65     .text:0000003c $d
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:71     .text:0000004c $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:186    .text:00000184 $d
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:192    .text:00000194 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccWBS90t.s:247    .text:00000214 SystemInit
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.4198839cd628579709ab94bfdf5f0d6e
                            .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
