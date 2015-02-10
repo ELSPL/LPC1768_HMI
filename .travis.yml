@@ -6,4 +6,4 @@ before_script:
 language: c
 
 script:
-  - make
+  - make all
