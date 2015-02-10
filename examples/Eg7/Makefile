@@ -10,4 +10,4 @@ BDIRS='Debug'
 .PHONY: all
 
 all:
-	for d in $(BDIRS); do $(MAKE) all -C $$d; done
+	for d in $(BDIRS); do $(MAKE) -C $@; done
