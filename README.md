@@ -1,7 +1,7 @@
-# LPC1768
+# LPC1768_HMI
 [![Build Status](https://travis-ci.org/Edutech-ARM/LPC1768.svg?branch=master)](https://travis-ci.org/Edutech-ARM/LPC1768)
 
 Objectives
-  -LPC1768 with Travis CI and Custom Make file
+  -LPC1768 with Travis CI and Custom Make file 
+  
 
-New Edit by chintan
