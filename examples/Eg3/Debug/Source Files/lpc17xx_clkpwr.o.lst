@@ -1,0 +1,1333 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc17xx_clkpwr.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	2
+  19              		.global	CLKPWR_SetPCLKDiv
+  20              		.thumb
+  21              		.thumb_func
+  23              	CLKPWR_SetPCLKDiv:
+  24              	.LFB55:
+  25              		.file 1 "../Source Files/lpc17xx_clkpwr.c"
+   1:../Source Files/lpc17xx_clkpwr.c **** /**********************************************************************
+   2:../Source Files/lpc17xx_clkpwr.c **** * $Id$		lpc17xx_clkpwr.c
+   3:../Source Files/lpc17xx_clkpwr.c **** *//**
+   4:../Source Files/lpc17xx_clkpwr.c **** * @file		lpc17xx_clkpwr.c
+   5:../Source Files/lpc17xx_clkpwr.c **** * @brief	Contains all functions support for Clock and Power Control
+   6:../Source Files/lpc17xx_clkpwr.c **** * 			firmware library on LPC17xx
+   7:../Source Files/lpc17xx_clkpwr.c **** * @version	1.0
+   8:../Source Files/lpc17xx_clkpwr.c **** * @date		24. July. 2013
+   9:../Source Files/lpc17xx_clkpwr.c **** * @author	Dwijay.Edutech Learning Solutions
+  10:../Source Files/lpc17xx_clkpwr.c **** ***********************************************************************
+  11:../Source Files/lpc17xx_clkpwr.c **** * Software that is described herein is for illustrative purposes only
+  12:../Source Files/lpc17xx_clkpwr.c **** * which provides customers with programming information regarding the
+  13:../Source Files/lpc17xx_clkpwr.c **** * products. This software is supplied "AS IS" without any warranties.
+  14:../Source Files/lpc17xx_clkpwr.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  15:../Source Files/lpc17xx_clkpwr.c **** * use of the software, conveys no license or title under any patent,
+  16:../Source Files/lpc17xx_clkpwr.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  17:../Source Files/lpc17xx_clkpwr.c **** * reserves the right to make changes in the software without
+  18:../Source Files/lpc17xx_clkpwr.c **** * notification. NXP Semiconductors also make no representation or
+  19:../Source Files/lpc17xx_clkpwr.c **** * warranty that such application will be suitable for the specified
+  20:../Source Files/lpc17xx_clkpwr.c **** * use without further testing or modification.
+  21:../Source Files/lpc17xx_clkpwr.c **** **********************************************************************/
+  22:../Source Files/lpc17xx_clkpwr.c **** 
+  23:../Source Files/lpc17xx_clkpwr.c **** /* Peripheral group ----------------------------------------------------------- */
+  24:../Source Files/lpc17xx_clkpwr.c **** /** @addtogroup CLKPWR
+  25:../Source Files/lpc17xx_clkpwr.c ****  * @{
+  26:../Source Files/lpc17xx_clkpwr.c ****  */
+  27:../Source Files/lpc17xx_clkpwr.c **** 
+  28:../Source Files/lpc17xx_clkpwr.c **** /* Includes ------------------------------------------------------------------- */
+  29:../Source Files/lpc17xx_clkpwr.c **** #include "lpc17xx_clkpwr.h"
+  30:../Source Files/lpc17xx_clkpwr.c **** 
+  31:../Source Files/lpc17xx_clkpwr.c **** 
+  32:../Source Files/lpc17xx_clkpwr.c **** /* Public Functions ----------------------------------------------------------- */
+  33:../Source Files/lpc17xx_clkpwr.c **** /** @addtogroup CLKPWR_Public_Functions
+  34:../Source Files/lpc17xx_clkpwr.c ****  * @{
+  35:../Source Files/lpc17xx_clkpwr.c ****  */
+  36:../Source Files/lpc17xx_clkpwr.c **** 
+  37:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+  38:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Set value of each Peripheral Clock Selection
+  39:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	ClkType	Peripheral Clock Selection of each type,
+  40:../Source Files/lpc17xx_clkpwr.c ****  * 				should be one of the following:
+  41:../Source Files/lpc17xx_clkpwr.c ****  *				- CLKPWR_PCLKSEL_WDT   		: WDT
+  42:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER0   	: Timer 0
+  43:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER1   	: Timer 1
+  44:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART0   	: UART 0
+  45:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART1  	: UART 1
+  46:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_PWM1   	: PWM 1
+  47:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C0   	: I2C 0
+  48:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SPI   		: SPI
+  49:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SSP1   	: SSP 1
+  50:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_DAC   		: DAC
+  51:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_ADC   		: ADC
+  52:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_CAN1  		: CAN 1
+  53:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_CAN2  		: CAN 2
+  54:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_ACF   		: ACF
+  55:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_QEI 		: QEI
+  56:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_PCB   		: PCB
+  57:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C1   	: I2C 1
+  58:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SSP0   	: SSP 0
+  59:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER2   	: Timer 2
+  60:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER3   	: Timer 3
+  61:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART2   	: UART 2
+  62:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART3   	: UART 3
+  63:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C2   	: I2C 2
+  64:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2S   		: I2S
+  65:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_RIT   		: RIT
+  66:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SYSCON   	: SYSCON
+  67:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_MC 		: MC
+  68:../Source Files/lpc17xx_clkpwr.c **** 
+  69:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	DivVal	Value of divider, should be:
+  70:../Source Files/lpc17xx_clkpwr.c ****  * 				- CLKPWR_PCLKSEL_CCLK_DIV_4 : PCLK_peripheral = CCLK/4
+  71:../Source Files/lpc17xx_clkpwr.c ****  * 				- CLKPWR_PCLKSEL_CCLK_DIV_1 : PCLK_peripheral = CCLK/1
+  72:../Source Files/lpc17xx_clkpwr.c ****  *				- CLKPWR_PCLKSEL_CCLK_DIV_2 : PCLK_peripheral = CCLK/2
+  73:../Source Files/lpc17xx_clkpwr.c ****  *
+  74:../Source Files/lpc17xx_clkpwr.c ****  * @return none
+  75:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+  76:../Source Files/lpc17xx_clkpwr.c **** void CLKPWR_SetPCLKDiv (uint32_t ClkType, uint32_t DivVal)
+  77:../Source Files/lpc17xx_clkpwr.c **** {
+  26              		.loc 1 77 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 16
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31 0000 80B4     		push	{r7}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 24
+  38 0004 00AF     		add	r7, sp, #0
+  39              	.LCFI2:
+  40              		.cfi_def_cfa_register 7
+  41 0006 7860     		str	r0, [r7, #4]
+  42 0008 3960     		str	r1, [r7, #0]
+  78:../Source Files/lpc17xx_clkpwr.c **** 	uint32_t bitpos;
+  79:../Source Files/lpc17xx_clkpwr.c **** 
+  80:../Source Files/lpc17xx_clkpwr.c **** 	bitpos = (ClkType < 32) ? (ClkType) : (ClkType - 32);
+  43              		.loc 1 80 0
+  44 000a 7B68     		ldr	r3, [r7, #4]
+  45 000c 1F2B     		cmp	r3, #31
+  46 000e 03D9     		bls	.L2
+  47              		.loc 1 80 0 is_stmt 0 discriminator 1
+  48 0010 7B68     		ldr	r3, [r7, #4]
+  49 0012 A3F12003 		sub	r3, r3, #32
+  50 0016 00E0     		b	.L3
+  51              	.L2:
+  52              		.loc 1 80 0 discriminator 2
+  53 0018 7B68     		ldr	r3, [r7, #4]
+  54              	.L3:
+  55              		.loc 1 80 0 discriminator 3
+  56 001a FB60     		str	r3, [r7, #12]
+  81:../Source Files/lpc17xx_clkpwr.c **** 
+  82:../Source Files/lpc17xx_clkpwr.c **** 	/* PCLKSEL0 selected */
+  83:../Source Files/lpc17xx_clkpwr.c **** 	if (ClkType < 32)
+  57              		.loc 1 83 0 is_stmt 1 discriminator 3
+  58 001c 7B68     		ldr	r3, [r7, #4]
+  59 001e 1F2B     		cmp	r3, #31
+  60 0020 25D8     		bhi	.L4
+  84:../Source Files/lpc17xx_clkpwr.c **** 	{
+  85:../Source Files/lpc17xx_clkpwr.c **** 		/* Clear two bit at bit position */
+  86:../Source Files/lpc17xx_clkpwr.c **** 		LPC_SC->PCLKSEL0 &= (~(CLKPWR_PCLKSEL_BITMASK(bitpos)));
+  61              		.loc 1 86 0
+  62 0022 4FF44043 		mov	r3, #49152
+  63 0026 C4F20F03 		movt	r3, 16399
+  64 002a 4FF44042 		mov	r2, #49152
+  65 002e C4F20F02 		movt	r2, 16399
+  66 0032 D2F8A811 		ldr	r1, [r2, #424]
+  67 0036 FA68     		ldr	r2, [r7, #12]
+  68 0038 4FF00300 		mov	r0, #3
+  69 003c 00FA02F2 		lsl	r2, r0, r2
+  70 0040 6FEA0202 		mvn	r2, r2
+  71 0044 0A40     		ands	r2, r2, r1
+  72 0046 C3F8A821 		str	r2, [r3, #424]
+  87:../Source Files/lpc17xx_clkpwr.c **** 
+  88:../Source Files/lpc17xx_clkpwr.c **** 		/* Set two selected bit */
+  89:../Source Files/lpc17xx_clkpwr.c **** 		LPC_SC->PCLKSEL0 |= (CLKPWR_PCLKSEL_SET(bitpos, DivVal));
+  73              		.loc 1 89 0
+  74 004a 4FF44043 		mov	r3, #49152
+  75 004e C4F20F03 		movt	r3, 16399
+  76 0052 4FF44042 		mov	r2, #49152
+  77 0056 C4F20F02 		movt	r2, 16399
+  78 005a D2F8A811 		ldr	r1, [r2, #424]
+  79 005e FA68     		ldr	r2, [r7, #12]
+  80 0060 3868     		ldr	r0, [r7, #0]
+  81 0062 00FA02F2 		lsl	r2, r0, r2
+  82 0066 0A43     		orrs	r2, r2, r1
+  83 0068 C3F8A821 		str	r2, [r3, #424]
+  84 006c 24E0     		b	.L1
+  85              	.L4:
+  90:../Source Files/lpc17xx_clkpwr.c **** 	}
+  91:../Source Files/lpc17xx_clkpwr.c **** 	/* PCLKSEL1 selected */
+  92:../Source Files/lpc17xx_clkpwr.c **** 	else
+  93:../Source Files/lpc17xx_clkpwr.c **** 	{
+  94:../Source Files/lpc17xx_clkpwr.c **** 		/* Clear two bit at bit position */
+  95:../Source Files/lpc17xx_clkpwr.c **** 		LPC_SC->PCLKSEL1 &= ~(CLKPWR_PCLKSEL_BITMASK(bitpos));
+  86              		.loc 1 95 0
+  87 006e 4FF44043 		mov	r3, #49152
+  88 0072 C4F20F03 		movt	r3, 16399
+  89 0076 4FF44042 		mov	r2, #49152
+  90 007a C4F20F02 		movt	r2, 16399
+  91 007e D2F8AC11 		ldr	r1, [r2, #428]
+  92 0082 FA68     		ldr	r2, [r7, #12]
+  93 0084 4FF00300 		mov	r0, #3
+  94 0088 00FA02F2 		lsl	r2, r0, r2
+  95 008c 6FEA0202 		mvn	r2, r2
+  96 0090 0A40     		ands	r2, r2, r1
+  97 0092 C3F8AC21 		str	r2, [r3, #428]
+  96:../Source Files/lpc17xx_clkpwr.c **** 
+  97:../Source Files/lpc17xx_clkpwr.c **** 		/* Set two selected bit */
+  98:../Source Files/lpc17xx_clkpwr.c **** 		LPC_SC->PCLKSEL1 |= (CLKPWR_PCLKSEL_SET(bitpos, DivVal));
+  98              		.loc 1 98 0
+  99 0096 4FF44043 		mov	r3, #49152
+ 100 009a C4F20F03 		movt	r3, 16399
+ 101 009e 4FF44042 		mov	r2, #49152
+ 102 00a2 C4F20F02 		movt	r2, 16399
+ 103 00a6 D2F8AC11 		ldr	r1, [r2, #428]
+ 104 00aa FA68     		ldr	r2, [r7, #12]
+ 105 00ac 3868     		ldr	r0, [r7, #0]
+ 106 00ae 00FA02F2 		lsl	r2, r0, r2
+ 107 00b2 0A43     		orrs	r2, r2, r1
+ 108 00b4 C3F8AC21 		str	r2, [r3, #428]
+ 109              	.L1:
+  99:../Source Files/lpc17xx_clkpwr.c **** 	}
+ 100:../Source Files/lpc17xx_clkpwr.c **** }
+ 110              		.loc 1 100 0
+ 111 00b8 07F11407 		add	r7, r7, #20
+ 112 00bc BD46     		mov	sp, r7
+ 113 00be 80BC     		pop	{r7}
+ 114 00c0 7047     		bx	lr
+ 115              		.cfi_endproc
+ 116              	.LFE55:
+ 118 00c2 00BF     		.align	2
+ 119              		.global	CLKPWR_GetPCLKSEL
+ 120              		.thumb
+ 121              		.thumb_func
+ 123              	CLKPWR_GetPCLKSEL:
+ 124              	.LFB56:
+ 101:../Source Files/lpc17xx_clkpwr.c **** 
+ 102:../Source Files/lpc17xx_clkpwr.c **** 
+ 103:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 104:../Source Files/lpc17xx_clkpwr.c ****  * @brief		Get current value of each Peripheral Clock Selection
+ 105:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	ClkType	Peripheral Clock Selection of each type,
+ 106:../Source Files/lpc17xx_clkpwr.c ****  * 				should be one of the following:
+ 107:../Source Files/lpc17xx_clkpwr.c ****  *				- CLKPWR_PCLKSEL_WDT   		: WDT
+ 108:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER0   	: Timer 0
+ 109:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER1   	: Timer 1
+ 110:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART0   	: UART 0
+ 111:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART1  	: UART 1
+ 112:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_PWM1   	: PWM 1
+ 113:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C0   	: I2C 0
+ 114:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SPI   		: SPI
+ 115:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SSP1   	: SSP 1
+ 116:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_DAC   		: DAC
+ 117:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_ADC   		: ADC
+ 118:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_CAN1  		: CAN 1
+ 119:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_CAN2  		: CAN 2
+ 120:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_ACF   		: ACF
+ 121:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_QEI 		: QEI
+ 122:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_PCB   		: PCB
+ 123:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C1   	: I2C 1
+ 124:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SSP0   	: SSP 0
+ 125:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER2   	: Timer 2
+ 126:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER3   	: Timer 3
+ 127:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART2   	: UART 2
+ 128:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART3   	: UART 3
+ 129:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C2   	: I2C 2
+ 130:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2S   		: I2S
+ 131:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_RIT   		: RIT
+ 132:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SYSCON   	: SYSCON
+ 133:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_MC 		: MC
+ 134:../Source Files/lpc17xx_clkpwr.c **** 
+ 135:../Source Files/lpc17xx_clkpwr.c ****  * @return		Value of Selected Peripheral Clock Selection
+ 136:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 137:../Source Files/lpc17xx_clkpwr.c **** uint32_t CLKPWR_GetPCLKSEL (uint32_t ClkType)
+ 138:../Source Files/lpc17xx_clkpwr.c **** {
+ 125              		.loc 1 138 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 16
+ 128              		@ frame_needed = 1, uses_anonymous_args = 0
+ 129              		@ link register save eliminated.
+ 130 00c4 80B4     		push	{r7}
+ 131              	.LCFI3:
+ 132              		.cfi_def_cfa_offset 4
+ 133              		.cfi_offset 7, -4
+ 134 00c6 85B0     		sub	sp, sp, #20
+ 135              	.LCFI4:
+ 136              		.cfi_def_cfa_offset 24
+ 137 00c8 00AF     		add	r7, sp, #0
+ 138              	.LCFI5:
+ 139              		.cfi_def_cfa_register 7
+ 140 00ca 7860     		str	r0, [r7, #4]
+ 139:../Source Files/lpc17xx_clkpwr.c **** 	uint32_t bitpos, retval;
+ 140:../Source Files/lpc17xx_clkpwr.c **** 
+ 141:../Source Files/lpc17xx_clkpwr.c **** 	if (ClkType < 32)
+ 141              		.loc 1 141 0
+ 142 00cc 7B68     		ldr	r3, [r7, #4]
+ 143 00ce 1F2B     		cmp	r3, #31
+ 144 00d0 09D8     		bhi	.L7
+ 142:../Source Files/lpc17xx_clkpwr.c **** 	{
+ 143:../Source Files/lpc17xx_clkpwr.c **** 		bitpos = ClkType;
+ 145              		.loc 1 143 0
+ 146 00d2 7B68     		ldr	r3, [r7, #4]
+ 147 00d4 FB60     		str	r3, [r7, #12]
+ 144:../Source Files/lpc17xx_clkpwr.c **** 		retval = LPC_SC->PCLKSEL0;
+ 148              		.loc 1 144 0
+ 149 00d6 4FF44043 		mov	r3, #49152
+ 150 00da C4F20F03 		movt	r3, 16399
+ 151 00de D3F8A831 		ldr	r3, [r3, #424]
+ 152 00e2 BB60     		str	r3, [r7, #8]
+ 153 00e4 0AE0     		b	.L8
+ 154              	.L7:
+ 145:../Source Files/lpc17xx_clkpwr.c **** 	}
+ 146:../Source Files/lpc17xx_clkpwr.c **** 	else
+ 147:../Source Files/lpc17xx_clkpwr.c **** 	{
+ 148:../Source Files/lpc17xx_clkpwr.c **** 		bitpos = ClkType - 32;
+ 155              		.loc 1 148 0
+ 156 00e6 7B68     		ldr	r3, [r7, #4]
+ 157 00e8 A3F12003 		sub	r3, r3, #32
+ 158 00ec FB60     		str	r3, [r7, #12]
+ 149:../Source Files/lpc17xx_clkpwr.c **** 		retval = LPC_SC->PCLKSEL1;
+ 159              		.loc 1 149 0
+ 160 00ee 4FF44043 		mov	r3, #49152
+ 161 00f2 C4F20F03 		movt	r3, 16399
+ 162 00f6 D3F8AC31 		ldr	r3, [r3, #428]
+ 163 00fa BB60     		str	r3, [r7, #8]
+ 164              	.L8:
+ 150:../Source Files/lpc17xx_clkpwr.c **** 	}
+ 151:../Source Files/lpc17xx_clkpwr.c **** 
+ 152:../Source Files/lpc17xx_clkpwr.c **** 	retval = CLKPWR_PCLKSEL_GET(bitpos, retval);
+ 165              		.loc 1 152 0
+ 166 00fc FB68     		ldr	r3, [r7, #12]
+ 167 00fe BA68     		ldr	r2, [r7, #8]
+ 168 0100 22FA03F3 		lsr	r3, r2, r3
+ 169 0104 03F00303 		and	r3, r3, #3
+ 170 0108 BB60     		str	r3, [r7, #8]
+ 153:../Source Files/lpc17xx_clkpwr.c **** 	return retval;
+ 171              		.loc 1 153 0
+ 172 010a BB68     		ldr	r3, [r7, #8]
+ 154:../Source Files/lpc17xx_clkpwr.c **** }
+ 173              		.loc 1 154 0
+ 174 010c 1846     		mov	r0, r3
+ 175 010e 07F11407 		add	r7, r7, #20
+ 176 0112 BD46     		mov	sp, r7
+ 177 0114 80BC     		pop	{r7}
+ 178 0116 7047     		bx	lr
+ 179              		.cfi_endproc
+ 180              	.LFE56:
+ 182              		.align	2
+ 183              		.global	CLKPWR_GetPCLK
+ 184              		.thumb
+ 185              		.thumb_func
+ 187              	CLKPWR_GetPCLK:
+ 188              	.LFB57:
+ 155:../Source Files/lpc17xx_clkpwr.c **** 
+ 156:../Source Files/lpc17xx_clkpwr.c **** 
+ 157:../Source Files/lpc17xx_clkpwr.c **** 
+ 158:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 159:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Get current value of each Peripheral Clock
+ 160:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	ClkType	Peripheral Clock Selection of each type,
+ 161:../Source Files/lpc17xx_clkpwr.c ****  * 				should be one of the following:
+ 162:../Source Files/lpc17xx_clkpwr.c ****  *				- CLKPWR_PCLKSEL_WDT   		: WDT
+ 163:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER0   	: Timer 0
+ 164:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER1   	: Timer 1
+ 165:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART0   	: UART 0
+ 166:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART1  	: UART 1
+ 167:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_PWM1   	: PWM 1
+ 168:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C0   	: I2C 0
+ 169:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SPI   		: SPI
+ 170:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SSP1   	: SSP 1
+ 171:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_DAC   		: DAC
+ 172:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_ADC   		: ADC
+ 173:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_CAN1  		: CAN 1
+ 174:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_CAN2  		: CAN 2
+ 175:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_ACF   		: ACF
+ 176:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_QEI 		: QEI
+ 177:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_PCB   		: PCB
+ 178:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C1   	: I2C 1
+ 179:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SSP0   	: SSP 0
+ 180:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER2   	: Timer 2
+ 181:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_TIMER3   	: Timer 3
+ 182:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART2   	: UART 2
+ 183:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_UART3   	: UART 3
+ 184:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2C2   	: I2C 2
+ 185:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_I2S   		: I2S
+ 186:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_RIT   		: RIT
+ 187:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_SYSCON   	: SYSCON
+ 188:../Source Files/lpc17xx_clkpwr.c **** 				- CLKPWR_PCLKSEL_MC 		: MC
+ 189:../Source Files/lpc17xx_clkpwr.c **** 
+ 190:../Source Files/lpc17xx_clkpwr.c ****  * @return		Value of Selected Peripheral Clock
+ 191:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 192:../Source Files/lpc17xx_clkpwr.c **** uint32_t CLKPWR_GetPCLK (uint32_t ClkType)
+ 193:../Source Files/lpc17xx_clkpwr.c **** {
+ 189              		.loc 1 193 0
+ 190              		.cfi_startproc
+ 191              		@ args = 0, pretend = 0, frame = 16
+ 192              		@ frame_needed = 1, uses_anonymous_args = 0
+ 193 0118 80B5     		push	{r7, lr}
+ 194              	.LCFI6:
+ 195              		.cfi_def_cfa_offset 8
+ 196              		.cfi_offset 7, -8
+ 197              		.cfi_offset 14, -4
+ 198 011a 84B0     		sub	sp, sp, #16
+ 199              	.LCFI7:
+ 200              		.cfi_def_cfa_offset 24
+ 201 011c 00AF     		add	r7, sp, #0
+ 202              	.LCFI8:
+ 203              		.cfi_def_cfa_register 7
+ 204 011e 7860     		str	r0, [r7, #4]
+ 194:../Source Files/lpc17xx_clkpwr.c **** 	uint32_t retval, div;
+ 195:../Source Files/lpc17xx_clkpwr.c **** 
+ 196:../Source Files/lpc17xx_clkpwr.c **** 	retval = SystemCoreClock;
+ 205              		.loc 1 196 0
+ 206 0120 40F20003 		movw	r3, #:lower16:SystemCoreClock
+ 207 0124 C0F20003 		movt	r3, #:upper16:SystemCoreClock
+ 208 0128 1B68     		ldr	r3, [r3, #0]
+ 209 012a BB60     		str	r3, [r7, #8]
+ 197:../Source Files/lpc17xx_clkpwr.c **** 	div = CLKPWR_GetPCLKSEL(ClkType);
+ 210              		.loc 1 197 0
+ 211 012c 7868     		ldr	r0, [r7, #4]
+ 212 012e FFF7FEFF 		bl	CLKPWR_GetPCLKSEL
+ 213 0132 F860     		str	r0, [r7, #12]
+ 198:../Source Files/lpc17xx_clkpwr.c **** 
+ 199:../Source Files/lpc17xx_clkpwr.c **** 	switch (div)
+ 214              		.loc 1 199 0
+ 215 0134 FB68     		ldr	r3, [r7, #12]
+ 216 0136 032B     		cmp	r3, #3
+ 217 0138 1AD8     		bhi	.L11
+ 218 013a 01A2     		adr	r2, .L16
+ 219 013c 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 220              		.align	2
+ 221              	.L16:
+ 222 0140 51010000 		.word	.L12+1
+ 223 0144 59010000 		.word	.L13+1
+ 224 0148 61010000 		.word	.L14+1
+ 225 014c 69010000 		.word	.L15+1
+ 226              	.L12:
+ 200:../Source Files/lpc17xx_clkpwr.c **** 	{
+ 201:../Source Files/lpc17xx_clkpwr.c **** 	case 0:
+ 202:../Source Files/lpc17xx_clkpwr.c **** 		div = 4;
+ 227              		.loc 1 202 0
+ 228 0150 4FF00403 		mov	r3, #4
+ 229 0154 FB60     		str	r3, [r7, #12]
+ 203:../Source Files/lpc17xx_clkpwr.c **** 		break;
+ 230              		.loc 1 203 0
+ 231 0156 0BE0     		b	.L11
+ 232              	.L13:
+ 204:../Source Files/lpc17xx_clkpwr.c **** 
+ 205:../Source Files/lpc17xx_clkpwr.c **** 	case 1:
+ 206:../Source Files/lpc17xx_clkpwr.c **** 		div = 1;
+ 233              		.loc 1 206 0
+ 234 0158 4FF00103 		mov	r3, #1
+ 235 015c FB60     		str	r3, [r7, #12]
+ 207:../Source Files/lpc17xx_clkpwr.c **** 		break;
+ 236              		.loc 1 207 0
+ 237 015e 07E0     		b	.L11
+ 238              	.L14:
+ 208:../Source Files/lpc17xx_clkpwr.c **** 
+ 209:../Source Files/lpc17xx_clkpwr.c **** 	case 2:
+ 210:../Source Files/lpc17xx_clkpwr.c **** 		div = 2;
+ 239              		.loc 1 210 0
+ 240 0160 4FF00203 		mov	r3, #2
+ 241 0164 FB60     		str	r3, [r7, #12]
+ 211:../Source Files/lpc17xx_clkpwr.c **** 		break;
+ 242              		.loc 1 211 0
+ 243 0166 03E0     		b	.L11
+ 244              	.L15:
+ 212:../Source Files/lpc17xx_clkpwr.c **** 
+ 213:../Source Files/lpc17xx_clkpwr.c **** 	case 3:
+ 214:../Source Files/lpc17xx_clkpwr.c **** 		div = 8;
+ 245              		.loc 1 214 0
+ 246 0168 4FF00803 		mov	r3, #8
+ 247 016c FB60     		str	r3, [r7, #12]
+ 215:../Source Files/lpc17xx_clkpwr.c **** 		break;
+ 248              		.loc 1 215 0
+ 249 016e 00BF     		nop
+ 250              	.L11:
+ 216:../Source Files/lpc17xx_clkpwr.c **** 	}
+ 217:../Source Files/lpc17xx_clkpwr.c **** 	retval /= div;
+ 251              		.loc 1 217 0
+ 252 0170 BA68     		ldr	r2, [r7, #8]
+ 253 0172 FB68     		ldr	r3, [r7, #12]
+ 254 0174 B2FBF3F3 		udiv	r3, r2, r3
+ 255 0178 BB60     		str	r3, [r7, #8]
+ 218:../Source Files/lpc17xx_clkpwr.c **** 
+ 219:../Source Files/lpc17xx_clkpwr.c **** 	return retval;
+ 256              		.loc 1 219 0
+ 257 017a BB68     		ldr	r3, [r7, #8]
+ 220:../Source Files/lpc17xx_clkpwr.c **** }
+ 258              		.loc 1 220 0
+ 259 017c 1846     		mov	r0, r3
+ 260 017e 07F11007 		add	r7, r7, #16
+ 261 0182 BD46     		mov	sp, r7
+ 262 0184 80BD     		pop	{r7, pc}
+ 263              		.cfi_endproc
+ 264              	.LFE57:
+ 266 0186 00BF     		.align	2
+ 267              		.global	CLKPWR_ConfigPPWR
+ 268              		.thumb
+ 269              		.thumb_func
+ 271              	CLKPWR_ConfigPPWR:
+ 272              	.LFB58:
+ 221:../Source Files/lpc17xx_clkpwr.c **** 
+ 222:../Source Files/lpc17xx_clkpwr.c **** 
+ 223:../Source Files/lpc17xx_clkpwr.c **** 
+ 224:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 225:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Configure power supply for each peripheral according to NewState
+ 226:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	PPType	Type of peripheral used to enable power,
+ 227:../Source Files/lpc17xx_clkpwr.c ****  *     					should be one of the following:
+ 228:../Source Files/lpc17xx_clkpwr.c ****  *     			-  CLKPWR_PCONP_PCTIM0 		: Timer 0
+ 229:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCTIM1 		: Timer 1
+ 230:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCUART0  	: UART 0
+ 231:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCUART1   	: UART 1
+ 232:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCPWM1 		: PWM 1
+ 233:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCI2C0 		: I2C 0
+ 234:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCSPI   	: SPI
+ 235:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCRTC   	: RTC
+ 236:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCSSP1 		: SSP 1
+ 237:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCAD   		: ADC
+ 238:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCAN1   	: CAN 1
+ 239:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCAN2   	: CAN 2
+ 240:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCGPIO 		: GPIO
+ 241:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCRIT 		: RIT
+ 242:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCMC 		: MC
+ 243:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCQEI 		: QEI
+ 244:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCI2C1   	: I2C 1
+ 245:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCSSP0 		: SSP 0
+ 246:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCTIM2 		: Timer 2
+ 247:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCTIM3 		: Timer 3
+ 248:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCUART2  	: UART 2
+ 249:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCUART3   	: UART 3
+ 250:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCI2C2 		: I2C 2
+ 251:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCI2S   	: I2S
+ 252:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCGPDMA   	: GPDMA
+ 253:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCENET 		: Ethernet
+ 254:../Source Files/lpc17xx_clkpwr.c **** 				-  CLKPWR_PCONP_PCUSB   	: USB
+ 255:../Source Files/lpc17xx_clkpwr.c ****  *
+ 256:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	NewState	New state of Peripheral Power, should be:
+ 257:../Source Files/lpc17xx_clkpwr.c ****  * 				- ENABLE	: Enable power for this peripheral
+ 258:../Source Files/lpc17xx_clkpwr.c ****  * 				- DISABLE	: Disable power for this peripheral
+ 259:../Source Files/lpc17xx_clkpwr.c ****  *
+ 260:../Source Files/lpc17xx_clkpwr.c ****  * @return none
+ 261:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 262:../Source Files/lpc17xx_clkpwr.c **** void CLKPWR_ConfigPPWR (uint32_t PPType, FunctionalState NewState)
+ 263:../Source Files/lpc17xx_clkpwr.c **** {
+ 273              		.loc 1 263 0
+ 274              		.cfi_startproc
+ 275              		@ args = 0, pretend = 0, frame = 8
+ 276              		@ frame_needed = 1, uses_anonymous_args = 0
+ 277              		@ link register save eliminated.
+ 278 0188 80B4     		push	{r7}
+ 279              	.LCFI9:
+ 280              		.cfi_def_cfa_offset 4
+ 281              		.cfi_offset 7, -4
+ 282 018a 83B0     		sub	sp, sp, #12
+ 283              	.LCFI10:
+ 284              		.cfi_def_cfa_offset 16
+ 285 018c 00AF     		add	r7, sp, #0
+ 286              	.LCFI11:
+ 287              		.cfi_def_cfa_register 7
+ 288 018e 7860     		str	r0, [r7, #4]
+ 289 0190 0B46     		mov	r3, r1
+ 290 0192 FB70     		strb	r3, [r7, #3]
+ 264:../Source Files/lpc17xx_clkpwr.c **** 	if (NewState == ENABLE)
+ 291              		.loc 1 264 0
+ 292 0194 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 293 0196 012B     		cmp	r3, #1
+ 294 0198 13D1     		bne	.L19
+ 265:../Source Files/lpc17xx_clkpwr.c **** 	{
+ 266:../Source Files/lpc17xx_clkpwr.c **** 		LPC_SC->PCONP |= PPType & CLKPWR_PCONP_BITMASK;
+ 295              		.loc 1 266 0
+ 296 019a 4FF44042 		mov	r2, #49152
+ 297 019e C4F20F02 		movt	r2, 16399
+ 298 01a2 4FF44043 		mov	r3, #49152
+ 299 01a6 C4F20F03 		movt	r3, 16399
+ 300 01aa D3F8C410 		ldr	r1, [r3, #196]
+ 301 01ae 7868     		ldr	r0, [r7, #4]
+ 302 01b0 4FF2DE73 		movw	r3, #63454
+ 303 01b4 CEF6EF73 		movt	r3, 61423
+ 304 01b8 0340     		ands	r3, r3, r0
+ 305 01ba 0B43     		orrs	r3, r3, r1
+ 306 01bc C2F8C430 		str	r3, [r2, #196]
+ 307 01c0 17E0     		b	.L18
+ 308              	.L19:
+ 267:../Source Files/lpc17xx_clkpwr.c **** 	}
+ 268:../Source Files/lpc17xx_clkpwr.c **** 	else if (NewState == DISABLE)
+ 309              		.loc 1 268 0
+ 310 01c2 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 311 01c4 002B     		cmp	r3, #0
+ 312 01c6 14D1     		bne	.L18
+ 269:../Source Files/lpc17xx_clkpwr.c **** 	{
+ 270:../Source Files/lpc17xx_clkpwr.c **** 		LPC_SC->PCONP &= (~PPType) & CLKPWR_PCONP_BITMASK;
+ 313              		.loc 1 270 0
+ 314 01c8 4FF44042 		mov	r2, #49152
+ 315 01cc C4F20F02 		movt	r2, 16399
+ 316 01d0 4FF44043 		mov	r3, #49152
+ 317 01d4 C4F20F03 		movt	r3, 16399
+ 318 01d8 D3F8C410 		ldr	r1, [r3, #196]
+ 319 01dc 7B68     		ldr	r3, [r7, #4]
+ 320 01de 6FEA0303 		mvn	r3, r3
+ 321 01e2 1940     		ands	r1, r1, r3
+ 322 01e4 4FF2DE73 		movw	r3, #63454
+ 323 01e8 CEF6EF73 		movt	r3, 61423
+ 324 01ec 0B40     		ands	r3, r3, r1
+ 325 01ee C2F8C430 		str	r3, [r2, #196]
+ 326              	.L18:
+ 271:../Source Files/lpc17xx_clkpwr.c **** 	}
+ 272:../Source Files/lpc17xx_clkpwr.c **** }
+ 327              		.loc 1 272 0
+ 328 01f2 07F10C07 		add	r7, r7, #12
+ 329 01f6 BD46     		mov	sp, r7
+ 330 01f8 80BC     		pop	{r7}
+ 331 01fa 7047     		bx	lr
+ 332              		.cfi_endproc
+ 333              	.LFE58:
+ 335              		.align	2
+ 336              		.global	CLKPWR_Sleep
+ 337              		.thumb
+ 338              		.thumb_func
+ 340              	CLKPWR_Sleep:
+ 341              	.LFB59:
+ 273:../Source Files/lpc17xx_clkpwr.c **** 
+ 274:../Source Files/lpc17xx_clkpwr.c **** 
+ 275:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 276:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Enter Sleep mode with co-operated instruction by the Cortex-M3.
+ 277:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	None
+ 278:../Source Files/lpc17xx_clkpwr.c ****  * @return		None
+ 279:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 280:../Source Files/lpc17xx_clkpwr.c **** void CLKPWR_Sleep(void)
+ 281:../Source Files/lpc17xx_clkpwr.c **** {
+ 342              		.loc 1 281 0
+ 343              		.cfi_startproc
+ 344              		@ args = 0, pretend = 0, frame = 0
+ 345              		@ frame_needed = 1, uses_anonymous_args = 0
+ 346              		@ link register save eliminated.
+ 347 01fc 80B4     		push	{r7}
+ 348              	.LCFI12:
+ 349              		.cfi_def_cfa_offset 4
+ 350              		.cfi_offset 7, -4
+ 351 01fe 00AF     		add	r7, sp, #0
+ 352              	.LCFI13:
+ 353              		.cfi_def_cfa_register 7
+ 282:../Source Files/lpc17xx_clkpwr.c **** 	LPC_SC->PCON = 0x00;
+ 354              		.loc 1 282 0
+ 355 0200 4FF44043 		mov	r3, #49152
+ 356 0204 C4F20F03 		movt	r3, 16399
+ 357 0208 4FF00002 		mov	r2, #0
+ 358 020c C3F8C020 		str	r2, [r3, #192]
+ 359              	.LBB10:
+ 360              	.LBB11:
+ 361              		.file 2 "C:\\E_Workspace\\LPC1768\\Eg3\\CM3 Core/core_cmInstr.h"
+   1:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /**************************************************************************//**
+   2:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @file     core_cmInstr.h
+   3:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @brief    CMSIS Cortex-M Core Instruction Access Header File
+   4:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @version  V2.01
+   5:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @date     06. December 2010
+   6:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  *
+   7:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @note
+   8:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * Copyright (C) 2009-2010 ARM Limited. All rights reserved.
+   9:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  *
+  10:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @par
+  11:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M
+  12:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * processor based microcontrollers.  This file can be freely distributed
+  13:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * within development tools that are supporting such ARM based processors.
+  14:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  *
+  15:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * @par
+  16:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  *
+  22:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  ******************************************************************************/
+  23:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  24:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #ifndef __CORE_CMINSTR_H__
+  25:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __CORE_CMINSTR_H__
+  26:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  27:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  28:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* ##########################  Core Instruction Access  ######################### */
+  29:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \ingroup  CMSIS
+  30:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 	\addtogroup CMSIS_Core_InstructionInterface CMSIS Core Instruction Interface
+  31:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   Access to dedicated instructions
+  32:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   @{
+  33:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** */
+  34:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  35:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #if defined ( __CC_ARM   ) /*------------------ RealView Compiler ----------------*/
+  36:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* ARM armcc specific functions */
+  37:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  38:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  No Operation
+  39:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  40:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+  41:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  42:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __NOP                             __nop
+  43:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  44:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  45:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Interrupt
+  46:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  47:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+  48:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     until one of a number of events occurs.
+  49:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  50:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __WFI                             __wfi
+  51:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  52:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  53:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Event
+  54:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  55:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+  56:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+  57:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  58:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __WFE                             __wfe
+  59:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  60:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  61:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Send Event
+  62:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  63:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+  64:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  65:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __SEV                             __sev
+  66:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  67:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  68:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Instruction Synchronization Barrier
+  69:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  70:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Instruction Synchronization Barrier flushes the pipeline in the processor,
+  71:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     so that all instructions following the ISB are fetched from cache or
+  72:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     memory, after the instruction has been completed.
+  73:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  74:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __ISB()                           __isb(0xF)
+  75:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  76:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  77:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Data Synchronization Barrier
+  78:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  79:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function acts as a special kind of Data Memory Barrier.
+  80:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     It completes when all explicit memory accesses before this instruction complete.
+  81:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  82:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __DSB()                           __dsb(0xF)
+  83:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  84:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  85:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Data Memory Barrier
+  86:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  87:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function ensures the apparent order of the explicit memory operations before
+  88:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     and after the instruction, without ensuring their completion.
+  89:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+  90:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __DMB()                           __dmb(0xF)
+  91:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  92:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  93:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order (32 bit)
+  94:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  95:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in integer value.
+  96:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+  97:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
+  98:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return               Reversed value
+  99:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 100:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __REV                             __rev
+ 101:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 102:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 103:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
+ 104:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 105:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
+ 106:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 107:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 108:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return               Reversed value
+ 109:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 110:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
+ 111:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** extern uint32_t __REV16(uint32_t value);
+ 112:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400677)  */
+ 113:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static __INLINE __ASM uint32_t __REV16(uint32_t value)
+ 114:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 115:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   rev16 r0, r0
+ 116:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   bx lr
+ 117:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 118:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
+ 119:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 120:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 121:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order in signed short value
+ 122:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 123:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in a signed short value with sign extension to integer.
+ 124:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 125:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 126:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return               Reversed value
+ 127:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 128:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
+ 129:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** extern int32_t __REVSH(int32_t value);
+ 130:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400677)  */
+ 131:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static __INLINE __ASM int32_t __REVSH(int32_t value)
+ 132:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 133:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   revsh r0, r0
+ 134:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   bx lr
+ 135:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 136:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
+ 137:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 138:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 139:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
+ 140:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 141:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Reverse bit order of value
+ 142:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 143:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function reverses the bit order of the given value.
+ 144:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 145:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 146:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return               Reversed value
+ 147:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 148:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __RBIT                            __rbit
+ 149:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 150:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 151:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
+ 152:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 153:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
+ 154:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 155:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 156:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
+ 157:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 158:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __LDREXB(ptr)                     ((uint8_t ) __ldrex(ptr))
+ 159:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 160:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 161:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
+ 162:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 163:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
+ 164:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 165:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 166:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
+ 167:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 168:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __LDREXH(ptr)                     ((uint16_t) __ldrex(ptr))
+ 169:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 170:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 171:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
+ 172:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 173:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
+ 174:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 175:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 176:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
+ 177:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 178:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __LDREXW(ptr)                     ((uint32_t ) __ldrex(ptr))
+ 179:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 180:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 181:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
+ 182:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 183:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
+ 184:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 185:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
+ 186:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 187:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
+ 188:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
+ 189:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 190:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __STREXB(value, ptr)              __strex(value, ptr)
+ 191:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 192:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 193:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
+ 194:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 195:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
+ 196:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 197:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
+ 198:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 199:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
+ 200:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
+ 201:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 202:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __STREXH(value, ptr)              __strex(value, ptr)
+ 203:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 204:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 205:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
+ 206:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 207:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
+ 208:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 209:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
+ 210:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 211:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
+ 212:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
+ 213:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 214:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
+ 215:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 216:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 217:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Remove the exclusive lock
+ 218:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 219:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
+ 220:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 221:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 222:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #if (__ARMCC_VERSION < 400000)
+ 223:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** extern void __CLREX(void);
+ 224:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400000)  */
+ 225:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __CLREX                           __clrex
+ 226:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
+ 227:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 228:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 229:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Signed Saturate
+ 230:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 231:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function saturates a signed value.
+ 232:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 233:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 234:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (1..32)
+ 235:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return             Saturated value
+ 236:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 237:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __SSAT                            __ssat
+ 238:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 239:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 240:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Unsigned Saturate
+ 241:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 242:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function saturates an unsigned value.
+ 243:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 244:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 245:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (0..31)
+ 246:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return             Saturated value
+ 247:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 248:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __USAT                            __usat
+ 249:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 250:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 251:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Count leading zeros
+ 252:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 253:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function counts the number of leading zeros of a data value.
+ 254:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 255:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to count the leading zeros
+ 256:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return             number of leading zeros in value
+ 257:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 258:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __CLZ                             __clz
+ 259:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 260:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 261:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 262:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 263:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 264:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #elif (defined (__ICCARM__)) /*---------------- ICC Compiler ---------------------*/
+ 265:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* IAR iccarm specific functions */
+ 266:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 267:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #include <intrinsics.h>                     /* IAR Intrinsics   */
+ 268:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 269:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #pragma diag_suppress=Pe940
+ 270:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 271:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  No Operation
+ 272:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 273:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+ 274:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 275:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #define __NOP                           __no_operation
+ 276:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 277:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 278:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Interrupt
+ 279:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 280:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+ 281:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     until one of a number of events occurs.
+ 282:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 283:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static __INLINE  void __WFI(void)
+ 284:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 285:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM ("wfi");
+ 286:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 287:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 288:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 289:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Event
+ 290:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 291:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+ 292:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+ 293:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 294:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static __INLINE  void __WFE(void)
+ 295:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 296:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM ("wfe");
+ 297:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 298:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 299:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 300:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Send Event
+ 301:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 302:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+ 303:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 304:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static __INLINE  void __SEV(void)
+ 305:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 306:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM ("sev");
+ 307:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 308:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 309:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 310:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic     void __ISB(void)            (see intrinsics.h) */
+ 311:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic     void __DSB(void)            (see intrinsics.h) */
+ 312:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic     void __DMB(void)            (see intrinsics.h) */
+ 313:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic uint32_t __REV(uint32_t value)  (see intrinsics.h) */
+ 314:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic          __SSAT                 (see intrinsics.h) */
+ 315:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic          __USAT                 (see intrinsics.h) */
+ 316:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 317:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 318:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
+ 319:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 320:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
+ 321:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 322:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 323:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return               Reversed value
+ 324:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 325:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint32_t __REV16(uint32_t value)
+ 326:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 327:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("rev16 r0, r0");
+ 328:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 329:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 330:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 331:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic uint32_t __REVSH(uint32_t value)  (see intrinsics.h */
+ 332:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 333:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 334:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
+ 335:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 336:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Reverse bit order of value
+ 337:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 338:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function reverses the bit order of the given value.
+ 339:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 340:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 341:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return               Reversed value
+ 342:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 343:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint32_t __RBIT(uint32_t value)
+ 344:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 345:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("rbit r0, r0");
+ 346:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 347:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 348:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 349:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
+ 350:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 351:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
+ 352:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 353:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 354:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
+ 355:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 356:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint8_t __LDREXB(volatile uint8_t *addr)
+ 357:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 358:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("ldrexb r0, [r0]");
+ 359:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 360:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 361:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 362:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
+ 363:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 364:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
+ 365:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 366:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 367:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
+ 368:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 369:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint16_t __LDREXH(volatile uint16_t *addr)
+ 370:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 371:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("ldrexh r0, [r0]");
+ 372:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 373:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 374:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 375:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
+ 376:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 377:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
+ 378:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 379:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 380:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
+ 381:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 382:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic unsigned long __LDREX(unsigned long *)  (see intrinsics.h) */
+ 383:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint32_t __LDREXW(volatile uint32_t *addr)
+ 384:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 385:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("ldrex r0, [r0]");
+ 386:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 387:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 388:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 389:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
+ 390:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 391:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
+ 392:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 393:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
+ 394:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 395:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
+ 396:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
+ 397:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 398:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint32_t __STREXB(uint8_t value, volatile uint8_t *addr)
+ 399:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 400:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("strexb r0, r0, [r1]");
+ 401:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 402:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 403:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 404:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
+ 405:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 406:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
+ 407:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 408:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
+ 409:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 410:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
+ 411:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
+ 412:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 413:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
+ 414:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 415:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("strexh r0, r0, [r1]");
+ 416:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 417:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 418:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 419:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
+ 420:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 421:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
+ 422:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 423:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
+ 424:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 425:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
+ 426:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
+ 427:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 428:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic unsigned long __STREX(unsigned long, unsigned long)  (see intrinsics.h )*/
+ 429:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static uint32_t __STREXW(uint32_t value, volatile uint32_t *addr)
+ 430:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 431:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM("strex r0, r0, [r1]");
+ 432:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 433:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 434:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 435:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Remove the exclusive lock
+ 436:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 437:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
+ 438:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 439:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 440:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** static __INLINE void __CLREX(void)
+ 441:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 442:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM ("clrex");
+ 443:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 444:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 445:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* intrinsic   unsigned char __CLZ( unsigned long )      (see intrinsics.h) */
+ 446:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 447:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 448:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 449:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #pragma diag_default=Pe940
+ 450:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 451:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 452:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 453:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
+ 454:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /* GNU gcc specific functions */
+ 455:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 456:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  No Operation
+ 457:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 458:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+ 459:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 460:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** __attribute__( ( always_inline ) ) static __INLINE void __NOP(void)
+ 461:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 462:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM volatile ("nop");
+ 463:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** }
+ 464:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 465:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 466:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Interrupt
+ 467:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** 
+ 468:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+ 469:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****     until one of a number of events occurs.
+ 470:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****  */
+ 471:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** __attribute__( ( always_inline ) ) static __INLINE void __WFI(void)
+ 472:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h **** {
+ 473:C:\E_Workspace\LPC1768\Eg3\CM3 Core\core_cmInstr.h ****   __ASM volatile ("wfi");
+ 362              		.loc 2 473 0
+ 363              	@ 473 "C:\E_Workspace\LPC1768\Eg3\CM3 Core/core_cmInstr.h" 1
+ 364 0210 30BF     		wfi
+ 365              	@ 0 "" 2
+ 366              		.thumb
+ 367              	.LBE11:
+ 368              	.LBE10:
+ 283:../Source Files/lpc17xx_clkpwr.c **** 	/* Sleep Mode*/
+ 284:../Source Files/lpc17xx_clkpwr.c **** 	__WFI();
+ 285:../Source Files/lpc17xx_clkpwr.c **** }
+ 369              		.loc 1 285 0
+ 370 0212 BD46     		mov	sp, r7
+ 371 0214 80BC     		pop	{r7}
+ 372 0216 7047     		bx	lr
+ 373              		.cfi_endproc
+ 374              	.LFE59:
+ 376              		.align	2
+ 377              		.global	CLKPWR_DeepSleep
+ 378              		.thumb
+ 379              		.thumb_func
+ 381              	CLKPWR_DeepSleep:
+ 382              	.LFB60:
+ 286:../Source Files/lpc17xx_clkpwr.c **** 
+ 287:../Source Files/lpc17xx_clkpwr.c **** 
+ 288:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 289:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Enter Deep Sleep mode with co-operated instruction by the Cortex-M3.
+ 290:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	None
+ 291:../Source Files/lpc17xx_clkpwr.c ****  * @return		None
+ 292:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 293:../Source Files/lpc17xx_clkpwr.c **** void CLKPWR_DeepSleep(void)
+ 294:../Source Files/lpc17xx_clkpwr.c **** {
+ 383              		.loc 1 294 0
+ 384              		.cfi_startproc
+ 385              		@ args = 0, pretend = 0, frame = 0
+ 386              		@ frame_needed = 1, uses_anonymous_args = 0
+ 387              		@ link register save eliminated.
+ 388 0218 80B4     		push	{r7}
+ 389              	.LCFI14:
+ 390              		.cfi_def_cfa_offset 4
+ 391              		.cfi_offset 7, -4
+ 392 021a 00AF     		add	r7, sp, #0
+ 393              	.LCFI15:
+ 394              		.cfi_def_cfa_register 7
+ 295:../Source Files/lpc17xx_clkpwr.c ****     /* Deep-Sleep Mode, set SLEEPDEEP bit */
+ 296:../Source Files/lpc17xx_clkpwr.c **** 	SCB->SCR = 0x4;
+ 395              		.loc 1 296 0
+ 396 021c 4FF46D43 		mov	r3, #60672
+ 397 0220 CEF20003 		movt	r3, 57344
+ 398 0224 4FF00402 		mov	r2, #4
+ 399 0228 1A61     		str	r2, [r3, #16]
+ 297:../Source Files/lpc17xx_clkpwr.c **** 	LPC_SC->PCON = 0x8;
+ 400              		.loc 1 297 0
+ 401 022a 4FF44043 		mov	r3, #49152
+ 402 022e C4F20F03 		movt	r3, 16399
+ 403 0232 4FF00802 		mov	r2, #8
+ 404 0236 C3F8C020 		str	r2, [r3, #192]
+ 405              	.LBB12:
+ 406              	.LBB13:
+ 407              		.loc 2 473 0
+ 408              	@ 473 "C:\E_Workspace\LPC1768\Eg3\CM3 Core/core_cmInstr.h" 1
+ 409 023a 30BF     		wfi
+ 410              	@ 0 "" 2
+ 411              		.thumb
+ 412              	.LBE13:
+ 413              	.LBE12:
+ 298:../Source Files/lpc17xx_clkpwr.c **** 	/* Deep Sleep Mode*/
+ 299:../Source Files/lpc17xx_clkpwr.c **** 	__WFI();
+ 300:../Source Files/lpc17xx_clkpwr.c **** }
+ 414              		.loc 1 300 0
+ 415 023c BD46     		mov	sp, r7
+ 416 023e 80BC     		pop	{r7}
+ 417 0240 7047     		bx	lr
+ 418              		.cfi_endproc
+ 419              	.LFE60:
+ 421 0242 00BF     		.align	2
+ 422              		.global	CLKPWR_PowerDown
+ 423              		.thumb
+ 424              		.thumb_func
+ 426              	CLKPWR_PowerDown:
+ 427              	.LFB61:
+ 301:../Source Files/lpc17xx_clkpwr.c **** 
+ 302:../Source Files/lpc17xx_clkpwr.c **** 
+ 303:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 304:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Enter Power Down mode with co-operated instruction by the Cortex-M3.
+ 305:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	None
+ 306:../Source Files/lpc17xx_clkpwr.c ****  * @return		None
+ 307:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 308:../Source Files/lpc17xx_clkpwr.c **** void CLKPWR_PowerDown(void)
+ 309:../Source Files/lpc17xx_clkpwr.c **** {
+ 428              		.loc 1 309 0
+ 429              		.cfi_startproc
+ 430              		@ args = 0, pretend = 0, frame = 0
+ 431              		@ frame_needed = 1, uses_anonymous_args = 0
+ 432              		@ link register save eliminated.
+ 433 0244 80B4     		push	{r7}
+ 434              	.LCFI16:
+ 435              		.cfi_def_cfa_offset 4
+ 436              		.cfi_offset 7, -4
+ 437 0246 00AF     		add	r7, sp, #0
+ 438              	.LCFI17:
+ 439              		.cfi_def_cfa_register 7
+ 310:../Source Files/lpc17xx_clkpwr.c ****     /* Deep-Sleep Mode, set SLEEPDEEP bit */
+ 311:../Source Files/lpc17xx_clkpwr.c **** 	SCB->SCR = 0x4;
+ 440              		.loc 1 311 0
+ 441 0248 4FF46D43 		mov	r3, #60672
+ 442 024c CEF20003 		movt	r3, 57344
+ 443 0250 4FF00402 		mov	r2, #4
+ 444 0254 1A61     		str	r2, [r3, #16]
+ 312:../Source Files/lpc17xx_clkpwr.c **** 	LPC_SC->PCON = 0x09;
+ 445              		.loc 1 312 0
+ 446 0256 4FF44043 		mov	r3, #49152
+ 447 025a C4F20F03 		movt	r3, 16399
+ 448 025e 4FF00902 		mov	r2, #9
+ 449 0262 C3F8C020 		str	r2, [r3, #192]
+ 450              	.LBB14:
+ 451              	.LBB15:
+ 452              		.loc 2 473 0
+ 453              	@ 473 "C:\E_Workspace\LPC1768\Eg3\CM3 Core/core_cmInstr.h" 1
+ 454 0266 30BF     		wfi
+ 455              	@ 0 "" 2
+ 456              		.thumb
+ 457              	.LBE15:
+ 458              	.LBE14:
+ 313:../Source Files/lpc17xx_clkpwr.c **** 	/* Power Down Mode*/
+ 314:../Source Files/lpc17xx_clkpwr.c **** 	__WFI();
+ 315:../Source Files/lpc17xx_clkpwr.c **** }
+ 459              		.loc 1 315 0
+ 460 0268 BD46     		mov	sp, r7
+ 461 026a 80BC     		pop	{r7}
+ 462 026c 7047     		bx	lr
+ 463              		.cfi_endproc
+ 464              	.LFE61:
+ 466 026e 00BF     		.align	2
+ 467              		.global	CLKPWR_DeepPowerDown
+ 468              		.thumb
+ 469              		.thumb_func
+ 471              	CLKPWR_DeepPowerDown:
+ 472              	.LFB62:
+ 316:../Source Files/lpc17xx_clkpwr.c **** 
+ 317:../Source Files/lpc17xx_clkpwr.c **** 
+ 318:../Source Files/lpc17xx_clkpwr.c **** /*********************************************************************//**
+ 319:../Source Files/lpc17xx_clkpwr.c ****  * @brief 		Enter Deep Power Down mode with co-operated instruction by the Cortex-M3.
+ 320:../Source Files/lpc17xx_clkpwr.c ****  * @param[in]	None
+ 321:../Source Files/lpc17xx_clkpwr.c ****  * @return		None
+ 322:../Source Files/lpc17xx_clkpwr.c ****  **********************************************************************/
+ 323:../Source Files/lpc17xx_clkpwr.c **** void CLKPWR_DeepPowerDown(void)
+ 324:../Source Files/lpc17xx_clkpwr.c **** {
+ 473              		.loc 1 324 0
+ 474              		.cfi_startproc
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 1, uses_anonymous_args = 0
+ 477              		@ link register save eliminated.
+ 478 0270 80B4     		push	{r7}
+ 479              	.LCFI18:
+ 480              		.cfi_def_cfa_offset 4
+ 481              		.cfi_offset 7, -4
+ 482 0272 00AF     		add	r7, sp, #0
+ 483              	.LCFI19:
+ 484              		.cfi_def_cfa_register 7
+ 325:../Source Files/lpc17xx_clkpwr.c ****     /* Deep-Sleep Mode, set SLEEPDEEP bit */
+ 326:../Source Files/lpc17xx_clkpwr.c **** 	SCB->SCR = 0x4;
+ 485              		.loc 1 326 0
+ 486 0274 4FF46D43 		mov	r3, #60672
+ 487 0278 CEF20003 		movt	r3, 57344
+ 488 027c 4FF00402 		mov	r2, #4
+ 489 0280 1A61     		str	r2, [r3, #16]
+ 327:../Source Files/lpc17xx_clkpwr.c **** 	LPC_SC->PCON = 0x03;
+ 490              		.loc 1 327 0
+ 491 0282 4FF44043 		mov	r3, #49152
+ 492 0286 C4F20F03 		movt	r3, 16399
+ 493 028a 4FF00302 		mov	r2, #3
+ 494 028e C3F8C020 		str	r2, [r3, #192]
+ 495              	.LBB16:
+ 496              	.LBB17:
+ 497              		.loc 2 473 0
+ 498              	@ 473 "C:\E_Workspace\LPC1768\Eg3\CM3 Core/core_cmInstr.h" 1
+ 499 0292 30BF     		wfi
+ 500              	@ 0 "" 2
+ 501              		.thumb
+ 502              	.LBE17:
+ 503              	.LBE16:
+ 328:../Source Files/lpc17xx_clkpwr.c **** 	/* Deep Power Down Mode*/
+ 329:../Source Files/lpc17xx_clkpwr.c **** 	__WFI();
+ 330:../Source Files/lpc17xx_clkpwr.c **** }
+ 504              		.loc 1 330 0
+ 505 0294 BD46     		mov	sp, r7
+ 506 0296 80BC     		pop	{r7}
+ 507 0298 7047     		bx	lr
+ 508              		.cfi_endproc
+ 509              	.LFE62:
+ 511              	.Letext0:
+ 512              		.file 3 "c:\\program files\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eabi/4.7.
+ 513              		.file 4 "C:\\E_Workspace\\LPC1768\\Eg3\\CM3 Core/core_cm3.h"
+ 514              		.file 5 "C:\\E_Workspace\\LPC1768\\Eg3\\CM3 Core/LPC17xx.h"
+ 515              		.file 6 "C:\\E_Workspace\\LPC1768\\Eg3\\Header Files/lpc_types.h"
+ 516              		.file 7 "C:\\E_Workspace\\LPC1768\\Eg3\\CM3 Core/system_LPC17xx.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc17xx_clkpwr.c
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:18     .text:00000000 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:23     .text:00000000 CLKPWR_SetPCLKDiv
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:123    .text:000000c4 CLKPWR_GetPCLKSEL
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:187    .text:00000118 CLKPWR_GetPCLK
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:222    .text:00000140 $d
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:228    .text:00000150 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:271    .text:00000188 CLKPWR_ConfigPPWR
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:340    .text:000001fc CLKPWR_Sleep
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:381    .text:00000218 CLKPWR_DeepSleep
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:426    .text:00000244 CLKPWR_PowerDown
+C:\Users\Edu_win7\AppData\Local\Temp\ccLIOJen.s:471    .text:00000270 CLKPWR_DeepPowerDown
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.4198839cd628579709ab94bfdf5f0d6e
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.b5bb84d7ba97d82b5b1dc1826a7ae811
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.a64d7e761ffe573cbca681049cab7b1a
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.50.adf94acb043d05ea653bbd6bda75d068
+
+UNDEFINED SYMBOLS
+SystemCoreClock
