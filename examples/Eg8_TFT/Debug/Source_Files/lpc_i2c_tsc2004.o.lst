@@ -1,0 +1,849 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc_i2c_tsc2004.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	1
+  19              		.global	I2C_TSC2004_Write_Byte
+  20              		.thumb
+  21              		.thumb_func
+  23              	I2C_TSC2004_Write_Byte:
+  24              	.LFB56:
+  25              		.file 1 "../Source_Files/lpc_i2c_tsc2004.c"
+   1:../Source_Files/lpc_i2c_tsc2004.c **** /**********************************************************************
+   2:../Source_Files/lpc_i2c_tsc2004.c **** * $Id$		lpc_i2c_tsc2004.c
+   3:../Source_Files/lpc_i2c_tsc2004.c **** *//**
+   4:../Source_Files/lpc_i2c_tsc2004.c **** * @file		lpc_i2c_tsc2004.c
+   5:../Source_Files/lpc_i2c_tsc2004.c **** * @brief	Contains all functions support for I2C based TouchScreen
+   6:../Source_Files/lpc_i2c_tsc2004.c **** *           library on LPC17xx
+   7:../Source_Files/lpc_i2c_tsc2004.c **** * @version	1.0
+   8:../Source_Files/lpc_i2c_tsc2004.c **** * @date		27. Dec. 2013
+   9:../Source_Files/lpc_i2c_tsc2004.c **** * @author	Dwijay.Edutech Learning Solutions
+  10:../Source_Files/lpc_i2c_tsc2004.c **** ***********************************************************************
+  11:../Source_Files/lpc_i2c_tsc2004.c **** * Software that is described herein is for illustrative purposes only
+  12:../Source_Files/lpc_i2c_tsc2004.c **** * which provides customers with programming information regarding the
+  13:../Source_Files/lpc_i2c_tsc2004.c **** * products. This software is supplied "AS IS" without any warranties.
+  14:../Source_Files/lpc_i2c_tsc2004.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  15:../Source_Files/lpc_i2c_tsc2004.c **** * use of the software, conveys no license or title under any patent,
+  16:../Source_Files/lpc_i2c_tsc2004.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  17:../Source_Files/lpc_i2c_tsc2004.c **** * reserves the right to make changes in the software without
+  18:../Source_Files/lpc_i2c_tsc2004.c **** * notification. NXP Semiconductors also make no representation or
+  19:../Source_Files/lpc_i2c_tsc2004.c **** * warranty that such application will be suitable for the specified
+  20:../Source_Files/lpc_i2c_tsc2004.c **** * use without further testing or modification.
+  21:../Source_Files/lpc_i2c_tsc2004.c **** **********************************************************************/
+  22:../Source_Files/lpc_i2c_tsc2004.c **** 
+  23:../Source_Files/lpc_i2c_tsc2004.c **** /* Peripheral group ----------------------------------------------------------- */
+  24:../Source_Files/lpc_i2c_tsc2004.c **** /** @addtogroup TSC2004
+  25:../Source_Files/lpc_i2c_tsc2004.c ****  * @{
+  26:../Source_Files/lpc_i2c_tsc2004.c ****  */
+  27:../Source_Files/lpc_i2c_tsc2004.c **** 
+  28:../Source_Files/lpc_i2c_tsc2004.c **** /* Includes ------------------------------------------------------------------- */
+  29:../Source_Files/lpc_i2c_tsc2004.c **** #include "lpc_i2c_tsc2004.h"
+  30:../Source_Files/lpc_i2c_tsc2004.c **** /* GLCD Include-----------------------------------------------------------------*/
+  31:../Source_Files/lpc_i2c_tsc2004.c **** 
+  32:../Source_Files/lpc_i2c_tsc2004.c **** /* If this source file built with example, the LPC17xx FW library configuration
+  33:../Source_Files/lpc_i2c_tsc2004.c ****  * file in each example directory ("lpc17xx_libcfg.h") must be included,
+  34:../Source_Files/lpc_i2c_tsc2004.c ****  * otherwise the default FW library configuration file must be included instead
+  35:../Source_Files/lpc_i2c_tsc2004.c ****  */
+  36:../Source_Files/lpc_i2c_tsc2004.c **** 
+  37:../Source_Files/lpc_i2c_tsc2004.c **** 
+  38:../Source_Files/lpc_i2c_tsc2004.c **** 
+  39:../Source_Files/lpc_i2c_tsc2004.c **** /** @addtogroup TSC2004_Public_Functions
+  40:../Source_Files/lpc_i2c_tsc2004.c ****  * @{
+  41:../Source_Files/lpc_i2c_tsc2004.c ****  */
+  42:../Source_Files/lpc_i2c_tsc2004.c **** 
+  43:../Source_Files/lpc_i2c_tsc2004.c **** /* Public Functions ----------------------------------------------------------- */
+  44:../Source_Files/lpc_i2c_tsc2004.c **** 
+  45:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+  46:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Touch Screen Initialize
+  47:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	None
+  48:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		None
+  49:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+  50:../Source_Files/lpc_i2c_tsc2004.c **** void TSC2004_Init (void)
+  51:../Source_Files/lpc_i2c_tsc2004.c **** {
+  52:../Source_Files/lpc_i2c_tsc2004.c **** 	uint16_t cmd,data;
+  53:../Source_Files/lpc_i2c_tsc2004.c **** 
+  54:../Source_Files/lpc_i2c_tsc2004.c **** 	 /* Reset the TSC, configure for 12 bit */
+  55:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD1(MEAS_X_Y_Z1_Z2, MODE_12BIT, SWRST_TRUE);
+  56:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Byte(cmd);
+  57:../Source_Files/lpc_i2c_tsc2004.c **** 
+  58:../Source_Files/lpc_i2c_tsc2004.c **** 	/* Enable interrupt for PENIRQ and DAV */
+  59:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(CFR2_REG, PND0_FALSE, WRITE_REG);
+  60:../Source_Files/lpc_i2c_tsc2004.c **** 	data = MEDIAN_VAL_FLTR_SIZE_1 |AVRG_VAL_FLTR_SIZE_7_8;
+  61:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Word(cmd, data);
+  62:../Source_Files/lpc_i2c_tsc2004.c **** 
+  63:../Source_Files/lpc_i2c_tsc2004.c **** 	/* Configure the TSC in TSMode 1 */
+  64:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(CFR0_REG, PND0_FALSE, WRITE_REG);
+  65:../Source_Files/lpc_i2c_tsc2004.c **** 	data = PEN_STS_CTRL_MODE | ADC_CLK_2MHZ;
+  66:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Word(cmd, data);
+  67:../Source_Files/lpc_i2c_tsc2004.c **** 
+  68:../Source_Files/lpc_i2c_tsc2004.c **** 	/* Enable x, y, z1 and z2 conversion functions */
+  69:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD1(MEAS_X_Y_Z1_Z2, MODE_12BIT, SWRST_FALSE);
+  70:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Byte(cmd);
+  71:../Source_Files/lpc_i2c_tsc2004.c **** }
+  72:../Source_Files/lpc_i2c_tsc2004.c **** 
+  73:../Source_Files/lpc_i2c_tsc2004.c **** 
+  74:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+  75:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Writes Command Byte
+  76:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	Command  Write Command Byte
+  77:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		status
+  78:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+  79:../Source_Files/lpc_i2c_tsc2004.c **** char I2C_TSC2004_Write_Byte (uint8_t Command)
+  80:../Source_Files/lpc_i2c_tsc2004.c **** {
+  26              		.loc 1 80 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 56
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 8FB0     		sub	sp, sp, #60
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 64
+  38              		.loc 1 80 0
+  39 0004 8DF80700 		strb	r0, [sp, #7]
+  81:../Source_Files/lpc_i2c_tsc2004.c **** 	/* Transmit setup */
+  82:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_M_SETUP_Type txsetup;
+  83:../Source_Files/lpc_i2c_tsc2004.c **** 
+  84:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.sl_addr7bit = TSC2004_ID;
+  40              		.loc 1 84 0
+  41 0008 4823     		movs	r3, #72
+  85:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_data = &Command;
+  42              		.loc 1 85 0
+  43 000a 0DF10700 		add	r0, sp, #7
+  44              	.LVL1:
+  86:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_length = 1;
+  45              		.loc 1 86 0
+  46 000e 0121     		movs	r1, #1
+  87:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_data = NULL;
+  47              		.loc 1 87 0
+  48 0010 0022     		movs	r2, #0
+  84:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.sl_addr7bit = TSC2004_ID;
+  49              		.loc 1 84 0
+  50 0012 0393     		str	r3, [sp, #12]
+  85:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_data = &Command;
+  51              		.loc 1 85 0
+  52 0014 0490     		str	r0, [sp, #16]
+  86:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_length = 1;
+  53              		.loc 1 86 0
+  54 0016 0591     		str	r1, [sp, #20]
+  88:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_length = 0;
+  89:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.retransmissions_max = 3;
+  55              		.loc 1 89 0
+  56 0018 0323     		movs	r3, #3
+  90:../Source_Files/lpc_i2c_tsc2004.c **** 
+  91:../Source_Files/lpc_i2c_tsc2004.c **** 	/* write byte to addr  */
+  92:../Source_Files/lpc_i2c_tsc2004.c **** 	if(I2C_MasterTransferData(LPC_I2C0, &txsetup, I2C_TRANSFER_POLLING)==SUCCESS) //return status
+  57              		.loc 1 92 0
+  58 001a 03A9     		add	r1, sp, #12
+  59 001c 0548     		ldr	r0, .L4
+  87:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_data = NULL;
+  60              		.loc 1 87 0
+  61 001e 0792     		str	r2, [sp, #28]
+  88:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_length = 0;
+  62              		.loc 1 88 0
+  63 0020 0892     		str	r2, [sp, #32]
+  89:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.retransmissions_max = 3;
+  64              		.loc 1 89 0
+  65 0022 0A93     		str	r3, [sp, #40]
+  66              		.loc 1 92 0
+  67 0024 FFF7FEFF 		bl	I2C_MasterTransferData
+  68              	.LVL2:
+  93:../Source_Files/lpc_i2c_tsc2004.c **** 	{
+  94:../Source_Files/lpc_i2c_tsc2004.c **** 		return (0);
+  95:../Source_Files/lpc_i2c_tsc2004.c **** 	}
+  96:../Source_Files/lpc_i2c_tsc2004.c **** 	else
+  97:../Source_Files/lpc_i2c_tsc2004.c **** 	{
+  98:../Source_Files/lpc_i2c_tsc2004.c **** 		return (-1);
+  99:../Source_Files/lpc_i2c_tsc2004.c **** 	}
+ 100:../Source_Files/lpc_i2c_tsc2004.c **** }
+  69              		.loc 1 100 0
+  70 0028 0128     		cmp	r0, #1
+  71 002a 14BF     		ite	ne
+  72 002c FF20     		movne	r0, #255
+  73 002e 0020     		moveq	r0, #0
+  74 0030 0FB0     		add	sp, sp, #60
+  75 0032 00BD     		pop	{pc}
+  76              	.L5:
+  77              		.align	2
+  78              	.L4:
+  79 0034 00C00140 		.word	1073856512
+  80              		.cfi_endproc
+  81              	.LFE56:
+  83              		.align	1
+  84              		.global	I2C_TSC2004_Write_Word
+  85              		.thumb
+  86              		.thumb_func
+  88              	I2C_TSC2004_Write_Word:
+  89              	.LFB57:
+ 101:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 102:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 103:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+ 104:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Writes Word Command
+ 105:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	Command      Configuration Commands
+ 106:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]   word_data    Configuration values
+ 107:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		status
+ 108:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+ 109:../Source_Files/lpc_i2c_tsc2004.c **** char I2C_TSC2004_Write_Word (uint8_t Command, uint16_t word_data)
+ 110:../Source_Files/lpc_i2c_tsc2004.c **** {
+  90              		.loc 1 110 0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 48
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              	.LVL3:
+  95 0038 00B5     		push	{lr}
+  96              	.LCFI2:
+  97              		.cfi_def_cfa_offset 4
+  98              		.cfi_offset 14, -4
+ 111:../Source_Files/lpc_i2c_tsc2004.c **** 	/* Transmit setup */
+ 112:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_M_SETUP_Type txsetup;
+ 113:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 114:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_Tx_Buf[0] = Command;
+  99              		.loc 1 114 0
+ 100 003a 0C4B     		ldr	r3, .L9
+ 110:../Source_Files/lpc_i2c_tsc2004.c **** {
+ 101              		.loc 1 110 0
+ 102 003c 8DB0     		sub	sp, sp, #52
+ 103              	.LCFI3:
+ 104              		.cfi_def_cfa_offset 56
+ 115:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_Tx_Buf[1] = (uint8_t)(word_data>>8);
+ 105              		.loc 1 115 0
+ 106 003e 0A0A     		lsrs	r2, r1, #8
+ 114:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_Tx_Buf[0] = Command;
+ 107              		.loc 1 114 0
+ 108 0040 1870     		strb	r0, [r3, #0]
+ 116:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_Tx_Buf[2] = (uint8_t)(word_data);
+ 109              		.loc 1 116 0
+ 110 0042 9970     		strb	r1, [r3, #2]
+ 117:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 118:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.sl_addr7bit = TSC2004_ID;
+ 111              		.loc 1 118 0
+ 112 0044 4820     		movs	r0, #72
+ 113              	.LVL4:
+ 119:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_data = I2C_Tx_Buf;
+ 120:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_length = 3;
+ 114              		.loc 1 120 0
+ 115 0046 0321     		movs	r1, #3
+ 116              	.LVL5:
+ 115:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_Tx_Buf[1] = (uint8_t)(word_data>>8);
+ 117              		.loc 1 115 0
+ 118 0048 5A70     		strb	r2, [r3, #1]
+ 118:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.sl_addr7bit = TSC2004_ID;
+ 119              		.loc 1 118 0
+ 120 004a 0190     		str	r0, [sp, #4]
+ 121:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_data = NULL;
+ 121              		.loc 1 121 0
+ 122 004c 0022     		movs	r2, #0
+ 120:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_length = 3;
+ 123              		.loc 1 120 0
+ 124 004e 0391     		str	r1, [sp, #12]
+ 122:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_length = 0;
+ 123:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.retransmissions_max = 3;
+ 125              		.loc 1 123 0
+ 126 0050 0891     		str	r1, [sp, #32]
+ 124:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 125:../Source_Files/lpc_i2c_tsc2004.c **** 	/* write byte to addr  */
+ 126:../Source_Files/lpc_i2c_tsc2004.c **** 	if(I2C_MasterTransferData(LPC_I2C0, &txsetup, I2C_TRANSFER_POLLING)==SUCCESS) //return status
+ 127              		.loc 1 126 0
+ 128 0052 0748     		ldr	r0, .L9+4
+ 129 0054 01A9     		add	r1, sp, #4
+ 119:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.tx_data = I2C_Tx_Buf;
+ 130              		.loc 1 119 0
+ 131 0056 0293     		str	r3, [sp, #8]
+ 121:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_data = NULL;
+ 132              		.loc 1 121 0
+ 133 0058 0592     		str	r2, [sp, #20]
+ 122:../Source_Files/lpc_i2c_tsc2004.c **** 	txsetup.rx_length = 0;
+ 134              		.loc 1 122 0
+ 135 005a 0692     		str	r2, [sp, #24]
+ 136              		.loc 1 126 0
+ 137 005c FFF7FEFF 		bl	I2C_MasterTransferData
+ 138              	.LVL6:
+ 127:../Source_Files/lpc_i2c_tsc2004.c **** 	{
+ 128:../Source_Files/lpc_i2c_tsc2004.c **** 		return (0);
+ 129:../Source_Files/lpc_i2c_tsc2004.c **** 	}
+ 130:../Source_Files/lpc_i2c_tsc2004.c **** 	else
+ 131:../Source_Files/lpc_i2c_tsc2004.c **** 	{
+ 132:../Source_Files/lpc_i2c_tsc2004.c **** 		return (-1);
+ 133:../Source_Files/lpc_i2c_tsc2004.c **** 	}
+ 134:../Source_Files/lpc_i2c_tsc2004.c **** }
+ 139              		.loc 1 134 0
+ 140 0060 0128     		cmp	r0, #1
+ 141 0062 14BF     		ite	ne
+ 142 0064 FF20     		movne	r0, #255
+ 143 0066 0020     		moveq	r0, #0
+ 144 0068 0DB0     		add	sp, sp, #52
+ 145 006a 00BD     		pop	{pc}
+ 146              	.L10:
+ 147              		.align	2
+ 148              	.L9:
+ 149 006c 00000000 		.word	I2C_Tx_Buf
+ 150 0070 00C00140 		.word	1073856512
+ 151              		.cfi_endproc
+ 152              	.LFE57:
+ 154              		.align	1
+ 155              		.global	TSC2004_Init
+ 156              		.thumb
+ 157              		.thumb_func
+ 159              	TSC2004_Init:
+ 160              	.LFB55:
+  51:../Source_Files/lpc_i2c_tsc2004.c **** {
+ 161              		.loc 1 51 0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              	.LVL7:
+ 166 0074 08B5     		push	{r3, lr}
+ 167              	.LCFI4:
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 3, -8
+ 170              		.cfi_offset 14, -4
+  56:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Byte(cmd);
+ 171              		.loc 1 56 0
+ 172 0076 8620     		movs	r0, #134
+ 173 0078 FFF7FEFF 		bl	I2C_TSC2004_Write_Byte
+ 174              	.LVL8:
+  61:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Word(cmd, data);
+ 175              		.loc 1 61 0
+ 176 007c 7020     		movs	r0, #112
+ 177 007e 4FF40061 		mov	r1, #2048
+ 178 0082 FFF7FEFF 		bl	I2C_TSC2004_Write_Word
+ 179              	.LVL9:
+  66:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Word(cmd, data);
+ 180              		.loc 1 66 0
+ 181 0086 6020     		movs	r0, #96
+ 182 0088 4FF40841 		mov	r1, #34816
+ 183 008c FFF7FEFF 		bl	I2C_TSC2004_Write_Word
+ 184              	.LVL10:
+  70:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Byte(cmd);
+ 185              		.loc 1 70 0
+ 186 0090 8420     		movs	r0, #132
+  71:../Source_Files/lpc_i2c_tsc2004.c **** }
+ 187              		.loc 1 71 0
+ 188 0092 BDE80840 		pop	{r3, lr}
+  70:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_TSC2004_Write_Byte(cmd);
+ 189              		.loc 1 70 0
+ 190 0096 FFF7FEBF 		b	I2C_TSC2004_Write_Byte
+ 191              	.LVL11:
+ 192              		.cfi_endproc
+ 193              	.LFE55:
+ 195              		.align	1
+ 196              		.global	I2C_TSC2004_Read_Word
+ 197              		.thumb
+ 198              		.thumb_func
+ 200              	I2C_TSC2004_Read_Word:
+ 201              	.LFB58:
+ 135:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 136:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 137:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+ 138:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Reads Word data
+ 139:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	Command    Read Register
+ 140:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		Word value
+ 141:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+ 142:../Source_Files/lpc_i2c_tsc2004.c **** uint16_t I2C_TSC2004_Read_Word (uint8_t Command)
+ 143:../Source_Files/lpc_i2c_tsc2004.c **** {
+ 202              		.loc 1 143 0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 56
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206              	.LVL12:
+ 207 009a 30B5     		push	{r4, r5, lr}
+ 208              	.LCFI5:
+ 209              		.cfi_def_cfa_offset 12
+ 210              		.cfi_offset 4, -12
+ 211              		.cfi_offset 5, -8
+ 212              		.cfi_offset 14, -4
+ 213 009c 8FB0     		sub	sp, sp, #60
+ 214              	.LCFI6:
+ 215              		.cfi_def_cfa_offset 72
+ 216              		.loc 1 143 0
+ 217 009e 8DF80700 		strb	r0, [sp, #7]
+ 144:../Source_Files/lpc_i2c_tsc2004.c **** 	/* Receive setup */
+ 145:../Source_Files/lpc_i2c_tsc2004.c **** 	I2C_M_SETUP_Type rxsetup;
+ 146:../Source_Files/lpc_i2c_tsc2004.c **** 	uint16_t word_data=0;
+ 147:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 148:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.sl_addr7bit = TSC2004_ID;
+ 149:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.tx_data = &Command;	// Get address to read at writing address
+ 150:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.tx_length = 1;
+ 218              		.loc 1 150 0
+ 219 00a2 0121     		movs	r1, #1
+ 149:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.tx_data = &Command;	// Get address to read at writing address
+ 220              		.loc 1 149 0
+ 221 00a4 0DF10700 		add	r0, sp, #7
+ 222              	.LVL13:
+ 151:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.rx_data = I2C_Rx_Buf;
+ 223              		.loc 1 151 0
+ 224 00a8 0D4C     		ldr	r4, .L15
+ 152:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.rx_length = 2;
+ 225              		.loc 1 152 0
+ 226 00aa 0222     		movs	r2, #2
+ 148:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.sl_addr7bit = TSC2004_ID;
+ 227              		.loc 1 148 0
+ 228 00ac 4823     		movs	r3, #72
+ 149:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.tx_data = &Command;	// Get address to read at writing address
+ 229              		.loc 1 149 0
+ 230 00ae 0490     		str	r0, [sp, #16]
+ 150:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.tx_length = 1;
+ 231              		.loc 1 150 0
+ 232 00b0 0591     		str	r1, [sp, #20]
+ 233              		.loc 1 152 0
+ 234 00b2 0892     		str	r2, [sp, #32]
+ 153:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.retransmissions_max = 3;
+ 235              		.loc 1 153 0
+ 236 00b4 0325     		movs	r5, #3
+ 154:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 155:../Source_Files/lpc_i2c_tsc2004.c **** 	/* The protocol and raw data format from i2c interface:
+ 156:../Source_Files/lpc_i2c_tsc2004.c **** 	 * * S Addr Wr [A] Comm [A] S Addr Rd [A] [DataHigh] A [DataLow] NA P
+ 157:../Source_Files/lpc_i2c_tsc2004.c **** 	 * * Data are in Right Justified format.
+ 158:../Source_Files/lpc_i2c_tsc2004.c **** 	 * */
+ 159:../Source_Files/lpc_i2c_tsc2004.c **** 	word_data |= (I2C_Rx_Buf[0]&0x0F)<<8;
+ 160:../Source_Files/lpc_i2c_tsc2004.c **** 	word_data |= (I2C_Rx_Buf[1]&0xFF);
+ 161:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 162:../Source_Files/lpc_i2c_tsc2004.c **** 	if (I2C_MasterTransferData(LPC_I2C0, &rxsetup, I2C_TRANSFER_POLLING) == SUCCESS)
+ 237              		.loc 1 162 0
+ 238 00b6 0022     		movs	r2, #0
+ 239 00b8 03A9     		add	r1, sp, #12
+ 240 00ba 0A48     		ldr	r0, .L15+4
+ 151:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.rx_data = I2C_Rx_Buf;
+ 241              		.loc 1 151 0
+ 242 00bc 0794     		str	r4, [sp, #28]
+ 153:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.retransmissions_max = 3;
+ 243              		.loc 1 153 0
+ 244 00be 0A95     		str	r5, [sp, #40]
+ 148:../Source_Files/lpc_i2c_tsc2004.c **** 	rxsetup.sl_addr7bit = TSC2004_ID;
+ 245              		.loc 1 148 0
+ 246 00c0 0393     		str	r3, [sp, #12]
+ 159:../Source_Files/lpc_i2c_tsc2004.c **** 	word_data |= (I2C_Rx_Buf[0]&0x0F)<<8;
+ 247              		.loc 1 159 0
+ 248 00c2 2578     		ldrb	r5, [r4, #0]	@ zero_extendqisi2
+ 249              	.LVL14:
+ 160:../Source_Files/lpc_i2c_tsc2004.c **** 	word_data |= (I2C_Rx_Buf[1]&0xFF);
+ 250              		.loc 1 160 0
+ 251 00c4 6478     		ldrb	r4, [r4, #1]	@ zero_extendqisi2
+ 252              	.LVL15:
+ 253              		.loc 1 162 0
+ 254 00c6 FFF7FEFF 		bl	I2C_MasterTransferData
+ 255              	.LVL16:
+ 256 00ca 0128     		cmp	r0, #1
+ 159:../Source_Files/lpc_i2c_tsc2004.c **** 	word_data |= (I2C_Rx_Buf[0]&0x0F)<<8;
+ 257              		.loc 1 159 0
+ 258 00cc 06BF     		itte	eq
+ 259 00ce 05F00F00 		andeq	r0, r5, #15
+ 160:../Source_Files/lpc_i2c_tsc2004.c **** 	word_data |= (I2C_Rx_Buf[1]&0xFF);
+ 260              		.loc 1 160 0
+ 261 00d2 44EA0020 		orreq	r0, r4, r0, lsl #8
+ 163:../Source_Files/lpc_i2c_tsc2004.c **** 	{
+ 164:../Source_Files/lpc_i2c_tsc2004.c **** 		return (word_data);
+ 165:../Source_Files/lpc_i2c_tsc2004.c **** 	}
+ 166:../Source_Files/lpc_i2c_tsc2004.c **** 	else
+ 167:../Source_Files/lpc_i2c_tsc2004.c **** 	{
+ 168:../Source_Files/lpc_i2c_tsc2004.c **** 		return (-1);
+ 262              		.loc 1 168 0
+ 263 00d6 4FF6FF70 		movwne	r0, #65535
+ 169:../Source_Files/lpc_i2c_tsc2004.c **** 	}
+ 170:../Source_Files/lpc_i2c_tsc2004.c **** }
+ 264              		.loc 1 170 0
+ 265 00da 0FB0     		add	sp, sp, #60
+ 266 00dc 30BD     		pop	{r4, r5, pc}
+ 267              	.L16:
+ 268 00de 00BF     		.align	2
+ 269              	.L15:
+ 270 00e0 00000000 		.word	I2C_Rx_Buf
+ 271 00e4 00C00140 		.word	1073856512
+ 272              		.cfi_endproc
+ 273              	.LFE58:
+ 275              		.align	1
+ 276              		.global	TSC2004_Read_Reg
+ 277              		.thumb
+ 278              		.thumb_func
+ 280              	TSC2004_Read_Reg:
+ 281              	.LFB59:
+ 171:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 172:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 173:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+ 174:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Reads Any Register value
+ 175:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	reg    Register to access
+ 176:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		Word Value
+ 177:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+ 178:../Source_Files/lpc_i2c_tsc2004.c **** uint16_t TSC2004_Read_Reg (register_address reg)
+ 179:../Source_Files/lpc_i2c_tsc2004.c **** {
+ 282              		.loc 1 179 0
+ 283              		.cfi_startproc
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286              	.LVL17:
+ 287 00e8 10B5     		push	{r4, lr}
+ 288              	.LCFI7:
+ 289              		.cfi_def_cfa_offset 8
+ 290              		.cfi_offset 4, -8
+ 291              		.cfi_offset 14, -4
+ 292              		.loc 1 179 0
+ 293 00ea 0446     		mov	r4, r0
+ 180:../Source_Files/lpc_i2c_tsc2004.c **** 	uint16_t val;
+ 181:../Source_Files/lpc_i2c_tsc2004.c **** 	uint8_t cmd;
+ 182:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 183:../Source_Files/lpc_i2c_tsc2004.c **** 	TSC2004_Init ();					// Initialize Touch Screen
+ 294              		.loc 1 183 0
+ 295 00ec FFF7FEFF 		bl	TSC2004_Init
+ 296              	.LVL18:
+ 184:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 185:../Source_Files/lpc_i2c_tsc2004.c **** 	 // Prepare val Measurement
+ 186:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(reg, PND0_FALSE, READ_REG);
+ 297              		.loc 1 186 0
+ 298 00f0 E000     		lsls	r0, r4, #3
+ 299 00f2 40F00101 		orr	r1, r0, #1
+ 300 00f6 CCB2     		uxtb	r4, r1
+ 301              	.LVL19:
+ 187:../Source_Files/lpc_i2c_tsc2004.c **** 	val = I2C_TSC2004_Read_Word(cmd);
+ 302              		.loc 1 187 0
+ 303 00f8 2046     		mov	r0, r4
+ 304 00fa FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 305              	.LVL20:
+ 188:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 189:../Source_Files/lpc_i2c_tsc2004.c **** 	 // Read val Measurement
+ 190:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(reg, PND0_FALSE, READ_REG);
+ 191:../Source_Files/lpc_i2c_tsc2004.c **** 	val = I2C_TSC2004_Read_Word(cmd);
+ 306              		.loc 1 191 0
+ 307 00fe 2046     		mov	r0, r4
+ 308 0100 FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 309              	.LVL21:
+ 192:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 193:../Source_Files/lpc_i2c_tsc2004.c **** 	val &= MEAS_MASK;
+ 310              		.loc 1 193 0
+ 311 0104 0205     		lsls	r2, r0, #20
+ 194:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 195:../Source_Files/lpc_i2c_tsc2004.c **** 	return (val);
+ 196:../Source_Files/lpc_i2c_tsc2004.c **** }
+ 312              		.loc 1 196 0
+ 313 0106 100D     		lsrs	r0, r2, #20
+ 314              	.LVL22:
+ 315 0108 10BD     		pop	{r4, pc}
+ 316              		.cfi_endproc
+ 317              	.LFE59:
+ 319              		.align	1
+ 320              		.global	TSC2004_Read_Values
+ 321              		.thumb
+ 322              		.thumb_func
+ 324              	TSC2004_Read_Values:
+ 325              	.LFB60:
+ 197:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 198:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 199:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+ 200:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Read X,Y,Z1,Z2 Values
+ 201:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	*tc    store values in structure
+ 202:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		None
+ 203:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+ 204:../Source_Files/lpc_i2c_tsc2004.c **** void TSC2004_Read_Values (ts_event *tc)
+ 205:../Source_Files/lpc_i2c_tsc2004.c **** {
+ 326              		.loc 1 205 0
+ 327              		.cfi_startproc
+ 328              		@ args = 0, pretend = 0, frame = 0
+ 329              		@ frame_needed = 0, uses_anonymous_args = 0
+ 330              	.LVL23:
+ 331 010a 10B5     		push	{r4, lr}
+ 332              	.LCFI8:
+ 333              		.cfi_def_cfa_offset 8
+ 334              		.cfi_offset 4, -8
+ 335              		.cfi_offset 14, -4
+ 336              		.loc 1 205 0
+ 337 010c 0446     		mov	r4, r0
+ 206:../Source_Files/lpc_i2c_tsc2004.c **** 	uint8_t cmd;
+ 207:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 208:../Source_Files/lpc_i2c_tsc2004.c **** 	TSC2004_Init ();					// Initialize Touch Screen
+ 338              		.loc 1 208 0
+ 339 010e FFF7FEFF 		bl	TSC2004_Init
+ 340              	.LVL24:
+ 209:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 210:../Source_Files/lpc_i2c_tsc2004.c **** 	 // Prepare X Measurement
+ 211:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(X_REG, PND0_FALSE, READ_REG);
+ 212:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->x = I2C_TSC2004_Read_Word(cmd);
+ 341              		.loc 1 212 0
+ 342 0112 0120     		movs	r0, #1
+ 343 0114 FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 344              	.LVL25:
+ 345 0118 2080     		strh	r0, [r4, #0]	@ movhi
+ 213:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 214:../Source_Files/lpc_i2c_tsc2004.c **** 	 // Read X Measurement
+ 215:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(X_REG, PND0_FALSE, READ_REG);
+ 216:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->x = I2C_TSC2004_Read_Word(cmd);
+ 346              		.loc 1 216 0
+ 347 011a 0120     		movs	r0, #1
+ 348 011c FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 349              	.LVL26:
+ 350 0120 2080     		strh	r0, [r4, #0]	@ movhi
+ 351              	.LVL27:
+ 217:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 218:../Source_Files/lpc_i2c_tsc2004.c **** 	// Prepare Y Measurement
+ 219:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(Y_REG, PND0_FALSE, READ_REG);
+ 220:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->y = I2C_TSC2004_Read_Word(cmd);
+ 352              		.loc 1 220 0
+ 353 0122 0920     		movs	r0, #9
+ 354 0124 FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 355              	.LVL28:
+ 356 0128 6080     		strh	r0, [r4, #2]	@ movhi
+ 221:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 222:../Source_Files/lpc_i2c_tsc2004.c **** 	// Read Y Measurement
+ 223:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(Y_REG, PND0_FALSE, READ_REG);
+ 224:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->y = I2C_TSC2004_Read_Word(cmd);
+ 357              		.loc 1 224 0
+ 358 012a 0920     		movs	r0, #9
+ 359 012c FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 360              	.LVL29:
+ 361 0130 6080     		strh	r0, [r4, #2]	@ movhi
+ 362              	.LVL30:
+ 225:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 226:../Source_Files/lpc_i2c_tsc2004.c **** 	// Prepare Z1 Measurement
+ 227:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(Z1_REG, PND0_FALSE, READ_REG);
+ 228:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z1 = I2C_TSC2004_Read_Word(cmd);
+ 363              		.loc 1 228 0
+ 364 0132 1120     		movs	r0, #17
+ 365 0134 FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 366              	.LVL31:
+ 367 0138 A080     		strh	r0, [r4, #4]	@ movhi
+ 229:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 230:../Source_Files/lpc_i2c_tsc2004.c **** 	// Read Z1 Measurement
+ 231:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(Z1_REG, PND0_FALSE, READ_REG);
+ 232:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z1 = I2C_TSC2004_Read_Word(cmd);
+ 368              		.loc 1 232 0
+ 369 013a 1120     		movs	r0, #17
+ 370 013c FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 371              	.LVL32:
+ 372 0140 A080     		strh	r0, [r4, #4]	@ movhi
+ 373              	.LVL33:
+ 233:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 234:../Source_Files/lpc_i2c_tsc2004.c **** 	// Prepare Z2 Measurement
+ 235:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(Z2_REG, PND0_FALSE, READ_REG);
+ 236:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z2 = I2C_TSC2004_Read_Word(cmd);
+ 374              		.loc 1 236 0
+ 375 0142 1920     		movs	r0, #25
+ 376 0144 FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 377              	.LVL34:
+ 378 0148 E080     		strh	r0, [r4, #6]	@ movhi
+ 237:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 238:../Source_Files/lpc_i2c_tsc2004.c **** 	// Read Z2 Measurement
+ 239:../Source_Files/lpc_i2c_tsc2004.c **** 	cmd = TSC2004_CMD0(Z2_REG, PND0_FALSE, READ_REG);
+ 240:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z2 = I2C_TSC2004_Read_Word(cmd);
+ 379              		.loc 1 240 0
+ 380 014a 1920     		movs	r0, #25
+ 381 014c FFF7FEFF 		bl	I2C_TSC2004_Read_Word
+ 382              	.LVL35:
+ 241:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 242:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->x &= MEAS_MASK;
+ 383              		.loc 1 242 0
+ 384 0150 2388     		ldrh	r3, [r4, #0]
+ 243:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->y &= MEAS_MASK;
+ 385              		.loc 1 243 0
+ 386 0152 6288     		ldrh	r2, [r4, #2]
+ 242:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->x &= MEAS_MASK;
+ 387              		.loc 1 242 0
+ 388 0154 23F47041 		bic	r1, r3, #61440
+ 389 0158 2180     		strh	r1, [r4, #0]	@ movhi
+ 244:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z1 &= MEAS_MASK;
+ 390              		.loc 1 244 0
+ 391 015a A188     		ldrh	r1, [r4, #4]
+ 243:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->y &= MEAS_MASK;
+ 392              		.loc 1 243 0
+ 393 015c 22F47043 		bic	r3, r2, #61440
+ 245:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z2 &= MEAS_MASK;
+ 394              		.loc 1 245 0
+ 395 0160 20F47040 		bic	r0, r0, #61440
+ 244:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z1 &= MEAS_MASK;
+ 396              		.loc 1 244 0
+ 397 0164 21F47042 		bic	r2, r1, #61440
+ 243:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->y &= MEAS_MASK;
+ 398              		.loc 1 243 0
+ 399 0168 6380     		strh	r3, [r4, #2]	@ movhi
+ 244:../Source_Files/lpc_i2c_tsc2004.c **** 	tc->z1 &= MEAS_MASK;
+ 400              		.loc 1 244 0
+ 401 016a A280     		strh	r2, [r4, #4]	@ movhi
+ 402              		.loc 1 245 0
+ 403 016c E080     		strh	r0, [r4, #6]	@ movhi
+ 404 016e 10BD     		pop	{r4, pc}
+ 405              		.cfi_endproc
+ 406              	.LFE60:
+ 408              		.align	1
+ 409              		.global	TSC2004_Read_Value_Test
+ 410              		.thumb
+ 411              		.thumb_func
+ 413              	TSC2004_Read_Value_Test:
+ 414              	.LFB61:
+ 246:../Source_Files/lpc_i2c_tsc2004.c **** }
+ 247:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 248:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 249:../Source_Files/lpc_i2c_tsc2004.c **** /*********************************************************************//**
+ 250:../Source_Files/lpc_i2c_tsc2004.c ****  * @brief	    Read X,Y,Z1,Z2 Values and Display on Terminal
+ 251:../Source_Files/lpc_i2c_tsc2004.c ****  * @param[in]	None
+ 252:../Source_Files/lpc_i2c_tsc2004.c ****  * @return 		None
+ 253:../Source_Files/lpc_i2c_tsc2004.c ****  **********************************************************************/
+ 254:../Source_Files/lpc_i2c_tsc2004.c **** void TSC2004_Read_Value_Test (void)
+ 255:../Source_Files/lpc_i2c_tsc2004.c **** {
+ 415              		.loc 1 255 0
+ 416              		.cfi_startproc
+ 417              		@ args = 0, pretend = 0, frame = 8
+ 418              		@ frame_needed = 0, uses_anonymous_args = 0
+ 419 0170 13B5     		push	{r0, r1, r4, lr}
+ 420              	.LCFI9:
+ 421              		.cfi_def_cfa_offset 16
+ 422              		.cfi_offset 0, -16
+ 423              		.cfi_offset 1, -12
+ 424              		.cfi_offset 4, -8
+ 425              		.cfi_offset 14, -4
+ 256:../Source_Files/lpc_i2c_tsc2004.c **** 	ts_event ts;
+ 257:../Source_Files/lpc_i2c_tsc2004.c **** 	TSC2004_Read_Values (&ts);
+ 258:../Source_Files/lpc_i2c_tsc2004.c **** 
+ 259:../Source_Files/lpc_i2c_tsc2004.c **** 	printf(LPC_UART0,"\x1b[1;1HMeasure X    = %d05",ts.x);
+ 426              		.loc 1 259 0
+ 427 0172 0E4C     		ldr	r4, .L20
+ 257:../Source_Files/lpc_i2c_tsc2004.c **** 	TSC2004_Read_Values (&ts);
+ 428              		.loc 1 257 0
+ 429 0174 6846     		mov	r0, sp
+ 430 0176 FFF7FEFF 		bl	TSC2004_Read_Values
+ 431              	.LVL36:
+ 432              		.loc 1 259 0
+ 433 017a BDF80020 		ldrh	r2, [sp, #0]
+ 434 017e 2046     		mov	r0, r4
+ 435 0180 0B49     		ldr	r1, .L20+4
+ 436 0182 FFF7FEFF 		bl	printf
+ 437              	.LVL37:
+ 260:../Source_Files/lpc_i2c_tsc2004.c **** 	printf(LPC_UART0,"\x1b[2;1HMeasure Y    = %d05",ts.y);
+ 438              		.loc 1 260 0
+ 439 0186 BDF80220 		ldrh	r2, [sp, #2]
+ 440 018a 2046     		mov	r0, r4
+ 441 018c 0949     		ldr	r1, .L20+8
+ 442 018e FFF7FEFF 		bl	printf
+ 443              	.LVL38:
+ 261:../Source_Files/lpc_i2c_tsc2004.c **** 	printf(LPC_UART0,"\x1b[3;1HMeasure Z1   = %d05",ts.z1);
+ 444              		.loc 1 261 0
+ 445 0192 BDF80420 		ldrh	r2, [sp, #4]
+ 446 0196 2046     		mov	r0, r4
+ 447 0198 0749     		ldr	r1, .L20+12
+ 448 019a FFF7FEFF 		bl	printf
+ 449              	.LVL39:
+ 262:../Source_Files/lpc_i2c_tsc2004.c **** 	printf(LPC_UART0,"\x1b[4;1HMeasure Z2   = %d05",ts.z2);
+ 450              		.loc 1 262 0
+ 451 019e 2046     		mov	r0, r4
+ 452 01a0 0649     		ldr	r1, .L20+16
+ 453 01a2 BDF80620 		ldrh	r2, [sp, #6]
+ 454 01a6 FFF7FEFF 		bl	printf
+ 455              	.LVL40:
+ 263:../Source_Files/lpc_i2c_tsc2004.c **** }
+ 456              		.loc 1 263 0
+ 457 01aa 1CBD     		pop	{r2, r3, r4, pc}
+ 458              	.L21:
+ 459              		.align	2
+ 460              	.L20:
+ 461 01ac 00C00040 		.word	1073790976
+ 462 01b0 00000000 		.word	.LC0
+ 463 01b4 1A000000 		.word	.LC1
+ 464 01b8 34000000 		.word	.LC2
+ 465 01bc 4E000000 		.word	.LC3
+ 466              		.cfi_endproc
+ 467              	.LFE61:
+ 469              		.comm	I2C_Rx_Buf,64,1
+ 470              		.comm	I2C_Tx_Buf,64,1
+ 471              		.comm	Rx_Buf1,64,1
+ 472              		.comm	Tx_Buf1,64,1
+ 473              		.comm	TxIntStat,1,1
+ 474              		.comm	rb,528,4
+ 475              		.comm	EscFlag,2,2
+ 476              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 477              	.LC0:
+ 478 0000 1B5B313B 		.ascii	"\033[1;1HMeasure X    = %d05\000"
+ 478      31484D65 
+ 478      61737572 
+ 478      65205820 
+ 478      2020203D 
+ 479              	.LC1:
+ 480 001a 1B5B323B 		.ascii	"\033[2;1HMeasure Y    = %d05\000"
+ 480      31484D65 
+ 480      61737572 
+ 480      65205920 
+ 480      2020203D 
+ 481              	.LC2:
+ 482 0034 1B5B333B 		.ascii	"\033[3;1HMeasure Z1   = %d05\000"
+ 482      31484D65 
+ 482      61737572 
+ 482      65205A31 
+ 482      2020203D 
+ 483              	.LC3:
+ 484 004e 1B5B343B 		.ascii	"\033[4;1HMeasure Z2   = %d05\000"
+ 484      31484D65 
+ 484      61737572 
+ 484      65205A32 
+ 484      2020203D 
+ 485              		.text
+ 486              	.Letext0:
+ 487              		.file 2 "c:\\program files\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eabi/4.7.
+ 488              		.file 3 "../CM3_Core/LPC17xx.h"
+ 489              		.file 4 "../Header_Files/lpc_types.h"
+ 490              		.file 5 "../Header_Files/lpc17xx_uart.h"
+ 491              		.file 6 "../Header_Files/lpc17xx_i2c.h"
+ 492              		.file 7 "../Header_Files/lpc_i2c_tsc2004.h"
+ 493              		.file 8 "../CM3_Core/core_cm3.h"
+ 494              		.file 9 "../Header_Files/lpc17xx_ssp.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc_i2c_tsc2004.c
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:18     .text:00000000 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:23     .text:00000000 I2C_TSC2004_Write_Byte
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:79     .text:00000034 $d
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:83     .text:00000038 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:88     .text:00000038 I2C_TSC2004_Write_Word
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:149    .text:0000006c $d
+                            *COM*:00000040 I2C_Tx_Buf
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:154    .text:00000074 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:159    .text:00000074 TSC2004_Init
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:200    .text:0000009a I2C_TSC2004_Read_Word
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:270    .text:000000e0 $d
+                            *COM*:00000040 I2C_Rx_Buf
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:275    .text:000000e8 $t
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:280    .text:000000e8 TSC2004_Read_Reg
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:324    .text:0000010a TSC2004_Read_Values
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:413    .text:00000170 TSC2004_Read_Value_Test
+C:\Users\Edu_win7\AppData\Local\Temp\ccBpAqj3.s:461    .text:000001ac $d
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.47.437219f1b7cb5cb54d1be5f3ec6af05f
+
+UNDEFINED SYMBOLS
+I2C_MasterTransferData
+printf
