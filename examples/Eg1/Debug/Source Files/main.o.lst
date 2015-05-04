@@ -1,0 +1,335 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.startup,"ax",%progbits
+  19              		.align	1
+  20              		.global	main
+  21              		.thumb
+  22              		.thumb_func
+  24              	main:
+  25              	.LFB55:
+  26              		.file 1 "../Source Files/main.c"
+   1:../Source Files/main.c **** /**********************************************************************
+   2:../Source Files/main.c **** * $Id$		main.c
+   3:../Source Files/main.c **** *//**
+   4:../Source Files/main.c **** * @file		main.c
+   5:../Source Files/main.c **** * @brief	Write a program to display a character at some location
+   6:../Source Files/main.c **** * @version	1.0
+   7:../Source Files/main.c **** * @date		09. Dec. 2013
+   8:../Source Files/main.c **** * @author	Dwijay.Edutech Learning Solutions
+   9:../Source Files/main.c **** ***********************************************************************
+  10:../Source Files/main.c **** * Software that is described herein is for illustrative purposes only
+  11:../Source Files/main.c **** * which provides customers with programming information regarding the
+  12:../Source Files/main.c **** * products. This software is supplied "AS IS" without any warranties.
+  13:../Source Files/main.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  14:../Source Files/main.c **** * use of the software, conveys no license or title under any patent,
+  15:../Source Files/main.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  16:../Source Files/main.c **** * reserves the right to make changes in the software without
+  17:../Source Files/main.c **** * notification. NXP Semiconductors also make no representation or
+  18:../Source Files/main.c **** * warranty that such application will be suitable for the specified
+  19:../Source Files/main.c **** * use without further testing or modification.
+  20:../Source Files/main.c **** **********************************************************************/
+  21:../Source Files/main.c **** #include "lpc_system_init.h"
+  22:../Source Files/main.c **** 
+  23:../Source Files/main.c **** /* Example group ----------------------------------------------------------- */
+  24:../Source Files/main.c **** /** @defgroup TGLCD
+  25:../Source Files/main.c ****  * @ingroup TGLCD_Examples
+  26:../Source Files/main.c ****  * @{
+  27:../Source Files/main.c ****  */
+  28:../Source Files/main.c **** 
+  29:../Source Files/main.c **** 
+  30:../Source Files/main.c **** /*-------------------------PRIVATE Variables------------------------------*/
+  31:../Source Files/main.c **** 
+  32:../Source Files/main.c **** 
+  33:../Source Files/main.c **** /*-------------------------MAIN Page------------------------------*/
+  34:../Source Files/main.c **** /** @mainpage GLCD Test Example
+  35:../Source Files/main.c **** *   @par Description:
+  36:../Source Files/main.c **** *   - Use GLCD to display a character a some location
+  37:../Source Files/main.c **** *
+  38:../Source Files/main.c **** *   @par Activity - more information:
+  39:../Source Files/main.c **** *   - Connect GLCD connecter to EPB1768 and oberve output on GLCD
+  40:../Source Files/main.c **** */
+  41:../Source Files/main.c **** /*-------------------------MAIN FUNCTION------------------------------*/
+  42:../Source Files/main.c **** /*********************************************************************//**
+  43:../Source Files/main.c ****  * @brief	Main GLCD testing example sub-routine
+  44:../Source Files/main.c ****  **********************************************************************/
+  45:../Source Files/main.c **** 
+  46:../Source Files/main.c **** /* With ARM and GHS toolsets, the entry point is main() - this will
+  47:../Source Files/main.c ****    allow the linker to generate wrapper code to setup stacks, allocate
+  48:../Source Files/main.c ****    heap area, and initialize and copy code and data segments. For GNU
+  49:../Source Files/main.c ****    toolsets, the entry point is through __start() in the crt0_gnu.asm
+  50:../Source Files/main.c ****    file, and that startup code will setup stacks and data */
+  51:../Source Files/main.c **** int main(void)
+  52:../Source Files/main.c **** {
+  27              		.loc 1 52 0
+  28              		.cfi_startproc
+  29              		@ Volatile: function does not return.
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+  53:../Source Files/main.c **** 	System_Init();                        // Initialize System
+  37              		.loc 1 53 0
+  38 0002 FFF7FEFF 		bl	System_Init
+  39              	.LVL0:
+  54:../Source Files/main.c **** 
+  55:../Source Files/main.c **** 	GLCD_Clear (White);
+  40              		.loc 1 55 0
+  41 0006 4FF6FF70 		movw	r0, #65535
+  42 000a FFF7FEFF 		bl	GLCD_Clear
+  43              	.LVL1:
+  56:../Source Files/main.c **** 	GLCD_Display_Char (3,2,'P');          // Display character 'A' at x=3 & y=2
+  44              		.loc 1 56 0
+  45 000e 0221     		movs	r1, #2
+  46 0010 5022     		movs	r2, #80
+  47 0012 0320     		movs	r0, #3
+  48 0014 FFF7FEFF 		bl	GLCD_Display_Char
+  49              	.LVL2:
+  57:../Source Files/main.c ****     delay_ms(1000);
+  50              		.loc 1 57 0
+  51 0018 4FF47A70 		mov	r0, #1000
+  52 001c FFF7FEFF 		bl	delay_ms
+  53              	.LVL3:
+  58:../Source Files/main.c ****     GLCD_Display_Char (3,3,'A');
+  54              		.loc 1 58 0
+  55 0020 0320     		movs	r0, #3
+  56 0022 0146     		mov	r1, r0
+  57 0024 4122     		movs	r2, #65
+  58 0026 FFF7FEFF 		bl	GLCD_Display_Char
+  59              	.LVL4:
+  59:../Source Files/main.c ****     delay_ms(1000);
+  60              		.loc 1 59 0
+  61 002a 4FF47A70 		mov	r0, #1000
+  62 002e FFF7FEFF 		bl	delay_ms
+  63              	.LVL5:
+  60:../Source Files/main.c ****     GLCD_Display_Char (3,4,'T');
+  64              		.loc 1 60 0
+  65 0032 0421     		movs	r1, #4
+  66 0034 5422     		movs	r2, #84
+  67 0036 0320     		movs	r0, #3
+  68 0038 FFF7FEFF 		bl	GLCD_Display_Char
+  69              	.LVL6:
+  61:../Source Files/main.c ****     delay_ms(1000);
+  70              		.loc 1 61 0
+  71 003c 4FF47A70 		mov	r0, #1000
+  72 0040 FFF7FEFF 		bl	delay_ms
+  73              	.LVL7:
+  62:../Source Files/main.c ****     GLCD_Display_Char (3,5,'E');
+  74              		.loc 1 62 0
+  75 0044 0521     		movs	r1, #5
+  76 0046 4522     		movs	r2, #69
+  77 0048 0320     		movs	r0, #3
+  78 004a FFF7FEFF 		bl	GLCD_Display_Char
+  79              	.LVL8:
+  63:../Source Files/main.c ****     delay_ms(1000);
+  80              		.loc 1 63 0
+  81 004e 4FF47A70 		mov	r0, #1000
+  82 0052 FFF7FEFF 		bl	delay_ms
+  83              	.LVL9:
+  64:../Source Files/main.c ****     GLCD_Display_Char (3,6,'L');
+  84              		.loc 1 64 0
+  85 0056 0621     		movs	r1, #6
+  86 0058 4C22     		movs	r2, #76
+  87 005a 0320     		movs	r0, #3
+  88 005c FFF7FEFF 		bl	GLCD_Display_Char
+  89              	.LVL10:
+  65:../Source Files/main.c ****     delay_ms(1000);
+  90              		.loc 1 65 0
+  91 0060 4FF47A70 		mov	r0, #1000
+  92 0064 FFF7FEFF 		bl	delay_ms
+  93              	.LVL11:
+  66:../Source Files/main.c ****     GLCD_Display_Char (3,7,' ');
+  94              		.loc 1 66 0
+  95 0068 0721     		movs	r1, #7
+  96 006a 0320     		movs	r0, #3
+  97 006c 2022     		movs	r2, #32
+  98 006e FFF7FEFF 		bl	GLCD_Display_Char
+  99              	.LVL12:
+  67:../Source Files/main.c ****     delay_ms(1000);
+ 100              		.loc 1 67 0
+ 101 0072 4FF47A70 		mov	r0, #1000
+ 102 0076 FFF7FEFF 		bl	delay_ms
+ 103              	.LVL13:
+  68:../Source Files/main.c ****     GLCD_Display_Char (4,2,'C');
+ 104              		.loc 1 68 0
+ 105 007a 0221     		movs	r1, #2
+ 106 007c 0420     		movs	r0, #4
+ 107 007e 4322     		movs	r2, #67
+ 108 0080 FFF7FEFF 		bl	GLCD_Display_Char
+ 109              	.LVL14:
+  69:../Source Files/main.c ****     delay_ms(1000);
+ 110              		.loc 1 69 0
+ 111 0084 4FF47A70 		mov	r0, #1000
+ 112 0088 FFF7FEFF 		bl	delay_ms
+ 113              	.LVL15:
+  70:../Source Files/main.c ****     GLCD_Display_Char (4,3,'H');
+ 114              		.loc 1 70 0
+ 115 008c 0321     		movs	r1, #3
+ 116 008e 4822     		movs	r2, #72
+ 117 0090 0420     		movs	r0, #4
+ 118 0092 FFF7FEFF 		bl	GLCD_Display_Char
+ 119              	.LVL16:
+  71:../Source Files/main.c ****     delay_ms(1000);
+ 120              		.loc 1 71 0
+ 121 0096 4FF47A70 		mov	r0, #1000
+ 122 009a FFF7FEFF 		bl	delay_ms
+ 123              	.LVL17:
+  72:../Source Files/main.c ****     GLCD_Display_Char (4,4,'A');
+ 124              		.loc 1 72 0
+ 125 009e 0420     		movs	r0, #4
+ 126 00a0 0146     		mov	r1, r0
+ 127 00a2 4122     		movs	r2, #65
+ 128 00a4 FFF7FEFF 		bl	GLCD_Display_Char
+ 129              	.LVL18:
+  73:../Source Files/main.c ****     delay_ms(1000);
+ 130              		.loc 1 73 0
+ 131 00a8 4FF47A70 		mov	r0, #1000
+ 132 00ac FFF7FEFF 		bl	delay_ms
+ 133              	.LVL19:
+  74:../Source Files/main.c ****     GLCD_Display_Char (4,5,'I');
+ 134              		.loc 1 74 0
+ 135 00b0 0521     		movs	r1, #5
+ 136 00b2 4922     		movs	r2, #73
+ 137 00b4 0420     		movs	r0, #4
+ 138 00b6 FFF7FEFF 		bl	GLCD_Display_Char
+ 139              	.LVL20:
+  75:../Source Files/main.c ****     delay_ms(1000);
+ 140              		.loc 1 75 0
+ 141 00ba 4FF47A70 		mov	r0, #1000
+ 142 00be FFF7FEFF 		bl	delay_ms
+ 143              	.LVL21:
+  76:../Source Files/main.c ****     GLCD_Display_Char (4,6,'T');
+ 144              		.loc 1 76 0
+ 145 00c2 0621     		movs	r1, #6
+ 146 00c4 5422     		movs	r2, #84
+ 147 00c6 0420     		movs	r0, #4
+ 148 00c8 FFF7FEFF 		bl	GLCD_Display_Char
+ 149              	.LVL22:
+  77:../Source Files/main.c ****     delay_ms(1000);
+ 150              		.loc 1 77 0
+ 151 00cc 4FF47A70 		mov	r0, #1000
+ 152 00d0 FFF7FEFF 		bl	delay_ms
+ 153              	.LVL23:
+  78:../Source Files/main.c ****     GLCD_Display_Char (4,7,'A');
+ 154              		.loc 1 78 0
+ 155 00d4 0721     		movs	r1, #7
+ 156 00d6 4122     		movs	r2, #65
+ 157 00d8 0420     		movs	r0, #4
+ 158 00da FFF7FEFF 		bl	GLCD_Display_Char
+ 159              	.LVL24:
+  79:../Source Files/main.c ****     delay_ms(1000);
+ 160              		.loc 1 79 0
+ 161 00de 4FF47A70 		mov	r0, #1000
+ 162 00e2 FFF7FEFF 		bl	delay_ms
+ 163              	.LVL25:
+  80:../Source Files/main.c ****     GLCD_Display_Char (4,8,'N');
+ 164              		.loc 1 80 0
+ 165 00e6 4E22     		movs	r2, #78
+ 166 00e8 0420     		movs	r0, #4
+ 167 00ea 0821     		movs	r1, #8
+ 168 00ec FFF7FEFF 		bl	GLCD_Display_Char
+ 169              	.LVL26:
+  81:../Source Files/main.c ****     delay_ms(1000);
+ 170              		.loc 1 81 0
+ 171 00f0 4FF47A70 		mov	r0, #1000
+ 172 00f4 FFF7FEFF 		bl	delay_ms
+ 173              	.LVL27:
+  82:../Source Files/main.c ****     GLCD_Display_Char (4,9,'Y');
+ 174              		.loc 1 82 0
+ 175 00f8 0420     		movs	r0, #4
+ 176 00fa 0921     		movs	r1, #9
+ 177 00fc 5922     		movs	r2, #89
+ 178 00fe FFF7FEFF 		bl	GLCD_Display_Char
+ 179              	.LVL28:
+  83:../Source Files/main.c ****     delay_ms(1000);
+ 180              		.loc 1 83 0
+ 181 0102 4FF47A70 		mov	r0, #1000
+ 182 0106 FFF7FEFF 		bl	delay_ms
+ 183              	.LVL29:
+  84:../Source Files/main.c ****     GLCD_Display_Char (4,10,'A');
+ 184              		.loc 1 84 0
+ 185 010a 0420     		movs	r0, #4
+ 186 010c 0A21     		movs	r1, #10
+ 187 010e 4122     		movs	r2, #65
+ 188 0110 FFF7FEFF 		bl	GLCD_Display_Char
+ 189              	.LVL30:
+ 190              	.L2:
+ 191 0114 FEE7     		b	.L2
+ 192              		.cfi_endproc
+ 193              	.LFE55:
+ 195              		.comm	I2C_Rx_Buf,64,1
+ 196              		.comm	I2C_Tx_Buf,64,1
+ 197              		.comm	Rx_Buf1,64,1
+ 198              		.comm	Tx_Buf1,64,1
+ 199              		.comm	TxIntStat,1,1
+ 200              		.comm	rb,528,4
+ 201              		.comm	EscFlag,2,2
+ 202              		.text
+ 203              	.Letext0:
+ 204              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 205              		.file 3 "../Header Files/lpc_types.h"
+ 206              		.file 4 "../Header Files/lpc17xx_uart.h"
+ 207              		.file 5 "../CM3 Core/core_cm3.h"
+ 208              		.file 6 "../Header Files/lpc17xx_ssp.h"
+ 209              		.file 7 "../Header Files/lpc17xx_i2c.h"
+ 210              		.file 8 "../Header Files/lpc_ssp_glcd.h"
+ 211              		.file 9 "../Header Files/lpc_system_init.h"
+ 212              		.file 10 "../Header Files/lpc17xx_systick.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\raghav\AppData\Local\Temp\cc2LNlnX.s:19     .text.startup:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\cc2LNlnX.s:24     .text.startup:00000000 main
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.34082f268f216caa8d0bf2c0960ad4a6
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+
+UNDEFINED SYMBOLS
+System_Init
+GLCD_Clear
+GLCD_Display_Char
+delay_ms
