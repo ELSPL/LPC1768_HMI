@@ -1,0 +1,1321 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc_glcd_cal.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	1
+  19              		.global	SetCalibrationMatrix
+  20              		.thumb
+  21              		.thumb_func
+  23              	SetCalibrationMatrix:
+  24              	.LFB56:
+  25              		.file 1 "../Source Files/lpc_glcd_cal.c"
+   1:../Source Files/lpc_glcd_cal.c **** /******************************************************************//**
+   2:../Source Files/lpc_glcd_cal.c **** * @file		lpc_glcd_cal.c
+   3:../Source Files/lpc_glcd_cal.c **** * @brief	This file contains functional definition for GLCD Calibration.
+   4:../Source Files/lpc_glcd_cal.c **** * @version	1.0
+   5:../Source Files/lpc_glcd_cal.c **** * @date		Mar 21, 2015
+   6:../Source Files/lpc_glcd_cal.c **** * @author	Dwijay.edutech learning solutions
+   7:../Source Files/lpc_glcd_cal.c **** **********************************************************************/
+   8:../Source Files/lpc_glcd_cal.c **** 
+   9:../Source Files/lpc_glcd_cal.c **** 
+  10:../Source Files/lpc_glcd_cal.c **** /* Includes ------------------------------------------------------------------- */
+  11:../Source Files/lpc_glcd_cal.c **** #include "lpc_glcd_cal.h"
+  12:../Source Files/lpc_glcd_cal.c **** 
+  13:../Source Files/lpc_glcd_cal.c **** /* Peripheral group ----------------------------------------------------------- */
+  14:../Source Files/lpc_glcd_cal.c **** /** @addtogroup GLCD_CAL
+  15:../Source Files/lpc_glcd_cal.c ****  * @{
+  16:../Source Files/lpc_glcd_cal.c ****  */
+  17:../Source Files/lpc_glcd_cal.c **** 
+  18:../Source Files/lpc_glcd_cal.c **** /* Global Variables -------------------------------------------------------------- */
+  19:../Source Files/lpc_glcd_cal.c **** MATRIX_Type cmatrix;
+  20:../Source Files/lpc_glcd_cal.c **** ts_eventCal gTouch;
+  21:../Source Files/lpc_glcd_cal.c **** __IO Bool TReady=FALSE;
+  22:../Source Files/lpc_glcd_cal.c **** __IO Bool CalTouch=TRUE;
+  23:../Source Files/lpc_glcd_cal.c **** 
+  24:../Source Files/lpc_glcd_cal.c **** 
+  25:../Source Files/lpc_glcd_cal.c **** /* Public Functions ----------------------------------------------------------- */
+  26:../Source Files/lpc_glcd_cal.c **** 
+  27:../Source Files/lpc_glcd_cal.c **** /** @addtogroup GLCD_CAL_Public_Functions
+  28:../Source Files/lpc_glcd_cal.c ****  * @{
+  29:../Source Files/lpc_glcd_cal.c ****  */
+  30:../Source Files/lpc_glcd_cal.c **** void TSC2004_Cal_Init(MATRIX_Type *matrixPtr)
+  31:../Source Files/lpc_glcd_cal.c **** {
+  32:../Source Files/lpc_glcd_cal.c **** 	int n;
+  33:../Source Files/lpc_glcd_cal.c **** 	COLORCFG_Type ClrCfg;
+  34:../Source Files/lpc_glcd_cal.c **** 	MATRIX_Type	matrix[4],avgmatrix;
+  35:../Source Files/lpc_glcd_cal.c **** 	ts_event RTouch;
+  36:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal screenSample[5];
+  37:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal displaySample[5] =	{
+  38:../Source Files/lpc_glcd_cal.c **** 									{  20,  20 },
+  39:../Source Files/lpc_glcd_cal.c **** 									{ 300,  20 },
+  40:../Source Files/lpc_glcd_cal.c **** 									{ 300, 220 },
+  41:../Source Files/lpc_glcd_cal.c **** 									{  20, 220 },
+  42:../Source Files/lpc_glcd_cal.c **** 									{ 160, 120 },
+  43:../Source Files/lpc_glcd_cal.c **** 								};
+  44:../Source Files/lpc_glcd_cal.c **** 
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+  46:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle2[3] = {displaySample[1],displaySample[4],displaySample[2]};
+  47:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle3[3] = {displaySample[2],displaySample[4],displaySample[3]};
+  48:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle4[3] = {displaySample[3],displaySample[4],displaySample[0]};
+  49:../Source Files/lpc_glcd_cal.c **** 
+  50:../Source Files/lpc_glcd_cal.c **** 
+  51:../Source Files/lpc_glcd_cal.c **** 
+  52:../Source Files/lpc_glcd_cal.c ****  GLCD_Clear(White);
+  53:../Source Files/lpc_glcd_cal.c **** 
+  54:../Source Files/lpc_glcd_cal.c **** 
+  55:../Source Files/lpc_glcd_cal.c ****  for(n=0; n<5; n++)
+  56:../Source Files/lpc_glcd_cal.c ****  	{
+  57:../Source Files/lpc_glcd_cal.c ****  		switch (n) {
+  58:../Source Files/lpc_glcd_cal.c ****  			case 0:
+  59:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+  60:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+  61:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+  62:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+  63:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(20,20,3,&ClrCfg);
+  64:../Source Files/lpc_glcd_cal.c ****  				break;
+  65:../Source Files/lpc_glcd_cal.c **** 
+  66:../Source Files/lpc_glcd_cal.c ****  			case 1:
+  67:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+  68:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+  69:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+  70:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+  71:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(300,20,3,&ClrCfg);
+  72:../Source Files/lpc_glcd_cal.c ****  				break;
+  73:../Source Files/lpc_glcd_cal.c **** 
+  74:../Source Files/lpc_glcd_cal.c ****  			case 2:
+  75:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+  76:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+  77:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+  78:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+  79:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(300,220,3,&ClrCfg);
+  80:../Source Files/lpc_glcd_cal.c ****  				break;
+  81:../Source Files/lpc_glcd_cal.c **** 
+  82:../Source Files/lpc_glcd_cal.c ****  			case 3:
+  83:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+  84:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+  85:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+  86:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+  87:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(20,220,3,&ClrCfg);
+  88:../Source Files/lpc_glcd_cal.c ****  				break;
+  89:../Source Files/lpc_glcd_cal.c **** 
+  90:../Source Files/lpc_glcd_cal.c ****  			case 4:
+  91:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+  92:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+  93:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+  94:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+  95:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(160,120,3,&ClrCfg);
+  96:../Source Files/lpc_glcd_cal.c ****  				break;
+  97:../Source Files/lpc_glcd_cal.c **** 
+  98:../Source Files/lpc_glcd_cal.c ****  			default:
+  99:../Source Files/lpc_glcd_cal.c ****  				break;
+ 100:../Source Files/lpc_glcd_cal.c ****  		}
+ 101:../Source Files/lpc_glcd_cal.c ****  		//printf(LPC_UART0, "Touch point\n\r");
+ 102:../Source Files/lpc_glcd_cal.c ****  		while(TReady == FALSE);
+ 103:../Source Files/lpc_glcd_cal.c **** // 		printf(LPC_UART0,"\x1b[8;1After While\n\r");
+ 104:../Source Files/lpc_glcd_cal.c ****  		delay_ms(2000);
+ 105:../Source Files/lpc_glcd_cal.c **** 
+ 106:../Source Files/lpc_glcd_cal.c ****  		screenSample[n].x = gTouch.x;
+ 107:../Source Files/lpc_glcd_cal.c ****  		screenSample[n].y = gTouch.y;
+ 108:../Source Files/lpc_glcd_cal.c ****  		TReady = FALSE;
+ 109:../Source Files/lpc_glcd_cal.c ****  	}
+ 110:../Source Files/lpc_glcd_cal.c **** 
+ 111:../Source Files/lpc_glcd_cal.c ****  	CalTouch=FALSE;
+ 112:../Source Files/lpc_glcd_cal.c **** 
+ 113:../Source Files/lpc_glcd_cal.c ****  	 ts_eventCal screentriangle1[3] = {screenSample[0],screenSample[4],screenSample[1]};
+ 114:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle2[3] = {screenSample[1],screenSample[4],screenSample[2]};
+ 115:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle3[3] = {screenSample[2],screenSample[4],screenSample[3]};
+ 116:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle4[3] = {screenSample[3],screenSample[4],screenSample[0]};
+ 117:../Source Files/lpc_glcd_cal.c **** 
+ 118:../Source Files/lpc_glcd_cal.c **** 
+ 119:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle1, screentriangle1, &matrix[0]);
+ 120:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle2, screentriangle2, &matrix[1]);
+ 121:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle3, screentriangle3, &matrix[2]);
+ 122:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle4, screentriangle4, &matrix[3]);
+ 123:../Source Files/lpc_glcd_cal.c **** 
+ 124:../Source Files/lpc_glcd_cal.c **** 
+ 125:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->An = ( matrix[0].An + matrix[1].An + matrix[2].An + matrix[3].An ) / 4;
+ 126:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Bn = ( matrix[0].Bn + matrix[1].Bn + matrix[2].Bn + matrix[3].Bn ) / 4;
+ 127:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Cn = ( matrix[0].Cn + matrix[1].Cn + matrix[2].Cn + matrix[3].Cn ) / 4;
+ 128:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Dn = ( matrix[0].Dn + matrix[1].Dn + matrix[2].Dn + matrix[3].Dn ) / 4;
+ 129:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->En = ( matrix[0].En + matrix[1].En + matrix[2].En + matrix[3].En ) / 4;
+ 130:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Fn = ( matrix[0].Fn + matrix[1].Fn + matrix[2].Fn + matrix[3].Fn ) / 4;
+ 131:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Divider = ( matrix[0].Divider + matrix[1].Divider + matrix[2].Divider + matrix[3].D
+ 132:../Source Files/lpc_glcd_cal.c **** 
+ 133:../Source Files/lpc_glcd_cal.c **** 
+ 134:../Source Files/lpc_glcd_cal.c ****     	GLCD_Clear(White);
+ 135:../Source Files/lpc_glcd_cal.c **** 
+ 136:../Source Files/lpc_glcd_cal.c **** }
+ 137:../Source Files/lpc_glcd_cal.c **** 
+ 138:../Source Files/lpc_glcd_cal.c **** int SetCalibrationMatrix(ts_eventCal *displayPtr, ts_eventCal *screenPtr, MATRIX_Type *matrixPtr)
+ 139:../Source Files/lpc_glcd_cal.c **** {
+  26              		.loc 1 139 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 24
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 36
+  34              		.cfi_offset 4, -36
+  35              		.cfi_offset 5, -32
+  36              		.cfi_offset 6, -28
+  37              		.cfi_offset 7, -24
+  38              		.cfi_offset 8, -20
+  39              		.cfi_offset 9, -16
+  40              		.cfi_offset 10, -12
+  41              		.cfi_offset 11, -8
+  42              		.cfi_offset 14, -4
+ 140:../Source Files/lpc_glcd_cal.c **** 	int  retValue = OK;
+ 141:../Source Files/lpc_glcd_cal.c **** 
+ 142:../Source Files/lpc_glcd_cal.c ****     matrixPtr->Divider = ((screenPtr[0].x - screenPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+  43              		.loc 1 142 0
+  44 0004 B1F80090 		ldrh	r9, [r1, #0]
+  45 0008 0D8A     		ldrh	r5, [r1, #16]
+  46 000a 4B89     		ldrh	r3, [r1, #10]
+  47 000c B1F81280 		ldrh	r8, [r1, #18]
+ 143:../Source Files/lpc_glcd_cal.c ****                          ((screenPtr[1].x - screenPtr[2].x) * (screenPtr[0].y - screenPtr[2].y));
+  48              		.loc 1 143 0
+  49 0010 B1F808C0 		ldrh	ip, [r1, #8]
+  50 0014 0E8A     		ldrh	r6, [r1, #16]
+  51 0016 4C8A     		ldrh	r4, [r1, #18]
+  52 0018 4F88     		ldrh	r7, [r1, #2]
+  53 001a 1FFA8CFC 		uxth	ip, ip
+  54 001e B6B2     		uxth	r6, r6
+  55 0020 A4B2     		uxth	r4, r4
+  56 0022 BFB2     		uxth	r7, r7
+  57 0024 C6EB0C06 		rsb	r6, r6, ip
+  58 0028 E41B     		subs	r4, r4, r7
+  59 002a 7443     		muls	r4, r6, r4
+ 142:../Source Files/lpc_glcd_cal.c ****     matrixPtr->Divider = ((screenPtr[0].x - screenPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+  60              		.loc 1 142 0
+  61 002c 1FFA89F9 		uxth	r9, r9
+  62 0030 ADB2     		uxth	r5, r5
+  63 0032 9BB2     		uxth	r3, r3
+  64 0034 1FFA88F8 		uxth	r8, r8
+  65 0038 C5EB0905 		rsb	r5, r5, r9
+  66 003c C8EB0303 		rsb	r3, r8, r3
+  67 0040 03FB0543 		mla	r3, r3, r5, r4
+ 139:../Source Files/lpc_glcd_cal.c **** {
+  68              		.loc 1 139 0
+  69 0044 87B0     		sub	sp, sp, #28
+  70              	.LCFI1:
+  71              		.cfi_def_cfa_offset 64
+ 142:../Source Files/lpc_glcd_cal.c ****     matrixPtr->Divider = ((screenPtr[0].x - screenPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+  72              		.loc 1 142 0
+  73 0046 9361     		str	r3, [r2, #24]
+ 144:../Source Files/lpc_glcd_cal.c **** 
+ 145:../Source Files/lpc_glcd_cal.c ****     if(matrixPtr->Divider == 0)
+  74              		.loc 1 145 0
+  75 0048 002B     		cmp	r3, #0
+  76 004a 00F00A81 		beq	.L3
+ 146:../Source Files/lpc_glcd_cal.c ****     {
+ 147:../Source Files/lpc_glcd_cal.c ****         retValue = NOT_OK;
+ 148:../Source Files/lpc_glcd_cal.c ****     }
+ 149:../Source Files/lpc_glcd_cal.c ****     else
+ 150:../Source Files/lpc_glcd_cal.c ****     {
+ 151:../Source Files/lpc_glcd_cal.c ****         matrixPtr->An = ((displayPtr[0].x - displayPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+  77              		.loc 1 151 0
+  78 004e B0F800A0 		ldrh	sl, [r0, #0]
+  79 0052 058A     		ldrh	r5, [r0, #16]
+  80 0054 4E89     		ldrh	r6, [r1, #10]
+  81 0056 B1F81290 		ldrh	r9, [r1, #18]
+ 152:../Source Files/lpc_glcd_cal.c ****                         ((displayPtr[1].x - displayPtr[2].x) * (screenPtr[0].y - screenPtr[2].y));
+  82              		.loc 1 152 0
+  83 005a B0F808C0 		ldrh	ip, [r0, #8]
+  84 005e 048A     		ldrh	r4, [r0, #16]
+  85 0060 4F8A     		ldrh	r7, [r1, #18]
+ 151:../Source Files/lpc_glcd_cal.c ****         matrixPtr->An = ((displayPtr[0].x - displayPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+  86              		.loc 1 151 0
+  87 0062 B3B2     		uxth	r3, r6
+  88              		.loc 1 152 0
+  89 0064 A6B2     		uxth	r6, r4
+  90 0066 BCB2     		uxth	r4, r7
+  91 0068 4F88     		ldrh	r7, [r1, #2]
+ 151:../Source Files/lpc_glcd_cal.c ****         matrixPtr->An = ((displayPtr[0].x - displayPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+  92              		.loc 1 151 0
+  93 006a 1FFA8AFB 		uxth	fp, sl
+  94              		.loc 1 152 0
+  95 006e BFB2     		uxth	r7, r7
+  96 0070 1FFA8CFA 		uxth	sl, ip
+  97 0074 C6EB0A06 		rsb	r6, r6, sl
+  98 0078 E41B     		subs	r4, r4, r7
+  99 007a 7443     		muls	r4, r6, r4
+ 151:../Source Files/lpc_glcd_cal.c ****         matrixPtr->An = ((displayPtr[0].x - displayPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+ 100              		.loc 1 151 0
+ 101 007c 1FFA89F8 		uxth	r8, r9
+ 102 0080 ADB2     		uxth	r5, r5
+ 103 0082 C5EB0B05 		rsb	r5, r5, fp
+ 104 0086 C8EB0303 		rsb	r3, r8, r3
+ 105 008a 03FB0547 		mla	r7, r3, r5, r4
+ 153:../Source Files/lpc_glcd_cal.c **** 
+ 154:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Bn = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].x - displayPtr[2].x)) -
+ 106              		.loc 1 154 0
+ 107 008e B1F800B0 		ldrh	fp, [r1, #0]
+ 151:../Source Files/lpc_glcd_cal.c ****         matrixPtr->An = ((displayPtr[0].x - displayPtr[2].x) * (screenPtr[1].y - screenPtr[2].y)) -
+ 108              		.loc 1 151 0
+ 109 0092 1760     		str	r7, [r2, #0]
+ 110              		.loc 1 154 0
+ 111 0094 0D8A     		ldrh	r5, [r1, #16]
+ 112 0096 0389     		ldrh	r3, [r0, #8]
+ 113 0098 B0F81080 		ldrh	r8, [r0, #16]
+ 155:../Source Files/lpc_glcd_cal.c ****                         ((displayPtr[0].x - displayPtr[2].x) * (screenPtr[1].x - screenPtr[2].x));
+ 114              		.loc 1 155 0
+ 115 009c B0F800C0 		ldrh	ip, [r0, #0]
+ 116 00a0 068A     		ldrh	r6, [r0, #16]
+ 117 00a2 0C8A     		ldrh	r4, [r1, #16]
+ 118 00a4 0F89     		ldrh	r7, [r1, #8]
+ 154:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Bn = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].x - displayPtr[2].x)) -
+ 119              		.loc 1 154 0
+ 120 00a6 1FFA8BF9 		uxth	r9, fp
+ 121              		.loc 1 155 0
+ 122 00aa BFB2     		uxth	r7, r7
+ 123 00ac 1FFA8CFB 		uxth	fp, ip
+ 124 00b0 B6B2     		uxth	r6, r6
+ 125 00b2 A4B2     		uxth	r4, r4
+ 126 00b4 C6EB0B06 		rsb	r6, r6, fp
+ 127 00b8 E41B     		subs	r4, r4, r7
+ 128 00ba 7443     		muls	r4, r6, r4
+ 154:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Bn = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].x - displayPtr[2].x)) -
+ 129              		.loc 1 154 0
+ 130 00bc 1FFA88FA 		uxth	sl, r8
+ 131 00c0 ADB2     		uxth	r5, r5
+ 132 00c2 9BB2     		uxth	r3, r3
+ 133 00c4 C5EB0905 		rsb	r5, r5, r9
+ 134 00c8 CAEB0303 		rsb	r3, sl, r3
+ 135 00cc 03FB0547 		mla	r7, r3, r5, r4
+ 156:../Source Files/lpc_glcd_cal.c **** 
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 136              		.loc 1 157 0
+ 137 00d0 B1F81090 		ldrh	r9, [r1, #16]
+ 138 00d4 B0F80880 		ldrh	r8, [r0, #8]
+ 139 00d8 0D89     		ldrh	r5, [r1, #8]
+ 140 00da 038A     		ldrh	r3, [r0, #16]
+ 141 00dc 4E88     		ldrh	r6, [r1, #2]
+ 142 00de 1FFA88FB 		uxth	fp, r8
+ 143 00e2 B4B2     		uxth	r4, r6
+ 144 00e4 1FFA85F8 		uxth	r8, r5
+ 154:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Bn = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].x - displayPtr[2].x)) -
+ 145              		.loc 1 154 0
+ 146 00e8 5760     		str	r7, [r2, #4]
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 147              		.loc 1 158 0
+ 148 00ea 0F88     		ldrh	r7, [r1, #0]
+ 149 00ec B0F810C0 		ldrh	ip, [r0, #16]
+ 150 00f0 0D8A     		ldrh	r5, [r1, #16]
+ 151 00f2 0688     		ldrh	r6, [r0, #0]
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 152              		.loc 1 157 0
+ 153 00f4 1FFA89FA 		uxth	sl, r9
+ 154 00f8 0194     		str	r4, [sp, #4]
+ 155 00fa 1FFA83F9 		uxth	r9, r3
+ 156              		.loc 1 158 0
+ 157 00fe B4B2     		uxth	r4, r6
+ 158 0100 ABB2     		uxth	r3, r5
+ 159 0102 4D89     		ldrh	r5, [r1, #10]
+ 159:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[1].x * displayPtr[0].x - screenPtr[0].x * displayPtr[1].x) * scr
+ 160              		.loc 1 159 0
+ 161 0104 0E89     		ldrh	r6, [r1, #8]
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 162              		.loc 1 157 0
+ 163 0106 0BFB0AFA 		mul	sl, fp, sl
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 164              		.loc 1 158 0
+ 165 010a 1FFA8CFC 		uxth	ip, ip
+ 166 010e 0293     		str	r3, [sp, #8]
+ 167 0110 0394     		str	r4, [sp, #12]
+ 168 0112 ABB2     		uxth	r3, r5
+ 169              		.loc 1 159 0
+ 170 0114 B4B2     		uxth	r4, r6
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 171              		.loc 1 158 0
+ 172 0116 BFB2     		uxth	r7, r7
+ 173 0118 0493     		str	r3, [sp, #16]
+ 174 011a 0CFB07F7 		mul	r7, ip, r7
+ 175              		.loc 1 159 0
+ 176 011e 0594     		str	r4, [sp, #20]
+ 177 0120 0588     		ldrh	r5, [r0, #0]
+ 178 0122 0E88     		ldrh	r6, [r1, #0]
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 179              		.loc 1 157 0
+ 180 0124 09FB18AB 		mls	fp, r9, r8, sl
+ 181              		.loc 1 159 0
+ 182 0128 B4B2     		uxth	r4, r6
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 183              		.loc 1 158 0
+ 184 012a DDF80C80 		ldr	r8, [sp, #12]
+ 185 012e 029E     		ldr	r6, [sp, #8]
+ 186              		.loc 1 159 0
+ 187 0130 ABB2     		uxth	r3, r5
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 188              		.loc 1 158 0
+ 189 0132 08FB1677 		mls	r7, r8, r6, r7
+ 190 0136 049E     		ldr	r6, [sp, #16]
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 191              		.loc 1 157 0
+ 192 0138 DDF80490 		ldr	r9, [sp, #4]
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 193              		.loc 1 158 0
+ 194 013c 7743     		muls	r7, r6, r7
+ 195              		.loc 1 159 0
+ 196 013e 0093     		str	r3, [sp, #0]
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 197              		.loc 1 157 0
+ 198 0140 09FB0B7C 		mla	ip, r9, fp, r7
+ 199              		.loc 1 159 0
+ 200 0144 059E     		ldr	r6, [sp, #20]
+ 201 0146 009F     		ldr	r7, [sp, #0]
+ 202 0148 0589     		ldrh	r5, [r0, #8]
+ 203 014a 7E43     		muls	r6, r7, r6
+ 204 014c ADB2     		uxth	r5, r5
+ 205 014e 05FB1464 		mls	r4, r5, r4, r6
+ 206 0152 4B8A     		ldrh	r3, [r1, #18]
+ 207 0154 9BB2     		uxth	r3, r3
+ 158:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].x - screenPtr[2].x * displayPtr[0].x) * scr
+ 208              		.loc 1 158 0
+ 209 0156 03FB04C5 		mla	r5, r3, r4, ip
+ 160:../Source Files/lpc_glcd_cal.c **** 
+ 161:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Dn = ((displayPtr[0].y - displayPtr[2].y) * (screenPtr[1].y - screenPtr[2].y)) -
+ 210              		.loc 1 161 0
+ 211 015a 4388     		ldrh	r3, [r0, #2]
+ 212 015c 468A     		ldrh	r6, [r0, #18]
+ 213 015e 4F89     		ldrh	r7, [r1, #10]
+ 214 0160 1FFA83FA 		uxth	sl, r3
+ 215 0164 B1F812B0 		ldrh	fp, [r1, #18]
+ 216 0168 BBB2     		uxth	r3, r7
+ 162:../Source Files/lpc_glcd_cal.c ****                         ((displayPtr[1].y - displayPtr[2].y) * (screenPtr[0].y - screenPtr[2].y));
+ 217              		.loc 1 162 0
+ 218 016a B0F80A90 		ldrh	r9, [r0, #10]
+ 219 016e 448A     		ldrh	r4, [r0, #18]
+ 220 0170 4F8A     		ldrh	r7, [r1, #18]
+ 157:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Cn = (screenPtr[2].x * displayPtr[1].x - screenPtr[1].x * displayPtr[2].x) * scr
+ 221              		.loc 1 157 0
+ 222 0172 9560     		str	r5, [r2, #8]
+ 161:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Dn = ((displayPtr[0].y - displayPtr[2].y) * (screenPtr[1].y - screenPtr[2].y)) -
+ 223              		.loc 1 161 0
+ 224 0174 B5B2     		uxth	r5, r6
+ 225              		.loc 1 162 0
+ 226 0176 A6B2     		uxth	r6, r4
+ 227 0178 BCB2     		uxth	r4, r7
+ 228 017a 4F88     		ldrh	r7, [r1, #2]
+ 229 017c 1FFA89FC 		uxth	ip, r9
+ 230 0180 BFB2     		uxth	r7, r7
+ 231 0182 C6EB0C06 		rsb	r6, r6, ip
+ 232 0186 E41B     		subs	r4, r4, r7
+ 233 0188 7443     		muls	r4, r6, r4
+ 161:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Dn = ((displayPtr[0].y - displayPtr[2].y) * (screenPtr[1].y - screenPtr[2].y)) -
+ 234              		.loc 1 161 0
+ 235 018a 1FFA8BF8 		uxth	r8, fp
+ 236 018e C5EB0A05 		rsb	r5, r5, sl
+ 237 0192 C8EB0303 		rsb	r3, r8, r3
+ 238 0196 03FB0547 		mla	r7, r3, r5, r4
+ 163:../Source Files/lpc_glcd_cal.c **** 
+ 164:../Source Files/lpc_glcd_cal.c ****         matrixPtr->En = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].y - displayPtr[2].y)) -
+ 239              		.loc 1 164 0
+ 240 019a B1F800A0 		ldrh	sl, [r1, #0]
+ 161:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Dn = ((displayPtr[0].y - displayPtr[2].y) * (screenPtr[1].y - screenPtr[2].y)) -
+ 241              		.loc 1 161 0
+ 242 019e D760     		str	r7, [r2, #12]
+ 243              		.loc 1 164 0
+ 244 01a0 0D8A     		ldrh	r5, [r1, #16]
+ 245 01a2 4389     		ldrh	r3, [r0, #10]
+ 246 01a4 B0F81280 		ldrh	r8, [r0, #18]
+ 165:../Source Files/lpc_glcd_cal.c ****                         ((displayPtr[0].y - displayPtr[2].y) * (screenPtr[1].x - screenPtr[2].x));
+ 247              		.loc 1 165 0
+ 248 01a8 B0F802C0 		ldrh	ip, [r0, #2]
+ 249 01ac 468A     		ldrh	r6, [r0, #18]
+ 250 01ae 0C8A     		ldrh	r4, [r1, #16]
+ 251 01b0 0F89     		ldrh	r7, [r1, #8]
+ 164:../Source Files/lpc_glcd_cal.c ****         matrixPtr->En = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].y - displayPtr[2].y)) -
+ 252              		.loc 1 164 0
+ 253 01b2 1FFA8AFB 		uxth	fp, sl
+ 254              		.loc 1 165 0
+ 255 01b6 BFB2     		uxth	r7, r7
+ 256 01b8 1FFA8CFA 		uxth	sl, ip
+ 257 01bc B6B2     		uxth	r6, r6
+ 258 01be A4B2     		uxth	r4, r4
+ 259 01c0 C6EB0A06 		rsb	r6, r6, sl
+ 260 01c4 E41B     		subs	r4, r4, r7
+ 261 01c6 7443     		muls	r4, r6, r4
+ 164:../Source Files/lpc_glcd_cal.c ****         matrixPtr->En = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].y - displayPtr[2].y)) -
+ 262              		.loc 1 164 0
+ 263 01c8 1FFA88F9 		uxth	r9, r8
+ 264 01cc ADB2     		uxth	r5, r5
+ 265 01ce 9BB2     		uxth	r3, r3
+ 266 01d0 C5EB0B05 		rsb	r5, r5, fp
+ 267 01d4 C9EB0303 		rsb	r3, r9, r3
+ 268 01d8 03FB0547 		mla	r7, r3, r5, r4
+ 166:../Source Files/lpc_glcd_cal.c **** 
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 269              		.loc 1 167 0
+ 270 01dc B1F810B0 		ldrh	fp, [r1, #16]
+ 271 01e0 4589     		ldrh	r5, [r0, #10]
+ 272 01e2 B1F80880 		ldrh	r8, [r1, #8]
+ 273 01e6 B0F81290 		ldrh	r9, [r0, #18]
+ 274 01ea 4B88     		ldrh	r3, [r1, #2]
+ 164:../Source Files/lpc_glcd_cal.c ****         matrixPtr->En = ((screenPtr[0].x - screenPtr[2].x) * (displayPtr[1].y - displayPtr[2].y)) -
+ 275              		.loc 1 164 0
+ 276 01ec 1761     		str	r7, [r2, #16]
+ 277              		.loc 1 167 0
+ 278 01ee 9EB2     		uxth	r6, r3
+ 279 01f0 0196     		str	r6, [sp, #4]
+ 168:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].y - screenPtr[2].x * displayPtr[0].y) * scr
+ 280              		.loc 1 168 0
+ 281 01f2 0C88     		ldrh	r4, [r1, #0]
+ 282 01f4 B0F812C0 		ldrh	ip, [r0, #18]
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 283              		.loc 1 167 0
+ 284 01f8 1FFA8BFA 		uxth	sl, fp
+ 285 01fc 1FFA85FB 		uxth	fp, r5
+ 286              		.loc 1 168 0
+ 287 0200 0D8A     		ldrh	r5, [r1, #16]
+ 288 0202 A7B2     		uxth	r7, r4
+ 289 0204 1FFA8CFC 		uxth	ip, ip
+ 290 0208 ABB2     		uxth	r3, r5
+ 291 020a 0CFB07F7 		mul	r7, ip, r7
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 292              		.loc 1 167 0
+ 293 020e 0BFB0AFA 		mul	sl, fp, sl
+ 294              		.loc 1 168 0
+ 295 0212 4688     		ldrh	r6, [r0, #2]
+ 296 0214 0293     		str	r3, [sp, #8]
+ 297 0216 4C89     		ldrh	r4, [r1, #10]
+ 298 0218 DDF808C0 		ldr	ip, [sp, #8]
+ 299 021c B6B2     		uxth	r6, r6
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 300              		.loc 1 167 0
+ 301 021e 1FFA88F8 		uxth	r8, r8
+ 302 0222 1FFA89F9 		uxth	r9, r9
+ 303              		.loc 1 168 0
+ 304 0226 A5B2     		uxth	r5, r4
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 305              		.loc 1 167 0
+ 306 0228 09FB18A8 		mls	r8, r9, r8, sl
+ 307              		.loc 1 168 0
+ 308 022c 06FB1C7A 		mls	sl, r6, ip, r7
+ 169:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[1].x * displayPtr[0].y - screenPtr[0].x * displayPtr[1].y) * scr
+ 309              		.loc 1 169 0
+ 310 0230 0B89     		ldrh	r3, [r1, #8]
+ 168:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].y - screenPtr[2].x * displayPtr[0].y) * scr
+ 311              		.loc 1 168 0
+ 312 0232 0395     		str	r5, [sp, #12]
+ 313              		.loc 1 169 0
+ 314 0234 4588     		ldrh	r5, [r0, #2]
+ 168:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].y - screenPtr[2].x * displayPtr[0].y) * scr
+ 315              		.loc 1 168 0
+ 316 0236 039E     		ldr	r6, [sp, #12]
+ 317              		.loc 1 169 0
+ 318 0238 9CB2     		uxth	r4, r3
+ 319 023a ADB2     		uxth	r5, r5
+ 168:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].y - screenPtr[2].x * displayPtr[0].y) * scr
+ 320              		.loc 1 168 0
+ 321 023c 06FB0AFC 		mul	ip, r6, sl
+ 322              		.loc 1 169 0
+ 323 0240 6C43     		muls	r4, r5, r4
+ 324 0242 0B88     		ldrh	r3, [r1, #0]
+ 325 0244 4089     		ldrh	r0, [r0, #10]
+ 326              	.LVL1:
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 327              		.loc 1 167 0
+ 328 0246 019F     		ldr	r7, [sp, #4]
+ 329              		.loc 1 169 0
+ 330 0248 80B2     		uxth	r0, r0
+ 331 024a 9BB2     		uxth	r3, r3
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 332              		.loc 1 167 0
+ 333 024c 07FB08CA 		mla	sl, r7, r8, ip
+ 334              		.loc 1 169 0
+ 335 0250 00FB1343 		mls	r3, r0, r3, r4
+ 336 0254 498A     		ldrh	r1, [r1, #18]
+ 337              	.LVL2:
+ 338 0256 89B2     		uxth	r1, r1
+ 168:../Source Files/lpc_glcd_cal.c ****                         (screenPtr[0].x * displayPtr[2].y - screenPtr[2].x * displayPtr[0].y) * scr
+ 339              		.loc 1 168 0
+ 340 0258 01FB03A0 		mla	r0, r1, r3, sl
+ 167:../Source Files/lpc_glcd_cal.c ****         matrixPtr->Fn = (screenPtr[2].x * displayPtr[1].y - screenPtr[1].x * displayPtr[2].y) * scr
+ 341              		.loc 1 167 0
+ 342 025c 5061     		str	r0, [r2, #20]
+ 140:../Source Files/lpc_glcd_cal.c **** 	int  retValue = OK;
+ 343              		.loc 1 140 0
+ 344 025e 0020     		movs	r0, #0
+ 345 0260 01E0     		b	.L2
+ 346              	.LVL3:
+ 347              	.L3:
+ 147:../Source Files/lpc_glcd_cal.c ****         retValue = NOT_OK;
+ 348              		.loc 1 147 0
+ 349 0262 4FF0FF30 		mov	r0, #-1
+ 350              	.LVL4:
+ 351              	.L2:
+ 170:../Source Files/lpc_glcd_cal.c ****     }
+ 171:../Source Files/lpc_glcd_cal.c **** 
+ 172:../Source Files/lpc_glcd_cal.c ****     return(retValue);
+ 173:../Source Files/lpc_glcd_cal.c **** } /* end of setCalibrationMatrix() */
+ 352              		.loc 1 173 0
+ 353 0266 07B0     		add	sp, sp, #28
+ 354 0268 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 355              		.cfi_endproc
+ 356              	.LFE56:
+ 358              		.align	1
+ 359              		.global	TSC2004_Cal_Init
+ 360              		.thumb
+ 361              		.thumb_func
+ 363              	TSC2004_Cal_Init:
+ 364              	.LFB55:
+  31:../Source Files/lpc_glcd_cal.c **** {
+ 365              		.loc 1 31 0
+ 366              		.cfi_startproc
+ 367              		@ args = 0, pretend = 0, frame = 392
+ 368              		@ frame_needed = 0, uses_anonymous_args = 0
+ 369              	.LVL5:
+ 370 026c 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 371              	.LCFI2:
+ 372              		.cfi_def_cfa_offset 24
+ 373              		.cfi_offset 4, -24
+ 374              		.cfi_offset 5, -20
+ 375              		.cfi_offset 6, -16
+ 376              		.cfi_offset 7, -12
+ 377              		.cfi_offset 8, -8
+ 378              		.cfi_offset 14, -4
+ 379 0270 E2B0     		sub	sp, sp, #392
+ 380              	.LCFI3:
+ 381              		.cfi_def_cfa_offset 416
+  37:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal displaySample[5] =	{
+ 382              		.loc 1 37 0
+ 383 0272 3CAD     		add	r5, sp, #240
+ 384 0274 0021     		movs	r1, #0
+ 385 0276 2822     		movs	r2, #40
+  31:../Source Files/lpc_glcd_cal.c **** {
+ 386              		.loc 1 31 0
+ 387 0278 0446     		mov	r4, r0
+  37:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal displaySample[5] =	{
+ 388              		.loc 1 37 0
+ 389 027a 2846     		mov	r0, r5
+ 390              	.LVL6:
+ 391 027c FFF7FEFF 		bl	memset
+ 392              	.LVL7:
+ 393 0280 7826     		movs	r6, #120
+ 394 0282 1423     		movs	r3, #20
+ 395 0284 4FF49672 		mov	r2, #300
+ 396 0288 DC20     		movs	r0, #220
+ 397 028a A021     		movs	r1, #160
+ 398 028c ADF8F030 		strh	r3, [sp, #240]	@ movhi
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+ 399              		.loc 1 45 0
+ 400 0290 02AF     		add	r7, sp, #8
+  37:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal displaySample[5] =	{
+ 401              		.loc 1 37 0
+ 402 0292 ADF8F230 		strh	r3, [sp, #242]	@ movhi
+ 403 0296 ADF8F820 		strh	r2, [sp, #248]	@ movhi
+ 404 029a ADF8FA30 		strh	r3, [sp, #250]	@ movhi
+ 405 029e ADF80021 		strh	r2, [sp, #256]	@ movhi
+ 406 02a2 ADF80201 		strh	r0, [sp, #258]	@ movhi
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+ 407              		.loc 1 45 0
+ 408 02a6 04AA     		add	r2, sp, #16
+  37:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal displaySample[5] =	{
+ 409              		.loc 1 37 0
+ 410 02a8 ADF80831 		strh	r3, [sp, #264]	@ movhi
+ 411 02ac ADF80A01 		strh	r0, [sp, #266]	@ movhi
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+ 412              		.loc 1 45 0
+ 413 02b0 44AB     		add	r3, sp, #272
+  37:../Source Files/lpc_glcd_cal.c **** 	ts_eventCal displaySample[5] =	{
+ 414              		.loc 1 37 0
+ 415 02b2 ADF81011 		strh	r1, [sp, #272]	@ movhi
+ 416 02b6 ADF81261 		strh	r6, [sp, #274]	@ movhi
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+ 417              		.loc 1 45 0
+ 418 02ba 95E80300 		ldmia	r5, {r0, r1}
+ 419 02be 06AE     		add	r6, sp, #24
+ 420 02c0 87E80300 		stmia	r7, {r0, r1}
+ 421 02c4 93E80300 		ldmia	r3, {r0, r1}
+  46:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle2[3] = {displaySample[1],displaySample[4],displaySample[2]};
+ 422              		.loc 1 46 0
+ 423 02c8 08AF     		add	r7, sp, #32
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+ 424              		.loc 1 45 0
+ 425 02ca 82E80300 		stmia	r2, {r0, r1}
+  46:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle2[3] = {displaySample[1],displaySample[4],displaySample[2]};
+ 426              		.loc 1 46 0
+ 427 02ce 0AAA     		add	r2, sp, #40
+  45:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle1[3] = {displaySample[0],displaySample[4],displaySample[1]};
+ 428              		.loc 1 45 0
+ 429 02d0 3EA8     		add	r0, sp, #248
+ 430 02d2 03C8     		ldmia	r0, {r0, r1}
+ 431 02d4 86E80300 		stmia	r6, {r0, r1}
+  46:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle2[3] = {displaySample[1],displaySample[4],displaySample[2]};
+ 432              		.loc 1 46 0
+ 433 02d8 87E80300 		stmia	r7, {r0, r1}
+ 434 02dc 93E80300 		ldmia	r3, {r0, r1}
+ 435 02e0 0CAE     		add	r6, sp, #48
+ 436 02e2 82E80300 		stmia	r2, {r0, r1}
+  47:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle3[3] = {displaySample[2],displaySample[4],displaySample[3]};
+ 437              		.loc 1 47 0
+ 438 02e6 0EAF     		add	r7, sp, #56
+ 439 02e8 10AA     		add	r2, sp, #64
+  46:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle2[3] = {displaySample[1],displaySample[4],displaySample[2]};
+ 440              		.loc 1 46 0
+ 441 02ea 40A9     		add	r1, sp, #256
+ 442 02ec 03C9     		ldmia	r1, {r0, r1}
+ 443 02ee 86E80300 		stmia	r6, {r0, r1}
+  47:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle3[3] = {displaySample[2],displaySample[4],displaySample[3]};
+ 444              		.loc 1 47 0
+ 445 02f2 87E80300 		stmia	r7, {r0, r1}
+ 446 02f6 93E80300 		ldmia	r3, {r0, r1}
+ 447 02fa 12AE     		add	r6, sp, #72
+ 448 02fc 82E80300 		stmia	r2, {r0, r1}
+  48:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle4[3] = {displaySample[3],displaySample[4],displaySample[0]};
+ 449              		.loc 1 48 0
+ 450 0300 14AF     		add	r7, sp, #80
+  47:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle3[3] = {displaySample[2],displaySample[4],displaySample[3]};
+ 451              		.loc 1 47 0
+ 452 0302 42A8     		add	r0, sp, #264
+ 453 0304 03C8     		ldmia	r0, {r0, r1}
+  48:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle4[3] = {displaySample[3],displaySample[4],displaySample[0]};
+ 454              		.loc 1 48 0
+ 455 0306 16AA     		add	r2, sp, #88
+  47:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle3[3] = {displaySample[2],displaySample[4],displaySample[3]};
+ 456              		.loc 1 47 0
+ 457 0308 86E80300 		stmia	r6, {r0, r1}
+  48:../Source Files/lpc_glcd_cal.c ****  ts_eventCal displaytriangle4[3] = {displaySample[3],displaySample[4],displaySample[0]};
+ 458              		.loc 1 48 0
+ 459 030c 87E80300 		stmia	r7, {r0, r1}
+ 460 0310 93E80300 		ldmia	r3, {r0, r1}
+ 461 0314 18AB     		add	r3, sp, #96
+ 462 0316 82E80300 		stmia	r2, {r0, r1}
+ 463 031a 95E80300 		ldmia	r5, {r0, r1}
+ 464 031e 83E80300 		stmia	r3, {r0, r1}
+  52:../Source Files/lpc_glcd_cal.c ****  GLCD_Clear(White);
+ 465              		.loc 1 52 0
+ 466 0322 4FF6FF70 		movw	r0, #65535
+ 467 0326 FFF7FEFF 		bl	GLCD_Clear
+ 468              	.LVL8:
+  55:../Source Files/lpc_glcd_cal.c ****  for(n=0; n<5; n++)
+ 469              		.loc 1 55 0
+ 470 032a 0025     		movs	r5, #0
+ 471              	.LVL9:
+ 472              	.L14:
+  57:../Source Files/lpc_glcd_cal.c ****  		switch (n) {
+ 473              		.loc 1 57 0
+ 474 032c 691E     		subs	r1, r5, #1
+ 475 032e 0026     		movs	r6, #0
+ 476 0330 4FF47847 		mov	r7, #63488
+ 477 0334 0329     		cmp	r1, #3
+ 478 0336 03D8     		bhi	.L6
+ 479 0338 DFE801F0 		tbb	[pc, r1]
+ 480              	.L11:
+ 481 033c 0E       		.byte	(.L7-.L11)/2
+ 482 033d 1B       		.byte	(.L8-.L11)/2
+ 483 033e 27       		.byte	(.L9-.L11)/2
+ 484 033f 33       		.byte	(.L10-.L11)/2
+ 485              		.align	1
+ 486              	.L6:
+  61:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 487              		.loc 1 61 0
+ 488 0340 0121     		movs	r1, #1
+  63:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(20,20,3,&ClrCfg);
+ 489              		.loc 1 63 0
+ 490 0342 1420     		movs	r0, #20
+  61:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 491              		.loc 1 61 0
+ 492 0344 8DF80010 		strb	r1, [sp, #0]
+  59:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+ 493              		.loc 1 59 0
+ 494 0348 ADF80270 		strh	r7, [sp, #2]	@ movhi
+  60:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+ 495              		.loc 1 60 0
+ 496 034c 8DF80160 		strb	r6, [sp, #1]
+  62:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+ 497              		.loc 1 62 0
+ 498 0350 ADF80470 		strh	r7, [sp, #4]	@ movhi
+  63:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(20,20,3,&ClrCfg);
+ 499              		.loc 1 63 0
+ 500 0354 0146     		mov	r1, r0
+ 501 0356 2FE0     		b	.L21
+ 502              	.L7:
+  69:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 503              		.loc 1 69 0
+ 504 0358 0123     		movs	r3, #1
+  67:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+ 505              		.loc 1 67 0
+ 506 035a ADF80270 		strh	r7, [sp, #2]	@ movhi
+  68:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+ 507              		.loc 1 68 0
+ 508 035e 8DF80160 		strb	r6, [sp, #1]
+  69:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 509              		.loc 1 69 0
+ 510 0362 8DF80030 		strb	r3, [sp, #0]
+  70:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+ 511              		.loc 1 70 0
+ 512 0366 ADF80470 		strh	r7, [sp, #4]	@ movhi
+  71:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(300,20,3,&ClrCfg);
+ 513              		.loc 1 71 0
+ 514 036a 4FF49670 		mov	r0, #300
+ 515 036e 1421     		movs	r1, #20
+ 516 0370 22E0     		b	.L21
+ 517              	.L8:
+  77:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 518              		.loc 1 77 0
+ 519 0372 0122     		movs	r2, #1
+  75:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+ 520              		.loc 1 75 0
+ 521 0374 ADF80270 		strh	r7, [sp, #2]	@ movhi
+  76:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+ 522              		.loc 1 76 0
+ 523 0378 8DF80160 		strb	r6, [sp, #1]
+  77:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 524              		.loc 1 77 0
+ 525 037c 8DF80020 		strb	r2, [sp, #0]
+  78:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+ 526              		.loc 1 78 0
+ 527 0380 ADF80470 		strh	r7, [sp, #4]	@ movhi
+  79:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(300,220,3,&ClrCfg);
+ 528              		.loc 1 79 0
+ 529 0384 4FF49670 		mov	r0, #300
+ 530 0388 09E0     		b	.L22
+ 531              	.L9:
+  85:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 532              		.loc 1 85 0
+ 533 038a 0120     		movs	r0, #1
+ 534 038c 8DF80000 		strb	r0, [sp, #0]
+  83:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+ 535              		.loc 1 83 0
+ 536 0390 ADF80270 		strh	r7, [sp, #2]	@ movhi
+  84:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+ 537              		.loc 1 84 0
+ 538 0394 8DF80160 		strb	r6, [sp, #1]
+  86:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+ 539              		.loc 1 86 0
+ 540 0398 ADF80470 		strh	r7, [sp, #4]	@ movhi
+  87:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(20,220,3,&ClrCfg);
+ 541              		.loc 1 87 0
+ 542 039c 1420     		movs	r0, #20
+ 543              	.L22:
+ 544 039e DC21     		movs	r1, #220
+ 545 03a0 0AE0     		b	.L21
+ 546              	.L10:
+  92:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bndry = FALSE;
+ 547              		.loc 1 92 0
+ 548 03a2 8DF80160 		strb	r6, [sp, #1]
+  93:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 549              		.loc 1 93 0
+ 550 03a6 0126     		movs	r6, #1
+  91:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.bcolor = Red;
+ 551              		.loc 1 91 0
+ 552 03a8 ADF80270 		strh	r7, [sp, #2]	@ movhi
+  93:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill = TRUE;
+ 553              		.loc 1 93 0
+ 554 03ac 8DF80060 		strb	r6, [sp, #0]
+  94:../Source Files/lpc_glcd_cal.c ****  				ClrCfg.fill_color = Red;
+ 555              		.loc 1 94 0
+ 556 03b0 ADF80470 		strh	r7, [sp, #4]	@ movhi
+  95:../Source Files/lpc_glcd_cal.c ****  				GLCD_Circle(160,120,3,&ClrCfg);
+ 557              		.loc 1 95 0
+ 558 03b4 A020     		movs	r0, #160
+ 559 03b6 7821     		movs	r1, #120
+ 560              	.L21:
+ 561 03b8 0322     		movs	r2, #3
+ 562 03ba 6B46     		mov	r3, sp
+ 563 03bc FFF7FEFF 		bl	GLCD_Circle
+ 564              	.LVL10:
+ 565              	.L17:
+ 102:../Source Files/lpc_glcd_cal.c ****  		while(TReady == FALSE);
+ 566              		.loc 1 102 0 discriminator 1
+ 567 03c0 5C4F     		ldr	r7, .L23
+ 568 03c2 3878     		ldrb	r0, [r7, #0]	@ zero_extendqisi2
+ 569 03c4 0028     		cmp	r0, #0
+ 570 03c6 FBD0     		beq	.L17
+ 104:../Source Files/lpc_glcd_cal.c ****  		delay_ms(2000);
+ 571              		.loc 1 104 0
+ 572 03c8 4FF4FA60 		mov	r0, #2000
+ 573 03cc FFF7FEFF 		bl	delay_ms
+ 574              	.LVL11:
+ 106:../Source Files/lpc_glcd_cal.c ****  		screenSample[n].x = gTouch.x;
+ 575              		.loc 1 106 0
+ 576 03d0 594A     		ldr	r2, .L23+4
+ 577 03d2 62AE     		add	r6, sp, #392
+ 578 03d4 1388     		ldrh	r3, [r2, #0]
+ 579 03d6 06EBC500 		add	r0, r6, r5, lsl #3
+ 580 03da 99B2     		uxth	r1, r3
+ 581 03dc 20F8C01C 		strh	r1, [r0, #-192]	@ movhi
+ 107:../Source Files/lpc_glcd_cal.c ****  		screenSample[n].y = gTouch.y;
+ 582              		.loc 1 107 0
+ 583 03e0 5288     		ldrh	r2, [r2, #2]
+  55:../Source Files/lpc_glcd_cal.c ****  for(n=0; n<5; n++)
+ 584              		.loc 1 55 0
+ 585 03e2 0135     		adds	r5, r5, #1
+ 586              	.LVL12:
+ 108:../Source Files/lpc_glcd_cal.c ****  		TReady = FALSE;
+ 587              		.loc 1 108 0
+ 588 03e4 0021     		movs	r1, #0
+ 107:../Source Files/lpc_glcd_cal.c ****  		screenSample[n].y = gTouch.y;
+ 589              		.loc 1 107 0
+ 590 03e6 93B2     		uxth	r3, r2
+  55:../Source Files/lpc_glcd_cal.c ****  for(n=0; n<5; n++)
+ 591              		.loc 1 55 0
+ 592 03e8 052D     		cmp	r5, #5
+ 107:../Source Files/lpc_glcd_cal.c ****  		screenSample[n].y = gTouch.y;
+ 593              		.loc 1 107 0
+ 594 03ea 20F8BE3C 		strh	r3, [r0, #-190]	@ movhi
+ 108:../Source Files/lpc_glcd_cal.c ****  		TReady = FALSE;
+ 595              		.loc 1 108 0
+ 596 03ee 3970     		strb	r1, [r7, #0]
+  55:../Source Files/lpc_glcd_cal.c ****  for(n=0; n<5; n++)
+ 597              		.loc 1 55 0
+ 598 03f0 9CD1     		bne	.L14
+ 111:../Source Files/lpc_glcd_cal.c ****  	CalTouch=FALSE;
+ 599              		.loc 1 111 0
+ 600 03f2 524F     		ldr	r7, .L23+8
+ 113:../Source Files/lpc_glcd_cal.c ****  	 ts_eventCal screentriangle1[3] = {screenSample[0],screenSample[4],screenSample[1]};
+ 601              		.loc 1 113 0
+ 602 03f4 0DF1680E 		add	lr, sp, #104
+ 603 03f8 3AAB     		add	r3, sp, #232
+ 604 03fa 32AA     		add	r2, sp, #200
+ 605 03fc 1CAE     		add	r6, sp, #112
+ 111:../Source Files/lpc_glcd_cal.c ****  	CalTouch=FALSE;
+ 606              		.loc 1 111 0
+ 607 03fe 3970     		strb	r1, [r7, #0]
+ 113:../Source Files/lpc_glcd_cal.c ****  	 ts_eventCal screentriangle1[3] = {screenSample[0],screenSample[4],screenSample[1]};
+ 608              		.loc 1 113 0
+ 609 0400 1EAD     		add	r5, sp, #120
+ 610              	.LVL13:
+ 611 0402 92E80300 		ldmia	r2, {r0, r1}
+ 612 0406 8EE80300 		stmia	lr, {r0, r1}
+ 613 040a 93E80300 		ldmia	r3, {r0, r1}
+ 614 040e 86E80300 		stmia	r6, {r0, r1}
+ 615 0412 34A8     		add	r0, sp, #208
+ 616 0414 03C8     		ldmia	r0, {r0, r1}
+ 617 0416 85E80300 		stmia	r5, {r0, r1}
+ 114:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle2[3] = {screenSample[1],screenSample[4],screenSample[2]};
+ 618              		.loc 1 114 0
+ 619 041a 20AD     		add	r5, sp, #128
+ 620 041c 05F10807 		add	r7, r5, #8
+ 621 0420 85E80300 		stmia	r5, {r0, r1}
+ 622 0424 93E80300 		ldmia	r3, {r0, r1}
+ 115:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle3[3] = {screenSample[2],screenSample[4],screenSample[3]};
+ 623              		.loc 1 115 0
+ 624 0428 0DF19808 		add	r8, sp, #152
+ 114:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle2[3] = {screenSample[1],screenSample[4],screenSample[2]};
+ 625              		.loc 1 114 0
+ 626 042c 87E80300 		stmia	r7, {r0, r1}
+ 115:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle3[3] = {screenSample[2],screenSample[4],screenSample[3]};
+ 627              		.loc 1 115 0
+ 628 0430 28AE     		add	r6, sp, #160
+ 114:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle2[3] = {screenSample[1],screenSample[4],screenSample[2]};
+ 629              		.loc 1 114 0
+ 630 0432 05F11007 		add	r7, r5, #16
+ 631 0436 36A9     		add	r1, sp, #216
+ 632 0438 03C9     		ldmia	r1, {r0, r1}
+ 633 043a 87E80300 		stmia	r7, {r0, r1}
+ 115:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle3[3] = {screenSample[2],screenSample[4],screenSample[3]};
+ 634              		.loc 1 115 0
+ 635 043e 88E80300 		stmia	r8, {r0, r1}
+ 636 0442 93E80300 		ldmia	r3, {r0, r1}
+ 637 0446 2AAF     		add	r7, sp, #168
+ 638 0448 86E80300 		stmia	r6, {r0, r1}
+ 639 044c 38A8     		add	r0, sp, #224
+ 640 044e 03C8     		ldmia	r0, {r0, r1}
+ 641 0450 87E80300 		stmia	r7, {r0, r1}
+ 116:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle4[3] = {screenSample[3],screenSample[4],screenSample[0]};
+ 642              		.loc 1 116 0
+ 643 0454 2CAF     		add	r7, sp, #176
+ 644 0456 87E80300 		stmia	r7, {r0, r1}
+ 645 045a 93E80300 		ldmia	r3, {r0, r1}
+ 646 045e 2EAE     		add	r6, sp, #184
+ 647 0460 30AB     		add	r3, sp, #192
+ 648 0462 86E80300 		stmia	r6, {r0, r1}
+ 649 0466 92E80300 		ldmia	r2, {r0, r1}
+ 119:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle1, screentriangle1, &matrix[0]);
+ 650              		.loc 1 119 0
+ 651 046a 46AA     		add	r2, sp, #280
+ 116:../Source Files/lpc_glcd_cal.c ****      ts_eventCal screentriangle4[3] = {screenSample[3],screenSample[4],screenSample[0]};
+ 652              		.loc 1 116 0
+ 653 046c 83E80300 		stmia	r3, {r0, r1}
+ 119:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle1, screentriangle1, &matrix[0]);
+ 654              		.loc 1 119 0
+ 655 0470 7146     		mov	r1, lr
+ 656 0472 02A8     		add	r0, sp, #8
+ 657 0474 FFF7FEFF 		bl	SetCalibrationMatrix
+ 658              	.LVL14:
+ 120:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle2, screentriangle2, &matrix[1]);
+ 659              		.loc 1 120 0
+ 660 0478 2946     		mov	r1, r5
+ 661 047a 4DAA     		add	r2, sp, #308
+ 662 047c 08A8     		add	r0, sp, #32
+ 663 047e FFF7FEFF 		bl	SetCalibrationMatrix
+ 664              	.LVL15:
+ 121:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle3, screentriangle3, &matrix[2]);
+ 665              		.loc 1 121 0
+ 666 0482 4146     		mov	r1, r8
+ 667 0484 54AA     		add	r2, sp, #336
+ 668 0486 0EA8     		add	r0, sp, #56
+ 669 0488 FFF7FEFF 		bl	SetCalibrationMatrix
+ 670              	.LVL16:
+ 122:../Source Files/lpc_glcd_cal.c ****      SetCalibrationMatrix(displaytriangle4, screentriangle4, &matrix[3]);
+ 671              		.loc 1 122 0
+ 672 048c 3946     		mov	r1, r7
+ 673 048e 5BAA     		add	r2, sp, #364
+ 674 0490 14A8     		add	r0, sp, #80
+ 675 0492 FFF7FEFF 		bl	SetCalibrationMatrix
+ 676              	.LVL17:
+ 125:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->An = ( matrix[0].An + matrix[1].An + matrix[2].An + matrix[3].An ) / 4;
+ 677              		.loc 1 125 0
+ 678 0496 4D99     		ldr	r1, [sp, #308]
+ 679 0498 469A     		ldr	r2, [sp, #280]
+ 680 049a 549B     		ldr	r3, [sp, #336]
+ 681 049c 5018     		adds	r0, r2, r1
+ 682 049e 5B9A     		ldr	r2, [sp, #364]
+ 683 04a0 C118     		adds	r1, r0, r3
+ 684 04a2 8818     		adds	r0, r1, r2
+ 685 04a4 0423     		movs	r3, #4
+ 686 04a6 90FBF3F1 		sdiv	r1, r0, r3
+ 126:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Bn = ( matrix[0].Bn + matrix[1].Bn + matrix[2].Bn + matrix[3].Bn ) / 4;
+ 687              		.loc 1 126 0
+ 688 04aa 4E9A     		ldr	r2, [sp, #312]
+ 689 04ac 4798     		ldr	r0, [sp, #284]
+ 125:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->An = ( matrix[0].An + matrix[1].An + matrix[2].An + matrix[3].An ) / 4;
+ 690              		.loc 1 125 0
+ 691 04ae 2160     		str	r1, [r4, #0]
+ 126:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Bn = ( matrix[0].Bn + matrix[1].Bn + matrix[2].Bn + matrix[3].Bn ) / 4;
+ 692              		.loc 1 126 0
+ 693 04b0 8118     		adds	r1, r0, r2
+ 694 04b2 559A     		ldr	r2, [sp, #340]
+ 695 04b4 8818     		adds	r0, r1, r2
+ 696 04b6 5C99     		ldr	r1, [sp, #368]
+ 697 04b8 4218     		adds	r2, r0, r1
+ 698 04ba 92FBF3F0 		sdiv	r0, r2, r3
+ 127:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Cn = ( matrix[0].Cn + matrix[1].Cn + matrix[2].Cn + matrix[3].Cn ) / 4;
+ 699              		.loc 1 127 0
+ 700 04be 4899     		ldr	r1, [sp, #288]
+ 701 04c0 4F9A     		ldr	r2, [sp, #316]
+ 126:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Bn = ( matrix[0].Bn + matrix[1].Bn + matrix[2].Bn + matrix[3].Bn ) / 4;
+ 702              		.loc 1 126 0
+ 703 04c2 6060     		str	r0, [r4, #4]
+ 127:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Cn = ( matrix[0].Cn + matrix[1].Cn + matrix[2].Cn + matrix[3].Cn ) / 4;
+ 704              		.loc 1 127 0
+ 705 04c4 8818     		adds	r0, r1, r2
+ 706 04c6 569A     		ldr	r2, [sp, #344]
+ 707 04c8 8118     		adds	r1, r0, r2
+ 708 04ca 5D98     		ldr	r0, [sp, #372]
+ 709 04cc 0A18     		adds	r2, r1, r0
+ 710 04ce 92FBF3F1 		sdiv	r1, r2, r3
+ 128:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Dn = ( matrix[0].Dn + matrix[1].Dn + matrix[2].Dn + matrix[3].Dn ) / 4;
+ 711              		.loc 1 128 0
+ 712 04d2 5098     		ldr	r0, [sp, #320]
+ 713 04d4 499A     		ldr	r2, [sp, #292]
+ 127:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Cn = ( matrix[0].Cn + matrix[1].Cn + matrix[2].Cn + matrix[3].Cn ) / 4;
+ 714              		.loc 1 127 0
+ 715 04d6 A160     		str	r1, [r4, #8]
+ 128:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Dn = ( matrix[0].Dn + matrix[1].Dn + matrix[2].Dn + matrix[3].Dn ) / 4;
+ 716              		.loc 1 128 0
+ 717 04d8 1118     		adds	r1, r2, r0
+ 718 04da 5798     		ldr	r0, [sp, #348]
+ 719 04dc 5E9A     		ldr	r2, [sp, #376]
+ 720 04de 0918     		adds	r1, r1, r0
+ 721 04e0 8818     		adds	r0, r1, r2
+ 722 04e2 90FBF3F1 		sdiv	r1, r0, r3
+ 129:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->En = ( matrix[0].En + matrix[1].En + matrix[2].En + matrix[3].En ) / 4;
+ 723              		.loc 1 129 0
+ 724 04e6 519A     		ldr	r2, [sp, #324]
+ 725 04e8 4A98     		ldr	r0, [sp, #296]
+ 128:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Dn = ( matrix[0].Dn + matrix[1].Dn + matrix[2].Dn + matrix[3].Dn ) / 4;
+ 726              		.loc 1 128 0
+ 727 04ea E160     		str	r1, [r4, #12]
+ 129:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->En = ( matrix[0].En + matrix[1].En + matrix[2].En + matrix[3].En ) / 4;
+ 728              		.loc 1 129 0
+ 729 04ec 8118     		adds	r1, r0, r2
+ 730 04ee 589A     		ldr	r2, [sp, #352]
+ 731 04f0 8818     		adds	r0, r1, r2
+ 732 04f2 5F99     		ldr	r1, [sp, #380]
+ 733 04f4 4218     		adds	r2, r0, r1
+ 734 04f6 92FBF3F0 		sdiv	r0, r2, r3
+ 130:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Fn = ( matrix[0].Fn + matrix[1].Fn + matrix[2].Fn + matrix[3].Fn ) / 4;
+ 735              		.loc 1 130 0
+ 736 04fa 4B99     		ldr	r1, [sp, #300]
+ 737 04fc 529A     		ldr	r2, [sp, #328]
+ 129:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->En = ( matrix[0].En + matrix[1].En + matrix[2].En + matrix[3].En ) / 4;
+ 738              		.loc 1 129 0
+ 739 04fe 2061     		str	r0, [r4, #16]
+ 130:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Fn = ( matrix[0].Fn + matrix[1].Fn + matrix[2].Fn + matrix[3].Fn ) / 4;
+ 740              		.loc 1 130 0
+ 741 0500 8818     		adds	r0, r1, r2
+ 742 0502 599A     		ldr	r2, [sp, #356]
+ 743 0504 8118     		adds	r1, r0, r2
+ 744 0506 6098     		ldr	r0, [sp, #384]
+ 745 0508 0A18     		adds	r2, r1, r0
+ 746 050a 92FBF3F1 		sdiv	r1, r2, r3
+ 131:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Divider = ( matrix[0].Divider + matrix[1].Divider + matrix[2].Divider + matrix[3].D
+ 747              		.loc 1 131 0
+ 748 050e 5398     		ldr	r0, [sp, #332]
+ 749 0510 4C9A     		ldr	r2, [sp, #304]
+ 130:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Fn = ( matrix[0].Fn + matrix[1].Fn + matrix[2].Fn + matrix[3].Fn ) / 4;
+ 750              		.loc 1 130 0
+ 751 0512 6161     		str	r1, [r4, #20]
+ 131:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Divider = ( matrix[0].Divider + matrix[1].Divider + matrix[2].Divider + matrix[3].D
+ 752              		.loc 1 131 0
+ 753 0514 1118     		adds	r1, r2, r0
+ 754 0516 5A98     		ldr	r0, [sp, #360]
+ 755 0518 619A     		ldr	r2, [sp, #388]
+ 756 051a 0918     		adds	r1, r1, r0
+ 757 051c 8818     		adds	r0, r1, r2
+ 758 051e 90FBF3F3 		sdiv	r3, r0, r3
+ 134:../Source Files/lpc_glcd_cal.c ****     	GLCD_Clear(White);
+ 759              		.loc 1 134 0
+ 760 0522 4FF6FF70 		movw	r0, #65535
+ 131:../Source Files/lpc_glcd_cal.c ****     	matrixPtr->Divider = ( matrix[0].Divider + matrix[1].Divider + matrix[2].Divider + matrix[3].D
+ 761              		.loc 1 131 0
+ 762 0526 A361     		str	r3, [r4, #24]
+ 134:../Source Files/lpc_glcd_cal.c ****     	GLCD_Clear(White);
+ 763              		.loc 1 134 0
+ 764 0528 FFF7FEFF 		bl	GLCD_Clear
+ 765              	.LVL18:
+ 136:../Source Files/lpc_glcd_cal.c **** }
+ 766              		.loc 1 136 0
+ 767 052c 62B0     		add	sp, sp, #392
+ 768 052e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 769              	.L24:
+ 770 0532 00BF     		.align	2
+ 771              	.L23:
+ 772 0534 00000000 		.word	.LANCHOR0
+ 773 0538 00000000 		.word	gTouch
+ 774 053c 00000000 		.word	.LANCHOR1
+ 775              		.cfi_endproc
+ 776              	.LFE55:
+ 778              		.align	1
+ 779              		.global	TSC2004_Cal_Values
+ 780              		.thumb
+ 781              		.thumb_func
+ 783              	TSC2004_Cal_Values:
+ 784              	.LFB57:
+ 174:../Source Files/lpc_glcd_cal.c **** 
+ 175:../Source Files/lpc_glcd_cal.c **** 
+ 176:../Source Files/lpc_glcd_cal.c **** 
+ 177:../Source Files/lpc_glcd_cal.c **** int TSC2004_Cal_Values(ts_eventCal *displayPtr, MATRIX_Type *matrixPtr)
+ 178:../Source Files/lpc_glcd_cal.c **** {
+ 785              		.loc 1 178 0
+ 786              		.cfi_startproc
+ 787              		@ args = 0, pretend = 0, frame = 8
+ 788              		@ frame_needed = 0, uses_anonymous_args = 0
+ 789              	.LVL19:
+ 790 0540 73B5     		push	{r0, r1, r4, r5, r6, lr}
+ 791              	.LCFI4:
+ 792              		.cfi_def_cfa_offset 24
+ 793              		.cfi_offset 0, -24
+ 794              		.cfi_offset 1, -20
+ 795              		.cfi_offset 4, -16
+ 796              		.cfi_offset 5, -12
+ 797              		.cfi_offset 6, -8
+ 798              		.cfi_offset 14, -4
+ 799              		.loc 1 178 0
+ 800 0542 0546     		mov	r5, r0
+ 179:../Source Files/lpc_glcd_cal.c ****     int  retValue = OK;
+ 180:../Source Files/lpc_glcd_cal.c **** 	ts_event RTouchn;
+ 181:../Source Files/lpc_glcd_cal.c **** 
+ 182:../Source Files/lpc_glcd_cal.c ****     TSC2004_Read_Values(&RTouchn);
+ 801              		.loc 1 182 0
+ 802 0544 6846     		mov	r0, sp
+ 803              	.LVL20:
+ 178:../Source Files/lpc_glcd_cal.c **** {
+ 804              		.loc 1 178 0
+ 805 0546 0C46     		mov	r4, r1
+ 806              		.loc 1 182 0
+ 807 0548 FFF7FEFF 		bl	TSC2004_Read_Values
+ 808              	.LVL21:
+ 183:../Source Files/lpc_glcd_cal.c ****     displayPtr->z1 = RTouchn.z1;
+ 809              		.loc 1 183 0
+ 810 054c BDF80430 		ldrh	r3, [sp, #4]
+ 184:../Source Files/lpc_glcd_cal.c ****     displayPtr->z2 = RTouchn.z2;
+ 811              		.loc 1 184 0
+ 812 0550 BDF80600 		ldrh	r0, [sp, #6]
+ 183:../Source Files/lpc_glcd_cal.c ****     displayPtr->z1 = RTouchn.z1;
+ 813              		.loc 1 183 0
+ 814 0554 AB80     		strh	r3, [r5, #4]	@ movhi
+ 185:../Source Files/lpc_glcd_cal.c **** 
+ 186:../Source Files/lpc_glcd_cal.c ****     if(matrixPtr->Divider != 0)
+ 815              		.loc 1 186 0
+ 816 0556 A369     		ldr	r3, [r4, #24]
+ 184:../Source Files/lpc_glcd_cal.c ****     displayPtr->z2 = RTouchn.z2;
+ 817              		.loc 1 184 0
+ 818 0558 E880     		strh	r0, [r5, #6]	@ movhi
+ 819              		.loc 1 186 0
+ 820 055a DBB1     		cbz	r3, .L27
+ 187:../Source Files/lpc_glcd_cal.c ****     {
+ 188:../Source Files/lpc_glcd_cal.c ****             /* Operation order is important since we are doing integer */
+ 189:../Source Files/lpc_glcd_cal.c ****             /*  math. Make sure you add all terms together before      */
+ 190:../Source Files/lpc_glcd_cal.c ****             /*  dividing, so that the remainder is not rounded off     */
+ 191:../Source Files/lpc_glcd_cal.c ****             /*  prematurely.                                           */
+ 192:../Source Files/lpc_glcd_cal.c **** 
+ 193:../Source Files/lpc_glcd_cal.c ****         displayPtr->x = ( (matrixPtr->An * RTouchn.x) +
+ 194:../Source Files/lpc_glcd_cal.c ****                           (matrixPtr->Bn * RTouchn.y) +
+ 821              		.loc 1 194 0
+ 822 055c 6068     		ldr	r0, [r4, #4]
+ 823 055e BDF80210 		ldrh	r1, [sp, #2]
+ 193:../Source Files/lpc_glcd_cal.c ****         displayPtr->x = ( (matrixPtr->An * RTouchn.x) +
+ 824              		.loc 1 193 0
+ 825 0562 2668     		ldr	r6, [r4, #0]
+ 826              		.loc 1 194 0
+ 827 0564 4843     		muls	r0, r1, r0
+ 193:../Source Files/lpc_glcd_cal.c ****         displayPtr->x = ( (matrixPtr->An * RTouchn.x) +
+ 828              		.loc 1 193 0
+ 829 0566 BDF80020 		ldrh	r2, [sp, #0]
+ 830 056a 06FB0206 		mla	r6, r6, r2, r0
+ 831              		.loc 1 194 0
+ 832 056e A068     		ldr	r0, [r4, #8]
+ 833 0570 3618     		adds	r6, r6, r0
+ 195:../Source Files/lpc_glcd_cal.c ****                            matrixPtr->Cn
+ 196:../Source Files/lpc_glcd_cal.c ****                         ) / matrixPtr->Divider;
+ 834              		.loc 1 196 0
+ 835 0572 96FBF3F0 		sdiv	r0, r6, r3
+ 193:../Source Files/lpc_glcd_cal.c ****         displayPtr->x = ( (matrixPtr->An * RTouchn.x) +
+ 836              		.loc 1 193 0
+ 837 0576 86B2     		uxth	r6, r0
+ 838 0578 2E80     		strh	r6, [r5, #0]	@ movhi
+ 197:../Source Files/lpc_glcd_cal.c **** 
+ 198:../Source Files/lpc_glcd_cal.c ****         displayPtr->y = ( (matrixPtr->Dn * RTouchn.x) +
+ 199:../Source Files/lpc_glcd_cal.c ****                           (matrixPtr->En * RTouchn.y) +
+ 839              		.loc 1 199 0
+ 840 057a 2669     		ldr	r6, [r4, #16]
+ 198:../Source Files/lpc_glcd_cal.c ****         displayPtr->y = ( (matrixPtr->Dn * RTouchn.x) +
+ 841              		.loc 1 198 0
+ 842 057c E068     		ldr	r0, [r4, #12]
+ 843              		.loc 1 199 0
+ 844 057e 7143     		muls	r1, r6, r1
+ 198:../Source Files/lpc_glcd_cal.c ****         displayPtr->y = ( (matrixPtr->Dn * RTouchn.x) +
+ 845              		.loc 1 198 0
+ 846 0580 00FB0212 		mla	r2, r0, r2, r1
+ 847              		.loc 1 199 0
+ 848 0584 6469     		ldr	r4, [r4, #20]
+ 849              	.LVL22:
+ 850 0586 1119     		adds	r1, r2, r4
+ 200:../Source Files/lpc_glcd_cal.c ****                            matrixPtr->Fn
+ 201:../Source Files/lpc_glcd_cal.c ****                         ) / matrixPtr->Divider;
+ 851              		.loc 1 201 0
+ 852 0588 91FBF3F3 		sdiv	r3, r1, r3
+ 198:../Source Files/lpc_glcd_cal.c ****         displayPtr->y = ( (matrixPtr->Dn * RTouchn.x) +
+ 853              		.loc 1 198 0
+ 854 058c 98B2     		uxth	r0, r3
+ 855 058e 6880     		strh	r0, [r5, #2]	@ movhi
+ 179:../Source Files/lpc_glcd_cal.c ****     int  retValue = OK;
+ 856              		.loc 1 179 0
+ 857 0590 0020     		movs	r0, #0
+ 858 0592 01E0     		b	.L26
+ 859              	.LVL23:
+ 860              	.L27:
+ 202:../Source Files/lpc_glcd_cal.c ****     }
+ 203:../Source Files/lpc_glcd_cal.c ****     else
+ 204:../Source Files/lpc_glcd_cal.c ****     {
+ 205:../Source Files/lpc_glcd_cal.c ****         retValue = NOT_OK;
+ 861              		.loc 1 205 0
+ 862 0594 4FF0FF30 		mov	r0, #-1
+ 863              	.LVL24:
+ 864              	.L26:
+ 206:../Source Files/lpc_glcd_cal.c ****     }
+ 207:../Source Files/lpc_glcd_cal.c **** 
+ 208:../Source Files/lpc_glcd_cal.c ****     return(retValue);
+ 209:../Source Files/lpc_glcd_cal.c **** } /* end of getDisplayPoint() */
+ 865              		.loc 1 209 0
+ 866 0598 7CBD     		pop	{r2, r3, r4, r5, r6, pc}
+ 867              		.cfi_endproc
+ 868              	.LFE57:
+ 870              		.global	CalTouch
+ 871              		.global	TReady
+ 872              		.comm	gTouch,8,2
+ 873              		.comm	cmatrix,28,4
+ 874              		.comm	I2C_Rx_Buf,64,1
+ 875              		.comm	I2C_Tx_Buf,64,1
+ 876              		.comm	Rx_Buf1,64,1
+ 877              		.comm	Tx_Buf1,64,1
+ 878              		.comm	TxIntStat,1,1
+ 879              		.comm	rb,528,4
+ 880              		.comm	EscFlag,2,2
+ 881              		.data
+ 882              		.set	.LANCHOR1,. + 0
+ 885              	CalTouch:
+ 886 0000 01       		.byte	1
+ 887              		.bss
+ 888              		.set	.LANCHOR0,. + 0
+ 891              	TReady:
+ 892 0000 00       		.space	1
+ 893              		.text
+ 894              	.Letext0:
+ 895              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 896              		.file 3 "../Header Files/lpc_types.h"
+ 897              		.file 4 "../Header Files/lpc17xx_uart.h"
+ 898              		.file 5 "../Header Files/lpc_ssp_glcd.h"
+ 899              		.file 6 "../Header Files/lpc_i2c_tsc2004.h"
+ 900              		.file 7 "../Header Files/lpc_glcd_cal.h"
+ 901              		.file 8 "../CM3 Core/core_cm3.h"
+ 902              		.file 9 "../Header Files/lpc17xx_ssp.h"
+ 903              		.file 10 "../Header Files/lpc17xx_i2c.h"
+ 904              		.file 11 "../Header Files/lpc17xx_systick.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc_glcd_cal.c
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:23     .text:00000000 SetCalibrationMatrix
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:363    .text:0000026c TSC2004_Cal_Init
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:481    .text:0000033c $d
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:485    .text:00000340 $t
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:772    .text:00000534 $d
+                            *COM*:00000008 gTouch
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:778    .text:00000540 $t
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:783    .text:00000540 TSC2004_Cal_Values
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:885    .data:00000000 CalTouch
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:891    .bss:00000000 TReady
+                            *COM*:0000001c cmatrix
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+C:\Users\raghav\AppData\Local\Temp\cch1Wx4F.s:892    .bss:00000000 $d
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4._default_types.h.6.5e12cd604db8ce00b62bb2f02708eaf3
+                           .group:00000000 wm4.lock.h.2.9bc98482741e5e2a9450b12934a684ea
+                           .group:00000000 wm4.stddef.h.349.31f4c5baff3fa2689010b32028da9c47
+                           .group:00000000 wm4.reent.h.16.9e42f0e588b85e70b2bf6572af57ce64
+                           .group:00000000 wm4.math.h.35.cc9264b0ced3bd063c5784e64e89cf51
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.stdint.h.10.90b695f550ca6cc3fb08fa83baf01e05
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.a409f0915fca7a8098ca15e74d04c6ac
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.6ad069e5d9b902121622749a19395ff4
+                           .group:00000000 wm4.lpc17xx_systick.h.30.7f7cf149327de2371fcd7cf3bab706fa
+                           .group:00000000 wm4.lpc17xx_gpio.h.48.9d83a3048c670bed300498c0197398d5
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.296310ddc7a3401128b2f3fbf623c41d
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.30.0044e2529a5d42d08a2a972d3b2d05a0
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.5385a26dc571b1c3d3e5836541d3d739
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.38ee0123d5c21a15788fa9a253ffdebc
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.977d62e0a6a314f991e761882e147837
+                           .group:00000000 wm4.lpc_glcd_cal.h.36.07281023d52dd7883e5e4c8a890cf1a4
+
+UNDEFINED SYMBOLS
+memset
+GLCD_Clear
+GLCD_Circle
+delay_ms
+TSC2004_Read_Values
