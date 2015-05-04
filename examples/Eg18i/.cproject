@@ -38,8 +38,8 @@
 									<listOptionValue builtIn="false" value="&quot;C:\Program Files\GNU Tools ARM Embedded\4.7 2013q2\arm-none-eabi\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Program Files\GNU Tools ARM Embedded\4.7 2013q2\lib\gcc\arm-none-eabi\4.7.4\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Program Files\GNU Tools ARM Embedded\4.7 2013q2\lib\gcc\arm-none-eabi\4.7.4\include-fixed&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;../ CM3 Core&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;../ Header Files&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;../Header Files&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;../CM3 Core&quot;"/>
 								</option>
 								<option id="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.misc.std.934561636" name="Language Standard" superClass="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.misc.std" value="org.eclipse.cdt.cross.arm.gnu.c.compiler.option.misc.std.gnu99" valueType="enumerated"/>
 								<inputType id="org.eclipse.cdt.cross.arm.gnu.windows.c.compiler.base.input.1698025674" superClass="org.eclipse.cdt.cross.arm.gnu.windows.c.compiler.base.input"/>

@@ -522,482 +522,482 @@
  240 00cc C3F8C020 		str	r2, [r3, #192]
  241              	.LBB10:
  242              	.LBB11:
- 243              		.file 2 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/core_cmInstr.h"
-   1:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /**************************************************************************//**
-   2:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @file     core_cmInstr.h
-   3:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @brief    CMSIS Cortex-M Core Instruction Access Header File
-   4:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @version  V2.01
-   5:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @date     06. December 2010
-   6:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  *
-   7:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @note
-   8:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * Copyright (C) 2009-2010 ARM Limited. All rights reserved.
-   9:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  *
-  10:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @par
-  11:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M
-  12:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * processor based microcontrollers.  This file can be freely distributed
-  13:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * within development tools that are supporting such ARM based processors.
-  14:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  *
-  15:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * @par
-  16:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
-  17:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
-  18:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
-  19:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
-  20:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
-  21:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  *
-  22:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  ******************************************************************************/
-  23:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  24:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #ifndef __CORE_CMINSTR_H__
-  25:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __CORE_CMINSTR_H__
-  26:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  27:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  28:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* ##########################  Core Instruction Access  ######################### */
-  29:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \ingroup  CMSIS
-  30:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 	\addtogroup CMSIS_Core_InstructionInterface CMSIS Core Instruction Interface
-  31:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   Access to dedicated instructions
-  32:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   @{
-  33:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** */
-  34:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  35:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #if defined ( __CC_ARM   ) /*------------------ RealView Compiler ----------------*/
-  36:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* ARM armcc specific functions */
-  37:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  38:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  No Operation
-  39:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  40:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
-  41:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  42:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __NOP                             __nop
-  43:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  44:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  45:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Interrupt
-  46:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  47:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
-  48:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     until one of a number of events occurs.
-  49:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  50:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __WFI                             __wfi
-  51:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  52:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  53:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Event
-  54:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  55:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
-  56:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     a low-power state until one of a number of events occurs.
-  57:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  58:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __WFE                             __wfe
-  59:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  60:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  61:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Send Event
-  62:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  63:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
-  64:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  65:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __SEV                             __sev
-  66:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  67:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  68:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Instruction Synchronization Barrier
-  69:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  70:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Instruction Synchronization Barrier flushes the pipeline in the processor,
-  71:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     so that all instructions following the ISB are fetched from cache or
-  72:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     memory, after the instruction has been completed.
-  73:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  74:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __ISB()                           __isb(0xF)
-  75:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  76:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  77:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Data Synchronization Barrier
-  78:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  79:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function acts as a special kind of Data Memory Barrier.
-  80:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     It completes when all explicit memory accesses before this instruction complete.
-  81:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  82:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __DSB()                           __dsb(0xF)
-  83:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  84:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  85:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Data Memory Barrier
-  86:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  87:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function ensures the apparent order of the explicit memory operations before
-  88:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     and after the instruction, without ensuring their completion.
-  89:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
-  90:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __DMB()                           __dmb(0xF)
-  91:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  92:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  93:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order (32 bit)
-  94:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  95:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in integer value.
-  96:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
-  97:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
-  98:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return               Reversed value
-  99:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 100:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __REV                             __rev
- 101:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 102:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 103:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
- 104:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 105:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
- 106:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 107:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
- 108:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return               Reversed value
- 109:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 110:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
- 111:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** extern uint32_t __REV16(uint32_t value);
- 112:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400677)  */
- 113:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static __INLINE __ASM uint32_t __REV16(uint32_t value)
- 114:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 115:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   rev16 r0, r0
- 116:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   bx lr
- 117:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 118:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
- 119:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 120:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 121:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order in signed short value
- 122:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 123:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in a signed short value with sign extension to integer.
- 124:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 125:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
- 126:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return               Reversed value
- 127:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 128:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
- 129:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** extern int32_t __REVSH(int32_t value);
- 130:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400677)  */
- 131:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static __INLINE __ASM int32_t __REVSH(int32_t value)
- 132:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 133:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   revsh r0, r0
- 134:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   bx lr
- 135:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 136:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
- 137:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 138:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 139:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
- 140:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 141:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Reverse bit order of value
- 142:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 143:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function reverses the bit order of the given value.
- 144:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 145:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
- 146:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return               Reversed value
- 147:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 148:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __RBIT                            __rbit
- 149:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 150:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 151:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
- 152:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 153:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
- 154:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 155:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
- 156:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
- 157:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 158:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __LDREXB(ptr)                     ((uint8_t ) __ldrex(ptr))
- 159:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 160:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 161:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
- 162:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 163:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
- 164:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 165:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
- 166:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
- 167:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 168:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __LDREXH(ptr)                     ((uint16_t) __ldrex(ptr))
- 169:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 170:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 171:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
- 172:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 173:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
- 174:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 175:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
- 176:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
- 177:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 178:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __LDREXW(ptr)                     ((uint32_t ) __ldrex(ptr))
- 179:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 180:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 181:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
- 182:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 183:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
- 184:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 185:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
- 186:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
- 187:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
- 188:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
- 189:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 190:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __STREXB(value, ptr)              __strex(value, ptr)
- 191:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 192:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 193:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
- 194:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 195:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
- 196:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 197:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
- 198:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
- 199:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
- 200:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
- 201:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 202:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __STREXH(value, ptr)              __strex(value, ptr)
- 203:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 204:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 205:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
- 206:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 207:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
- 208:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 209:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
- 210:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
- 211:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
- 212:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
- 213:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 214:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
- 215:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 216:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 217:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Remove the exclusive lock
- 218:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 219:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
- 220:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 221:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 222:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #if (__ARMCC_VERSION < 400000)
- 223:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** extern void __CLREX(void);
- 224:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400000)  */
- 225:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __CLREX                           __clrex
- 226:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
- 227:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 228:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 229:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Signed Saturate
- 230:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 231:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function saturates a signed value.
- 232:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 233:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to be saturated
- 234:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (1..32)
- 235:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return             Saturated value
- 236:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 237:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __SSAT                            __ssat
- 238:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 239:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 240:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Unsigned Saturate
- 241:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 242:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function saturates an unsigned value.
- 243:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 244:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to be saturated
- 245:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (0..31)
- 246:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return             Saturated value
- 247:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 248:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __USAT                            __usat
- 249:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 250:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 251:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Count leading zeros
- 252:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 253:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function counts the number of leading zeros of a data value.
- 254:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 255:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to count the leading zeros
- 256:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return             number of leading zeros in value
- 257:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 258:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __CLZ                             __clz
- 259:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 260:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
- 261:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 262:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 263:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 264:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #elif (defined (__ICCARM__)) /*---------------- ICC Compiler ---------------------*/
- 265:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* IAR iccarm specific functions */
- 266:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 267:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #include <intrinsics.h>                     /* IAR Intrinsics   */
- 268:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 269:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #pragma diag_suppress=Pe940
- 270:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 271:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  No Operation
- 272:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 273:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
- 274:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 275:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #define __NOP                           __no_operation
- 276:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 277:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 278:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Interrupt
- 279:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 280:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
- 281:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     until one of a number of events occurs.
- 282:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 283:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static __INLINE  void __WFI(void)
- 284:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 285:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM ("wfi");
- 286:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 287:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 288:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 289:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Event
- 290:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 291:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
- 292:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     a low-power state until one of a number of events occurs.
- 293:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 294:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static __INLINE  void __WFE(void)
- 295:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 296:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM ("wfe");
- 297:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 298:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 299:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 300:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Send Event
- 301:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 302:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
- 303:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 304:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static __INLINE  void __SEV(void)
- 305:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 306:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM ("sev");
- 307:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 308:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 309:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 310:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic     void __ISB(void)            (see intrinsics.h) */
- 311:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic     void __DSB(void)            (see intrinsics.h) */
- 312:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic     void __DMB(void)            (see intrinsics.h) */
- 313:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic uint32_t __REV(uint32_t value)  (see intrinsics.h) */
- 314:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic          __SSAT                 (see intrinsics.h) */
- 315:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic          __USAT                 (see intrinsics.h) */
- 316:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 317:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 318:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
- 319:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 320:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
- 321:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 322:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
- 323:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return               Reversed value
- 324:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 325:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint32_t __REV16(uint32_t value)
- 326:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 327:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("rev16 r0, r0");
- 328:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 329:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 330:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 331:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic uint32_t __REVSH(uint32_t value)  (see intrinsics.h */
- 332:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 333:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 334:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
- 335:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 336:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Reverse bit order of value
- 337:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 338:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function reverses the bit order of the given value.
- 339:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 340:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    value  Value to reverse
- 341:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return               Reversed value
- 342:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 343:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint32_t __RBIT(uint32_t value)
- 344:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 345:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("rbit r0, r0");
- 346:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 347:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 348:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 349:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
- 350:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 351:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
- 352:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 353:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
- 354:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
- 355:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 356:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint8_t __LDREXB(volatile uint8_t *addr)
- 357:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 358:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("ldrexb r0, [r0]");
- 359:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 360:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 361:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 362:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
- 363:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 364:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
- 365:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 366:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
- 367:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
- 368:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 369:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint16_t __LDREXH(volatile uint16_t *addr)
- 370:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 371:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("ldrexh r0, [r0]");
- 372:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 373:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 374:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 375:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
- 376:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 377:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
- 378:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 379:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to data
- 380:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
- 381:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 382:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic unsigned long __LDREX(unsigned long *)  (see intrinsics.h) */
- 383:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint32_t __LDREXW(volatile uint32_t *addr)
- 384:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 385:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("ldrex r0, [r0]");
- 386:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 387:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 388:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 389:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
- 390:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 391:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
- 392:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 393:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
- 394:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
- 395:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
- 396:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
- 397:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 398:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint32_t __STREXB(uint8_t value, volatile uint8_t *addr)
- 399:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 400:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("strexb r0, r0, [r1]");
- 401:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 402:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 403:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 404:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
- 405:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 406:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
- 407:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 408:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
- 409:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
- 410:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
- 411:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
- 412:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 413:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
- 414:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 415:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("strexh r0, r0, [r1]");
- 416:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 417:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 418:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 419:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
- 420:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 421:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
- 422:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 423:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]  value  Value to store
- 424:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \param [in]    ptr  Pointer to location
- 425:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          0  Function succeeded
- 426:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     \return          1  Function failed
- 427:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 428:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic unsigned long __STREX(unsigned long, unsigned long)  (see intrinsics.h )*/
- 429:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static uint32_t __STREXW(uint32_t value, volatile uint32_t *addr)
- 430:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 431:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM("strex r0, r0, [r1]");
- 432:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 433:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 434:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 435:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Remove the exclusive lock
- 436:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 437:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
- 438:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 439:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 440:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** static __INLINE void __CLREX(void)
- 441:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 442:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM ("clrex");
- 443:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 444:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 445:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* intrinsic   unsigned char __CLZ( unsigned long )      (see intrinsics.h) */
- 446:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 447:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
- 448:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 449:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #pragma diag_default=Pe940
- 450:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 451:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 452:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 453:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
- 454:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /* GNU gcc specific functions */
- 455:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 456:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  No Operation
- 457:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 458:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
- 459:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 460:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** __attribute__( ( always_inline ) ) static __INLINE void __NOP(void)
- 461:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 462:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM volatile ("nop");
- 463:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** }
- 464:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 465:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 466:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** /** \brief  Wait For Interrupt
- 467:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** 
- 468:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
- 469:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****     until one of a number of events occurs.
- 470:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****  */
- 471:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** __attribute__( ( always_inline ) ) static __INLINE void __WFI(void)
- 472:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h **** {
- 473:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmInstr.h ****   __ASM volatile ("wfi");
+ 243              		.file 2 "../CM3 Core/core_cmInstr.h"
+   1:../CM3 Core/core_cmInstr.h **** /**************************************************************************//**
+   2:../CM3 Core/core_cmInstr.h ****  * @file     core_cmInstr.h
+   3:../CM3 Core/core_cmInstr.h ****  * @brief    CMSIS Cortex-M Core Instruction Access Header File
+   4:../CM3 Core/core_cmInstr.h ****  * @version  V2.01
+   5:../CM3 Core/core_cmInstr.h ****  * @date     06. December 2010
+   6:../CM3 Core/core_cmInstr.h ****  *
+   7:../CM3 Core/core_cmInstr.h ****  * @note
+   8:../CM3 Core/core_cmInstr.h ****  * Copyright (C) 2009-2010 ARM Limited. All rights reserved.
+   9:../CM3 Core/core_cmInstr.h ****  *
+  10:../CM3 Core/core_cmInstr.h ****  * @par
+  11:../CM3 Core/core_cmInstr.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M
+  12:../CM3 Core/core_cmInstr.h ****  * processor based microcontrollers.  This file can be freely distributed
+  13:../CM3 Core/core_cmInstr.h ****  * within development tools that are supporting such ARM based processors.
+  14:../CM3 Core/core_cmInstr.h ****  *
+  15:../CM3 Core/core_cmInstr.h ****  * @par
+  16:../CM3 Core/core_cmInstr.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:../CM3 Core/core_cmInstr.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:../CM3 Core/core_cmInstr.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:../CM3 Core/core_cmInstr.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:../CM3 Core/core_cmInstr.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:../CM3 Core/core_cmInstr.h ****  *
+  22:../CM3 Core/core_cmInstr.h ****  ******************************************************************************/
+  23:../CM3 Core/core_cmInstr.h **** 
+  24:../CM3 Core/core_cmInstr.h **** #ifndef __CORE_CMINSTR_H__
+  25:../CM3 Core/core_cmInstr.h **** #define __CORE_CMINSTR_H__
+  26:../CM3 Core/core_cmInstr.h **** 
+  27:../CM3 Core/core_cmInstr.h **** 
+  28:../CM3 Core/core_cmInstr.h **** /* ##########################  Core Instruction Access  ######################### */
+  29:../CM3 Core/core_cmInstr.h **** /** \ingroup  CMSIS
+  30:../CM3 Core/core_cmInstr.h **** 	\addtogroup CMSIS_Core_InstructionInterface CMSIS Core Instruction Interface
+  31:../CM3 Core/core_cmInstr.h ****   Access to dedicated instructions
+  32:../CM3 Core/core_cmInstr.h ****   @{
+  33:../CM3 Core/core_cmInstr.h **** */
+  34:../CM3 Core/core_cmInstr.h **** 
+  35:../CM3 Core/core_cmInstr.h **** #if defined ( __CC_ARM   ) /*------------------ RealView Compiler ----------------*/
+  36:../CM3 Core/core_cmInstr.h **** /* ARM armcc specific functions */
+  37:../CM3 Core/core_cmInstr.h **** 
+  38:../CM3 Core/core_cmInstr.h **** /** \brief  No Operation
+  39:../CM3 Core/core_cmInstr.h **** 
+  40:../CM3 Core/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+  41:../CM3 Core/core_cmInstr.h ****  */
+  42:../CM3 Core/core_cmInstr.h **** #define __NOP                             __nop
+  43:../CM3 Core/core_cmInstr.h **** 
+  44:../CM3 Core/core_cmInstr.h **** 
+  45:../CM3 Core/core_cmInstr.h **** /** \brief  Wait For Interrupt
+  46:../CM3 Core/core_cmInstr.h **** 
+  47:../CM3 Core/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+  48:../CM3 Core/core_cmInstr.h ****     until one of a number of events occurs.
+  49:../CM3 Core/core_cmInstr.h ****  */
+  50:../CM3 Core/core_cmInstr.h **** #define __WFI                             __wfi
+  51:../CM3 Core/core_cmInstr.h **** 
+  52:../CM3 Core/core_cmInstr.h **** 
+  53:../CM3 Core/core_cmInstr.h **** /** \brief  Wait For Event
+  54:../CM3 Core/core_cmInstr.h **** 
+  55:../CM3 Core/core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+  56:../CM3 Core/core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+  57:../CM3 Core/core_cmInstr.h ****  */
+  58:../CM3 Core/core_cmInstr.h **** #define __WFE                             __wfe
+  59:../CM3 Core/core_cmInstr.h **** 
+  60:../CM3 Core/core_cmInstr.h **** 
+  61:../CM3 Core/core_cmInstr.h **** /** \brief  Send Event
+  62:../CM3 Core/core_cmInstr.h **** 
+  63:../CM3 Core/core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+  64:../CM3 Core/core_cmInstr.h ****  */
+  65:../CM3 Core/core_cmInstr.h **** #define __SEV                             __sev
+  66:../CM3 Core/core_cmInstr.h **** 
+  67:../CM3 Core/core_cmInstr.h **** 
+  68:../CM3 Core/core_cmInstr.h **** /** \brief  Instruction Synchronization Barrier
+  69:../CM3 Core/core_cmInstr.h **** 
+  70:../CM3 Core/core_cmInstr.h ****     Instruction Synchronization Barrier flushes the pipeline in the processor,
+  71:../CM3 Core/core_cmInstr.h ****     so that all instructions following the ISB are fetched from cache or
+  72:../CM3 Core/core_cmInstr.h ****     memory, after the instruction has been completed.
+  73:../CM3 Core/core_cmInstr.h ****  */
+  74:../CM3 Core/core_cmInstr.h **** #define __ISB()                           __isb(0xF)
+  75:../CM3 Core/core_cmInstr.h **** 
+  76:../CM3 Core/core_cmInstr.h **** 
+  77:../CM3 Core/core_cmInstr.h **** /** \brief  Data Synchronization Barrier
+  78:../CM3 Core/core_cmInstr.h **** 
+  79:../CM3 Core/core_cmInstr.h ****     This function acts as a special kind of Data Memory Barrier.
+  80:../CM3 Core/core_cmInstr.h ****     It completes when all explicit memory accesses before this instruction complete.
+  81:../CM3 Core/core_cmInstr.h ****  */
+  82:../CM3 Core/core_cmInstr.h **** #define __DSB()                           __dsb(0xF)
+  83:../CM3 Core/core_cmInstr.h **** 
+  84:../CM3 Core/core_cmInstr.h **** 
+  85:../CM3 Core/core_cmInstr.h **** /** \brief  Data Memory Barrier
+  86:../CM3 Core/core_cmInstr.h **** 
+  87:../CM3 Core/core_cmInstr.h ****     This function ensures the apparent order of the explicit memory operations before
+  88:../CM3 Core/core_cmInstr.h ****     and after the instruction, without ensuring their completion.
+  89:../CM3 Core/core_cmInstr.h ****  */
+  90:../CM3 Core/core_cmInstr.h **** #define __DMB()                           __dmb(0xF)
+  91:../CM3 Core/core_cmInstr.h **** 
+  92:../CM3 Core/core_cmInstr.h **** 
+  93:../CM3 Core/core_cmInstr.h **** /** \brief  Reverse byte order (32 bit)
+  94:../CM3 Core/core_cmInstr.h **** 
+  95:../CM3 Core/core_cmInstr.h ****     This function reverses the byte order in integer value.
+  96:../CM3 Core/core_cmInstr.h **** 
+  97:../CM3 Core/core_cmInstr.h ****     \param [in]    value  Value to reverse
+  98:../CM3 Core/core_cmInstr.h ****     \return               Reversed value
+  99:../CM3 Core/core_cmInstr.h ****  */
+ 100:../CM3 Core/core_cmInstr.h **** #define __REV                             __rev
+ 101:../CM3 Core/core_cmInstr.h **** 
+ 102:../CM3 Core/core_cmInstr.h **** 
+ 103:../CM3 Core/core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
+ 104:../CM3 Core/core_cmInstr.h **** 
+ 105:../CM3 Core/core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
+ 106:../CM3 Core/core_cmInstr.h **** 
+ 107:../CM3 Core/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 108:../CM3 Core/core_cmInstr.h ****     \return               Reversed value
+ 109:../CM3 Core/core_cmInstr.h ****  */
+ 110:../CM3 Core/core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
+ 111:../CM3 Core/core_cmInstr.h **** extern uint32_t __REV16(uint32_t value);
+ 112:../CM3 Core/core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400677)  */
+ 113:../CM3 Core/core_cmInstr.h **** static __INLINE __ASM uint32_t __REV16(uint32_t value)
+ 114:../CM3 Core/core_cmInstr.h **** {
+ 115:../CM3 Core/core_cmInstr.h ****   rev16 r0, r0
+ 116:../CM3 Core/core_cmInstr.h ****   bx lr
+ 117:../CM3 Core/core_cmInstr.h **** }
+ 118:../CM3 Core/core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
+ 119:../CM3 Core/core_cmInstr.h **** 
+ 120:../CM3 Core/core_cmInstr.h **** 
+ 121:../CM3 Core/core_cmInstr.h **** /** \brief  Reverse byte order in signed short value
+ 122:../CM3 Core/core_cmInstr.h **** 
+ 123:../CM3 Core/core_cmInstr.h ****     This function reverses the byte order in a signed short value with sign extension to integer.
+ 124:../CM3 Core/core_cmInstr.h **** 
+ 125:../CM3 Core/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 126:../CM3 Core/core_cmInstr.h ****     \return               Reversed value
+ 127:../CM3 Core/core_cmInstr.h ****  */
+ 128:../CM3 Core/core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
+ 129:../CM3 Core/core_cmInstr.h **** extern int32_t __REVSH(int32_t value);
+ 130:../CM3 Core/core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400677)  */
+ 131:../CM3 Core/core_cmInstr.h **** static __INLINE __ASM int32_t __REVSH(int32_t value)
+ 132:../CM3 Core/core_cmInstr.h **** {
+ 133:../CM3 Core/core_cmInstr.h ****   revsh r0, r0
+ 134:../CM3 Core/core_cmInstr.h ****   bx lr
+ 135:../CM3 Core/core_cmInstr.h **** }
+ 136:../CM3 Core/core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
+ 137:../CM3 Core/core_cmInstr.h **** 
+ 138:../CM3 Core/core_cmInstr.h **** 
+ 139:../CM3 Core/core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
+ 140:../CM3 Core/core_cmInstr.h **** 
+ 141:../CM3 Core/core_cmInstr.h **** /** \brief  Reverse bit order of value
+ 142:../CM3 Core/core_cmInstr.h **** 
+ 143:../CM3 Core/core_cmInstr.h ****     This function reverses the bit order of the given value.
+ 144:../CM3 Core/core_cmInstr.h **** 
+ 145:../CM3 Core/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 146:../CM3 Core/core_cmInstr.h ****     \return               Reversed value
+ 147:../CM3 Core/core_cmInstr.h ****  */
+ 148:../CM3 Core/core_cmInstr.h **** #define __RBIT                            __rbit
+ 149:../CM3 Core/core_cmInstr.h **** 
+ 150:../CM3 Core/core_cmInstr.h **** 
+ 151:../CM3 Core/core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
+ 152:../CM3 Core/core_cmInstr.h **** 
+ 153:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
+ 154:../CM3 Core/core_cmInstr.h **** 
+ 155:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 156:../CM3 Core/core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
+ 157:../CM3 Core/core_cmInstr.h ****  */
+ 158:../CM3 Core/core_cmInstr.h **** #define __LDREXB(ptr)                     ((uint8_t ) __ldrex(ptr))
+ 159:../CM3 Core/core_cmInstr.h **** 
+ 160:../CM3 Core/core_cmInstr.h **** 
+ 161:../CM3 Core/core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
+ 162:../CM3 Core/core_cmInstr.h **** 
+ 163:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
+ 164:../CM3 Core/core_cmInstr.h **** 
+ 165:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 166:../CM3 Core/core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
+ 167:../CM3 Core/core_cmInstr.h ****  */
+ 168:../CM3 Core/core_cmInstr.h **** #define __LDREXH(ptr)                     ((uint16_t) __ldrex(ptr))
+ 169:../CM3 Core/core_cmInstr.h **** 
+ 170:../CM3 Core/core_cmInstr.h **** 
+ 171:../CM3 Core/core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
+ 172:../CM3 Core/core_cmInstr.h **** 
+ 173:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
+ 174:../CM3 Core/core_cmInstr.h **** 
+ 175:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 176:../CM3 Core/core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
+ 177:../CM3 Core/core_cmInstr.h ****  */
+ 178:../CM3 Core/core_cmInstr.h **** #define __LDREXW(ptr)                     ((uint32_t ) __ldrex(ptr))
+ 179:../CM3 Core/core_cmInstr.h **** 
+ 180:../CM3 Core/core_cmInstr.h **** 
+ 181:../CM3 Core/core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
+ 182:../CM3 Core/core_cmInstr.h **** 
+ 183:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
+ 184:../CM3 Core/core_cmInstr.h **** 
+ 185:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to store
+ 186:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 187:../CM3 Core/core_cmInstr.h ****     \return          0  Function succeeded
+ 188:../CM3 Core/core_cmInstr.h ****     \return          1  Function failed
+ 189:../CM3 Core/core_cmInstr.h ****  */
+ 190:../CM3 Core/core_cmInstr.h **** #define __STREXB(value, ptr)              __strex(value, ptr)
+ 191:../CM3 Core/core_cmInstr.h **** 
+ 192:../CM3 Core/core_cmInstr.h **** 
+ 193:../CM3 Core/core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
+ 194:../CM3 Core/core_cmInstr.h **** 
+ 195:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
+ 196:../CM3 Core/core_cmInstr.h **** 
+ 197:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to store
+ 198:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 199:../CM3 Core/core_cmInstr.h ****     \return          0  Function succeeded
+ 200:../CM3 Core/core_cmInstr.h ****     \return          1  Function failed
+ 201:../CM3 Core/core_cmInstr.h ****  */
+ 202:../CM3 Core/core_cmInstr.h **** #define __STREXH(value, ptr)              __strex(value, ptr)
+ 203:../CM3 Core/core_cmInstr.h **** 
+ 204:../CM3 Core/core_cmInstr.h **** 
+ 205:../CM3 Core/core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
+ 206:../CM3 Core/core_cmInstr.h **** 
+ 207:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
+ 208:../CM3 Core/core_cmInstr.h **** 
+ 209:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to store
+ 210:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 211:../CM3 Core/core_cmInstr.h ****     \return          0  Function succeeded
+ 212:../CM3 Core/core_cmInstr.h ****     \return          1  Function failed
+ 213:../CM3 Core/core_cmInstr.h ****  */
+ 214:../CM3 Core/core_cmInstr.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
+ 215:../CM3 Core/core_cmInstr.h **** 
+ 216:../CM3 Core/core_cmInstr.h **** 
+ 217:../CM3 Core/core_cmInstr.h **** /** \brief  Remove the exclusive lock
+ 218:../CM3 Core/core_cmInstr.h **** 
+ 219:../CM3 Core/core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
+ 220:../CM3 Core/core_cmInstr.h **** 
+ 221:../CM3 Core/core_cmInstr.h ****  */
+ 222:../CM3 Core/core_cmInstr.h **** #if (__ARMCC_VERSION < 400000)
+ 223:../CM3 Core/core_cmInstr.h **** extern void __CLREX(void);
+ 224:../CM3 Core/core_cmInstr.h **** #else  /* (__ARMCC_VERSION >= 400000)  */
+ 225:../CM3 Core/core_cmInstr.h **** #define __CLREX                           __clrex
+ 226:../CM3 Core/core_cmInstr.h **** #endif /* __ARMCC_VERSION  */
+ 227:../CM3 Core/core_cmInstr.h **** 
+ 228:../CM3 Core/core_cmInstr.h **** 
+ 229:../CM3 Core/core_cmInstr.h **** /** \brief  Signed Saturate
+ 230:../CM3 Core/core_cmInstr.h **** 
+ 231:../CM3 Core/core_cmInstr.h ****     This function saturates a signed value.
+ 232:../CM3 Core/core_cmInstr.h **** 
+ 233:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 234:../CM3 Core/core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (1..32)
+ 235:../CM3 Core/core_cmInstr.h ****     \return             Saturated value
+ 236:../CM3 Core/core_cmInstr.h ****  */
+ 237:../CM3 Core/core_cmInstr.h **** #define __SSAT                            __ssat
+ 238:../CM3 Core/core_cmInstr.h **** 
+ 239:../CM3 Core/core_cmInstr.h **** 
+ 240:../CM3 Core/core_cmInstr.h **** /** \brief  Unsigned Saturate
+ 241:../CM3 Core/core_cmInstr.h **** 
+ 242:../CM3 Core/core_cmInstr.h ****     This function saturates an unsigned value.
+ 243:../CM3 Core/core_cmInstr.h **** 
+ 244:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 245:../CM3 Core/core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (0..31)
+ 246:../CM3 Core/core_cmInstr.h ****     \return             Saturated value
+ 247:../CM3 Core/core_cmInstr.h ****  */
+ 248:../CM3 Core/core_cmInstr.h **** #define __USAT                            __usat
+ 249:../CM3 Core/core_cmInstr.h **** 
+ 250:../CM3 Core/core_cmInstr.h **** 
+ 251:../CM3 Core/core_cmInstr.h **** /** \brief  Count leading zeros
+ 252:../CM3 Core/core_cmInstr.h **** 
+ 253:../CM3 Core/core_cmInstr.h ****     This function counts the number of leading zeros of a data value.
+ 254:../CM3 Core/core_cmInstr.h **** 
+ 255:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to count the leading zeros
+ 256:../CM3 Core/core_cmInstr.h ****     \return             number of leading zeros in value
+ 257:../CM3 Core/core_cmInstr.h ****  */
+ 258:../CM3 Core/core_cmInstr.h **** #define __CLZ                             __clz
+ 259:../CM3 Core/core_cmInstr.h **** 
+ 260:../CM3 Core/core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 261:../CM3 Core/core_cmInstr.h **** 
+ 262:../CM3 Core/core_cmInstr.h **** 
+ 263:../CM3 Core/core_cmInstr.h **** 
+ 264:../CM3 Core/core_cmInstr.h **** #elif (defined (__ICCARM__)) /*---------------- ICC Compiler ---------------------*/
+ 265:../CM3 Core/core_cmInstr.h **** /* IAR iccarm specific functions */
+ 266:../CM3 Core/core_cmInstr.h **** 
+ 267:../CM3 Core/core_cmInstr.h **** #include <intrinsics.h>                     /* IAR Intrinsics   */
+ 268:../CM3 Core/core_cmInstr.h **** 
+ 269:../CM3 Core/core_cmInstr.h **** #pragma diag_suppress=Pe940
+ 270:../CM3 Core/core_cmInstr.h **** 
+ 271:../CM3 Core/core_cmInstr.h **** /** \brief  No Operation
+ 272:../CM3 Core/core_cmInstr.h **** 
+ 273:../CM3 Core/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+ 274:../CM3 Core/core_cmInstr.h ****  */
+ 275:../CM3 Core/core_cmInstr.h **** #define __NOP                           __no_operation
+ 276:../CM3 Core/core_cmInstr.h **** 
+ 277:../CM3 Core/core_cmInstr.h **** 
+ 278:../CM3 Core/core_cmInstr.h **** /** \brief  Wait For Interrupt
+ 279:../CM3 Core/core_cmInstr.h **** 
+ 280:../CM3 Core/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+ 281:../CM3 Core/core_cmInstr.h ****     until one of a number of events occurs.
+ 282:../CM3 Core/core_cmInstr.h ****  */
+ 283:../CM3 Core/core_cmInstr.h **** static __INLINE  void __WFI(void)
+ 284:../CM3 Core/core_cmInstr.h **** {
+ 285:../CM3 Core/core_cmInstr.h ****   __ASM ("wfi");
+ 286:../CM3 Core/core_cmInstr.h **** }
+ 287:../CM3 Core/core_cmInstr.h **** 
+ 288:../CM3 Core/core_cmInstr.h **** 
+ 289:../CM3 Core/core_cmInstr.h **** /** \brief  Wait For Event
+ 290:../CM3 Core/core_cmInstr.h **** 
+ 291:../CM3 Core/core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+ 292:../CM3 Core/core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+ 293:../CM3 Core/core_cmInstr.h ****  */
+ 294:../CM3 Core/core_cmInstr.h **** static __INLINE  void __WFE(void)
+ 295:../CM3 Core/core_cmInstr.h **** {
+ 296:../CM3 Core/core_cmInstr.h ****   __ASM ("wfe");
+ 297:../CM3 Core/core_cmInstr.h **** }
+ 298:../CM3 Core/core_cmInstr.h **** 
+ 299:../CM3 Core/core_cmInstr.h **** 
+ 300:../CM3 Core/core_cmInstr.h **** /** \brief  Send Event
+ 301:../CM3 Core/core_cmInstr.h **** 
+ 302:../CM3 Core/core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+ 303:../CM3 Core/core_cmInstr.h ****  */
+ 304:../CM3 Core/core_cmInstr.h **** static __INLINE  void __SEV(void)
+ 305:../CM3 Core/core_cmInstr.h **** {
+ 306:../CM3 Core/core_cmInstr.h ****   __ASM ("sev");
+ 307:../CM3 Core/core_cmInstr.h **** }
+ 308:../CM3 Core/core_cmInstr.h **** 
+ 309:../CM3 Core/core_cmInstr.h **** 
+ 310:../CM3 Core/core_cmInstr.h **** /* intrinsic     void __ISB(void)            (see intrinsics.h) */
+ 311:../CM3 Core/core_cmInstr.h **** /* intrinsic     void __DSB(void)            (see intrinsics.h) */
+ 312:../CM3 Core/core_cmInstr.h **** /* intrinsic     void __DMB(void)            (see intrinsics.h) */
+ 313:../CM3 Core/core_cmInstr.h **** /* intrinsic uint32_t __REV(uint32_t value)  (see intrinsics.h) */
+ 314:../CM3 Core/core_cmInstr.h **** /* intrinsic          __SSAT                 (see intrinsics.h) */
+ 315:../CM3 Core/core_cmInstr.h **** /* intrinsic          __USAT                 (see intrinsics.h) */
+ 316:../CM3 Core/core_cmInstr.h **** 
+ 317:../CM3 Core/core_cmInstr.h **** 
+ 318:../CM3 Core/core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
+ 319:../CM3 Core/core_cmInstr.h **** 
+ 320:../CM3 Core/core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
+ 321:../CM3 Core/core_cmInstr.h **** 
+ 322:../CM3 Core/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 323:../CM3 Core/core_cmInstr.h ****     \return               Reversed value
+ 324:../CM3 Core/core_cmInstr.h ****  */
+ 325:../CM3 Core/core_cmInstr.h **** static uint32_t __REV16(uint32_t value)
+ 326:../CM3 Core/core_cmInstr.h **** {
+ 327:../CM3 Core/core_cmInstr.h ****   __ASM("rev16 r0, r0");
+ 328:../CM3 Core/core_cmInstr.h **** }
+ 329:../CM3 Core/core_cmInstr.h **** 
+ 330:../CM3 Core/core_cmInstr.h **** 
+ 331:../CM3 Core/core_cmInstr.h **** /* intrinsic uint32_t __REVSH(uint32_t value)  (see intrinsics.h */
+ 332:../CM3 Core/core_cmInstr.h **** 
+ 333:../CM3 Core/core_cmInstr.h **** 
+ 334:../CM3 Core/core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
+ 335:../CM3 Core/core_cmInstr.h **** 
+ 336:../CM3 Core/core_cmInstr.h **** /** \brief  Reverse bit order of value
+ 337:../CM3 Core/core_cmInstr.h **** 
+ 338:../CM3 Core/core_cmInstr.h ****     This function reverses the bit order of the given value.
+ 339:../CM3 Core/core_cmInstr.h **** 
+ 340:../CM3 Core/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 341:../CM3 Core/core_cmInstr.h ****     \return               Reversed value
+ 342:../CM3 Core/core_cmInstr.h ****  */
+ 343:../CM3 Core/core_cmInstr.h **** static uint32_t __RBIT(uint32_t value)
+ 344:../CM3 Core/core_cmInstr.h **** {
+ 345:../CM3 Core/core_cmInstr.h ****   __ASM("rbit r0, r0");
+ 346:../CM3 Core/core_cmInstr.h **** }
+ 347:../CM3 Core/core_cmInstr.h **** 
+ 348:../CM3 Core/core_cmInstr.h **** 
+ 349:../CM3 Core/core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
+ 350:../CM3 Core/core_cmInstr.h **** 
+ 351:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
+ 352:../CM3 Core/core_cmInstr.h **** 
+ 353:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 354:../CM3 Core/core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
+ 355:../CM3 Core/core_cmInstr.h ****  */
+ 356:../CM3 Core/core_cmInstr.h **** static uint8_t __LDREXB(volatile uint8_t *addr)
+ 357:../CM3 Core/core_cmInstr.h **** {
+ 358:../CM3 Core/core_cmInstr.h ****   __ASM("ldrexb r0, [r0]");
+ 359:../CM3 Core/core_cmInstr.h **** }
+ 360:../CM3 Core/core_cmInstr.h **** 
+ 361:../CM3 Core/core_cmInstr.h **** 
+ 362:../CM3 Core/core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
+ 363:../CM3 Core/core_cmInstr.h **** 
+ 364:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
+ 365:../CM3 Core/core_cmInstr.h **** 
+ 366:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 367:../CM3 Core/core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
+ 368:../CM3 Core/core_cmInstr.h ****  */
+ 369:../CM3 Core/core_cmInstr.h **** static uint16_t __LDREXH(volatile uint16_t *addr)
+ 370:../CM3 Core/core_cmInstr.h **** {
+ 371:../CM3 Core/core_cmInstr.h ****   __ASM("ldrexh r0, [r0]");
+ 372:../CM3 Core/core_cmInstr.h **** }
+ 373:../CM3 Core/core_cmInstr.h **** 
+ 374:../CM3 Core/core_cmInstr.h **** 
+ 375:../CM3 Core/core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
+ 376:../CM3 Core/core_cmInstr.h **** 
+ 377:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
+ 378:../CM3 Core/core_cmInstr.h **** 
+ 379:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 380:../CM3 Core/core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
+ 381:../CM3 Core/core_cmInstr.h ****  */
+ 382:../CM3 Core/core_cmInstr.h **** /* intrinsic unsigned long __LDREX(unsigned long *)  (see intrinsics.h) */
+ 383:../CM3 Core/core_cmInstr.h **** static uint32_t __LDREXW(volatile uint32_t *addr)
+ 384:../CM3 Core/core_cmInstr.h **** {
+ 385:../CM3 Core/core_cmInstr.h ****   __ASM("ldrex r0, [r0]");
+ 386:../CM3 Core/core_cmInstr.h **** }
+ 387:../CM3 Core/core_cmInstr.h **** 
+ 388:../CM3 Core/core_cmInstr.h **** 
+ 389:../CM3 Core/core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
+ 390:../CM3 Core/core_cmInstr.h **** 
+ 391:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
+ 392:../CM3 Core/core_cmInstr.h **** 
+ 393:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to store
+ 394:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 395:../CM3 Core/core_cmInstr.h ****     \return          0  Function succeeded
+ 396:../CM3 Core/core_cmInstr.h ****     \return          1  Function failed
+ 397:../CM3 Core/core_cmInstr.h ****  */
+ 398:../CM3 Core/core_cmInstr.h **** static uint32_t __STREXB(uint8_t value, volatile uint8_t *addr)
+ 399:../CM3 Core/core_cmInstr.h **** {
+ 400:../CM3 Core/core_cmInstr.h ****   __ASM("strexb r0, r0, [r1]");
+ 401:../CM3 Core/core_cmInstr.h **** }
+ 402:../CM3 Core/core_cmInstr.h **** 
+ 403:../CM3 Core/core_cmInstr.h **** 
+ 404:../CM3 Core/core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
+ 405:../CM3 Core/core_cmInstr.h **** 
+ 406:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
+ 407:../CM3 Core/core_cmInstr.h **** 
+ 408:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to store
+ 409:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 410:../CM3 Core/core_cmInstr.h ****     \return          0  Function succeeded
+ 411:../CM3 Core/core_cmInstr.h ****     \return          1  Function failed
+ 412:../CM3 Core/core_cmInstr.h ****  */
+ 413:../CM3 Core/core_cmInstr.h **** static uint32_t __STREXH(uint16_t value, volatile uint16_t *addr)
+ 414:../CM3 Core/core_cmInstr.h **** {
+ 415:../CM3 Core/core_cmInstr.h ****   __ASM("strexh r0, r0, [r1]");
+ 416:../CM3 Core/core_cmInstr.h **** }
+ 417:../CM3 Core/core_cmInstr.h **** 
+ 418:../CM3 Core/core_cmInstr.h **** 
+ 419:../CM3 Core/core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
+ 420:../CM3 Core/core_cmInstr.h **** 
+ 421:../CM3 Core/core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
+ 422:../CM3 Core/core_cmInstr.h **** 
+ 423:../CM3 Core/core_cmInstr.h ****     \param [in]  value  Value to store
+ 424:../CM3 Core/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 425:../CM3 Core/core_cmInstr.h ****     \return          0  Function succeeded
+ 426:../CM3 Core/core_cmInstr.h ****     \return          1  Function failed
+ 427:../CM3 Core/core_cmInstr.h ****  */
+ 428:../CM3 Core/core_cmInstr.h **** /* intrinsic unsigned long __STREX(unsigned long, unsigned long)  (see intrinsics.h )*/
+ 429:../CM3 Core/core_cmInstr.h **** static uint32_t __STREXW(uint32_t value, volatile uint32_t *addr)
+ 430:../CM3 Core/core_cmInstr.h **** {
+ 431:../CM3 Core/core_cmInstr.h ****   __ASM("strex r0, r0, [r1]");
+ 432:../CM3 Core/core_cmInstr.h **** }
+ 433:../CM3 Core/core_cmInstr.h **** 
+ 434:../CM3 Core/core_cmInstr.h **** 
+ 435:../CM3 Core/core_cmInstr.h **** /** \brief  Remove the exclusive lock
+ 436:../CM3 Core/core_cmInstr.h **** 
+ 437:../CM3 Core/core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
+ 438:../CM3 Core/core_cmInstr.h **** 
+ 439:../CM3 Core/core_cmInstr.h ****  */
+ 440:../CM3 Core/core_cmInstr.h **** static __INLINE void __CLREX(void)
+ 441:../CM3 Core/core_cmInstr.h **** {
+ 442:../CM3 Core/core_cmInstr.h ****   __ASM ("clrex");
+ 443:../CM3 Core/core_cmInstr.h **** }
+ 444:../CM3 Core/core_cmInstr.h **** 
+ 445:../CM3 Core/core_cmInstr.h **** /* intrinsic   unsigned char __CLZ( unsigned long )      (see intrinsics.h) */
+ 446:../CM3 Core/core_cmInstr.h **** 
+ 447:../CM3 Core/core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 448:../CM3 Core/core_cmInstr.h **** 
+ 449:../CM3 Core/core_cmInstr.h **** #pragma diag_default=Pe940
+ 450:../CM3 Core/core_cmInstr.h **** 
+ 451:../CM3 Core/core_cmInstr.h **** 
+ 452:../CM3 Core/core_cmInstr.h **** 
+ 453:../CM3 Core/core_cmInstr.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
+ 454:../CM3 Core/core_cmInstr.h **** /* GNU gcc specific functions */
+ 455:../CM3 Core/core_cmInstr.h **** 
+ 456:../CM3 Core/core_cmInstr.h **** /** \brief  No Operation
+ 457:../CM3 Core/core_cmInstr.h **** 
+ 458:../CM3 Core/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+ 459:../CM3 Core/core_cmInstr.h ****  */
+ 460:../CM3 Core/core_cmInstr.h **** __attribute__( ( always_inline ) ) static __INLINE void __NOP(void)
+ 461:../CM3 Core/core_cmInstr.h **** {
+ 462:../CM3 Core/core_cmInstr.h ****   __ASM volatile ("nop");
+ 463:../CM3 Core/core_cmInstr.h **** }
+ 464:../CM3 Core/core_cmInstr.h **** 
+ 465:../CM3 Core/core_cmInstr.h **** 
+ 466:../CM3 Core/core_cmInstr.h **** /** \brief  Wait For Interrupt
+ 467:../CM3 Core/core_cmInstr.h **** 
+ 468:../CM3 Core/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+ 469:../CM3 Core/core_cmInstr.h ****     until one of a number of events occurs.
+ 470:../CM3 Core/core_cmInstr.h ****  */
+ 471:../CM3 Core/core_cmInstr.h **** __attribute__( ( always_inline ) ) static __INLINE void __WFI(void)
+ 472:../CM3 Core/core_cmInstr.h **** {
+ 473:../CM3 Core/core_cmInstr.h ****   __ASM volatile ("wfi");
  244              		.loc 2 473 0
- 245              	@ 473 "C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core/core_cmInstr.h" 1
+ 245              	@ 473 "../CM3 Core/core_cmInstr.h" 1
  246 00d0 30BF     		wfi
  247              	@ 0 "" 2
  248              		.thumb
@@ -1053,7 +1053,7 @@
  283              	.LBB12:
  284              	.LBB13:
  285              		.loc 2 473 0
- 286              	@ 473 "C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core/core_cmInstr.h" 1
+ 286              	@ 473 "../CM3 Core/core_cmInstr.h" 1
  287 00e6 30BF     		wfi
  288              	@ 0 "" 2
  289              		.thumb
@@ -1110,7 +1110,7 @@
  325              	.LBB14:
  326              	.LBB15:
  327              		.loc 2 473 0
- 328              	@ 473 "C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core/core_cmInstr.h" 1
+ 328              	@ 473 "../CM3 Core/core_cmInstr.h" 1
  329 0102 30BF     		wfi
  330              	@ 0 "" 2
  331              		.thumb
@@ -1167,7 +1167,7 @@
  367              	.LBB16:
  368              	.LBB17:
  369              		.loc 2 473 0
- 370              	@ 473 "C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core/core_cmInstr.h" 1
+ 370              	@ 473 "../CM3 Core/core_cmInstr.h" 1
  371 011e 30BF     		wfi
  372              	@ 0 "" 2
  373              		.thumb
@@ -1183,36 +1183,36 @@
  383              	.LFE62:
  385              	.Letext0:
  386              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
- 387              		.file 4 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/core_cm3.h"
- 388              		.file 5 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/LPC17xx.h"
- 389              		.file 6 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\Header Files/lpc_types.h"
- 390              		.file 7 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/system_LPC17xx.h"
+ 387              		.file 4 "../CM3 Core/core_cm3.h"
+ 388              		.file 5 "../CM3 Core/LPC17xx.h"
+ 389              		.file 6 "../Header Files/lpc_types.h"
+ 390              		.file 7 "../CM3 Core/system_LPC17xx.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 lpc17xx_clkpwr.c
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:18     .text:00000000 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:23     .text:00000000 CLKPWR_SetPCLKDiv
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:80     .text:00000050 $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:84     .text:00000054 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:89     .text:00000054 CLKPWR_GetPCLKSEL
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:124    .text:00000070 $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:128    .text:00000074 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:133    .text:00000074 CLKPWR_GetPCLK
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:174    .text:00000090 $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:178    .text:00000094 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:183    .text:00000094 CLKPWR_ConfigPPWR
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:220    .text:000000c0 $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:225    .text:000000c8 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:230    .text:000000c8 CLKPWR_Sleep
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:253    .text:000000d4 $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:259    .text:000000d8 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:264    .text:000000d8 CLKPWR_DeepSleep
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:294    .text:000000ec $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:301    .text:000000f4 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:306    .text:000000f4 CLKPWR_PowerDown
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:336    .text:00000108 $d
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:343    .text:00000110 $t
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:348    .text:00000110 CLKPWR_DeepPowerDown
-C:\Users\raghav\AppData\Local\Temp\ccUzV65V.s:378    .text:00000124 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:23     .text:00000000 CLKPWR_SetPCLKDiv
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:80     .text:00000050 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:84     .text:00000054 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:89     .text:00000054 CLKPWR_GetPCLKSEL
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:124    .text:00000070 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:128    .text:00000074 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:133    .text:00000074 CLKPWR_GetPCLK
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:174    .text:00000090 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:178    .text:00000094 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:183    .text:00000094 CLKPWR_ConfigPPWR
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:220    .text:000000c0 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:225    .text:000000c8 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:230    .text:000000c8 CLKPWR_Sleep
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:253    .text:000000d4 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:259    .text:000000d8 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:264    .text:000000d8 CLKPWR_DeepSleep
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:294    .text:000000ec $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:301    .text:000000f4 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:306    .text:000000f4 CLKPWR_PowerDown
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:336    .text:00000108 $d
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:343    .text:00000110 $t
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:348    .text:00000110 CLKPWR_DeepPowerDown
+C:\Users\raghav\AppData\Local\Temp\cc1gssTg.s:378    .text:00000124 $d
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
                            .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013

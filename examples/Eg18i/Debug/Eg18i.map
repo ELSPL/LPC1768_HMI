@@ -1533,26 +1533,26 @@ END GROUP
  .debug_abbrev  0x000026dd       0xd7 ./CM3 Core/system_LPC17xx.o
  .debug_abbrev  0x000027b4      0x118 ./startup_LPC17xx.o
 
-.debug_line     0x00000000     0x5cfd
+.debug_line     0x00000000     0x59b5
  *(.debug_line)
- .debug_line    0x00000000      0x3e0 ./Source Files/lpc17xx_clkpwr.o
- .debug_line    0x000003e0      0x5b0 ./Source Files/lpc17xx_gpio.o
- .debug_line    0x00000990      0x817 ./Source Files/lpc17xx_i2c.o
- .debug_line    0x000011a7      0x396 ./Source Files/lpc17xx_nvic.o
- .debug_line    0x0000153d      0x399 ./Source Files/lpc17xx_pinsel.o
- .debug_line    0x000018d6      0x6b4 ./Source Files/lpc17xx_ssp.o
- .debug_line    0x00001f8a      0x500 ./Source Files/lpc17xx_systick.o
- .debug_line    0x0000248a      0x867 ./Source Files/lpc17xx_uart.o
- .debug_line    0x00002cf1      0x3db ./Source Files/lpc17xx_wdt.o
- .debug_line    0x000030cc      0x588 ./Source Files/lpc_glcd_cal.o
- .debug_line    0x00003654      0x331 ./Source Files/lpc_global.o
- .debug_line    0x00003985      0x51e ./Source Files/lpc_i2c_tsc2004.o
- .debug_line    0x00003ea3      0xe74 ./Source Files/lpc_ssp_glcd.o
- .debug_line    0x00004d17      0x4e8 ./Source Files/lpc_system_init.o
- .debug_line    0x000051ff      0x4be ./Source Files/main.o
- .debug_line    0x000056bd      0x276 ./CM3 Core/core_cm3.o
- .debug_line    0x00005933      0x352 ./CM3 Core/system_LPC17xx.o
- .debug_line    0x00005c85       0x78 ./startup_LPC17xx.o
+ .debug_line    0x00000000      0x3a8 ./Source Files/lpc17xx_clkpwr.o
+ .debug_line    0x000003a8      0x578 ./Source Files/lpc17xx_gpio.o
+ .debug_line    0x00000920      0x7df ./Source Files/lpc17xx_i2c.o
+ .debug_line    0x000010ff      0x35e ./Source Files/lpc17xx_nvic.o
+ .debug_line    0x0000145d      0x361 ./Source Files/lpc17xx_pinsel.o
+ .debug_line    0x000017be      0x67c ./Source Files/lpc17xx_ssp.o
+ .debug_line    0x00001e3a      0x4c8 ./Source Files/lpc17xx_systick.o
+ .debug_line    0x00002302      0x82f ./Source Files/lpc17xx_uart.o
+ .debug_line    0x00002b31      0x3a3 ./Source Files/lpc17xx_wdt.o
+ .debug_line    0x00002ed4      0x550 ./Source Files/lpc_glcd_cal.o
+ .debug_line    0x00003424      0x2f9 ./Source Files/lpc_global.o
+ .debug_line    0x0000371d      0x4e6 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_line    0x00003c03      0xe3c ./Source Files/lpc_ssp_glcd.o
+ .debug_line    0x00004a3f      0x4b0 ./Source Files/lpc_system_init.o
+ .debug_line    0x00004eef      0x486 ./Source Files/main.o
+ .debug_line    0x00005375      0x276 ./CM3 Core/core_cm3.o
+ .debug_line    0x000055eb      0x352 ./CM3 Core/system_LPC17xx.o
+ .debug_line    0x0000593d       0x78 ./startup_LPC17xx.o
 
 .debug_frame    0x00000000     0x15c0
  *(.debug_frame)
