@@ -1,0 +1,1943 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc17xx_gpio.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	1
+  19              		.global	EINT3_IRQHandler
+  20              		.thumb
+  21              		.thumb_func
+  23              	EINT3_IRQHandler:
+  24              	.LFB55:
+  25              		.file 1 "../Source Files/lpc17xx_gpio.c"
+   1:../Source Files/lpc17xx_gpio.c **** /**********************************************************************
+   2:../Source Files/lpc17xx_gpio.c **** * $Id$		lpc17xx_gpio.c
+   3:../Source Files/lpc17xx_gpio.c **** *//**
+   4:../Source Files/lpc17xx_gpio.c **** * @file		lpc17xx_gpio.c
+   5:../Source Files/lpc17xx_gpio.c **** * @brief	Contains all functions support for GPIO firmware
+   6:../Source Files/lpc17xx_gpio.c **** * 			library on LPC17xx
+   7:../Source Files/lpc17xx_gpio.c **** * @version	1.0
+   8:../Source Files/lpc17xx_gpio.c **** * @date		24. July. 2013
+   9:../Source Files/lpc17xx_gpio.c **** * @author	Dwijay.Edutech Learning Solutions
+  10:../Source Files/lpc17xx_gpio.c **** ***********************************************************************
+  11:../Source Files/lpc17xx_gpio.c **** * Software that is described herein is for illustrative purposes only
+  12:../Source Files/lpc17xx_gpio.c **** * which provides customers with programming information regarding the
+  13:../Source Files/lpc17xx_gpio.c **** * products. This software is supplied "AS IS" without any warranties.
+  14:../Source Files/lpc17xx_gpio.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  15:../Source Files/lpc17xx_gpio.c **** * use of the software, conveys no license or title under any patent,
+  16:../Source Files/lpc17xx_gpio.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  17:../Source Files/lpc17xx_gpio.c **** * reserves the right to make changes in the software without
+  18:../Source Files/lpc17xx_gpio.c **** * notification. NXP Semiconductors also make no representation or
+  19:../Source Files/lpc17xx_gpio.c **** * warranty that such application will be suitable for the specified
+  20:../Source Files/lpc17xx_gpio.c **** * use without further testing or modification.
+  21:../Source Files/lpc17xx_gpio.c **** **********************************************************************/
+  22:../Source Files/lpc17xx_gpio.c **** 
+  23:../Source Files/lpc17xx_gpio.c **** /* Peripheral group ----------------------------------------------------------- */
+  24:../Source Files/lpc17xx_gpio.c **** /** @addtogroup GPIO
+  25:../Source Files/lpc17xx_gpio.c ****  * @{
+  26:../Source Files/lpc17xx_gpio.c ****  */
+  27:../Source Files/lpc17xx_gpio.c **** 
+  28:../Source Files/lpc17xx_gpio.c **** /* Includes ------------------------------------------------------------------- */
+  29:../Source Files/lpc17xx_gpio.c **** #include "lpc_system_init.h"
+  30:../Source Files/lpc17xx_gpio.c **** #include "lpc17xx_gpio.h"
+  31:../Source Files/lpc17xx_gpio.c **** 
+  32:../Source Files/lpc17xx_gpio.c **** 
+  33:../Source Files/lpc17xx_gpio.c **** 
+  34:../Source Files/lpc17xx_gpio.c **** /* Public Functions ----------------------------------------------------------- */
+  35:../Source Files/lpc17xx_gpio.c **** /** @addtogroup GPIO_Interrupt_Functions
+  36:../Source Files/lpc17xx_gpio.c ****  * @{
+  37:../Source Files/lpc17xx_gpio.c ****  */
+  38:../Source Files/lpc17xx_gpio.c **** 
+  39:../Source Files/lpc17xx_gpio.c **** 
+  40:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+  41:../Source Files/lpc17xx_gpio.c ****  * @brief		External interrupt 3 handler sub-routine
+  42:../Source Files/lpc17xx_gpio.c ****  * @param[in]	None
+  43:../Source Files/lpc17xx_gpio.c ****  * @return		None
+  44:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+  45:../Source Files/lpc17xx_gpio.c **** void EINT3_IRQHandler(void)
+  46:../Source Files/lpc17xx_gpio.c **** {
+  26              		.loc 1 46 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31 0000 7047     		bx	lr
+  32              		.cfi_endproc
+  33              	.LFE55:
+  35              		.align	1
+  36              		.global	GPIO_SetDir
+  37              		.thumb
+  38              		.thumb_func
+  40              	GPIO_SetDir:
+  41              	.LFB59:
+  47:../Source Files/lpc17xx_gpio.c **** /*	int j;
+  48:../Source Files/lpc17xx_gpio.c **** 	if(GPIO_GetIntStatus(0, 19, 0)) //Rising Edge
+  49:../Source Files/lpc17xx_gpio.c **** 	{
+  50:../Source Files/lpc17xx_gpio.c **** 		GPIO_ClearInt(0,_BIT(19));
+  51:../Source Files/lpc17xx_gpio.c **** 
+  52:../Source Files/lpc17xx_gpio.c **** 		for (j= 0; j<10; j++)
+  53:../Source Files/lpc17xx_gpio.c **** 		{
+  54:../Source Files/lpc17xx_gpio.c **** 			GPIO_ClearValue(0,_BIT(10));
+  55:../Source Files/lpc17xx_gpio.c **** 			delay_ms(250);
+  56:../Source Files/lpc17xx_gpio.c **** 			GPIO_SetValue(0,_BIT(10));
+  57:../Source Files/lpc17xx_gpio.c **** 			delay_ms(250);
+  58:../Source Files/lpc17xx_gpio.c **** 		}
+  59:../Source Files/lpc17xx_gpio.c ****         status = 1;
+  60:../Source Files/lpc17xx_gpio.c ****     }*/
+  61:../Source Files/lpc17xx_gpio.c **** }
+  62:../Source Files/lpc17xx_gpio.c **** 
+  63:../Source Files/lpc17xx_gpio.c **** /**
+  64:../Source Files/lpc17xx_gpio.c ****  * @}
+  65:../Source Files/lpc17xx_gpio.c ****  */
+  66:../Source Files/lpc17xx_gpio.c **** 
+  67:../Source Files/lpc17xx_gpio.c **** /* Private Functions ---------------------------------------------------------- */
+  68:../Source Files/lpc17xx_gpio.c **** 
+  69:../Source Files/lpc17xx_gpio.c **** static LPC_GPIO_TypeDef *GPIO_GetPointer(uint8_t portNum);
+  70:../Source Files/lpc17xx_gpio.c **** static GPIO_HalfWord_TypeDef *FIO_HalfWordGetPointer(uint8_t portNum);
+  71:../Source Files/lpc17xx_gpio.c **** static GPIO_Byte_TypeDef *FIO_ByteGetPointer(uint8_t portNum);
+  72:../Source Files/lpc17xx_gpio.c **** 
+  73:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+  74:../Source Files/lpc17xx_gpio.c ****  * @brief		Get pointer to GPIO peripheral due to GPIO port
+  75:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port Number value, should be in range from 0 to 4.
+  76:../Source Files/lpc17xx_gpio.c ****  * @return		Pointer to GPIO peripheral
+  77:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+  78:../Source Files/lpc17xx_gpio.c **** static LPC_GPIO_TypeDef *GPIO_GetPointer(uint8_t portNum)
+  79:../Source Files/lpc17xx_gpio.c **** {
+  80:../Source Files/lpc17xx_gpio.c **** 	LPC_GPIO_TypeDef *pGPIO = NULL;
+  81:../Source Files/lpc17xx_gpio.c **** 
+  82:../Source Files/lpc17xx_gpio.c **** 	switch (portNum) {
+  83:../Source Files/lpc17xx_gpio.c **** 	case 0:
+  84:../Source Files/lpc17xx_gpio.c **** 		pGPIO = LPC_GPIO0;
+  85:../Source Files/lpc17xx_gpio.c **** 		break;
+  86:../Source Files/lpc17xx_gpio.c **** 	case 1:
+  87:../Source Files/lpc17xx_gpio.c **** 		pGPIO = LPC_GPIO1;
+  88:../Source Files/lpc17xx_gpio.c **** 		break;
+  89:../Source Files/lpc17xx_gpio.c **** 	case 2:
+  90:../Source Files/lpc17xx_gpio.c **** 		pGPIO = LPC_GPIO2;
+  91:../Source Files/lpc17xx_gpio.c **** 		break;
+  92:../Source Files/lpc17xx_gpio.c **** 	case 3:
+  93:../Source Files/lpc17xx_gpio.c **** 		pGPIO = LPC_GPIO3;
+  94:../Source Files/lpc17xx_gpio.c **** 		break;
+  95:../Source Files/lpc17xx_gpio.c **** 	case 4:
+  96:../Source Files/lpc17xx_gpio.c **** 		pGPIO = LPC_GPIO4;
+  97:../Source Files/lpc17xx_gpio.c **** 		break;
+  98:../Source Files/lpc17xx_gpio.c **** 	default:
+  99:../Source Files/lpc17xx_gpio.c **** 		break;
+ 100:../Source Files/lpc17xx_gpio.c **** 	}
+ 101:../Source Files/lpc17xx_gpio.c **** 
+ 102:../Source Files/lpc17xx_gpio.c **** 	return pGPIO;
+ 103:../Source Files/lpc17xx_gpio.c **** }
+ 104:../Source Files/lpc17xx_gpio.c **** 
+ 105:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 106:../Source Files/lpc17xx_gpio.c ****  * @brief		Get pointer to FIO peripheral in halfword accessible style
+ 107:../Source Files/lpc17xx_gpio.c ****  * 				due to FIO port
+ 108:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port Number value, should be in range from 0 to 4.
+ 109:../Source Files/lpc17xx_gpio.c ****  * @return		Pointer to FIO peripheral
+ 110:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 111:../Source Files/lpc17xx_gpio.c **** static GPIO_HalfWord_TypeDef *FIO_HalfWordGetPointer(uint8_t portNum)
+ 112:../Source Files/lpc17xx_gpio.c **** {
+ 113:../Source Files/lpc17xx_gpio.c **** 	GPIO_HalfWord_TypeDef *pFIO = NULL;
+ 114:../Source Files/lpc17xx_gpio.c **** 
+ 115:../Source Files/lpc17xx_gpio.c **** 	switch (portNum) {
+ 116:../Source Files/lpc17xx_gpio.c **** 	case 0:
+ 117:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO0_HalfWord;
+ 118:../Source Files/lpc17xx_gpio.c **** 		break;
+ 119:../Source Files/lpc17xx_gpio.c **** 	case 1:
+ 120:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO1_HalfWord;
+ 121:../Source Files/lpc17xx_gpio.c **** 		break;
+ 122:../Source Files/lpc17xx_gpio.c **** 	case 2:
+ 123:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO2_HalfWord;
+ 124:../Source Files/lpc17xx_gpio.c **** 		break;
+ 125:../Source Files/lpc17xx_gpio.c **** 	case 3:
+ 126:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO3_HalfWord;
+ 127:../Source Files/lpc17xx_gpio.c **** 		break;
+ 128:../Source Files/lpc17xx_gpio.c **** 	case 4:
+ 129:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO4_HalfWord;
+ 130:../Source Files/lpc17xx_gpio.c **** 		break;
+ 131:../Source Files/lpc17xx_gpio.c **** 	default:
+ 132:../Source Files/lpc17xx_gpio.c **** 		break;
+ 133:../Source Files/lpc17xx_gpio.c **** 	}
+ 134:../Source Files/lpc17xx_gpio.c **** 
+ 135:../Source Files/lpc17xx_gpio.c **** 	return pFIO;
+ 136:../Source Files/lpc17xx_gpio.c **** }
+ 137:../Source Files/lpc17xx_gpio.c **** 
+ 138:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 139:../Source Files/lpc17xx_gpio.c ****  * @brief		Get pointer to FIO peripheral in byte accessible style
+ 140:../Source Files/lpc17xx_gpio.c ****  * 				due to FIO port
+ 141:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port Number value, should be in range from 0 to 4.
+ 142:../Source Files/lpc17xx_gpio.c ****  * @return		Pointer to FIO peripheral
+ 143:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 144:../Source Files/lpc17xx_gpio.c **** static GPIO_Byte_TypeDef *FIO_ByteGetPointer(uint8_t portNum)
+ 145:../Source Files/lpc17xx_gpio.c **** {
+ 146:../Source Files/lpc17xx_gpio.c **** 	GPIO_Byte_TypeDef *pFIO = NULL;
+ 147:../Source Files/lpc17xx_gpio.c **** 
+ 148:../Source Files/lpc17xx_gpio.c **** 	switch (portNum) {
+ 149:../Source Files/lpc17xx_gpio.c **** 	case 0:
+ 150:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO0_Byte;
+ 151:../Source Files/lpc17xx_gpio.c **** 		break;
+ 152:../Source Files/lpc17xx_gpio.c **** 	case 1:
+ 153:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO1_Byte;
+ 154:../Source Files/lpc17xx_gpio.c **** 		break;
+ 155:../Source Files/lpc17xx_gpio.c **** 	case 2:
+ 156:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO2_Byte;
+ 157:../Source Files/lpc17xx_gpio.c **** 		break;
+ 158:../Source Files/lpc17xx_gpio.c **** 	case 3:
+ 159:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO3_Byte;
+ 160:../Source Files/lpc17xx_gpio.c **** 		break;
+ 161:../Source Files/lpc17xx_gpio.c **** 	case 4:
+ 162:../Source Files/lpc17xx_gpio.c **** 		pFIO = GPIO4_Byte;
+ 163:../Source Files/lpc17xx_gpio.c **** 		break;
+ 164:../Source Files/lpc17xx_gpio.c **** 	default:
+ 165:../Source Files/lpc17xx_gpio.c **** 		break;
+ 166:../Source Files/lpc17xx_gpio.c **** 	}
+ 167:../Source Files/lpc17xx_gpio.c **** 
+ 168:../Source Files/lpc17xx_gpio.c **** 	return pFIO;
+ 169:../Source Files/lpc17xx_gpio.c **** }
+ 170:../Source Files/lpc17xx_gpio.c **** 
+ 171:../Source Files/lpc17xx_gpio.c **** /* End of Private Functions --------------------------------------------------- */
+ 172:../Source Files/lpc17xx_gpio.c **** 
+ 173:../Source Files/lpc17xx_gpio.c **** 
+ 174:../Source Files/lpc17xx_gpio.c **** /* Public Functions ----------------------------------------------------------- */
+ 175:../Source Files/lpc17xx_gpio.c **** /** @addtogroup GPIO_Public_Functions
+ 176:../Source Files/lpc17xx_gpio.c ****  * @{
+ 177:../Source Files/lpc17xx_gpio.c ****  */
+ 178:../Source Files/lpc17xx_gpio.c **** 
+ 179:../Source Files/lpc17xx_gpio.c **** 
+ 180:../Source Files/lpc17xx_gpio.c **** /* GPIO ------------------------------------------------------------------------------ */
+ 181:../Source Files/lpc17xx_gpio.c **** 
+ 182:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 183:../Source Files/lpc17xx_gpio.c ****  * @brief		Set Direction for GPIO port.
+ 184:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port Number value, should be in range from 0 to 4
+ 185:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits to set direction,
+ 186:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFFFFFF.
+ 187:../Source Files/lpc17xx_gpio.c ****  * 							example: value 0x5 to set direction for bit 0 and bit 1.
+ 188:../Source Files/lpc17xx_gpio.c ****  * @param[in]	dir			Direction value, should be:
+ 189:../Source Files/lpc17xx_gpio.c ****  * 							- 0: Input.
+ 190:../Source Files/lpc17xx_gpio.c ****  * 							- 1: Output.
+ 191:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 192:../Source Files/lpc17xx_gpio.c ****  *
+ 193:../Source Files/lpc17xx_gpio.c ****  * Note: All remaining bits that are not activated in bitValue (value '0')
+ 194:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 195:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 196:../Source Files/lpc17xx_gpio.c **** void GPIO_SetDir(uint8_t portNum, uint32_t bitValue, uint8_t dir)
+ 197:../Source Files/lpc17xx_gpio.c **** {
+  42              		.loc 1 197 0
+  43              		.cfi_startproc
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46              		@ link register save eliminated.
+  47              	.LVL0:
+  48 0002 0428     		cmp	r0, #4
+  49 0004 0BD8     		bhi	.L2
+  50 0006 064B     		ldr	r3, .L10
+  51 0008 53F82000 		ldr	r0, [r3, r0, lsl #2]
+  52              	.LVL1:
+ 198:../Source Files/lpc17xx_gpio.c **** 	LPC_GPIO_TypeDef *pGPIO = GPIO_GetPointer(portNum);
+ 199:../Source Files/lpc17xx_gpio.c **** 
+ 200:../Source Files/lpc17xx_gpio.c **** 	if (pGPIO != NULL) {
+  53              		.loc 1 200 0
+  54 000c 38B1     		cbz	r0, .L2
+ 201:../Source Files/lpc17xx_gpio.c **** 		// Enable Output
+ 202:../Source Files/lpc17xx_gpio.c **** 		if (dir) {
+  55              		.loc 1 202 0
+  56 000e 12B1     		cbz	r2, .L4
+ 203:../Source Files/lpc17xx_gpio.c **** 			pGPIO->FIODIR |= bitValue;
+  57              		.loc 1 203 0
+  58 0010 0368     		ldr	r3, [r0, #0]
+  59 0012 1943     		orrs	r1, r1, r3
+  60              	.LVL2:
+  61 0014 02E0     		b	.L8
+  62              	.LVL3:
+  63              	.L4:
+ 204:../Source Files/lpc17xx_gpio.c **** 		}
+ 205:../Source Files/lpc17xx_gpio.c **** 		// Enable Input
+ 206:../Source Files/lpc17xx_gpio.c **** 		else {
+ 207:../Source Files/lpc17xx_gpio.c **** 			pGPIO->FIODIR &= ~bitValue;
+  64              		.loc 1 207 0
+  65 0016 0268     		ldr	r2, [r0, #0]
+  66              	.LVL4:
+  67 0018 22EA0101 		bic	r1, r2, r1
+  68              	.LVL5:
+  69              	.L8:
+  70 001c 0160     		str	r1, [r0, #0]
+  71              	.LVL6:
+  72              	.L2:
+  73 001e 7047     		bx	lr
+  74              	.L11:
+  75              		.align	2
+  76              	.L10:
+  77 0020 00000000 		.word	.LANCHOR0
+  78              		.cfi_endproc
+  79              	.LFE59:
+  81              		.align	1
+  82              		.global	GPIO_SetValue
+  83              		.thumb
+  84              		.thumb_func
+  86              	GPIO_SetValue:
+  87              	.LFB60:
+ 208:../Source Files/lpc17xx_gpio.c **** 		}
+ 209:../Source Files/lpc17xx_gpio.c **** 	}
+ 210:../Source Files/lpc17xx_gpio.c **** }
+ 211:../Source Files/lpc17xx_gpio.c **** 
+ 212:../Source Files/lpc17xx_gpio.c **** 
+ 213:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 214:../Source Files/lpc17xx_gpio.c ****  * @brief		Set Value for bits that have output direction on GPIO port.
+ 215:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number value, should be in range from 0 to 4
+ 216:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits on GPIO to set,
+ 217:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFFFFFF.
+ 218:../Source Files/lpc17xx_gpio.c ****  * 							example: value 0x5 to set bit 0 and bit 1.
+ 219:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 220:../Source Files/lpc17xx_gpio.c ****  *
+ 221:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 222:../Source Files/lpc17xx_gpio.c ****  * - For all bits that has been set as input direction, this function will
+ 223:../Source Files/lpc17xx_gpio.c ****  * not effect.
+ 224:../Source Files/lpc17xx_gpio.c ****  * - For all remaining bits that are not activated in bitValue (value '0')
+ 225:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 226:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 227:../Source Files/lpc17xx_gpio.c **** void GPIO_SetValue(uint8_t portNum, uint32_t bitValue)
+ 228:../Source Files/lpc17xx_gpio.c **** {
+  88              		.loc 1 228 0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93              	.LVL7:
+  94 0024 0428     		cmp	r0, #4
+  95 0026 04D8     		bhi	.L12
+  96 0028 024B     		ldr	r3, .L17
+  97 002a 53F82000 		ldr	r0, [r3, r0, lsl #2]
+  98              	.LVL8:
+ 229:../Source Files/lpc17xx_gpio.c **** 	LPC_GPIO_TypeDef *pGPIO = GPIO_GetPointer(portNum);
+ 230:../Source Files/lpc17xx_gpio.c **** 
+ 231:../Source Files/lpc17xx_gpio.c **** 	if (pGPIO != NULL) {
+  99              		.loc 1 231 0
+ 100 002e 00B1     		cbz	r0, .L12
+ 232:../Source Files/lpc17xx_gpio.c **** 		pGPIO->FIOSET = bitValue;
+ 101              		.loc 1 232 0
+ 102 0030 8161     		str	r1, [r0, #24]
+ 103              	.LVL9:
+ 104              	.L12:
+ 105 0032 7047     		bx	lr
+ 106              	.L18:
+ 107              		.align	2
+ 108              	.L17:
+ 109 0034 00000000 		.word	.LANCHOR0
+ 110              		.cfi_endproc
+ 111              	.LFE60:
+ 113              		.align	1
+ 114              		.global	GPIO_ClearValue
+ 115              		.thumb
+ 116              		.thumb_func
+ 118              	GPIO_ClearValue:
+ 119              	.LFB61:
+ 233:../Source Files/lpc17xx_gpio.c **** 	}
+ 234:../Source Files/lpc17xx_gpio.c **** }
+ 235:../Source Files/lpc17xx_gpio.c **** 
+ 236:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 237:../Source Files/lpc17xx_gpio.c ****  * @brief		Clear Value for bits that have output direction on GPIO port.
+ 238:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number value, should be in range from 0 to 4
+ 239:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits on GPIO to clear,
+ 240:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFFFFFF.
+ 241:../Source Files/lpc17xx_gpio.c ****  * 							example: value 0x5 to clear bit 0 and bit 1.
+ 242:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 243:../Source Files/lpc17xx_gpio.c ****  *
+ 244:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 245:../Source Files/lpc17xx_gpio.c ****  * - For all bits that has been set as input direction, this function will
+ 246:../Source Files/lpc17xx_gpio.c ****  * not effect.
+ 247:../Source Files/lpc17xx_gpio.c ****  * - For all remaining bits that are not activated in bitValue (value '0')
+ 248:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 249:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 250:../Source Files/lpc17xx_gpio.c **** void GPIO_ClearValue(uint8_t portNum, uint32_t bitValue)
+ 251:../Source Files/lpc17xx_gpio.c **** {
+ 120              		.loc 1 251 0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+ 125              	.LVL10:
+ 126 0038 0428     		cmp	r0, #4
+ 127 003a 04D8     		bhi	.L19
+ 128 003c 024B     		ldr	r3, .L24
+ 129 003e 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 130              	.LVL11:
+ 252:../Source Files/lpc17xx_gpio.c **** 	LPC_GPIO_TypeDef *pGPIO = GPIO_GetPointer(portNum);
+ 253:../Source Files/lpc17xx_gpio.c **** 
+ 254:../Source Files/lpc17xx_gpio.c **** 	if (pGPIO != NULL) {
+ 131              		.loc 1 254 0
+ 132 0042 00B1     		cbz	r0, .L19
+ 255:../Source Files/lpc17xx_gpio.c **** 		pGPIO->FIOCLR = bitValue;
+ 133              		.loc 1 255 0
+ 134 0044 C161     		str	r1, [r0, #28]
+ 135              	.LVL12:
+ 136              	.L19:
+ 137 0046 7047     		bx	lr
+ 138              	.L25:
+ 139              		.align	2
+ 140              	.L24:
+ 141 0048 00000000 		.word	.LANCHOR0
+ 142              		.cfi_endproc
+ 143              	.LFE61:
+ 145              		.align	1
+ 146              		.global	GPIO_ReadValue
+ 147              		.thumb
+ 148              		.thumb_func
+ 150              	GPIO_ReadValue:
+ 151              	.LFB62:
+ 256:../Source Files/lpc17xx_gpio.c **** 	}
+ 257:../Source Files/lpc17xx_gpio.c **** }
+ 258:../Source Files/lpc17xx_gpio.c **** 
+ 259:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 260:../Source Files/lpc17xx_gpio.c ****  * @brief		Read Current state on port pin that have input direction of GPIO
+ 261:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number to read value, in range from 0 to 4
+ 262:../Source Files/lpc17xx_gpio.c ****  * @return		Current value of GPIO port.
+ 263:../Source Files/lpc17xx_gpio.c ****  *
+ 264:../Source Files/lpc17xx_gpio.c ****  * Note: Return value contain state of each port pin (bit) on that GPIO regardless
+ 265:../Source Files/lpc17xx_gpio.c ****  * its direction is input or output.
+ 266:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 267:../Source Files/lpc17xx_gpio.c **** uint32_t GPIO_ReadValue(uint8_t portNum)
+ 268:../Source Files/lpc17xx_gpio.c **** {
+ 152              		.loc 1 268 0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
+ 157              	.LVL13:
+ 158 004c 0428     		cmp	r0, #4
+ 159 004e 05D8     		bhi	.L28
+ 160 0050 034B     		ldr	r3, .L30
+ 161 0052 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 162              	.LVL14:
+ 269:../Source Files/lpc17xx_gpio.c **** 	LPC_GPIO_TypeDef *pGPIO = GPIO_GetPointer(portNum);
+ 270:../Source Files/lpc17xx_gpio.c **** 
+ 271:../Source Files/lpc17xx_gpio.c **** 	if (pGPIO != NULL) {
+ 163              		.loc 1 271 0
+ 164 0056 10B1     		cbz	r0, .L27
+ 272:../Source Files/lpc17xx_gpio.c **** 		return pGPIO->FIOPIN;
+ 165              		.loc 1 272 0
+ 166 0058 4069     		ldr	r0, [r0, #20]
+ 167              	.LVL15:
+ 168 005a 7047     		bx	lr
+ 169              	.LVL16:
+ 170              	.L28:
+ 171              	.LBB32:
+ 273:../Source Files/lpc17xx_gpio.c **** 	}
+ 274:../Source Files/lpc17xx_gpio.c **** 
+ 275:../Source Files/lpc17xx_gpio.c **** 	return (0);
+ 172              		.loc 1 275 0
+ 173 005c 0020     		movs	r0, #0
+ 174              	.LVL17:
+ 175              	.L27:
+ 176              	.LBE32:
+ 276:../Source Files/lpc17xx_gpio.c **** }
+ 177              		.loc 1 276 0
+ 178 005e 7047     		bx	lr
+ 179              	.L31:
+ 180              		.align	2
+ 181              	.L30:
+ 182 0060 00000000 		.word	.LANCHOR0
+ 183              		.cfi_endproc
+ 184              	.LFE62:
+ 186              		.align	1
+ 187              		.global	GPIO_IntCmd
+ 188              		.thumb
+ 189              		.thumb_func
+ 191              	GPIO_IntCmd:
+ 192              	.LFB63:
+ 277:../Source Files/lpc17xx_gpio.c **** 
+ 278:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 279:../Source Files/lpc17xx_gpio.c ****  * @brief		Enable GPIO interrupt (just used for P0.0-P0.30, P2.0-P2.13)
+ 280:../Source Files/lpc17xx_gpio.c ****  *              and P0.12-P0.14 Reserved
+ 281:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number to read value, should be: 0 or 2
+ 282:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits on GPIO to enable,
+ 283:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFFFFFF.
+ 284:../Source Files/lpc17xx_gpio.c ****  * @param[in]	edgeState	state of edge, should be:
+ 285:../Source Files/lpc17xx_gpio.c ****  * 							- 0: Rising edge
+ 286:../Source Files/lpc17xx_gpio.c ****  * 							- 1: Falling edge
+ 287:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 288:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 289:../Source Files/lpc17xx_gpio.c **** void GPIO_IntCmd(uint8_t portNum, uint32_t bitValue, uint8_t edgeState)
+ 290:../Source Files/lpc17xx_gpio.c **** {
+ 193              		.loc 1 290 0
+ 194              		.cfi_startproc
+ 195              		@ args = 0, pretend = 0, frame = 0
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197              		@ link register save eliminated.
+ 198              	.LVL18:
+ 291:../Source Files/lpc17xx_gpio.c **** 	if((portNum == 0)&&(edgeState == 0))
+ 199              		.loc 1 291 0
+ 200 0064 18B9     		cbnz	r0, .L33
+ 201              		.loc 1 291 0 is_stmt 0 discriminator 1
+ 202 0066 42B9     		cbnz	r2, .L34
+ 292:../Source Files/lpc17xx_gpio.c **** 		LPC_GPIOINT->IO0IntEnR = bitValue;
+ 203              		.loc 1 292 0 is_stmt 1
+ 204 0068 094B     		ldr	r3, .L39
+ 205 006a 1961     		str	r1, [r3, #16]
+ 206 006c 7047     		bx	lr
+ 207              	.L33:
+ 293:../Source Files/lpc17xx_gpio.c **** 	else if ((portNum == 2)&&(edgeState == 0))
+ 208              		.loc 1 293 0
+ 209 006e 0228     		cmp	r0, #2
+ 210 0070 0DD1     		bne	.L36
+ 211              		.loc 1 293 0 is_stmt 0 discriminator 1
+ 212 0072 3AB9     		cbnz	r2, .L37
+ 294:../Source Files/lpc17xx_gpio.c **** 		LPC_GPIOINT->IO2IntEnR = bitValue;
+ 213              		.loc 1 294 0 is_stmt 1
+ 214 0074 0648     		ldr	r0, .L39
+ 215              	.LVL19:
+ 216 0076 0163     		str	r1, [r0, #48]
+ 217 0078 7047     		bx	lr
+ 218              	.LVL20:
+ 219              	.L34:
+ 295:../Source Files/lpc17xx_gpio.c **** 	else if ((portNum == 0)&&(edgeState == 1))
+ 220              		.loc 1 295 0 discriminator 1
+ 221 007a 012A     		cmp	r2, #1
+ 222 007c 07D1     		bne	.L36
+ 296:../Source Files/lpc17xx_gpio.c **** 		LPC_GPIOINT->IO0IntEnF = bitValue;
+ 223              		.loc 1 296 0
+ 224 007e 044A     		ldr	r2, .L39
+ 225              	.LVL21:
+ 226 0080 5161     		str	r1, [r2, #20]
+ 227 0082 7047     		bx	lr
+ 228              	.LVL22:
+ 229              	.L37:
+ 297:../Source Files/lpc17xx_gpio.c **** 	else if ((portNum == 2)&&(edgeState == 1))
+ 230              		.loc 1 297 0 discriminator 1
+ 231 0084 012A     		cmp	r2, #1
+ 232 0086 02D1     		bne	.L36
+ 298:../Source Files/lpc17xx_gpio.c **** 		LPC_GPIOINT->IO2IntEnF = bitValue;
+ 233              		.loc 1 298 0
+ 234 0088 014B     		ldr	r3, .L39
+ 235 008a 5963     		str	r1, [r3, #52]
+ 236 008c 7047     		bx	lr
+ 237              	.L36:
+ 238              	.L38:
+ 239 008e FEE7     		b	.L38
+ 240              	.L40:
+ 241              		.align	2
+ 242              	.L39:
+ 243 0090 80800240 		.word	1073905792
+ 244              		.cfi_endproc
+ 245              	.LFE63:
+ 247              		.align	1
+ 248              		.global	GPIO_GetIntStatus
+ 249              		.thumb
+ 250              		.thumb_func
+ 252              	GPIO_GetIntStatus:
+ 253              	.LFB64:
+ 299:../Source Files/lpc17xx_gpio.c **** 	else
+ 300:../Source Files/lpc17xx_gpio.c **** 		//Error
+ 301:../Source Files/lpc17xx_gpio.c **** 		while(1);
+ 302:../Source Files/lpc17xx_gpio.c **** }
+ 303:../Source Files/lpc17xx_gpio.c **** 
+ 304:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 305:../Source Files/lpc17xx_gpio.c ****  * @brief		Get GPIO Interrupt Status (just used for P0.0-P0.30, P2.0-P2.13)
+ 306:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number to read value, should be: 0 or 2
+ 307:../Source Files/lpc17xx_gpio.c ****  * @param[in]	pinNum		Pin number, should be: 0..30(with port 0) and 0..13
+ 308:../Source Files/lpc17xx_gpio.c ****  * 							(with port 2)
+ 309:../Source Files/lpc17xx_gpio.c ****  * @param[in]	edgeState	state of edge, should be:
+ 310:../Source Files/lpc17xx_gpio.c ****  * 							- 0: Rising edge
+ 311:../Source Files/lpc17xx_gpio.c ****  * 							- 1: Falling edge
+ 312:../Source Files/lpc17xx_gpio.c ****  * @return		Bool	could be:
+ 313:../Source Files/lpc17xx_gpio.c ****  * 						- ENABLE: Interrupt has been generated due to a rising
+ 314:../Source Files/lpc17xx_gpio.c ****  * 								edge on P0.0
+ 315:../Source Files/lpc17xx_gpio.c ****  * 						- DISABLE: A rising edge has not been detected on P0.0
+ 316:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 317:../Source Files/lpc17xx_gpio.c **** FunctionalState GPIO_GetIntStatus(uint8_t portNum, uint32_t pinNum, uint8_t edgeState)
+ 318:../Source Files/lpc17xx_gpio.c **** {
+ 254              		.loc 1 318 0
+ 255              		.cfi_startproc
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258              		@ link register save eliminated.
+ 259              	.LVL23:
+ 319:../Source Files/lpc17xx_gpio.c **** 	if((portNum == 0) && (edgeState == 0))//Rising Edge
+ 260              		.loc 1 319 0
+ 261 0094 18B9     		cbnz	r0, .L42
+ 262              		.loc 1 319 0 is_stmt 0 discriminator 1
+ 263 0096 42B9     		cbnz	r2, .L43
+ 320:../Source Files/lpc17xx_gpio.c **** 		return ((FunctionalState)(((LPC_GPIOINT->IO0IntStatR)>>pinNum)& 0x1));
+ 264              		.loc 1 320 0 is_stmt 1
+ 265 0098 0B48     		ldr	r0, .L49
+ 266              	.LVL24:
+ 267 009a 4068     		ldr	r0, [r0, #4]
+ 268 009c 0EE0     		b	.L48
+ 269              	.LVL25:
+ 270              	.L42:
+ 321:../Source Files/lpc17xx_gpio.c **** 	else if ((portNum == 2) && (edgeState == 0))
+ 271              		.loc 1 321 0
+ 272 009e 0228     		cmp	r0, #2
+ 273 00a0 11D1     		bne	.L45
+ 274              		.loc 1 321 0 is_stmt 0 discriminator 1
+ 275 00a2 3AB9     		cbnz	r2, .L46
+ 322:../Source Files/lpc17xx_gpio.c **** 		return ((FunctionalState)(((LPC_GPIOINT->IO2IntStatR)>>pinNum)& 0x1));
+ 276              		.loc 1 322 0 is_stmt 1
+ 277 00a4 084A     		ldr	r2, .L49
+ 278              	.LVL26:
+ 279 00a6 506A     		ldr	r0, [r2, #36]
+ 280              	.LVL27:
+ 281 00a8 08E0     		b	.L48
+ 282              	.LVL28:
+ 283              	.L43:
+ 323:../Source Files/lpc17xx_gpio.c **** 	else if ((portNum == 0) && (edgeState == 1))//Falling Edge
+ 284              		.loc 1 323 0 discriminator 1
+ 285 00aa 012A     		cmp	r2, #1
+ 286 00ac 0BD1     		bne	.L45
+ 324:../Source Files/lpc17xx_gpio.c **** 		return ((FunctionalState)(((LPC_GPIOINT->IO0IntStatF)>>pinNum)& 0x1));
+ 287              		.loc 1 324 0
+ 288 00ae 064B     		ldr	r3, .L49
+ 289 00b0 9868     		ldr	r0, [r3, #8]
+ 290              	.LVL29:
+ 291 00b2 03E0     		b	.L48
+ 292              	.LVL30:
+ 293              	.L46:
+ 325:../Source Files/lpc17xx_gpio.c **** 	else if ((portNum == 2) && (edgeState == 1))
+ 294              		.loc 1 325 0 discriminator 1
+ 295 00b4 012A     		cmp	r2, #1
+ 296 00b6 06D1     		bne	.L45
+ 326:../Source Files/lpc17xx_gpio.c **** 		return ((FunctionalState)(((LPC_GPIOINT->IO2IntStatF)>>pinNum)& 0x1));
+ 297              		.loc 1 326 0
+ 298 00b8 034B     		ldr	r3, .L49
+ 299 00ba 986A     		ldr	r0, [r3, #40]
+ 300              	.LVL31:
+ 301              	.L48:
+ 302 00bc 20FA01F1 		lsr	r1, r0, r1
+ 303              	.LVL32:
+ 304 00c0 01F00100 		and	r0, r1, #1
+ 305 00c4 7047     		bx	lr
+ 306              	.LVL33:
+ 307              	.L45:
+ 308              	.L47:
+ 309 00c6 FEE7     		b	.L47
+ 310              	.L50:
+ 311              		.align	2
+ 312              	.L49:
+ 313 00c8 80800240 		.word	1073905792
+ 314              		.cfi_endproc
+ 315              	.LFE64:
+ 317              		.align	1
+ 318              		.global	GPIO_ClearInt
+ 319              		.thumb
+ 320              		.thumb_func
+ 322              	GPIO_ClearInt:
+ 323              	.LFB65:
+ 327:../Source Files/lpc17xx_gpio.c **** 	else
+ 328:../Source Files/lpc17xx_gpio.c **** 		//Error
+ 329:../Source Files/lpc17xx_gpio.c **** 		while(1);
+ 330:../Source Files/lpc17xx_gpio.c **** }
+ 331:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 332:../Source Files/lpc17xx_gpio.c ****  * @brief		Clear GPIO interrupt (just used for P0.0-P0.30, P2.0-P2.13)
+ 333:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number to read value, should be: 0 or 2
+ 334:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits on GPIO to enable,
+ 335:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFFFFFF.
+ 336:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 337:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 338:../Source Files/lpc17xx_gpio.c **** void GPIO_ClearInt(uint8_t portNum, uint32_t bitValue)
+ 339:../Source Files/lpc17xx_gpio.c **** {
+ 324              		.loc 1 339 0
+ 325              		.cfi_startproc
+ 326              		@ args = 0, pretend = 0, frame = 0
+ 327              		@ frame_needed = 0, uses_anonymous_args = 0
+ 328              		@ link register save eliminated.
+ 329              	.LVL34:
+ 340:../Source Files/lpc17xx_gpio.c **** 	if(portNum == 0)
+ 330              		.loc 1 340 0
+ 331 00cc 10B9     		cbnz	r0, .L52
+ 341:../Source Files/lpc17xx_gpio.c **** 		LPC_GPIOINT->IO0IntClr = bitValue;
+ 332              		.loc 1 341 0
+ 333 00ce 0448     		ldr	r0, .L56
+ 334              	.LVL35:
+ 335 00d0 C160     		str	r1, [r0, #12]
+ 336 00d2 7047     		bx	lr
+ 337              	.LVL36:
+ 338              	.L52:
+ 342:../Source Files/lpc17xx_gpio.c **** 	else if (portNum == 2)
+ 339              		.loc 1 342 0
+ 340 00d4 0228     		cmp	r0, #2
+ 341 00d6 02D1     		bne	.L55
+ 343:../Source Files/lpc17xx_gpio.c **** 		LPC_GPIOINT->IO2IntClr = bitValue;
+ 342              		.loc 1 343 0
+ 343 00d8 014B     		ldr	r3, .L56
+ 344 00da D962     		str	r1, [r3, #44]
+ 345 00dc 7047     		bx	lr
+ 346              	.L55:
+ 347 00de FEE7     		b	.L55
+ 348              	.L57:
+ 349              		.align	2
+ 350              	.L56:
+ 351 00e0 80800240 		.word	1073905792
+ 352              		.cfi_endproc
+ 353              	.LFE65:
+ 355              		.align	1
+ 356              		.global	FIO_SetDir
+ 357              		.thumb
+ 358              		.thumb_func
+ 360              	FIO_SetDir:
+ 361              	.LFB66:
+ 344:../Source Files/lpc17xx_gpio.c **** 	else
+ 345:../Source Files/lpc17xx_gpio.c **** 		//Invalid portNum
+ 346:../Source Files/lpc17xx_gpio.c **** 		while(1);
+ 347:../Source Files/lpc17xx_gpio.c **** }
+ 348:../Source Files/lpc17xx_gpio.c **** 
+ 349:../Source Files/lpc17xx_gpio.c **** /* FIO word accessible ----------------------------------------------------------------- */
+ 350:../Source Files/lpc17xx_gpio.c **** /* Stub function for FIO (word-accessible) style */
+ 351:../Source Files/lpc17xx_gpio.c **** 
+ 352:../Source Files/lpc17xx_gpio.c **** /**
+ 353:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_SetDir()
+ 354:../Source Files/lpc17xx_gpio.c ****  */
+ 355:../Source Files/lpc17xx_gpio.c **** void FIO_SetDir(uint8_t portNum, uint32_t bitValue, uint8_t dir)
+ 356:../Source Files/lpc17xx_gpio.c **** {
+ 362              		.loc 1 356 0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 0
+ 365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 367              	.LVL37:
+ 357:../Source Files/lpc17xx_gpio.c **** 	GPIO_SetDir(portNum, bitValue, dir);
+ 358:../Source Files/lpc17xx_gpio.c **** }
+ 368              		.loc 1 358 0
+ 357:../Source Files/lpc17xx_gpio.c **** 	GPIO_SetDir(portNum, bitValue, dir);
+ 369              		.loc 1 357 0
+ 370 00e4 FFF7FEBF 		b	GPIO_SetDir
+ 371              	.LVL38:
+ 372              		.cfi_endproc
+ 373              	.LFE66:
+ 375              		.align	1
+ 376              		.global	FIO_SetValue
+ 377              		.thumb
+ 378              		.thumb_func
+ 380              	FIO_SetValue:
+ 381              	.LFB67:
+ 359:../Source Files/lpc17xx_gpio.c **** 
+ 360:../Source Files/lpc17xx_gpio.c **** /**
+ 361:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_SetValue()
+ 362:../Source Files/lpc17xx_gpio.c ****  */
+ 363:../Source Files/lpc17xx_gpio.c **** void FIO_SetValue(uint8_t portNum, uint32_t bitValue)
+ 364:../Source Files/lpc17xx_gpio.c **** {
+ 382              		.loc 1 364 0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 0
+ 385              		@ frame_needed = 0, uses_anonymous_args = 0
+ 386              		@ link register save eliminated.
+ 387              	.LVL39:
+ 365:../Source Files/lpc17xx_gpio.c **** 	GPIO_SetValue(portNum, bitValue);
+ 366:../Source Files/lpc17xx_gpio.c **** }
+ 388              		.loc 1 366 0
+ 365:../Source Files/lpc17xx_gpio.c **** 	GPIO_SetValue(portNum, bitValue);
+ 389              		.loc 1 365 0
+ 390 00e8 FFF7FEBF 		b	GPIO_SetValue
+ 391              	.LVL40:
+ 392              		.cfi_endproc
+ 393              	.LFE67:
+ 395              		.align	1
+ 396              		.global	FIO_ClearValue
+ 397              		.thumb
+ 398              		.thumb_func
+ 400              	FIO_ClearValue:
+ 401              	.LFB68:
+ 367:../Source Files/lpc17xx_gpio.c **** 
+ 368:../Source Files/lpc17xx_gpio.c **** /**
+ 369:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_ClearValue()
+ 370:../Source Files/lpc17xx_gpio.c ****  */
+ 371:../Source Files/lpc17xx_gpio.c **** void FIO_ClearValue(uint8_t portNum, uint32_t bitValue)
+ 372:../Source Files/lpc17xx_gpio.c **** {
+ 402              		.loc 1 372 0
+ 403              		.cfi_startproc
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 406              		@ link register save eliminated.
+ 407              	.LVL41:
+ 373:../Source Files/lpc17xx_gpio.c **** 	GPIO_ClearValue(portNum, bitValue);
+ 374:../Source Files/lpc17xx_gpio.c **** }
+ 408              		.loc 1 374 0
+ 373:../Source Files/lpc17xx_gpio.c **** 	GPIO_ClearValue(portNum, bitValue);
+ 409              		.loc 1 373 0
+ 410 00ec FFF7FEBF 		b	GPIO_ClearValue
+ 411              	.LVL42:
+ 412              		.cfi_endproc
+ 413              	.LFE68:
+ 415              		.align	1
+ 416              		.global	FIO_ReadValue
+ 417              		.thumb
+ 418              		.thumb_func
+ 420              	FIO_ReadValue:
+ 421              	.LFB69:
+ 375:../Source Files/lpc17xx_gpio.c **** 
+ 376:../Source Files/lpc17xx_gpio.c **** /**
+ 377:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_ReadValue()
+ 378:../Source Files/lpc17xx_gpio.c ****  */
+ 379:../Source Files/lpc17xx_gpio.c **** uint32_t FIO_ReadValue(uint8_t portNum)
+ 380:../Source Files/lpc17xx_gpio.c **** {
+ 422              		.loc 1 380 0
+ 423              		.cfi_startproc
+ 424              		@ args = 0, pretend = 0, frame = 0
+ 425              		@ frame_needed = 0, uses_anonymous_args = 0
+ 426              		@ link register save eliminated.
+ 427              	.LVL43:
+ 381:../Source Files/lpc17xx_gpio.c **** 	return (GPIO_ReadValue(portNum));
+ 382:../Source Files/lpc17xx_gpio.c **** }
+ 428              		.loc 1 382 0
+ 381:../Source Files/lpc17xx_gpio.c **** 	return (GPIO_ReadValue(portNum));
+ 429              		.loc 1 381 0
+ 430 00f0 FFF7FEBF 		b	GPIO_ReadValue
+ 431              	.LVL44:
+ 432              		.cfi_endproc
+ 433              	.LFE69:
+ 435              		.align	1
+ 436              		.global	FIO_IntCmd
+ 437              		.thumb
+ 438              		.thumb_func
+ 440              	FIO_IntCmd:
+ 441              	.LFB70:
+ 383:../Source Files/lpc17xx_gpio.c **** 
+ 384:../Source Files/lpc17xx_gpio.c **** /**
+ 385:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_IntCmd()
+ 386:../Source Files/lpc17xx_gpio.c ****  */
+ 387:../Source Files/lpc17xx_gpio.c **** void FIO_IntCmd(uint8_t portNum, uint32_t bitValue, uint8_t edgeState)
+ 388:../Source Files/lpc17xx_gpio.c **** {
+ 442              		.loc 1 388 0
+ 443              		.cfi_startproc
+ 444              		@ args = 0, pretend = 0, frame = 0
+ 445              		@ frame_needed = 0, uses_anonymous_args = 0
+ 446              		@ link register save eliminated.
+ 447              	.LVL45:
+ 389:../Source Files/lpc17xx_gpio.c **** 	GPIO_IntCmd(portNum, bitValue, edgeState);
+ 390:../Source Files/lpc17xx_gpio.c **** }
+ 448              		.loc 1 390 0
+ 389:../Source Files/lpc17xx_gpio.c **** 	GPIO_IntCmd(portNum, bitValue, edgeState);
+ 449              		.loc 1 389 0
+ 450 00f4 FFF7FEBF 		b	GPIO_IntCmd
+ 451              	.LVL46:
+ 452              		.cfi_endproc
+ 453              	.LFE70:
+ 455              		.align	1
+ 456              		.global	FIO_GetIntStatus
+ 457              		.thumb
+ 458              		.thumb_func
+ 460              	FIO_GetIntStatus:
+ 461              	.LFB71:
+ 391:../Source Files/lpc17xx_gpio.c **** 
+ 392:../Source Files/lpc17xx_gpio.c **** /**
+ 393:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_GetIntStatus()
+ 394:../Source Files/lpc17xx_gpio.c ****  */
+ 395:../Source Files/lpc17xx_gpio.c **** FunctionalState FIO_GetIntStatus(uint8_t portNum, uint32_t pinNum, uint8_t edgeState)
+ 396:../Source Files/lpc17xx_gpio.c **** {
+ 462              		.loc 1 396 0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 0
+ 465              		@ frame_needed = 0, uses_anonymous_args = 0
+ 466              		@ link register save eliminated.
+ 467              	.LVL47:
+ 397:../Source Files/lpc17xx_gpio.c **** 	return (GPIO_GetIntStatus(portNum, pinNum, edgeState));
+ 398:../Source Files/lpc17xx_gpio.c **** }
+ 468              		.loc 1 398 0
+ 397:../Source Files/lpc17xx_gpio.c **** 	return (GPIO_GetIntStatus(portNum, pinNum, edgeState));
+ 469              		.loc 1 397 0
+ 470 00f8 FFF7FEBF 		b	GPIO_GetIntStatus
+ 471              	.LVL48:
+ 472              		.cfi_endproc
+ 473              	.LFE71:
+ 475              		.align	1
+ 476              		.global	FIO_ClearInt
+ 477              		.thumb
+ 478              		.thumb_func
+ 480              	FIO_ClearInt:
+ 481              	.LFB72:
+ 399:../Source Files/lpc17xx_gpio.c **** 
+ 400:../Source Files/lpc17xx_gpio.c **** /**
+ 401:../Source Files/lpc17xx_gpio.c ****  * @brief The same with GPIO_ClearInt()
+ 402:../Source Files/lpc17xx_gpio.c ****  */
+ 403:../Source Files/lpc17xx_gpio.c **** void FIO_ClearInt(uint8_t portNum, uint32_t bitValue)
+ 404:../Source Files/lpc17xx_gpio.c **** {
+ 482              		.loc 1 404 0
+ 483              		.cfi_startproc
+ 484              		@ args = 0, pretend = 0, frame = 0
+ 485              		@ frame_needed = 0, uses_anonymous_args = 0
+ 486              		@ link register save eliminated.
+ 487              	.LVL49:
+ 405:../Source Files/lpc17xx_gpio.c **** 	GPIO_ClearInt(portNum, bitValue);
+ 406:../Source Files/lpc17xx_gpio.c **** }
+ 488              		.loc 1 406 0
+ 405:../Source Files/lpc17xx_gpio.c **** 	GPIO_ClearInt(portNum, bitValue);
+ 489              		.loc 1 405 0
+ 490 00fc FFF7FEBF 		b	GPIO_ClearInt
+ 491              	.LVL50:
+ 492              		.cfi_endproc
+ 493              	.LFE72:
+ 495              		.align	1
+ 496              		.global	FIO_SetMask
+ 497              		.thumb
+ 498              		.thumb_func
+ 500              	FIO_SetMask:
+ 501              	.LFB73:
+ 407:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 408:../Source Files/lpc17xx_gpio.c ****  * @brief		Set mask value for bits in FIO port
+ 409:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 410:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set,
+ 411:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFFFFFF.
+ 412:../Source Files/lpc17xx_gpio.c ****  * @param[in]	maskValue	Mask value contains state value for each bit:
+ 413:../Source Files/lpc17xx_gpio.c ****  * 							- 0: not mask.
+ 414:../Source Files/lpc17xx_gpio.c ****  * 							- 1: mask.
+ 415:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 416:../Source Files/lpc17xx_gpio.c ****  *
+ 417:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 418:../Source Files/lpc17xx_gpio.c ****  * - All remaining bits that are not activated in bitValue (value '0')
+ 419:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 420:../Source Files/lpc17xx_gpio.c ****  * - After executing this function, in mask register, value '0' on each bit
+ 421:../Source Files/lpc17xx_gpio.c ****  * enables an access to the corresponding physical pin via a read or write access,
+ 422:../Source Files/lpc17xx_gpio.c ****  * while value '1' on bit (masked) that corresponding pin will not be changed
+ 423:../Source Files/lpc17xx_gpio.c ****  * with write access and if read, will not be reflected in the updated pin.
+ 424:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 425:../Source Files/lpc17xx_gpio.c **** void FIO_SetMask(uint8_t portNum, uint32_t bitValue, uint8_t maskValue)
+ 426:../Source Files/lpc17xx_gpio.c **** {
+ 502              		.loc 1 426 0
+ 503              		.cfi_startproc
+ 504              		@ args = 0, pretend = 0, frame = 0
+ 505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 506              		@ link register save eliminated.
+ 507              	.LVL51:
+ 508 0100 0428     		cmp	r0, #4
+ 509 0102 0BD8     		bhi	.L65
+ 510 0104 064B     		ldr	r3, .L72
+ 511 0106 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 512              	.LVL52:
+ 427:../Source Files/lpc17xx_gpio.c **** 	LPC_GPIO_TypeDef *pFIO = GPIO_GetPointer(portNum);
+ 428:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 513              		.loc 1 428 0
+ 514 010a 38B1     		cbz	r0, .L65
+ 429:../Source Files/lpc17xx_gpio.c **** 		// Mask
+ 430:../Source Files/lpc17xx_gpio.c **** 		if (maskValue){
+ 515              		.loc 1 430 0
+ 516 010c 12B1     		cbz	r2, .L67
+ 431:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOMASK |= bitValue;
+ 517              		.loc 1 431 0
+ 518 010e 0369     		ldr	r3, [r0, #16]
+ 519 0110 1943     		orrs	r1, r1, r3
+ 520              	.LVL53:
+ 521 0112 02E0     		b	.L71
+ 522              	.LVL54:
+ 523              	.L67:
+ 432:../Source Files/lpc17xx_gpio.c **** 		}
+ 433:../Source Files/lpc17xx_gpio.c **** 		// Un-mask
+ 434:../Source Files/lpc17xx_gpio.c **** 		else {
+ 435:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOMASK &= ~bitValue;
+ 524              		.loc 1 435 0
+ 525 0114 0269     		ldr	r2, [r0, #16]
+ 526              	.LVL55:
+ 527 0116 22EA0101 		bic	r1, r2, r1
+ 528              	.LVL56:
+ 529              	.L71:
+ 530 011a 0161     		str	r1, [r0, #16]
+ 531              	.LVL57:
+ 532              	.L65:
+ 533 011c 7047     		bx	lr
+ 534              	.L73:
+ 535 011e 00BF     		.align	2
+ 536              	.L72:
+ 537 0120 00000000 		.word	.LANCHOR0
+ 538              		.cfi_endproc
+ 539              	.LFE73:
+ 541              		.align	1
+ 542              		.global	FIO_HalfWordSetDir
+ 543              		.thumb
+ 544              		.thumb_func
+ 546              	FIO_HalfWordSetDir:
+ 547              	.LFB74:
+ 436:../Source Files/lpc17xx_gpio.c **** 		}
+ 437:../Source Files/lpc17xx_gpio.c **** 	}
+ 438:../Source Files/lpc17xx_gpio.c **** }
+ 439:../Source Files/lpc17xx_gpio.c **** 
+ 440:../Source Files/lpc17xx_gpio.c **** 
+ 441:../Source Files/lpc17xx_gpio.c **** /* FIO halfword accessible ------------------------------------------------------------- */
+ 442:../Source Files/lpc17xx_gpio.c **** 
+ 443:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 444:../Source Files/lpc17xx_gpio.c ****  * @brief		Set direction for FIO port in halfword accessible style
+ 445:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 446:../Source Files/lpc17xx_gpio.c ****  * @param[in]	halfwordNum	HalfWord part number, should be 0 (lower) or 1(upper)
+ 447:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set direction,
+ 448:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFF.
+ 449:../Source Files/lpc17xx_gpio.c ****  * @param[in]	dir			Direction value, should be:
+ 450:../Source Files/lpc17xx_gpio.c ****  * 							- 0: Input.
+ 451:../Source Files/lpc17xx_gpio.c ****  * 							- 1: Output.
+ 452:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 453:../Source Files/lpc17xx_gpio.c ****  *
+ 454:../Source Files/lpc17xx_gpio.c ****  * Note: All remaining bits that are not activated in bitValue (value '0')
+ 455:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 456:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 457:../Source Files/lpc17xx_gpio.c **** void FIO_HalfWordSetDir(uint8_t portNum, uint8_t halfwordNum, uint16_t bitValue, uint8_t dir)
+ 458:../Source Files/lpc17xx_gpio.c **** {
+ 548              		.loc 1 458 0
+ 549              		.cfi_startproc
+ 550              		@ args = 0, pretend = 0, frame = 0
+ 551              		@ frame_needed = 0, uses_anonymous_args = 0
+ 552              	.LVL58:
+ 553 0124 0428     		cmp	r0, #4
+ 554 0126 10B5     		push	{r4, lr}
+ 555              	.LCFI0:
+ 556              		.cfi_def_cfa_offset 8
+ 557              		.cfi_offset 4, -8
+ 558              		.cfi_offset 14, -4
+ 559 0128 19D8     		bhi	.L74
+ 560 012a 0D4C     		ldr	r4, .L84
+ 561 012c 04EB8000 		add	r0, r4, r0, lsl #2
+ 562              	.LVL59:
+ 563 0130 4069     		ldr	r0, [r0, #20]
+ 564              	.LVL60:
+ 459:../Source Files/lpc17xx_gpio.c **** 	GPIO_HalfWord_TypeDef *pFIO = FIO_HalfWordGetPointer(portNum);
+ 460:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 565              		.loc 1 460 0
+ 566 0132 A0B1     		cbz	r0, .L74
+ 461:../Source Files/lpc17xx_gpio.c **** 		// Output direction
+ 462:../Source Files/lpc17xx_gpio.c **** 		if (dir) {
+ 567              		.loc 1 462 0
+ 568 0134 43B1     		cbz	r3, .L76
+ 463:../Source Files/lpc17xx_gpio.c **** 			// Upper
+ 464:../Source Files/lpc17xx_gpio.c **** 			if(halfwordNum) {
+ 569              		.loc 1 464 0
+ 570 0136 19B1     		cbz	r1, .L77
+ 465:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIODIRU |= bitValue;
+ 571              		.loc 1 465 0
+ 572 0138 4388     		ldrh	r3, [r0, #2]
+ 573              	.LVL61:
+ 574 013a 99B2     		uxth	r1, r3
+ 575              	.LVL62:
+ 576 013c 0A43     		orrs	r2, r2, r1
+ 577              	.LVL63:
+ 578 013e 08E0     		b	.L83
+ 579              	.LVL64:
+ 580              	.L77:
+ 466:../Source Files/lpc17xx_gpio.c **** 			}
+ 467:../Source Files/lpc17xx_gpio.c **** 			// lower
+ 468:../Source Files/lpc17xx_gpio.c **** 			else {
+ 469:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIODIRL |= bitValue;
+ 581              		.loc 1 469 0
+ 582 0140 0388     		ldrh	r3, [r0, #0]
+ 583              	.LVL65:
+ 584 0142 99B2     		uxth	r1, r3
+ 585              	.LVL66:
+ 586 0144 0A43     		orrs	r2, r2, r1
+ 587              	.LVL67:
+ 588 0146 09E0     		b	.L82
+ 589              	.LVL68:
+ 590              	.L76:
+ 591 0148 D243     		mvns	r2, r2
+ 592              	.LVL69:
+ 470:../Source Files/lpc17xx_gpio.c **** 			}
+ 471:../Source Files/lpc17xx_gpio.c **** 		}
+ 472:../Source Files/lpc17xx_gpio.c **** 		// Input direction
+ 473:../Source Files/lpc17xx_gpio.c **** 		else {
+ 474:../Source Files/lpc17xx_gpio.c **** 			// Upper
+ 475:../Source Files/lpc17xx_gpio.c **** 			if(halfwordNum) {
+ 593              		.loc 1 475 0
+ 594 014a 21B1     		cbz	r1, .L78
+ 476:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIODIRU &= ~bitValue;
+ 595              		.loc 1 476 0
+ 596 014c 4388     		ldrh	r3, [r0, #2]
+ 597              	.LVL70:
+ 598 014e 99B2     		uxth	r1, r3
+ 599              	.LVL71:
+ 600 0150 0A40     		ands	r2, r2, r1
+ 601              	.L83:
+ 602 0152 4280     		strh	r2, [r0, #2]	@ movhi
+ 603 0154 10BD     		pop	{r4, pc}
+ 604              	.LVL72:
+ 605              	.L78:
+ 477:../Source Files/lpc17xx_gpio.c **** 			}
+ 478:../Source Files/lpc17xx_gpio.c **** 			// lower
+ 479:../Source Files/lpc17xx_gpio.c **** 			else {
+ 480:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIODIRL &= ~bitValue;
+ 606              		.loc 1 480 0
+ 607 0156 0388     		ldrh	r3, [r0, #0]
+ 608              	.LVL73:
+ 609 0158 99B2     		uxth	r1, r3
+ 610              	.LVL74:
+ 611 015a 0A40     		ands	r2, r2, r1
+ 612              	.L82:
+ 613 015c 0280     		strh	r2, [r0, #0]	@ movhi
+ 614              	.LVL75:
+ 615              	.L74:
+ 616 015e 10BD     		pop	{r4, pc}
+ 617              	.L85:
+ 618              		.align	2
+ 619              	.L84:
+ 620 0160 00000000 		.word	.LANCHOR0
+ 621              		.cfi_endproc
+ 622              	.LFE74:
+ 624              		.align	1
+ 625              		.global	FIO_HalfWordSetMask
+ 626              		.thumb
+ 627              		.thumb_func
+ 629              	FIO_HalfWordSetMask:
+ 630              	.LFB75:
+ 481:../Source Files/lpc17xx_gpio.c **** 			}
+ 482:../Source Files/lpc17xx_gpio.c **** 		}
+ 483:../Source Files/lpc17xx_gpio.c **** 	}
+ 484:../Source Files/lpc17xx_gpio.c **** }
+ 485:../Source Files/lpc17xx_gpio.c **** 
+ 486:../Source Files/lpc17xx_gpio.c **** 
+ 487:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 488:../Source Files/lpc17xx_gpio.c ****  * @brief		Set mask value for bits in FIO port in halfword accessible style
+ 489:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 490:../Source Files/lpc17xx_gpio.c ****  * @param[in]	halfwordNum	HalfWord part number, should be 0 (lower) or 1(upper)
+ 491:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set,
+ 492:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFF.
+ 493:../Source Files/lpc17xx_gpio.c ****  * @param[in]	maskValue	Mask value contains state value for each bit:
+ 494:../Source Files/lpc17xx_gpio.c ****  * 					- 0: not mask.
+ 495:../Source Files/lpc17xx_gpio.c ****  * 					- 1: mask.
+ 496:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 497:../Source Files/lpc17xx_gpio.c ****  *
+ 498:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 499:../Source Files/lpc17xx_gpio.c ****  * - All remaining bits that are not activated in bitValue (value '0')
+ 500:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 501:../Source Files/lpc17xx_gpio.c ****  * - After executing this function, in mask register, value '0' on each bit
+ 502:../Source Files/lpc17xx_gpio.c ****  * enables an access to the corresponding physical pin via a read or write access,
+ 503:../Source Files/lpc17xx_gpio.c ****  * while value '1' on bit (masked) that corresponding pin will not be changed
+ 504:../Source Files/lpc17xx_gpio.c ****  * with write access and if read, will not be reflected in the updated pin.
+ 505:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 506:../Source Files/lpc17xx_gpio.c **** void FIO_HalfWordSetMask(uint8_t portNum, uint8_t halfwordNum, uint16_t bitValue, uint8_t maskValue
+ 507:../Source Files/lpc17xx_gpio.c **** {
+ 631              		.loc 1 507 0
+ 632              		.cfi_startproc
+ 633              		@ args = 0, pretend = 0, frame = 0
+ 634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 635              	.LVL76:
+ 636 0164 0428     		cmp	r0, #4
+ 637 0166 10B5     		push	{r4, lr}
+ 638              	.LCFI1:
+ 639              		.cfi_def_cfa_offset 8
+ 640              		.cfi_offset 4, -8
+ 641              		.cfi_offset 14, -4
+ 642 0168 19D8     		bhi	.L86
+ 643 016a 0D4C     		ldr	r4, .L96
+ 644 016c 04EB8000 		add	r0, r4, r0, lsl #2
+ 645              	.LVL77:
+ 646 0170 4069     		ldr	r0, [r0, #20]
+ 647              	.LVL78:
+ 508:../Source Files/lpc17xx_gpio.c **** 	GPIO_HalfWord_TypeDef *pFIO = FIO_HalfWordGetPointer(portNum);
+ 509:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 648              		.loc 1 509 0
+ 649 0172 A0B1     		cbz	r0, .L86
+ 510:../Source Files/lpc17xx_gpio.c **** 		// Mask
+ 511:../Source Files/lpc17xx_gpio.c **** 		if (maskValue){
+ 650              		.loc 1 511 0
+ 651 0174 43B1     		cbz	r3, .L88
+ 512:../Source Files/lpc17xx_gpio.c **** 			// Upper
+ 513:../Source Files/lpc17xx_gpio.c **** 			if(halfwordNum) {
+ 652              		.loc 1 513 0
+ 653 0176 19B1     		cbz	r1, .L89
+ 514:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIOMASKU |= bitValue;
+ 654              		.loc 1 514 0
+ 655 0178 438A     		ldrh	r3, [r0, #18]
+ 656              	.LVL79:
+ 657 017a 99B2     		uxth	r1, r3
+ 658              	.LVL80:
+ 659 017c 0A43     		orrs	r2, r2, r1
+ 660              	.LVL81:
+ 661 017e 08E0     		b	.L95
+ 662              	.LVL82:
+ 663              	.L89:
+ 515:../Source Files/lpc17xx_gpio.c **** 			}
+ 516:../Source Files/lpc17xx_gpio.c **** 			// lower
+ 517:../Source Files/lpc17xx_gpio.c **** 			else {
+ 518:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIOMASKL |= bitValue;
+ 664              		.loc 1 518 0
+ 665 0180 038A     		ldrh	r3, [r0, #16]
+ 666              	.LVL83:
+ 667 0182 99B2     		uxth	r1, r3
+ 668              	.LVL84:
+ 669 0184 0A43     		orrs	r2, r2, r1
+ 670              	.LVL85:
+ 671 0186 09E0     		b	.L94
+ 672              	.LVL86:
+ 673              	.L88:
+ 674 0188 D243     		mvns	r2, r2
+ 675              	.LVL87:
+ 519:../Source Files/lpc17xx_gpio.c **** 			}
+ 520:../Source Files/lpc17xx_gpio.c **** 		}
+ 521:../Source Files/lpc17xx_gpio.c **** 		// Un-mask
+ 522:../Source Files/lpc17xx_gpio.c **** 		else {
+ 523:../Source Files/lpc17xx_gpio.c **** 			// Upper
+ 524:../Source Files/lpc17xx_gpio.c **** 			if(halfwordNum) {
+ 676              		.loc 1 524 0
+ 677 018a 21B1     		cbz	r1, .L90
+ 525:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIOMASKU &= ~bitValue;
+ 678              		.loc 1 525 0
+ 679 018c 438A     		ldrh	r3, [r0, #18]
+ 680              	.LVL88:
+ 681 018e 99B2     		uxth	r1, r3
+ 682              	.LVL89:
+ 683 0190 0A40     		ands	r2, r2, r1
+ 684              	.L95:
+ 685 0192 4282     		strh	r2, [r0, #18]	@ movhi
+ 686 0194 10BD     		pop	{r4, pc}
+ 687              	.LVL90:
+ 688              	.L90:
+ 526:../Source Files/lpc17xx_gpio.c **** 			}
+ 527:../Source Files/lpc17xx_gpio.c **** 			// lower
+ 528:../Source Files/lpc17xx_gpio.c **** 			else {
+ 529:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIOMASKL &= ~bitValue;
+ 689              		.loc 1 529 0
+ 690 0196 038A     		ldrh	r3, [r0, #16]
+ 691              	.LVL91:
+ 692 0198 99B2     		uxth	r1, r3
+ 693              	.LVL92:
+ 694 019a 0A40     		ands	r2, r2, r1
+ 695              	.L94:
+ 696 019c 0282     		strh	r2, [r0, #16]	@ movhi
+ 697              	.LVL93:
+ 698              	.L86:
+ 699 019e 10BD     		pop	{r4, pc}
+ 700              	.L97:
+ 701              		.align	2
+ 702              	.L96:
+ 703 01a0 00000000 		.word	.LANCHOR0
+ 704              		.cfi_endproc
+ 705              	.LFE75:
+ 707              		.align	1
+ 708              		.global	FIO_HalfWordSetValue
+ 709              		.thumb
+ 710              		.thumb_func
+ 712              	FIO_HalfWordSetValue:
+ 713              	.LFB76:
+ 530:../Source Files/lpc17xx_gpio.c **** 			}
+ 531:../Source Files/lpc17xx_gpio.c **** 		}
+ 532:../Source Files/lpc17xx_gpio.c **** 	}
+ 533:../Source Files/lpc17xx_gpio.c **** }
+ 534:../Source Files/lpc17xx_gpio.c **** 
+ 535:../Source Files/lpc17xx_gpio.c **** 
+ 536:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 537:../Source Files/lpc17xx_gpio.c ****  * @brief		Set bits for FIO port in halfword accessible style
+ 538:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 539:../Source Files/lpc17xx_gpio.c ****  * @param[in]	halfwordNum	HalfWord part number, should be 0 (lower) or 1(upper)
+ 540:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set,
+ 541:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFF.
+ 542:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 543:../Source Files/lpc17xx_gpio.c ****  *
+ 544:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 545:../Source Files/lpc17xx_gpio.c ****  * - For all bits that has been set as input direction, this function will
+ 546:../Source Files/lpc17xx_gpio.c ****  * not effect.
+ 547:../Source Files/lpc17xx_gpio.c ****  * - For all remaining bits that are not activated in bitValue (value '0')
+ 548:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 549:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 550:../Source Files/lpc17xx_gpio.c **** void FIO_HalfWordSetValue(uint8_t portNum, uint8_t halfwordNum, uint16_t bitValue)
+ 551:../Source Files/lpc17xx_gpio.c **** {
+ 714              		.loc 1 551 0
+ 715              		.cfi_startproc
+ 716              		@ args = 0, pretend = 0, frame = 0
+ 717              		@ frame_needed = 0, uses_anonymous_args = 0
+ 718              		@ link register save eliminated.
+ 719              	.LVL94:
+ 720 01a4 0428     		cmp	r0, #4
+ 721 01a6 08D8     		bhi	.L98
+ 722 01a8 044B     		ldr	r3, .L104
+ 723 01aa 03EB8000 		add	r0, r3, r0, lsl #2
+ 724              	.LVL95:
+ 725 01ae 4369     		ldr	r3, [r0, #20]
+ 726              	.LVL96:
+ 552:../Source Files/lpc17xx_gpio.c **** 	GPIO_HalfWord_TypeDef *pFIO = FIO_HalfWordGetPointer(portNum);
+ 553:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 727              		.loc 1 553 0
+ 728 01b0 1BB1     		cbz	r3, .L98
+ 554:../Source Files/lpc17xx_gpio.c **** 		// Upper
+ 555:../Source Files/lpc17xx_gpio.c **** 		if(halfwordNum) {
+ 729              		.loc 1 555 0
+ 730 01b2 09B1     		cbz	r1, .L100
+ 556:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOSETU = bitValue;
+ 731              		.loc 1 556 0
+ 732 01b4 5A83     		strh	r2, [r3, #26]	@ movhi
+ 733 01b6 7047     		bx	lr
+ 734              	.L100:
+ 557:../Source Files/lpc17xx_gpio.c **** 		}
+ 558:../Source Files/lpc17xx_gpio.c **** 		// lower
+ 559:../Source Files/lpc17xx_gpio.c **** 		else {
+ 560:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOSETL = bitValue;
+ 735              		.loc 1 560 0
+ 736 01b8 1A83     		strh	r2, [r3, #24]	@ movhi
+ 737              	.LVL97:
+ 738              	.L98:
+ 739 01ba 7047     		bx	lr
+ 740              	.L105:
+ 741              		.align	2
+ 742              	.L104:
+ 743 01bc 00000000 		.word	.LANCHOR0
+ 744              		.cfi_endproc
+ 745              	.LFE76:
+ 747              		.align	1
+ 748              		.global	FIO_HalfWordClearValue
+ 749              		.thumb
+ 750              		.thumb_func
+ 752              	FIO_HalfWordClearValue:
+ 753              	.LFB77:
+ 561:../Source Files/lpc17xx_gpio.c **** 		}
+ 562:../Source Files/lpc17xx_gpio.c **** 	}
+ 563:../Source Files/lpc17xx_gpio.c **** }
+ 564:../Source Files/lpc17xx_gpio.c **** 
+ 565:../Source Files/lpc17xx_gpio.c **** 
+ 566:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 567:../Source Files/lpc17xx_gpio.c ****  * @brief		Clear bits for FIO port in halfword accessible style
+ 568:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 569:../Source Files/lpc17xx_gpio.c ****  * @param[in]	halfwordNum	HalfWord part number, should be 0 (lower) or 1(upper)
+ 570:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to clear,
+ 571:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFFFF.
+ 572:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 573:../Source Files/lpc17xx_gpio.c ****  *
+ 574:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 575:../Source Files/lpc17xx_gpio.c ****  * - For all bits that has been set as input direction, this function will
+ 576:../Source Files/lpc17xx_gpio.c ****  * not effect.
+ 577:../Source Files/lpc17xx_gpio.c ****  * - For all remaining bits that are not activated in bitValue (value '0')
+ 578:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 579:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 580:../Source Files/lpc17xx_gpio.c **** void FIO_HalfWordClearValue(uint8_t portNum, uint8_t halfwordNum, uint16_t bitValue)
+ 581:../Source Files/lpc17xx_gpio.c **** {
+ 754              		.loc 1 581 0
+ 755              		.cfi_startproc
+ 756              		@ args = 0, pretend = 0, frame = 0
+ 757              		@ frame_needed = 0, uses_anonymous_args = 0
+ 758              		@ link register save eliminated.
+ 759              	.LVL98:
+ 760 01c0 0428     		cmp	r0, #4
+ 761 01c2 08D8     		bhi	.L106
+ 762 01c4 044B     		ldr	r3, .L112
+ 763 01c6 03EB8000 		add	r0, r3, r0, lsl #2
+ 764              	.LVL99:
+ 765 01ca 4369     		ldr	r3, [r0, #20]
+ 766              	.LVL100:
+ 582:../Source Files/lpc17xx_gpio.c **** 	GPIO_HalfWord_TypeDef *pFIO = FIO_HalfWordGetPointer(portNum);
+ 583:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 767              		.loc 1 583 0
+ 768 01cc 1BB1     		cbz	r3, .L106
+ 584:../Source Files/lpc17xx_gpio.c **** 		// Upper
+ 585:../Source Files/lpc17xx_gpio.c **** 		if(halfwordNum) {
+ 769              		.loc 1 585 0
+ 770 01ce 09B1     		cbz	r1, .L108
+ 586:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOCLRU = bitValue;
+ 771              		.loc 1 586 0
+ 772 01d0 DA83     		strh	r2, [r3, #30]	@ movhi
+ 773 01d2 7047     		bx	lr
+ 774              	.L108:
+ 587:../Source Files/lpc17xx_gpio.c **** 		}
+ 588:../Source Files/lpc17xx_gpio.c **** 		// lower
+ 589:../Source Files/lpc17xx_gpio.c **** 		else {
+ 590:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOCLRL = bitValue;
+ 775              		.loc 1 590 0
+ 776 01d4 9A83     		strh	r2, [r3, #28]	@ movhi
+ 777              	.LVL101:
+ 778              	.L106:
+ 779 01d6 7047     		bx	lr
+ 780              	.L113:
+ 781              		.align	2
+ 782              	.L112:
+ 783 01d8 00000000 		.word	.LANCHOR0
+ 784              		.cfi_endproc
+ 785              	.LFE77:
+ 787              		.align	1
+ 788              		.global	FIO_HalfWordReadValue
+ 789              		.thumb
+ 790              		.thumb_func
+ 792              	FIO_HalfWordReadValue:
+ 793              	.LFB78:
+ 591:../Source Files/lpc17xx_gpio.c **** 		}
+ 592:../Source Files/lpc17xx_gpio.c **** 	}
+ 593:../Source Files/lpc17xx_gpio.c **** }
+ 594:../Source Files/lpc17xx_gpio.c **** 
+ 595:../Source Files/lpc17xx_gpio.c **** 
+ 596:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 597:../Source Files/lpc17xx_gpio.c ****  * @brief		Read Current state on port pin that have input direction of GPIO
+ 598:../Source Files/lpc17xx_gpio.c ****  * 				in halfword accessible style.
+ 599:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 600:../Source Files/lpc17xx_gpio.c ****  * @param[in]	halfwordNum	HalfWord part number, should be 0 (lower) or 1(upper)
+ 601:../Source Files/lpc17xx_gpio.c ****  * @return		Current value of FIO port pin of specified halfword.
+ 602:../Source Files/lpc17xx_gpio.c ****  * Note: Return value contain state of each port pin (bit) on that FIO regardless
+ 603:../Source Files/lpc17xx_gpio.c ****  * its direction is input or output.
+ 604:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 605:../Source Files/lpc17xx_gpio.c **** uint16_t FIO_HalfWordReadValue(uint8_t portNum, uint8_t halfwordNum)
+ 606:../Source Files/lpc17xx_gpio.c **** {
+ 794              		.loc 1 606 0
+ 795              		.cfi_startproc
+ 796              		@ args = 0, pretend = 0, frame = 0
+ 797              		@ frame_needed = 0, uses_anonymous_args = 0
+ 798              		@ link register save eliminated.
+ 799              	.LVL102:
+ 800 01dc 0428     		cmp	r0, #4
+ 801 01de 0AD8     		bhi	.L117
+ 802 01e0 064B     		ldr	r3, .L120
+ 803 01e2 03EB8000 		add	r0, r3, r0, lsl #2
+ 804              	.LVL103:
+ 805 01e6 4069     		ldr	r0, [r0, #20]
+ 806              	.LVL104:
+ 607:../Source Files/lpc17xx_gpio.c **** 	GPIO_HalfWord_TypeDef *pFIO = FIO_HalfWordGetPointer(portNum);
+ 608:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 807              		.loc 1 608 0
+ 808 01e8 30B1     		cbz	r0, .L115
+ 609:../Source Files/lpc17xx_gpio.c **** 		// Upper
+ 610:../Source Files/lpc17xx_gpio.c **** 		if(halfwordNum) {
+ 809              		.loc 1 610 0
+ 810 01ea 09B1     		cbz	r1, .L116
+ 611:../Source Files/lpc17xx_gpio.c **** 			return (pFIO->FIOPINU);
+ 811              		.loc 1 611 0
+ 812 01ec C18A     		ldrh	r1, [r0, #22]
+ 813              	.LVL105:
+ 814 01ee 00E0     		b	.L119
+ 815              	.LVL106:
+ 816              	.L116:
+ 612:../Source Files/lpc17xx_gpio.c **** 		}
+ 613:../Source Files/lpc17xx_gpio.c **** 		// lower
+ 614:../Source Files/lpc17xx_gpio.c **** 		else {
+ 615:../Source Files/lpc17xx_gpio.c **** 			return (pFIO->FIOPINL);
+ 817              		.loc 1 615 0
+ 818 01f0 818A     		ldrh	r1, [r0, #20]
+ 819              	.LVL107:
+ 820              	.L119:
+ 821 01f2 88B2     		uxth	r0, r1
+ 822              	.LVL108:
+ 823 01f4 7047     		bx	lr
+ 824              	.LVL109:
+ 825              	.L117:
+ 826              	.LBB33:
+ 616:../Source Files/lpc17xx_gpio.c **** 		}
+ 617:../Source Files/lpc17xx_gpio.c **** 	}
+ 618:../Source Files/lpc17xx_gpio.c **** 	return (0);
+ 827              		.loc 1 618 0
+ 828 01f6 0020     		movs	r0, #0
+ 829              	.LVL110:
+ 830              	.L115:
+ 831              	.LBE33:
+ 619:../Source Files/lpc17xx_gpio.c **** }
+ 832              		.loc 1 619 0
+ 833 01f8 7047     		bx	lr
+ 834              	.L121:
+ 835 01fa 00BF     		.align	2
+ 836              	.L120:
+ 837 01fc 00000000 		.word	.LANCHOR0
+ 838              		.cfi_endproc
+ 839              	.LFE78:
+ 841              		.align	1
+ 842              		.global	FIO_ByteSetDir
+ 843              		.thumb
+ 844              		.thumb_func
+ 846              	FIO_ByteSetDir:
+ 847              	.LFB79:
+ 620:../Source Files/lpc17xx_gpio.c **** 
+ 621:../Source Files/lpc17xx_gpio.c **** 
+ 622:../Source Files/lpc17xx_gpio.c **** /* FIO Byte accessible ------------------------------------------------------------ */
+ 623:../Source Files/lpc17xx_gpio.c **** 
+ 624:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 625:../Source Files/lpc17xx_gpio.c ****  * @brief		Set direction for FIO port in byte accessible style
+ 626:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 627:../Source Files/lpc17xx_gpio.c ****  * @param[in]	byteNum		Byte part number, should be in range from 0 to 3
+ 628:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set direction,
+ 629:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFF.
+ 630:../Source Files/lpc17xx_gpio.c ****  * @param[in]	dir			Direction value, should be:
+ 631:../Source Files/lpc17xx_gpio.c ****  * 							- 0: Input.
+ 632:../Source Files/lpc17xx_gpio.c ****  * 							- 1: Output.
+ 633:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 634:../Source Files/lpc17xx_gpio.c ****  *
+ 635:../Source Files/lpc17xx_gpio.c ****  * Note: All remaining bits that are not activated in bitValue (value '0')
+ 636:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 637:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 638:../Source Files/lpc17xx_gpio.c **** void FIO_ByteSetDir(uint8_t portNum, uint8_t byteNum, uint8_t bitValue, uint8_t dir)
+ 639:../Source Files/lpc17xx_gpio.c **** {
+ 848              		.loc 1 639 0
+ 849              		.cfi_startproc
+ 850              		@ args = 0, pretend = 0, frame = 0
+ 851              		@ frame_needed = 0, uses_anonymous_args = 0
+ 852              	.LVL111:
+ 853 0200 0428     		cmp	r0, #4
+ 854 0202 10B5     		push	{r4, lr}
+ 855              	.LCFI2:
+ 856              		.cfi_def_cfa_offset 8
+ 857              		.cfi_offset 4, -8
+ 858              		.cfi_offset 14, -4
+ 859 0204 10D8     		bhi	.L122
+ 860 0206 094C     		ldr	r4, .L129
+ 861 0208 04EB8000 		add	r0, r4, r0, lsl #2
+ 862              	.LVL112:
+ 863 020c 806A     		ldr	r0, [r0, #40]
+ 864              	.LVL113:
+ 640:../Source Files/lpc17xx_gpio.c **** 	GPIO_Byte_TypeDef *pFIO = FIO_ByteGetPointer(portNum);
+ 641:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 865              		.loc 1 641 0
+ 866 020e 58B1     		cbz	r0, .L122
+ 642:../Source Files/lpc17xx_gpio.c **** 		// Output direction
+ 643:../Source Files/lpc17xx_gpio.c **** 		if (dir) {
+ 867              		.loc 1 643 0
+ 868 0210 23B1     		cbz	r3, .L124
+ 644:../Source Files/lpc17xx_gpio.c **** 			if (byteNum <= 3) {
+ 869              		.loc 1 644 0
+ 870 0212 0329     		cmp	r1, #3
+ 871 0214 08D8     		bhi	.L122
+ 645:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIODIR[byteNum] |= bitValue;
+ 872              		.loc 1 645 0
+ 873 0216 435C     		ldrb	r3, [r0, r1]	@ zero_extendqisi2
+ 874              	.LVL114:
+ 875 0218 1A43     		orrs	r2, r2, r3
+ 876              	.LVL115:
+ 877 021a 04E0     		b	.L128
+ 878              	.LVL116:
+ 879              	.L124:
+ 646:../Source Files/lpc17xx_gpio.c **** 			}
+ 647:../Source Files/lpc17xx_gpio.c **** 		}
+ 648:../Source Files/lpc17xx_gpio.c **** 		// Input direction
+ 649:../Source Files/lpc17xx_gpio.c **** 		else {
+ 650:../Source Files/lpc17xx_gpio.c **** 			if (byteNum <= 3) {
+ 880              		.loc 1 650 0
+ 881 021c 0329     		cmp	r1, #3
+ 882 021e 03D8     		bhi	.L122
+ 651:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIODIR[byteNum] &= ~bitValue;
+ 883              		.loc 1 651 0
+ 884 0220 435C     		ldrb	r3, [r0, r1]	@ zero_extendqisi2
+ 885              	.LVL117:
+ 886 0222 23EA0202 		bic	r2, r3, r2
+ 887              	.LVL118:
+ 888              	.L128:
+ 889 0226 4254     		strb	r2, [r0, r1]
+ 890              	.LVL119:
+ 891              	.L122:
+ 892 0228 10BD     		pop	{r4, pc}
+ 893              	.L130:
+ 894 022a 00BF     		.align	2
+ 895              	.L129:
+ 896 022c 00000000 		.word	.LANCHOR0
+ 897              		.cfi_endproc
+ 898              	.LFE79:
+ 900              		.align	1
+ 901              		.global	FIO_ByteSetMask
+ 902              		.thumb
+ 903              		.thumb_func
+ 905              	FIO_ByteSetMask:
+ 906              	.LFB80:
+ 652:../Source Files/lpc17xx_gpio.c **** 			}
+ 653:../Source Files/lpc17xx_gpio.c **** 		}
+ 654:../Source Files/lpc17xx_gpio.c **** 	}
+ 655:../Source Files/lpc17xx_gpio.c **** }
+ 656:../Source Files/lpc17xx_gpio.c **** 
+ 657:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 658:../Source Files/lpc17xx_gpio.c ****  * @brief		Set mask value for bits in FIO port in byte accessible style
+ 659:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 660:../Source Files/lpc17xx_gpio.c ****  * @param[in]	byteNum		Byte part number, should be in range from 0 to 3
+ 661:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set mask,
+ 662:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFF.
+ 663:../Source Files/lpc17xx_gpio.c ****  * @param[in]	maskValue	Mask value contains state value for each bit:
+ 664:../Source Files/lpc17xx_gpio.c ****  * 							- 0: not mask.
+ 665:../Source Files/lpc17xx_gpio.c ****  * 							- 1: mask.
+ 666:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 667:../Source Files/lpc17xx_gpio.c ****  *
+ 668:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 669:../Source Files/lpc17xx_gpio.c ****  * - All remaining bits that are not activated in bitValue (value '0')
+ 670:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 671:../Source Files/lpc17xx_gpio.c ****  * - After executing this function, in mask register, value '0' on each bit
+ 672:../Source Files/lpc17xx_gpio.c ****  * enables an access to the corresponding physical pin via a read or write access,
+ 673:../Source Files/lpc17xx_gpio.c ****  * while value '1' on bit (masked) that corresponding pin will not be changed
+ 674:../Source Files/lpc17xx_gpio.c ****  * with write access and if read, will not be reflected in the updated pin.
+ 675:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 676:../Source Files/lpc17xx_gpio.c **** void FIO_ByteSetMask(uint8_t portNum, uint8_t byteNum, uint8_t bitValue, uint8_t maskValue)
+ 677:../Source Files/lpc17xx_gpio.c **** {
+ 907              		.loc 1 677 0
+ 908              		.cfi_startproc
+ 909              		@ args = 0, pretend = 0, frame = 0
+ 910              		@ frame_needed = 0, uses_anonymous_args = 0
+ 911              	.LVL120:
+ 912 0230 0428     		cmp	r0, #4
+ 913 0232 10B5     		push	{r4, lr}
+ 914              	.LCFI3:
+ 915              		.cfi_def_cfa_offset 8
+ 916              		.cfi_offset 4, -8
+ 917              		.cfi_offset 14, -4
+ 918 0234 12D8     		bhi	.L131
+ 919 0236 0A4C     		ldr	r4, .L138
+ 920 0238 04EB8000 		add	r0, r4, r0, lsl #2
+ 921              	.LVL121:
+ 922 023c 806A     		ldr	r0, [r0, #40]
+ 923              	.LVL122:
+ 678:../Source Files/lpc17xx_gpio.c **** 	GPIO_Byte_TypeDef *pFIO = FIO_ByteGetPointer(portNum);
+ 679:../Source Files/lpc17xx_gpio.c **** 	if(pFIO != NULL) {
+ 924              		.loc 1 679 0
+ 925 023e 68B1     		cbz	r0, .L131
+ 680:../Source Files/lpc17xx_gpio.c **** 		// Mask
+ 681:../Source Files/lpc17xx_gpio.c **** 		if (maskValue) {
+ 926              		.loc 1 681 0
+ 927 0240 2BB1     		cbz	r3, .L133
+ 682:../Source Files/lpc17xx_gpio.c **** 			if (byteNum <= 3) {
+ 928              		.loc 1 682 0
+ 929 0242 0329     		cmp	r1, #3
+ 930 0244 0AD8     		bhi	.L131
+ 683:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIOMASK[byteNum] |= bitValue;
+ 931              		.loc 1 683 0
+ 932 0246 4118     		adds	r1, r0, r1
+ 933              	.LVL123:
+ 934 0248 087C     		ldrb	r0, [r1, #16]	@ zero_extendqisi2
+ 935              	.LVL124:
+ 936 024a 0243     		orrs	r2, r2, r0
+ 937              	.LVL125:
+ 938 024c 05E0     		b	.L137
+ 939              	.LVL126:
+ 940              	.L133:
+ 684:../Source Files/lpc17xx_gpio.c **** 			}
+ 685:../Source Files/lpc17xx_gpio.c **** 		}
+ 686:../Source Files/lpc17xx_gpio.c **** 		// Un-mask
+ 687:../Source Files/lpc17xx_gpio.c **** 		else {
+ 688:../Source Files/lpc17xx_gpio.c **** 			if (byteNum <= 3) {
+ 941              		.loc 1 688 0
+ 942 024e 0329     		cmp	r1, #3
+ 943 0250 04D8     		bhi	.L131
+ 689:../Source Files/lpc17xx_gpio.c **** 				pFIO->FIOMASK[byteNum] &= ~bitValue;
+ 944              		.loc 1 689 0
+ 945 0252 4118     		adds	r1, r0, r1
+ 946              	.LVL127:
+ 947 0254 0B7C     		ldrb	r3, [r1, #16]	@ zero_extendqisi2
+ 948              	.LVL128:
+ 949 0256 23EA0202 		bic	r2, r3, r2
+ 950              	.LVL129:
+ 951              	.L137:
+ 952 025a 0A74     		strb	r2, [r1, #16]
+ 953              	.L131:
+ 954 025c 10BD     		pop	{r4, pc}
+ 955              	.L139:
+ 956 025e 00BF     		.align	2
+ 957              	.L138:
+ 958 0260 00000000 		.word	.LANCHOR0
+ 959              		.cfi_endproc
+ 960              	.LFE80:
+ 962              		.align	1
+ 963              		.global	FIO_ByteSetValue
+ 964              		.thumb
+ 965              		.thumb_func
+ 967              	FIO_ByteSetValue:
+ 968              	.LFB81:
+ 690:../Source Files/lpc17xx_gpio.c **** 			}
+ 691:../Source Files/lpc17xx_gpio.c **** 		}
+ 692:../Source Files/lpc17xx_gpio.c **** 	}
+ 693:../Source Files/lpc17xx_gpio.c **** }
+ 694:../Source Files/lpc17xx_gpio.c **** 
+ 695:../Source Files/lpc17xx_gpio.c **** 
+ 696:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 697:../Source Files/lpc17xx_gpio.c ****  * @brief		Set bits for FIO port in byte accessible style
+ 698:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 699:../Source Files/lpc17xx_gpio.c ****  * @param[in]	byteNum		Byte part number, should be in range from 0 to 3
+ 700:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to set,
+ 701:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFF.
+ 702:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 703:../Source Files/lpc17xx_gpio.c ****  *
+ 704:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 705:../Source Files/lpc17xx_gpio.c ****  * - For all bits that has been set as input direction, this function will
+ 706:../Source Files/lpc17xx_gpio.c ****  * not effect.
+ 707:../Source Files/lpc17xx_gpio.c ****  * - For all remaining bits that are not activated in bitValue (value '0')
+ 708:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 709:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 710:../Source Files/lpc17xx_gpio.c **** void FIO_ByteSetValue(uint8_t portNum, uint8_t byteNum, uint8_t bitValue)
+ 711:../Source Files/lpc17xx_gpio.c **** {
+ 969              		.loc 1 711 0
+ 970              		.cfi_startproc
+ 971              		@ args = 0, pretend = 0, frame = 0
+ 972              		@ frame_needed = 0, uses_anonymous_args = 0
+ 973              		@ link register save eliminated.
+ 974              	.LVL130:
+ 975 0264 0428     		cmp	r0, #4
+ 976 0266 08D8     		bhi	.L140
+ 977 0268 044B     		ldr	r3, .L145
+ 978 026a 03EB8000 		add	r0, r3, r0, lsl #2
+ 979              	.LVL131:
+ 980 026e 836A     		ldr	r3, [r0, #40]
+ 981              	.LVL132:
+ 712:../Source Files/lpc17xx_gpio.c **** 	GPIO_Byte_TypeDef *pFIO = FIO_ByteGetPointer(portNum);
+ 713:../Source Files/lpc17xx_gpio.c **** 	if (pFIO != NULL) {
+ 982              		.loc 1 713 0
+ 983 0270 1BB1     		cbz	r3, .L140
+ 714:../Source Files/lpc17xx_gpio.c **** 		if (byteNum <= 3){
+ 984              		.loc 1 714 0
+ 985 0272 0329     		cmp	r1, #3
+ 715:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOSET[byteNum] = bitValue;
+ 986              		.loc 1 715 0
+ 987 0274 9CBF     		itt	ls
+ 988 0276 5918     		addls	r1, r3, r1
+ 989              	.LVL133:
+ 990 0278 0A76     		strbls	r2, [r1, #24]
+ 991              	.LVL134:
+ 992              	.L140:
+ 993 027a 7047     		bx	lr
+ 994              	.L146:
+ 995              		.align	2
+ 996              	.L145:
+ 997 027c 00000000 		.word	.LANCHOR0
+ 998              		.cfi_endproc
+ 999              	.LFE81:
+ 1001              		.align	1
+ 1002              		.global	FIO_ByteClearValue
+ 1003              		.thumb
+ 1004              		.thumb_func
+ 1006              	FIO_ByteClearValue:
+ 1007              	.LFB82:
+ 716:../Source Files/lpc17xx_gpio.c **** 		}
+ 717:../Source Files/lpc17xx_gpio.c **** 	}
+ 718:../Source Files/lpc17xx_gpio.c **** }
+ 719:../Source Files/lpc17xx_gpio.c **** 
+ 720:../Source Files/lpc17xx_gpio.c **** 
+ 721:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 722:../Source Files/lpc17xx_gpio.c ****  * @brief		Clear bits for FIO port in byte accessible style
+ 723:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 724:../Source Files/lpc17xx_gpio.c ****  * @param[in]	byteNum		Byte part number, should be in range from 0 to 3
+ 725:../Source Files/lpc17xx_gpio.c ****  * @param[in]	bitValue	Value that contains all bits in to clear,
+ 726:../Source Files/lpc17xx_gpio.c ****  * 							in range from 0 to 0xFF.
+ 727:../Source Files/lpc17xx_gpio.c ****  * @return		None
+ 728:../Source Files/lpc17xx_gpio.c ****  *
+ 729:../Source Files/lpc17xx_gpio.c ****  * Note:
+ 730:../Source Files/lpc17xx_gpio.c ****  * - For all bits that has been set as input direction, this function will
+ 731:../Source Files/lpc17xx_gpio.c ****  * not effect.
+ 732:../Source Files/lpc17xx_gpio.c ****  * - For all remaining bits that are not activated in bitValue (value '0')
+ 733:../Source Files/lpc17xx_gpio.c ****  * will not be effected by this function.
+ 734:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 735:../Source Files/lpc17xx_gpio.c **** void FIO_ByteClearValue(uint8_t portNum, uint8_t byteNum, uint8_t bitValue)
+ 736:../Source Files/lpc17xx_gpio.c **** {
+ 1008              		.loc 1 736 0
+ 1009              		.cfi_startproc
+ 1010              		@ args = 0, pretend = 0, frame = 0
+ 1011              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1012              		@ link register save eliminated.
+ 1013              	.LVL135:
+ 1014 0280 0428     		cmp	r0, #4
+ 1015 0282 08D8     		bhi	.L147
+ 1016 0284 044B     		ldr	r3, .L152
+ 1017 0286 03EB8000 		add	r0, r3, r0, lsl #2
+ 1018              	.LVL136:
+ 1019 028a 836A     		ldr	r3, [r0, #40]
+ 1020              	.LVL137:
+ 737:../Source Files/lpc17xx_gpio.c **** 	GPIO_Byte_TypeDef *pFIO = FIO_ByteGetPointer(portNum);
+ 738:../Source Files/lpc17xx_gpio.c **** 	if (pFIO != NULL) {
+ 1021              		.loc 1 738 0
+ 1022 028c 1BB1     		cbz	r3, .L147
+ 739:../Source Files/lpc17xx_gpio.c **** 		if (byteNum <= 3){
+ 1023              		.loc 1 739 0
+ 1024 028e 0329     		cmp	r1, #3
+ 740:../Source Files/lpc17xx_gpio.c **** 			pFIO->FIOCLR[byteNum] = bitValue;
+ 1025              		.loc 1 740 0
+ 1026 0290 9CBF     		itt	ls
+ 1027 0292 5918     		addls	r1, r3, r1
+ 1028              	.LVL138:
+ 1029 0294 0A77     		strbls	r2, [r1, #28]
+ 1030              	.LVL139:
+ 1031              	.L147:
+ 1032 0296 7047     		bx	lr
+ 1033              	.L153:
+ 1034              		.align	2
+ 1035              	.L152:
+ 1036 0298 00000000 		.word	.LANCHOR0
+ 1037              		.cfi_endproc
+ 1038              	.LFE82:
+ 1040              		.align	1
+ 1041              		.global	FIO_ByteReadValue
+ 1042              		.thumb
+ 1043              		.thumb_func
+ 1045              	FIO_ByteReadValue:
+ 1046              	.LFB83:
+ 741:../Source Files/lpc17xx_gpio.c **** 		}
+ 742:../Source Files/lpc17xx_gpio.c **** 	}
+ 743:../Source Files/lpc17xx_gpio.c **** }
+ 744:../Source Files/lpc17xx_gpio.c **** 
+ 745:../Source Files/lpc17xx_gpio.c **** 
+ 746:../Source Files/lpc17xx_gpio.c **** /*********************************************************************//**
+ 747:../Source Files/lpc17xx_gpio.c ****  * @brief		Read Current state on port pin that have input direction of GPIO
+ 748:../Source Files/lpc17xx_gpio.c ****  * 				in byte accessible style.
+ 749:../Source Files/lpc17xx_gpio.c ****  * @param[in]	portNum		Port number, in range from 0 to 4
+ 750:../Source Files/lpc17xx_gpio.c ****  * @param[in]	byteNum		Byte part number, should be in range from 0 to 3
+ 751:../Source Files/lpc17xx_gpio.c ****  * @return		Current value of FIO port pin of specified byte part.
+ 752:../Source Files/lpc17xx_gpio.c ****  * Note: Return value contain state of each port pin (bit) on that FIO regardless
+ 753:../Source Files/lpc17xx_gpio.c ****  * its direction is input or output.
+ 754:../Source Files/lpc17xx_gpio.c ****  **********************************************************************/
+ 755:../Source Files/lpc17xx_gpio.c **** uint8_t FIO_ByteReadValue(uint8_t portNum, uint8_t byteNum)
+ 756:../Source Files/lpc17xx_gpio.c **** {
+ 1047              		.loc 1 756 0
+ 1048              		.cfi_startproc
+ 1049              		@ args = 0, pretend = 0, frame = 0
+ 1050              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1051              		@ link register save eliminated.
+ 1052              	.LVL140:
+ 1053 029c 0428     		cmp	r0, #4
+ 1054 029e 09D8     		bhi	.L158
+ 1055 02a0 054B     		ldr	r3, .L159
+ 1056 02a2 03EB8000 		add	r0, r3, r0, lsl #2
+ 1057              	.LVL141:
+ 1058 02a6 806A     		ldr	r0, [r0, #40]
+ 1059              	.LVL142:
+ 757:../Source Files/lpc17xx_gpio.c **** 	GPIO_Byte_TypeDef *pFIO = FIO_ByteGetPointer(portNum);
+ 758:../Source Files/lpc17xx_gpio.c **** 	if (pFIO != NULL) {
+ 1060              		.loc 1 758 0
+ 1061 02a8 28B1     		cbz	r0, .L155
+ 759:../Source Files/lpc17xx_gpio.c **** 		if (byteNum <= 3){
+ 1062              		.loc 1 759 0
+ 1063 02aa 0329     		cmp	r1, #3
+ 1064 02ac 02D8     		bhi	.L158
+ 760:../Source Files/lpc17xx_gpio.c **** 			return (pFIO->FIOPIN[byteNum]);
+ 1065              		.loc 1 760 0
+ 1066 02ae 4118     		adds	r1, r0, r1
+ 1067              	.LVL143:
+ 1068 02b0 087D     		ldrb	r0, [r1, #20]	@ zero_extendqisi2
+ 1069              	.LVL144:
+ 1070 02b2 7047     		bx	lr
+ 1071              	.LVL145:
+ 1072              	.L158:
+ 761:../Source Files/lpc17xx_gpio.c **** 		}
+ 762:../Source Files/lpc17xx_gpio.c **** 	}
+ 763:../Source Files/lpc17xx_gpio.c **** 	return (0);
+ 1073              		.loc 1 763 0
+ 1074 02b4 0020     		movs	r0, #0
+ 1075              	.L155:
+ 764:../Source Files/lpc17xx_gpio.c **** }
+ 1076              		.loc 1 764 0
+ 1077 02b6 7047     		bx	lr
+ 1078              	.L160:
+ 1079              		.align	2
+ 1080              	.L159:
+ 1081 02b8 00000000 		.word	.LANCHOR0
+ 1082              		.cfi_endproc
+ 1083              	.LFE83:
+ 1085              		.comm	I2C_Rx_Buf,64,1
+ 1086              		.comm	I2C_Tx_Buf,64,1
+ 1087              		.comm	Rx_Buf1,64,1
+ 1088              		.comm	Tx_Buf1,64,1
+ 1089              		.comm	TxIntStat,1,1
+ 1090              		.comm	rb,528,4
+ 1091              		.comm	EscFlag,2,2
+ 1092              		.section	.rodata
+ 1093              		.align	2
+ 1094              		.set	.LANCHOR0,. + 0
+ 1097              	CSWTCH.7:
+ 1098 0000 00C00920 		.word	537509888
+ 1099 0004 20C00920 		.word	537509920
+ 1100 0008 40C00920 		.word	537509952
+ 1101 000c 60C00920 		.word	537509984
+ 1102 0010 80C00920 		.word	537510016
+ 1105              	CSWTCH.10:
+ 1106 0014 00C00920 		.word	537509888
+ 1107 0018 20C00920 		.word	537509920
+ 1108 001c 40C00920 		.word	537509952
+ 1109 0020 60C00920 		.word	537509984
+ 1110 0024 80C00920 		.word	537510016
+ 1113              	CSWTCH.13:
+ 1114 0028 00C00920 		.word	537509888
+ 1115 002c 20C00920 		.word	537509920
+ 1116 0030 40C00920 		.word	537509952
+ 1117 0034 60C00920 		.word	537509984
+ 1118 0038 80C00920 		.word	537510016
+ 1119              		.text
+ 1120              	.Letext0:
+ 1121              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 1122              		.file 3 "../CM3 Core/LPC17xx.h"
+ 1123              		.file 4 "../Header Files/lpc_types.h"
+ 1124              		.file 5 "../Header Files/lpc17xx_gpio.h"
+ 1125              		.file 6 "../Header Files/lpc17xx_uart.h"
+ 1126              		.file 7 "../CM3 Core/core_cm3.h"
+ 1127              		.file 8 "../Header Files/lpc17xx_ssp.h"
+ 1128              		.file 9 "../Header Files/lpc17xx_i2c.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc17xx_gpio.c
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:23     .text:00000000 EINT3_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:40     .text:00000002 GPIO_SetDir
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:77     .text:00000020 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:81     .text:00000024 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:86     .text:00000024 GPIO_SetValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:109    .text:00000034 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:113    .text:00000038 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:118    .text:00000038 GPIO_ClearValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:141    .text:00000048 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:145    .text:0000004c $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:150    .text:0000004c GPIO_ReadValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:182    .text:00000060 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:186    .text:00000064 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:191    .text:00000064 GPIO_IntCmd
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:243    .text:00000090 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:247    .text:00000094 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:252    .text:00000094 GPIO_GetIntStatus
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:313    .text:000000c8 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:317    .text:000000cc $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:322    .text:000000cc GPIO_ClearInt
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:351    .text:000000e0 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:355    .text:000000e4 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:360    .text:000000e4 FIO_SetDir
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:380    .text:000000e8 FIO_SetValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:400    .text:000000ec FIO_ClearValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:420    .text:000000f0 FIO_ReadValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:440    .text:000000f4 FIO_IntCmd
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:460    .text:000000f8 FIO_GetIntStatus
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:480    .text:000000fc FIO_ClearInt
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:500    .text:00000100 FIO_SetMask
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:537    .text:00000120 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:541    .text:00000124 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:546    .text:00000124 FIO_HalfWordSetDir
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:620    .text:00000160 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:624    .text:00000164 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:629    .text:00000164 FIO_HalfWordSetMask
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:703    .text:000001a0 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:707    .text:000001a4 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:712    .text:000001a4 FIO_HalfWordSetValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:743    .text:000001bc $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:747    .text:000001c0 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:752    .text:000001c0 FIO_HalfWordClearValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:783    .text:000001d8 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:787    .text:000001dc $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:792    .text:000001dc FIO_HalfWordReadValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:837    .text:000001fc $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:841    .text:00000200 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:846    .text:00000200 FIO_ByteSetDir
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:896    .text:0000022c $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:900    .text:00000230 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:905    .text:00000230 FIO_ByteSetMask
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:958    .text:00000260 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:962    .text:00000264 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:967    .text:00000264 FIO_ByteSetValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:997    .text:0000027c $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1001   .text:00000280 $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1006   .text:00000280 FIO_ByteClearValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1036   .text:00000298 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1040   .text:0000029c $t
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1045   .text:0000029c FIO_ByteReadValue
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1081   .text:000002b8 $d
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1093   .rodata:00000000 $d
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1097   .rodata:00000000 CSWTCH.7
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1105   .rodata:00000014 CSWTCH.10
+C:\Users\raghav\AppData\Local\Temp\ccBfoJVO.s:1113   .rodata:00000028 CSWTCH.13
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.34082f268f216caa8d0bf2c0960ad4a6
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+                           .group:00000000 wm4.lpc17xx_adc.h.30.943bee91a8c97854e4279a602f57e741
+
+NO UNDEFINED SYMBOLS
