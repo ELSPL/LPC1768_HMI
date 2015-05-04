@@ -1,0 +1,1291 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc17xx_adc.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	1
+  19              		.global	ADC_Init
+  20              		.thumb
+  21              		.thumb_func
+  23              	ADC_Init:
+  24              	.LFB57:
+  25              		.file 1 "../Source Files/lpc17xx_adc.c"
+   1:../Source Files/lpc17xx_adc.c **** /**********************************************************************
+   2:../Source Files/lpc17xx_adc.c **** * $Id$		lpc17xx_adc.c
+   3:../Source Files/lpc17xx_adc.c **** *//**
+   4:../Source Files/lpc17xx_adc.c **** * @file		lpc17xx_adc.c
+   5:../Source Files/lpc17xx_adc.c **** * @brief	Contains all functions support for ADC firmware library on LPC17xx
+   6:../Source Files/lpc17xx_adc.c **** * @version	1.0
+   7:../Source Files/lpc17xx_adc.c **** * @date		06. Dec. 2013
+   8:../Source Files/lpc17xx_adc.c **** * @author	Dwijay.Edutech Learning Solutions
+   9:../Source Files/lpc17xx_adc.c **** ***********************************************************************
+  10:../Source Files/lpc17xx_adc.c **** * Software that is described herein is for illustrative purposes only
+  11:../Source Files/lpc17xx_adc.c **** * which provides customers with programming information regarding the
+  12:../Source Files/lpc17xx_adc.c **** * products. This software is supplied "AS IS" without any warranties.
+  13:../Source Files/lpc17xx_adc.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  14:../Source Files/lpc17xx_adc.c **** * use of the software, conveys no license or title under any patent,
+  15:../Source Files/lpc17xx_adc.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  16:../Source Files/lpc17xx_adc.c **** * reserves the right to make changes in the software without
+  17:../Source Files/lpc17xx_adc.c **** * notification. NXP Semiconductors also make no representation or
+  18:../Source Files/lpc17xx_adc.c **** * warranty that such application will be suitable for the specified
+  19:../Source Files/lpc17xx_adc.c **** * use without further testing or modification.
+  20:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+  21:../Source Files/lpc17xx_adc.c **** 
+  22:../Source Files/lpc17xx_adc.c **** /* Peripheral group ----------------------------------------------------------- */
+  23:../Source Files/lpc17xx_adc.c **** /** @addtogroup ADC
+  24:../Source Files/lpc17xx_adc.c ****  * @{
+  25:../Source Files/lpc17xx_adc.c ****  */
+  26:../Source Files/lpc17xx_adc.c **** 
+  27:../Source Files/lpc17xx_adc.c **** /* Includes ------------------------------------------------------------------- */
+  28:../Source Files/lpc17xx_adc.c **** #include "lpc17xx_adc.h"
+  29:../Source Files/lpc17xx_adc.c **** 
+  30:../Source Files/lpc17xx_adc.c **** /* If this source file built with example, the LPC17xx FW library configuration
+  31:../Source Files/lpc17xx_adc.c ****  * file in each example directory ("lpc17xx_libcfg.h") must be included,
+  32:../Source Files/lpc17xx_adc.c ****  * otherwise the default FW library configuration file must be included instead
+  33:../Source Files/lpc17xx_adc.c ****  */
+  34:../Source Files/lpc17xx_adc.c **** 
+  35:../Source Files/lpc17xx_adc.c **** /* Public Functions ----------------------------------------------------------- */
+  36:../Source Files/lpc17xx_adc.c **** /** @addtogroup ADC_Public_Functions
+  37:../Source Files/lpc17xx_adc.c ****  * @{
+  38:../Source Files/lpc17xx_adc.c ****  */
+  39:../Source Files/lpc17xx_adc.c **** 
+  40:../Source Files/lpc17xx_adc.c **** /********************************************************************//**
+  41:../Source Files/lpc17xx_adc.c ****  * @brief		Initializes the ADCx Peripheral according to the specified
+  42:../Source Files/lpc17xx_adc.c ****  *               parameters.
+  43:../Source Files/lpc17xx_adc.c ****  * @param[in]	None
+  44:../Source Files/lpc17xx_adc.c ****  * @return 		None
+  45:../Source Files/lpc17xx_adc.c ****  *********************************************************************/
+  46:../Source Files/lpc17xx_adc.c **** void ADC_Config (void)
+  47:../Source Files/lpc17xx_adc.c **** {
+  48:../Source Files/lpc17xx_adc.c **** 	/** Configuration for ADC :
+  49:../Source Files/lpc17xx_adc.c **** 	 *  ADC conversion rate = 200Khz
+  50:../Source Files/lpc17xx_adc.c **** 	 */
+  51:../Source Files/lpc17xx_adc.c **** 	ADC_Init(LPC_ADC, 200000);
+  52:../Source Files/lpc17xx_adc.c **** 
+  53:../Source Files/lpc17xx_adc.c **** 	/* ADC Channel Config */
+  54:../Source Files/lpc17xx_adc.c **** 	ADC_Channel_Config (LPC_ADC, ADC_CHANNEL_4, DISABLE);
+  55:../Source Files/lpc17xx_adc.c **** }
+  56:../Source Files/lpc17xx_adc.c **** 
+  57:../Source Files/lpc17xx_adc.c **** 
+  58:../Source Files/lpc17xx_adc.c **** /********************************************************************//**
+  59:../Source Files/lpc17xx_adc.c ****  * @brief		Initializes the ADCx channels according to the specified
+  60:../Source Files/lpc17xx_adc.c ****  *               parameters.
+  61:../Source Files/lpc17xx_adc.c ****  * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+  62:../Source Files/lpc17xx_adc.c ****  * @return 		None
+  63:../Source Files/lpc17xx_adc.c ****  *********************************************************************/
+  64:../Source Files/lpc17xx_adc.c **** void ADC_Channel_Config(LPC_ADC_TypeDef *ADCx, ADC_CHANNEL_SELECTION PCfg, FunctionalState IntState
+  65:../Source Files/lpc17xx_adc.c **** {
+  66:../Source Files/lpc17xx_adc.c **** 	// Pin configuration for ADC
+  67:../Source Files/lpc17xx_adc.c **** 	PINSEL_CFG_Type PinCfg;
+  68:../Source Files/lpc17xx_adc.c **** 
+  69:../Source Files/lpc17xx_adc.c **** 	if(ADCx == LPC_ADC)
+  70:../Source Files/lpc17xx_adc.c **** 	{
+  71:../Source Files/lpc17xx_adc.c **** 		switch (PCfg)
+  72:../Source Files/lpc17xx_adc.c **** 		{
+  73:../Source Files/lpc17xx_adc.c **** 		 case ADC_CHANNEL_0:
+  74:../Source Files/lpc17xx_adc.c **** 			 // Configure P0.23 as CH0
+  75:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+  76:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+  77:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+  78:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 23;
+  79:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+  80:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+  81:../Source Files/lpc17xx_adc.c **** 
+  82:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN0, IntState);
+  83:../Source Files/lpc17xx_adc.c **** 
+  84:../Source Files/lpc17xx_adc.c **** 			 break;
+  85:../Source Files/lpc17xx_adc.c **** 
+  86:../Source Files/lpc17xx_adc.c **** 		 case ADC_CHANNEL_1:
+  87:../Source Files/lpc17xx_adc.c **** 			 // Configure P0.24 as CH1
+  88:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+  89:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+  90:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+  91:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 24;
+  92:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+  93:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+  94:../Source Files/lpc17xx_adc.c **** 
+  95:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN1, IntState);
+  96:../Source Files/lpc17xx_adc.c **** 
+  97:../Source Files/lpc17xx_adc.c **** 			 break;
+  98:../Source Files/lpc17xx_adc.c **** 
+  99:../Source Files/lpc17xx_adc.c **** 		 case ADC_CHANNEL_2:
+ 100:../Source Files/lpc17xx_adc.c **** 			 // Configure P0.25 as CH2
+ 101:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+ 102:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 103:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 104:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 25;
+ 105:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 106:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 107:../Source Files/lpc17xx_adc.c **** 
+ 108:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN2, IntState);
+ 109:../Source Files/lpc17xx_adc.c **** 
+ 110:../Source Files/lpc17xx_adc.c **** 			 break;
+ 111:../Source Files/lpc17xx_adc.c **** 
+ 112:../Source Files/lpc17xx_adc.c **** 		 case ADC_CHANNEL_3:
+ 113:../Source Files/lpc17xx_adc.c **** 			 // Configure P0.26 as CH3
+ 114:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+ 115:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 116:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 117:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 23;
+ 118:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 119:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 120:../Source Files/lpc17xx_adc.c **** 
+ 121:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN3, IntState);
+ 122:../Source Files/lpc17xx_adc.c **** 
+ 123:../Source Files/lpc17xx_adc.c **** 			 break;
+ 124:../Source Files/lpc17xx_adc.c **** 
+ 125:../Source Files/lpc17xx_adc.c **** 		 case ADC_CHANNEL_4:
+ 126:../Source Files/lpc17xx_adc.c **** 			 // Configure P1.30 as CH4
+ 127:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 3;
+ 128:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 129:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 130:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 30;
+ 131:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 132:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 133:../Source Files/lpc17xx_adc.c **** 
+ 134:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN4, IntState);
+ 135:../Source Files/lpc17xx_adc.c **** 
+ 136:../Source Files/lpc17xx_adc.c **** 			 break;
+ 137:../Source Files/lpc17xx_adc.c **** 
+ 138:../Source Files/lpc17xx_adc.c **** 		 case ADC_CHANNEL_5:
+ 139:../Source Files/lpc17xx_adc.c **** 			 // Configure P1.31 as CH5
+ 140:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 3;
+ 141:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 142:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 143:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 31;
+ 144:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 145:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 146:../Source Files/lpc17xx_adc.c **** 
+ 147:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN5, IntState);
+ 148:../Source Files/lpc17xx_adc.c **** 
+ 149:../Source Files/lpc17xx_adc.c **** 			 break;
+ 150:../Source Files/lpc17xx_adc.c **** 		}
+ 151:../Source Files/lpc17xx_adc.c **** 	}
+ 152:../Source Files/lpc17xx_adc.c **** 
+ 153:../Source Files/lpc17xx_adc.c **** 	ADC_ChannelCmd(LPC_ADC, PCfg, ENABLE);
+ 154:../Source Files/lpc17xx_adc.c **** }
+ 155:../Source Files/lpc17xx_adc.c **** 
+ 156:../Source Files/lpc17xx_adc.c **** 
+ 157:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 158:../Source Files/lpc17xx_adc.c ****  * @brief 		Initial for ADC
+ 159:../Source Files/lpc17xx_adc.c ****  * 					+ Set bit PCADC
+ 160:../Source Files/lpc17xx_adc.c ****  * 					+ Set clock for ADC
+ 161:../Source Files/lpc17xx_adc.c ****  * 					+ Set Clock Frequency
+ 162:../Source Files/lpc17xx_adc.c ****  * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 163:../Source Files/lpc17xx_adc.c ****  * @param[in]	rate ADC conversion rate, should be <=200KHz
+ 164:../Source Files/lpc17xx_adc.c ****  * @return 		None
+ 165:../Source Files/lpc17xx_adc.c ****  **********************************************************************/
+ 166:../Source Files/lpc17xx_adc.c **** void ADC_Init(LPC_ADC_TypeDef *ADCx, uint32_t rate)
+ 167:../Source Files/lpc17xx_adc.c **** {
+  26              		.loc 1 167 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 38B5     		push	{r3, r4, r5, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38              		.loc 1 167 0
+  39 0002 0446     		mov	r4, r0
+  40 0004 0D46     		mov	r5, r1
+ 168:../Source Files/lpc17xx_adc.c **** 	uint32_t temp, tmp;
+ 169:../Source Files/lpc17xx_adc.c **** 
+ 170:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 171:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_RATE(rate));
+ 172:../Source Files/lpc17xx_adc.c **** 
+ 173:../Source Files/lpc17xx_adc.c **** 	// Turn on power and clock
+ 174:../Source Files/lpc17xx_adc.c **** 	CLKPWR_ConfigPPWR (CLKPWR_PCONP_PCAD, ENABLE);
+  41              		.loc 1 174 0
+  42 0006 4FF48050 		mov	r0, #4096
+  43              	.LVL1:
+  44 000a 0121     		movs	r1, #1
+  45              	.LVL2:
+  46 000c FFF7FEFF 		bl	CLKPWR_ConfigPPWR
+  47              	.LVL3:
+ 175:../Source Files/lpc17xx_adc.c **** 
+ 176:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR = 0;
+  48              		.loc 1 176 0
+  49 0010 0023     		movs	r3, #0
+  50 0012 2360     		str	r3, [r4, #0]
+  51              	.LVL4:
+ 177:../Source Files/lpc17xx_adc.c **** 
+ 178:../Source Files/lpc17xx_adc.c **** 	//Enable PDN bit
+ 179:../Source Files/lpc17xx_adc.c **** 	tmp = ADC_CR_PDN;
+ 180:../Source Files/lpc17xx_adc.c **** 	// Set clock frequency
+ 181:../Source Files/lpc17xx_adc.c **** 	temp = CLKPWR_GetPCLK(CLKPWR_PCLKSEL_ADC);
+  52              		.loc 1 181 0
+  53 0014 1820     		movs	r0, #24
+  54 0016 FFF7FEFF 		bl	CLKPWR_GetPCLK
+  55              	.LVL5:
+ 182:../Source Files/lpc17xx_adc.c **** 	/* The APB clock (PCLK_ADC0) is divided by (CLKDIV+1) to produce the clock for
+ 183:../Source Files/lpc17xx_adc.c **** 	 * A/D converter, which should be less than or equal to 13MHz.
+ 184:../Source Files/lpc17xx_adc.c **** 	 * A fully conversion requires 65 of these clocks.
+ 185:../Source Files/lpc17xx_adc.c **** 	 * ADC clock = PCLK_ADC0 / (CLKDIV + 1);
+ 186:../Source Files/lpc17xx_adc.c **** 	 * ADC rate = ADC clock / 65;
+ 187:../Source Files/lpc17xx_adc.c **** 	 */
+ 188:../Source Files/lpc17xx_adc.c **** 	temp = (temp /(rate * 65)) - 1;
+  56              		.loc 1 188 0
+  57 001a 4121     		movs	r1, #65
+  58 001c 4D43     		muls	r5, r1, r5
+  59              	.LVL6:
+  60 001e B0FBF5F0 		udiv	r0, r0, r5
+  61              	.LVL7:
+  62 0022 421E     		subs	r2, r0, #1
+  63              	.LVL8:
+ 189:../Source Files/lpc17xx_adc.c **** 	tmp |=  ADC_CR_CLKDIV(temp);
+  64              		.loc 1 189 0
+  65 0024 1502     		lsls	r5, r2, #8
+  66 0026 45F40015 		orr	r5, r5, #2097152
+  67              	.LVL9:
+ 190:../Source Files/lpc17xx_adc.c **** 
+ 191:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR = tmp;
+  68              		.loc 1 191 0
+  69 002a 2560     		str	r5, [r4, #0]
+  70 002c 38BD     		pop	{r3, r4, r5, pc}
+  71              		.cfi_endproc
+  72              	.LFE57:
+  74              		.align	1
+  75              		.global	ADC_DeInit
+  76              		.thumb
+  77              		.thumb_func
+  79              	ADC_DeInit:
+  80              	.LFB58:
+ 192:../Source Files/lpc17xx_adc.c **** }
+ 193:../Source Files/lpc17xx_adc.c **** 
+ 194:../Source Files/lpc17xx_adc.c **** 
+ 195:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 196:../Source Files/lpc17xx_adc.c **** * @brief 		Close ADC
+ 197:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 198:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 199:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 200:../Source Files/lpc17xx_adc.c **** void ADC_DeInit(LPC_ADC_TypeDef *ADCx)
+ 201:../Source Files/lpc17xx_adc.c **** {
+  81              		.loc 1 201 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85              		@ link register save eliminated.
+  86              	.LVL10:
+ 202:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 203:../Source Files/lpc17xx_adc.c **** 
+ 204:../Source Files/lpc17xx_adc.c **** 	// Clear PDN bit
+ 205:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR &= ~ADC_CR_PDN;
+  87              		.loc 1 205 0
+  88 002e 0368     		ldr	r3, [r0, #0]
+  89 0030 23F40011 		bic	r1, r3, #2097152
+  90 0034 0160     		str	r1, [r0, #0]
+ 206:../Source Files/lpc17xx_adc.c **** 	// Turn on power and clock
+ 207:../Source Files/lpc17xx_adc.c **** 	CLKPWR_ConfigPPWR (CLKPWR_PCONP_PCAD, DISABLE);
+  91              		.loc 1 207 0
+  92 0036 4FF48050 		mov	r0, #4096
+  93              	.LVL11:
+  94 003a 0021     		movs	r1, #0
+ 208:../Source Files/lpc17xx_adc.c **** }
+  95              		.loc 1 208 0
+ 207:../Source Files/lpc17xx_adc.c **** 	CLKPWR_ConfigPPWR (CLKPWR_PCONP_PCAD, DISABLE);
+  96              		.loc 1 207 0
+  97 003c FFF7FEBF 		b	CLKPWR_ConfigPPWR
+  98              	.LVL12:
+  99              		.cfi_endproc
+ 100              	.LFE58:
+ 102              		.align	1
+ 103              		.global	ADC_GetData
+ 104              		.thumb
+ 105              		.thumb_func
+ 107              	ADC_GetData:
+ 108              	.LFB59:
+ 209:../Source Files/lpc17xx_adc.c **** 
+ 210:../Source Files/lpc17xx_adc.c **** 
+ 211:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 212:../Source Files/lpc17xx_adc.c **** * @brief 		Get Result conversion from A/D data register
+ 213:../Source Files/lpc17xx_adc.c **** * @param[in]	channel number which want to read back the result
+ 214:../Source Files/lpc17xx_adc.c **** * @return 		Result of conversion
+ 215:../Source Files/lpc17xx_adc.c **** *********************************************************************/
+ 216:../Source Files/lpc17xx_adc.c **** uint32_t ADC_GetData(uint32_t channel)
+ 217:../Source Files/lpc17xx_adc.c **** {
+ 109              		.loc 1 217 0
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113              		@ link register save eliminated.
+ 114              	.LVL13:
+ 218:../Source Files/lpc17xx_adc.c **** 	uint32_t adc_value;
+ 219:../Source Files/lpc17xx_adc.c **** 
+ 220:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_CHANNEL_SELECTION(channel));
+ 221:../Source Files/lpc17xx_adc.c **** 
+ 222:../Source Files/lpc17xx_adc.c **** 	adc_value = *(uint32_t *)((&LPC_ADC->ADDR0) + channel);
+ 115              		.loc 1 222 0
+ 116 0040 024B     		ldr	r3, .L4
+ 223:../Source Files/lpc17xx_adc.c **** 	return ADC_GDR_RESULT(adc_value);
+ 117              		.loc 1 223 0
+ 118 0042 53F82000 		ldr	r0, [r3, r0, lsl #2]
+ 119              	.LVL14:
+ 224:../Source Files/lpc17xx_adc.c **** }
+ 120              		.loc 1 224 0
+ 121 0046 C0F30B10 		ubfx	r0, r0, #4, #12
+ 122 004a 7047     		bx	lr
+ 123              	.L5:
+ 124              		.align	2
+ 125              	.L4:
+ 126 004c 10400340 		.word	1073954832
+ 127              		.cfi_endproc
+ 128              	.LFE59:
+ 130              		.align	1
+ 131              		.global	ADC_StartCmd
+ 132              		.thumb
+ 133              		.thumb_func
+ 135              	ADC_StartCmd:
+ 136              	.LFB60:
+ 225:../Source Files/lpc17xx_adc.c **** 
+ 226:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 227:../Source Files/lpc17xx_adc.c **** * @brief 		Set start mode for ADC
+ 228:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 229:../Source Files/lpc17xx_adc.c **** * @param[in]	start_mode Start mode choose one of modes in
+ 230:../Source Files/lpc17xx_adc.c **** * 				'ADC_START_OPT' enumeration type definition, should be:
+ 231:../Source Files/lpc17xx_adc.c **** * 				- ADC_START_CONTINUOUS
+ 232:../Source Files/lpc17xx_adc.c **** * 				- ADC_START_NOW
+ 233:../Source Files/lpc17xx_adc.c **** * 				- ADC_START_ON_EINT0
+ 234:../Source Files/lpc17xx_adc.c **** * 				- ADC_START_ON_CAP01
+ 235:../Source Files/lpc17xx_adc.c **** *				- ADC_START_ON_MAT01
+ 236:../Source Files/lpc17xx_adc.c **** *				- ADC_START_ON_MAT03
+ 237:../Source Files/lpc17xx_adc.c **** *				- ADC_START_ON_MAT10
+ 238:../Source Files/lpc17xx_adc.c **** *				- ADC_START_ON_MAT11
+ 239:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 240:../Source Files/lpc17xx_adc.c **** *********************************************************************/
+ 241:../Source Files/lpc17xx_adc.c **** void ADC_StartCmd(LPC_ADC_TypeDef *ADCx, uint8_t start_mode)
+ 242:../Source Files/lpc17xx_adc.c **** {
+ 137              		.loc 1 242 0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141              		@ link register save eliminated.
+ 142              	.LVL15:
+ 243:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 244:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_START_OPT(start_mode));
+ 245:../Source Files/lpc17xx_adc.c **** 
+ 246:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR &= ~ADC_CR_START_MASK;
+ 143              		.loc 1 246 0
+ 144 0050 0368     		ldr	r3, [r0, #0]
+ 145 0052 23F0E062 		bic	r2, r3, #117440512
+ 146 0056 0260     		str	r2, [r0, #0]
+ 247:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR |=ADC_CR_START_MODE_SEL((uint32_t)start_mode);
+ 147              		.loc 1 247 0
+ 148 0058 0368     		ldr	r3, [r0, #0]
+ 149 005a 43EA0161 		orr	r1, r3, r1, lsl #24
+ 150              	.LVL16:
+ 151 005e 0160     		str	r1, [r0, #0]
+ 152 0060 7047     		bx	lr
+ 153              		.cfi_endproc
+ 154              	.LFE60:
+ 156              		.align	1
+ 157              		.global	ADC_BurstCmd
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	ADC_BurstCmd:
+ 162              	.LFB61:
+ 248:../Source Files/lpc17xx_adc.c **** }
+ 249:../Source Files/lpc17xx_adc.c **** 
+ 250:../Source Files/lpc17xx_adc.c **** 
+ 251:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 252:../Source Files/lpc17xx_adc.c **** * @brief 		ADC Burst mode setting
+ 253:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 254:../Source Files/lpc17xx_adc.c **** * @param[in]	NewState
+ 255:../Source Files/lpc17xx_adc.c **** * 				-	1: Set Burst mode
+ 256:../Source Files/lpc17xx_adc.c **** * 				-	0: reset Burst mode
+ 257:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 258:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 259:../Source Files/lpc17xx_adc.c **** void ADC_BurstCmd(LPC_ADC_TypeDef *ADCx, FunctionalState NewState)
+ 260:../Source Files/lpc17xx_adc.c **** {
+ 163              		.loc 1 260 0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167              		@ link register save eliminated.
+ 168              	.LVL17:
+ 261:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 262:../Source Files/lpc17xx_adc.c **** 
+ 263:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR &= ~ADC_CR_BURST;
+ 169              		.loc 1 263 0
+ 170 0062 0368     		ldr	r3, [r0, #0]
+ 171 0064 23F48032 		bic	r2, r3, #65536
+ 172 0068 0260     		str	r2, [r0, #0]
+ 264:../Source Files/lpc17xx_adc.c **** 	if (NewState){
+ 173              		.loc 1 264 0
+ 174 006a 19B1     		cbz	r1, .L7
+ 265:../Source Files/lpc17xx_adc.c **** 		ADCx->ADCR |= ADC_CR_BURST;
+ 175              		.loc 1 265 0
+ 176 006c 0168     		ldr	r1, [r0, #0]
+ 177              	.LVL18:
+ 178 006e 41F48033 		orr	r3, r1, #65536
+ 179 0072 0360     		str	r3, [r0, #0]
+ 180              	.L7:
+ 181 0074 7047     		bx	lr
+ 182              		.cfi_endproc
+ 183              	.LFE61:
+ 185              		.align	1
+ 186              		.global	ADC_PowerdownCmd
+ 187              		.thumb
+ 188              		.thumb_func
+ 190              	ADC_PowerdownCmd:
+ 191              	.LFB62:
+ 266:../Source Files/lpc17xx_adc.c **** 	}
+ 267:../Source Files/lpc17xx_adc.c **** }
+ 268:../Source Files/lpc17xx_adc.c **** 
+ 269:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 270:../Source Files/lpc17xx_adc.c **** * @brief 		Set AD conversion in power mode
+ 271:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 272:../Source Files/lpc17xx_adc.c **** * @param[in]	NewState
+ 273:../Source Files/lpc17xx_adc.c **** * 				-	1: AD converter is optional
+ 274:../Source Files/lpc17xx_adc.c **** * 				-	0: AD Converter is in power down mode
+ 275:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 276:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 277:../Source Files/lpc17xx_adc.c **** void ADC_PowerdownCmd(LPC_ADC_TypeDef *ADCx, FunctionalState NewState)
+ 278:../Source Files/lpc17xx_adc.c **** {
+ 192              		.loc 1 278 0
+ 193              		.cfi_startproc
+ 194              		@ args = 0, pretend = 0, frame = 0
+ 195              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196              		@ link register save eliminated.
+ 197              	.LVL19:
+ 279:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 280:../Source Files/lpc17xx_adc.c **** 
+ 281:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR &= ~ADC_CR_PDN;
+ 198              		.loc 1 281 0
+ 199 0076 0368     		ldr	r3, [r0, #0]
+ 200 0078 23F40012 		bic	r2, r3, #2097152
+ 201 007c 0260     		str	r2, [r0, #0]
+ 282:../Source Files/lpc17xx_adc.c **** 	if (NewState){
+ 202              		.loc 1 282 0
+ 203 007e 19B1     		cbz	r1, .L13
+ 283:../Source Files/lpc17xx_adc.c **** 		ADCx->ADCR |= ADC_CR_PDN;
+ 204              		.loc 1 283 0
+ 205 0080 0168     		ldr	r1, [r0, #0]
+ 206              	.LVL20:
+ 207 0082 41F40013 		orr	r3, r1, #2097152
+ 208 0086 0360     		str	r3, [r0, #0]
+ 209              	.L13:
+ 210 0088 7047     		bx	lr
+ 211              		.cfi_endproc
+ 212              	.LFE62:
+ 214              		.align	1
+ 215              		.global	ADC_EdgeStartConfig
+ 216              		.thumb
+ 217              		.thumb_func
+ 219              	ADC_EdgeStartConfig:
+ 220              	.LFB63:
+ 284:../Source Files/lpc17xx_adc.c **** 	}
+ 285:../Source Files/lpc17xx_adc.c **** }
+ 286:../Source Files/lpc17xx_adc.c **** 
+ 287:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 288:../Source Files/lpc17xx_adc.c **** * @brief 		Set Edge start configuration
+ 289:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 290:../Source Files/lpc17xx_adc.c **** * @param[in]	EdgeOption is ADC_START_ON_RISING and ADC_START_ON_FALLING
+ 291:../Source Files/lpc17xx_adc.c **** * 					0:ADC_START_ON_RISING
+ 292:../Source Files/lpc17xx_adc.c **** * 					1:ADC_START_ON_FALLING
+ 293:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 294:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 295:../Source Files/lpc17xx_adc.c **** void ADC_EdgeStartConfig(LPC_ADC_TypeDef *ADCx, uint8_t EdgeOption)
+ 296:../Source Files/lpc17xx_adc.c **** {
+ 221              		.loc 1 296 0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 0
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225              		@ link register save eliminated.
+ 226              	.LVL21:
+ 297:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 298:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_START_ON_EDGE_OPT(EdgeOption));
+ 299:../Source Files/lpc17xx_adc.c **** 
+ 300:../Source Files/lpc17xx_adc.c **** 	ADCx->ADCR &= ~ADC_CR_EDGE;
+ 227              		.loc 1 300 0
+ 228 008a 0368     		ldr	r3, [r0, #0]
+ 229 008c 23F00062 		bic	r2, r3, #134217728
+ 230 0090 0260     		str	r2, [r0, #0]
+ 301:../Source Files/lpc17xx_adc.c **** 	if (EdgeOption){
+ 231              		.loc 1 301 0
+ 232 0092 19B1     		cbz	r1, .L18
+ 302:../Source Files/lpc17xx_adc.c **** 		ADCx->ADCR |= ADC_CR_EDGE;
+ 233              		.loc 1 302 0
+ 234 0094 0168     		ldr	r1, [r0, #0]
+ 235              	.LVL22:
+ 236 0096 41F00063 		orr	r3, r1, #134217728
+ 237 009a 0360     		str	r3, [r0, #0]
+ 238              	.L18:
+ 239 009c 7047     		bx	lr
+ 240              		.cfi_endproc
+ 241              	.LFE63:
+ 243              		.align	1
+ 244              		.global	ADC_IntConfig
+ 245              		.thumb
+ 246              		.thumb_func
+ 248              	ADC_IntConfig:
+ 249              	.LFB64:
+ 303:../Source Files/lpc17xx_adc.c **** 	}
+ 304:../Source Files/lpc17xx_adc.c **** }
+ 305:../Source Files/lpc17xx_adc.c **** 
+ 306:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 307:../Source Files/lpc17xx_adc.c **** * @brief 		ADC interrupt configuration
+ 308:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 309:../Source Files/lpc17xx_adc.c **** * @param[in]	IntType: type of interrupt, should be:
+ 310:../Source Files/lpc17xx_adc.c **** * 				- ADC_ADINTEN0: Interrupt channel 0
+ 311:../Source Files/lpc17xx_adc.c **** * 				- ADC_ADINTEN1: Interrupt channel 1
+ 312:../Source Files/lpc17xx_adc.c **** * 				...
+ 313:../Source Files/lpc17xx_adc.c **** * 				- ADC_ADINTEN7: Interrupt channel 7
+ 314:../Source Files/lpc17xx_adc.c **** * 				- ADC_ADGINTEN: Individual channel/global flag done generate an interrupt
+ 315:../Source Files/lpc17xx_adc.c **** * @param[in]	NewState:
+ 316:../Source Files/lpc17xx_adc.c **** * 					- SET : enable ADC interrupt
+ 317:../Source Files/lpc17xx_adc.c **** * 					- RESET: disable ADC interrupt
+ 318:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 319:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 320:../Source Files/lpc17xx_adc.c **** void ADC_IntConfig (LPC_ADC_TypeDef *ADCx, ADC_TYPE_INT_OPT IntType, FunctionalState NewState)
+ 321:../Source Files/lpc17xx_adc.c **** {
+ 250              		.loc 1 321 0
+ 251              		.cfi_startproc
+ 252              		@ args = 0, pretend = 0, frame = 0
+ 253              		@ frame_needed = 0, uses_anonymous_args = 0
+ 254              	.LVL23:
+ 255 009e 10B5     		push	{r4, lr}
+ 256              	.LCFI1:
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 4, -8
+ 259              		.cfi_offset 14, -4
+ 322:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 323:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_TYPE_INT_OPT(IntType));
+ 324:../Source Files/lpc17xx_adc.c **** 
+ 325:../Source Files/lpc17xx_adc.c **** 	ADCx->ADINTEN &= ~ADC_INTEN_CH(IntType);
+ 260              		.loc 1 325 0
+ 261 00a0 0124     		movs	r4, #1
+ 262 00a2 04FA01F1 		lsl	r1, r4, r1
+ 263              	.LVL24:
+ 264 00a6 C368     		ldr	r3, [r0, #12]
+ 265 00a8 23EA0103 		bic	r3, r3, r1
+ 266 00ac C360     		str	r3, [r0, #12]
+ 326:../Source Files/lpc17xx_adc.c **** 	if (NewState){
+ 267              		.loc 1 326 0
+ 268 00ae 12B1     		cbz	r2, .L23
+ 327:../Source Files/lpc17xx_adc.c **** 		ADCx->ADINTEN |= ADC_INTEN_CH(IntType);
+ 269              		.loc 1 327 0
+ 270 00b0 C268     		ldr	r2, [r0, #12]
+ 271              	.LVL25:
+ 272 00b2 1143     		orrs	r1, r1, r2
+ 273 00b4 C160     		str	r1, [r0, #12]
+ 274              	.L23:
+ 275 00b6 10BD     		pop	{r4, pc}
+ 276              		.cfi_endproc
+ 277              	.LFE64:
+ 279              		.align	1
+ 280              		.global	ADC_Channel_Config
+ 281              		.thumb
+ 282              		.thumb_func
+ 284              	ADC_Channel_Config:
+ 285              	.LFB56:
+  65:../Source Files/lpc17xx_adc.c **** {
+ 286              		.loc 1 65 0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 8
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290              	.LVL26:
+  69:../Source Files/lpc17xx_adc.c **** 	if(ADCx == LPC_ADC)
+ 291              		.loc 1 69 0
+ 292 00b8 464B     		ldr	r3, .L38
+  65:../Source Files/lpc17xx_adc.c **** {
+ 293              		.loc 1 65 0
+ 294 00ba 73B5     		push	{r0, r1, r4, r5, r6, lr}
+ 295              	.LCFI2:
+ 296              		.cfi_def_cfa_offset 24
+ 297              		.cfi_offset 0, -24
+ 298              		.cfi_offset 1, -20
+ 299              		.cfi_offset 4, -16
+ 300              		.cfi_offset 5, -12
+ 301              		.cfi_offset 6, -8
+ 302              		.cfi_offset 14, -4
+  69:../Source Files/lpc17xx_adc.c **** 	if(ADCx == LPC_ADC)
+ 303              		.loc 1 69 0
+ 304 00bc 9842     		cmp	r0, r3
+  65:../Source Files/lpc17xx_adc.c **** {
+ 305              		.loc 1 65 0
+ 306 00be 0E46     		mov	r6, r1
+ 307 00c0 1446     		mov	r4, r2
+  69:../Source Files/lpc17xx_adc.c **** 	if(ADCx == LPC_ADC)
+ 308              		.loc 1 69 0
+ 309 00c2 7FD1     		bne	.L29
+ 310 00c4 0120     		movs	r0, #1
+ 311              	.LVL27:
+  71:../Source Files/lpc17xx_adc.c **** 		switch (PCfg)
+ 312              		.loc 1 71 0
+ 313 00c6 0529     		cmp	r1, #5
+ 314 00c8 7CD8     		bhi	.L29
+ 315 00ca DFE801F0 		tbb	[pc, r1]
+ 316              	.LVL28:
+ 317              	.L36:
+ 318 00ce 03       		.byte	(.L30-.L36)/2
+ 319 00cf 16       		.byte	(.L31-.L36)/2
+ 320 00d0 29       		.byte	(.L32-.L36)/2
+ 321 00d1 3C       		.byte	(.L33-.L36)/2
+ 322 00d2 4F       		.byte	(.L34-.L36)/2
+ 323 00d3 64       		.byte	(.L35-.L36)/2
+ 324              		.align	1
+ 325              	.L30:
+  75:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+ 326              		.loc 1 75 0
+ 327 00d4 8DF80200 		strb	r0, [sp, #2]
+  78:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 23;
+ 328              		.loc 1 78 0
+ 329 00d8 1720     		movs	r0, #23
+  76:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 330              		.loc 1 76 0
+ 331 00da 0025     		movs	r5, #0
+  79:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 332              		.loc 1 79 0
+ 333 00dc 02A9     		add	r1, sp, #8
+ 334              	.LVL29:
+  78:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 23;
+ 335              		.loc 1 78 0
+ 336 00de 8DF80100 		strb	r0, [sp, #1]
+  80:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 337              		.loc 1 80 0
+ 338 00e2 6846     		mov	r0, sp
+  79:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 339              		.loc 1 79 0
+ 340 00e4 01F8085D 		strb	r5, [r1, #-8]!
+  76:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 341              		.loc 1 76 0
+ 342 00e8 8DF80450 		strb	r5, [sp, #4]
+  77:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 343              		.loc 1 77 0
+ 344 00ec 8DF80350 		strb	r5, [sp, #3]
+  80:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 345              		.loc 1 80 0
+ 346 00f0 FFF7FEFF 		bl	PINSEL_ConfigPin
+ 347              	.LVL30:
+  82:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN0, IntState);
+ 348              		.loc 1 82 0
+ 349 00f4 3748     		ldr	r0, .L38
+ 350 00f6 2946     		mov	r1, r5
+ 351 00f8 61E0     		b	.L37
+ 352              	.LVL31:
+ 353              	.L31:
+  89:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 354              		.loc 1 89 0
+ 355 00fa 0021     		movs	r1, #0
+ 356              	.LVL32:
+  88:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+ 357              		.loc 1 88 0
+ 358 00fc 8DF80200 		strb	r0, [sp, #2]
+  91:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 24;
+ 359              		.loc 1 91 0
+ 360 0100 1823     		movs	r3, #24
+  92:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 361              		.loc 1 92 0
+ 362 0102 02AA     		add	r2, sp, #8
+  93:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 363              		.loc 1 93 0
+ 364 0104 6846     		mov	r0, sp
+  89:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 365              		.loc 1 89 0
+ 366 0106 8DF80410 		strb	r1, [sp, #4]
+  90:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 367              		.loc 1 90 0
+ 368 010a 8DF80310 		strb	r1, [sp, #3]
+  92:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 369              		.loc 1 92 0
+ 370 010e 02F8081D 		strb	r1, [r2, #-8]!
+  91:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 24;
+ 371              		.loc 1 91 0
+ 372 0112 8DF80130 		strb	r3, [sp, #1]
+  93:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 373              		.loc 1 93 0
+ 374 0116 FFF7FEFF 		bl	PINSEL_ConfigPin
+ 375              	.LVL33:
+  95:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN1, IntState);
+ 376              		.loc 1 95 0
+ 377 011a 2E48     		ldr	r0, .L38
+ 378 011c 0121     		movs	r1, #1
+ 379 011e 4EE0     		b	.L37
+ 380              	.LVL34:
+ 381              	.L32:
+ 102:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 382              		.loc 1 102 0
+ 383 0120 0023     		movs	r3, #0
+ 101:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+ 384              		.loc 1 101 0
+ 385 0122 8DF80200 		strb	r0, [sp, #2]
+ 105:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 386              		.loc 1 105 0
+ 387 0126 02A8     		add	r0, sp, #8
+ 104:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 25;
+ 388              		.loc 1 104 0
+ 389 0128 1922     		movs	r2, #25
+ 105:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 390              		.loc 1 105 0
+ 391 012a 00F8083D 		strb	r3, [r0, #-8]!
+ 106:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 392              		.loc 1 106 0
+ 393 012e 6846     		mov	r0, sp
+ 102:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 394              		.loc 1 102 0
+ 395 0130 8DF80430 		strb	r3, [sp, #4]
+ 103:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 396              		.loc 1 103 0
+ 397 0134 8DF80330 		strb	r3, [sp, #3]
+ 104:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 25;
+ 398              		.loc 1 104 0
+ 399 0138 8DF80120 		strb	r2, [sp, #1]
+ 106:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 400              		.loc 1 106 0
+ 401 013c FFF7FEFF 		bl	PINSEL_ConfigPin
+ 402              	.LVL35:
+ 108:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN2, IntState);
+ 403              		.loc 1 108 0
+ 404 0140 2448     		ldr	r0, .L38
+ 405 0142 0221     		movs	r1, #2
+ 406 0144 3BE0     		b	.L37
+ 407              	.LVL36:
+ 408              	.L33:
+ 114:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 1;
+ 409              		.loc 1 114 0
+ 410 0146 8DF80200 		strb	r0, [sp, #2]
+ 117:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 23;
+ 411              		.loc 1 117 0
+ 412 014a 1720     		movs	r0, #23
+ 115:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 413              		.loc 1 115 0
+ 414 014c 0023     		movs	r3, #0
+ 118:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 415              		.loc 1 118 0
+ 416 014e 02A9     		add	r1, sp, #8
+ 417              	.LVL37:
+ 117:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 23;
+ 418              		.loc 1 117 0
+ 419 0150 8DF80100 		strb	r0, [sp, #1]
+ 119:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 420              		.loc 1 119 0
+ 421 0154 6846     		mov	r0, sp
+ 118:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 0;
+ 422              		.loc 1 118 0
+ 423 0156 01F8083D 		strb	r3, [r1, #-8]!
+ 115:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 424              		.loc 1 115 0
+ 425 015a 8DF80430 		strb	r3, [sp, #4]
+ 116:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 426              		.loc 1 116 0
+ 427 015e 8DF80330 		strb	r3, [sp, #3]
+ 119:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 428              		.loc 1 119 0
+ 429 0162 FFF7FEFF 		bl	PINSEL_ConfigPin
+ 430              	.LVL38:
+ 121:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN3, IntState);
+ 431              		.loc 1 121 0
+ 432 0166 1B48     		ldr	r0, .L38
+ 433 0168 0321     		movs	r1, #3
+ 434 016a 28E0     		b	.L37
+ 435              	.LVL39:
+ 436              	.L34:
+ 127:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 3;
+ 437              		.loc 1 127 0
+ 438 016c 0322     		movs	r2, #3
+ 130:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 30;
+ 439              		.loc 1 130 0
+ 440 016e 1E20     		movs	r0, #30
+ 128:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 441              		.loc 1 128 0
+ 442 0170 0023     		movs	r3, #0
+ 131:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 443              		.loc 1 131 0
+ 444 0172 02A9     		add	r1, sp, #8
+ 445              	.LVL40:
+ 127:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 3;
+ 446              		.loc 1 127 0
+ 447 0174 8DF80220 		strb	r2, [sp, #2]
+ 130:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 30;
+ 448              		.loc 1 130 0
+ 449 0178 8DF80100 		strb	r0, [sp, #1]
+ 131:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 450              		.loc 1 131 0
+ 451 017c 0122     		movs	r2, #1
+ 132:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 452              		.loc 1 132 0
+ 453 017e 6846     		mov	r0, sp
+ 131:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 454              		.loc 1 131 0
+ 455 0180 01F8082D 		strb	r2, [r1, #-8]!
+ 128:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 456              		.loc 1 128 0
+ 457 0184 8DF80430 		strb	r3, [sp, #4]
+ 129:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 458              		.loc 1 129 0
+ 459 0188 8DF80330 		strb	r3, [sp, #3]
+ 132:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 460              		.loc 1 132 0
+ 461 018c FFF7FEFF 		bl	PINSEL_ConfigPin
+ 462              	.LVL41:
+ 134:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN4, IntState);
+ 463              		.loc 1 134 0
+ 464 0190 1048     		ldr	r0, .L38
+ 465 0192 0421     		movs	r1, #4
+ 466 0194 13E0     		b	.L37
+ 467              	.LVL42:
+ 468              	.L35:
+ 140:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Funcnum = 3;
+ 469              		.loc 1 140 0
+ 470 0196 0321     		movs	r1, #3
+ 471              	.LVL43:
+ 472 0198 8DF80210 		strb	r1, [sp, #2]
+ 144:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 473              		.loc 1 144 0
+ 474 019c 02A8     		add	r0, sp, #8
+ 475 019e 0121     		movs	r1, #1
+ 141:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 476              		.loc 1 141 0
+ 477 01a0 0022     		movs	r2, #0
+ 144:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Portnum = 1;
+ 478              		.loc 1 144 0
+ 479 01a2 00F8081D 		strb	r1, [r0, #-8]!
+ 143:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 31;
+ 480              		.loc 1 143 0
+ 481 01a6 1F23     		movs	r3, #31
+ 145:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 482              		.loc 1 145 0
+ 483 01a8 6846     		mov	r0, sp
+ 141:../Source Files/lpc17xx_adc.c **** 			 PinCfg.OpenDrain = 0;
+ 484              		.loc 1 141 0
+ 485 01aa 8DF80420 		strb	r2, [sp, #4]
+ 142:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinmode = 0;
+ 486              		.loc 1 142 0
+ 487 01ae 8DF80320 		strb	r2, [sp, #3]
+ 143:../Source Files/lpc17xx_adc.c **** 			 PinCfg.Pinnum = 31;
+ 488              		.loc 1 143 0
+ 489 01b2 8DF80130 		strb	r3, [sp, #1]
+ 145:../Source Files/lpc17xx_adc.c **** 			 PINSEL_ConfigPin(&PinCfg);
+ 490              		.loc 1 145 0
+ 491 01b6 FFF7FEFF 		bl	PINSEL_ConfigPin
+ 492              	.LVL44:
+ 147:../Source Files/lpc17xx_adc.c **** 			 ADC_IntConfig(LPC_ADC, ADC_ADINTEN5, IntState);
+ 493              		.loc 1 147 0
+ 494 01ba 0648     		ldr	r0, .L38
+ 495 01bc 0521     		movs	r1, #5
+ 496              	.L37:
+ 497 01be 2246     		mov	r2, r4
+ 498 01c0 FFF7FEFF 		bl	ADC_IntConfig
+ 499              	.LVL45:
+ 500              	.L29:
+ 501              	.LBB4:
+ 502              	.LBB5:
+ 328:../Source Files/lpc17xx_adc.c **** 	}
+ 329:../Source Files/lpc17xx_adc.c **** }
+ 330:../Source Files/lpc17xx_adc.c **** 
+ 331:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 332:../Source Files/lpc17xx_adc.c **** * @brief 		Enable/Disable ADC channel number
+ 333:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 334:../Source Files/lpc17xx_adc.c **** * @param[in]	Channel channel number
+ 335:../Source Files/lpc17xx_adc.c **** * @param[in]	NewState Enable or Disable
+ 336:../Source Files/lpc17xx_adc.c **** *
+ 337:../Source Files/lpc17xx_adc.c **** * @return 		None
+ 338:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 339:../Source Files/lpc17xx_adc.c **** void ADC_ChannelCmd (LPC_ADC_TypeDef *ADCx, uint8_t Channel, FunctionalState NewState)
+ 340:../Source Files/lpc17xx_adc.c **** {
+ 341:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 342:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_CHANNEL_SELECTION(Channel));
+ 343:../Source Files/lpc17xx_adc.c **** 
+ 344:../Source Files/lpc17xx_adc.c **** 	if (NewState == ENABLE) {
+ 345:../Source Files/lpc17xx_adc.c **** 		ADCx->ADCR |= ADC_CR_CH_SEL(Channel);
+ 503              		.loc 1 345 0
+ 504 01c4 0120     		movs	r0, #1
+ 505 01c6 00FA06F6 		lsl	r6, r0, r6
+ 506              	.LVL46:
+ 507 01ca 024B     		ldr	r3, .L38
+ 508 01cc 1A68     		ldr	r2, [r3, #0]
+ 509 01ce 1643     		orrs	r6, r6, r2
+ 510 01d0 1E60     		str	r6, [r3, #0]
+ 511              	.LBE5:
+ 512              	.LBE4:
+ 154:../Source Files/lpc17xx_adc.c **** }
+ 513              		.loc 1 154 0
+ 514 01d2 7CBD     		pop	{r2, r3, r4, r5, r6, pc}
+ 515              	.L39:
+ 516              		.align	2
+ 517              	.L38:
+ 518 01d4 00400340 		.word	1073954816
+ 519              		.cfi_endproc
+ 520              	.LFE56:
+ 522              		.align	1
+ 523              		.global	ADC_Config
+ 524              		.thumb
+ 525              		.thumb_func
+ 527              	ADC_Config:
+ 528              	.LFB55:
+  47:../Source Files/lpc17xx_adc.c **** {
+ 529              		.loc 1 47 0
+ 530              		.cfi_startproc
+ 531              		@ args = 0, pretend = 0, frame = 0
+ 532              		@ frame_needed = 0, uses_anonymous_args = 0
+ 533 01d8 10B5     		push	{r4, lr}
+ 534              	.LCFI3:
+ 535              		.cfi_def_cfa_offset 8
+ 536              		.cfi_offset 4, -8
+ 537              		.cfi_offset 14, -4
+  51:../Source Files/lpc17xx_adc.c **** 	ADC_Init(LPC_ADC, 200000);
+ 538              		.loc 1 51 0
+ 539 01da 064C     		ldr	r4, .L41
+ 540 01dc 0649     		ldr	r1, .L41+4
+ 541 01de 2046     		mov	r0, r4
+ 542 01e0 FFF7FEFF 		bl	ADC_Init
+ 543              	.LVL47:
+  54:../Source Files/lpc17xx_adc.c **** 	ADC_Channel_Config (LPC_ADC, ADC_CHANNEL_4, DISABLE);
+ 544              		.loc 1 54 0
+ 545 01e4 2046     		mov	r0, r4
+ 546 01e6 0421     		movs	r1, #4
+ 547 01e8 0022     		movs	r2, #0
+  55:../Source Files/lpc17xx_adc.c **** }
+ 548              		.loc 1 55 0
+ 549 01ea BDE81040 		pop	{r4, lr}
+  54:../Source Files/lpc17xx_adc.c **** 	ADC_Channel_Config (LPC_ADC, ADC_CHANNEL_4, DISABLE);
+ 550              		.loc 1 54 0
+ 551 01ee FFF7FEBF 		b	ADC_Channel_Config
+ 552              	.LVL48:
+ 553              	.L42:
+ 554 01f2 00BF     		.align	2
+ 555              	.L41:
+ 556 01f4 00400340 		.word	1073954816
+ 557 01f8 400D0300 		.word	200000
+ 558              		.cfi_endproc
+ 559              	.LFE55:
+ 561              		.align	1
+ 562              		.global	ADC_ChannelCmd
+ 563              		.thumb
+ 564              		.thumb_func
+ 566              	ADC_ChannelCmd:
+ 567              	.LFB65:
+ 340:../Source Files/lpc17xx_adc.c **** {
+ 568              		.loc 1 340 0
+ 569              		.cfi_startproc
+ 570              		@ args = 0, pretend = 0, frame = 0
+ 571              		@ frame_needed = 0, uses_anonymous_args = 0
+ 572              		@ link register save eliminated.
+ 573              	.LVL49:
+ 344:../Source Files/lpc17xx_adc.c **** 	if (NewState == ENABLE) {
+ 574              		.loc 1 344 0
+ 575 01fc 012A     		cmp	r2, #1
+ 576              		.loc 1 345 0
+ 577 01fe 0368     		ldr	r3, [r0, #0]
+ 344:../Source Files/lpc17xx_adc.c **** 	if (NewState == ENABLE) {
+ 578              		.loc 1 344 0
+ 579 0200 04D1     		bne	.L44
+ 580              		.loc 1 345 0
+ 581 0202 02FA01F2 		lsl	r2, r2, r1
+ 582              	.LVL50:
+ 583 0206 1A43     		orrs	r2, r2, r3
+ 584 0208 0260     		str	r2, [r0, #0]
+ 585 020a 7047     		bx	lr
+ 586              	.LVL51:
+ 587              	.L44:
+ 346:../Source Files/lpc17xx_adc.c **** 	} else {
+ 347:../Source Files/lpc17xx_adc.c **** 		ADCx->ADCR &= ~ADC_CR_CH_SEL(Channel);
+ 588              		.loc 1 347 0
+ 589 020c 0122     		movs	r2, #1
+ 590              	.LVL52:
+ 591 020e 02FA01F1 		lsl	r1, r2, r1
+ 592              	.LVL53:
+ 593 0212 23EA0103 		bic	r3, r3, r1
+ 594 0216 0360     		str	r3, [r0, #0]
+ 595 0218 7047     		bx	lr
+ 596              		.cfi_endproc
+ 597              	.LFE65:
+ 599              		.align	1
+ 600              		.global	ADC_ChannelGetData
+ 601              		.thumb
+ 602              		.thumb_func
+ 604              	ADC_ChannelGetData:
+ 605              	.LFB66:
+ 348:../Source Files/lpc17xx_adc.c **** 	}
+ 349:../Source Files/lpc17xx_adc.c **** }
+ 350:../Source Files/lpc17xx_adc.c **** 
+ 351:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 352:../Source Files/lpc17xx_adc.c **** * @brief 		Get ADC result
+ 353:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 354:../Source Files/lpc17xx_adc.c **** * @param[in]	channel: channel number, should be 0...7
+ 355:../Source Files/lpc17xx_adc.c **** * @return 		Data conversion
+ 356:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 357:../Source Files/lpc17xx_adc.c **** uint16_t ADC_ChannelGetData(LPC_ADC_TypeDef *ADCx, uint8_t channel)
+ 358:../Source Files/lpc17xx_adc.c **** {
+ 606              		.loc 1 358 0
+ 607              		.cfi_startproc
+ 608              		@ args = 0, pretend = 0, frame = 0
+ 609              		@ frame_needed = 0, uses_anonymous_args = 0
+ 610              		@ link register save eliminated.
+ 611              	.LVL54:
+ 359:../Source Files/lpc17xx_adc.c **** 	uint32_t adc_value;
+ 360:../Source Files/lpc17xx_adc.c **** 
+ 361:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 362:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_CHANNEL_SELECTION(channel));
+ 363:../Source Files/lpc17xx_adc.c **** 
+ 364:../Source Files/lpc17xx_adc.c **** 	adc_value = *(uint32_t *) ((&ADCx->ADDR0) + channel);
+ 612              		.loc 1 364 0
+ 613 021a 00EB8101 		add	r1, r0, r1, lsl #2
+ 614              	.LVL55:
+ 365:../Source Files/lpc17xx_adc.c **** 	return ADC_DR_RESULT(adc_value);
+ 615              		.loc 1 365 0
+ 616 021e 0869     		ldr	r0, [r1, #16]
+ 617              	.LVL56:
+ 366:../Source Files/lpc17xx_adc.c **** }
+ 618              		.loc 1 366 0
+ 619 0220 C0F30B10 		ubfx	r0, r0, #4, #12
+ 620 0224 7047     		bx	lr
+ 621              		.cfi_endproc
+ 622              	.LFE66:
+ 624              		.align	1
+ 625              		.global	ADC_ChannelGetStatus
+ 626              		.thumb
+ 627              		.thumb_func
+ 629              	ADC_ChannelGetStatus:
+ 630              	.LFB67:
+ 367:../Source Files/lpc17xx_adc.c **** 
+ 368:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 369:../Source Files/lpc17xx_adc.c **** * @brief 		Get ADC Chanel status from ADC data register
+ 370:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 371:../Source Files/lpc17xx_adc.c **** * @param[in]	channel: channel number, should be 0..7
+ 372:../Source Files/lpc17xx_adc.c **** * @param[in]  	StatusType
+ 373:../Source Files/lpc17xx_adc.c **** *              		 	0:Burst status
+ 374:../Source Files/lpc17xx_adc.c **** *               		1:Done 	status
+ 375:../Source Files/lpc17xx_adc.c **** * @return 		SET / RESET
+ 376:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 377:../Source Files/lpc17xx_adc.c **** FlagStatus ADC_ChannelGetStatus(LPC_ADC_TypeDef *ADCx, uint8_t channel, uint32_t StatusType)
+ 378:../Source Files/lpc17xx_adc.c **** {
+ 631              		.loc 1 378 0
+ 632              		.cfi_startproc
+ 633              		@ args = 0, pretend = 0, frame = 0
+ 634              		@ frame_needed = 0, uses_anonymous_args = 0
+ 635              		@ link register save eliminated.
+ 636              	.LVL57:
+ 379:../Source Files/lpc17xx_adc.c **** 	uint32_t temp;
+ 380:../Source Files/lpc17xx_adc.c **** 
+ 381:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 382:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_CHANNEL_SELECTION(channel));
+ 383:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_DATA_STATUS(StatusType));
+ 384:../Source Files/lpc17xx_adc.c **** 
+ 385:../Source Files/lpc17xx_adc.c **** 	temp =  *(uint32_t *) ((&ADCx->ADDR0) + channel);
+ 637              		.loc 1 385 0
+ 638 0226 00EB8101 		add	r1, r0, r1, lsl #2
+ 639              	.LVL58:
+ 640 022a 0869     		ldr	r0, [r1, #16]
+ 641              	.LVL59:
+ 386:../Source Files/lpc17xx_adc.c **** 	if (StatusType) {
+ 642              		.loc 1 386 0
+ 643 022c 12B1     		cbz	r2, .L48
+ 387:../Source Files/lpc17xx_adc.c **** 		temp &= ADC_DR_DONE_FLAG;
+ 644              		.loc 1 387 0
+ 645 022e 00F00042 		and	r2, r0, #-2147483648
+ 646              	.LVL60:
+ 647 0232 01E0     		b	.L49
+ 648              	.LVL61:
+ 649              	.L48:
+ 388:../Source Files/lpc17xx_adc.c **** 	}else{
+ 389:../Source Files/lpc17xx_adc.c **** 		temp &= ADC_DR_OVERRUN_FLAG;
+ 650              		.loc 1 389 0
+ 651 0234 00F08042 		and	r2, r0, #1073741824
+ 652              	.LVL62:
+ 653              	.L49:
+ 390:../Source Files/lpc17xx_adc.c **** 	}
+ 391:../Source Files/lpc17xx_adc.c **** 	if (temp) {
+ 392:../Source Files/lpc17xx_adc.c **** 		return SET;
+ 393:../Source Files/lpc17xx_adc.c **** 	} else {
+ 394:../Source Files/lpc17xx_adc.c **** 		return RESET;
+ 395:../Source Files/lpc17xx_adc.c **** 	}
+ 396:../Source Files/lpc17xx_adc.c **** 
+ 397:../Source Files/lpc17xx_adc.c **** }
+ 654              		.loc 1 397 0
+ 655 0238 101C     		adds	r0, r2, #0
+ 656 023a 18BF     		it	ne
+ 657 023c 0120     		movne	r0, #1
+ 658 023e 7047     		bx	lr
+ 659              		.cfi_endproc
+ 660              	.LFE67:
+ 662              		.align	1
+ 663              		.global	ADC_GlobalGetData
+ 664              		.thumb
+ 665              		.thumb_func
+ 667              	ADC_GlobalGetData:
+ 668              	.LFB68:
+ 398:../Source Files/lpc17xx_adc.c **** 
+ 399:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 400:../Source Files/lpc17xx_adc.c **** * @brief 		Get ADC Data from AD Global register
+ 401:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 402:../Source Files/lpc17xx_adc.c **** * @return 		Result of conversion
+ 403:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 404:../Source Files/lpc17xx_adc.c **** uint32_t ADC_GlobalGetData(LPC_ADC_TypeDef *ADCx)
+ 405:../Source Files/lpc17xx_adc.c **** {
+ 669              		.loc 1 405 0
+ 670              		.cfi_startproc
+ 671              		@ args = 0, pretend = 0, frame = 0
+ 672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 673              		@ link register save eliminated.
+ 674              	.LVL63:
+ 406:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 407:../Source Files/lpc17xx_adc.c **** 
+ 408:../Source Files/lpc17xx_adc.c **** 	return ((uint32_t)(ADCx->ADGDR));
+ 675              		.loc 1 408 0
+ 676 0240 4068     		ldr	r0, [r0, #4]
+ 677              	.LVL64:
+ 409:../Source Files/lpc17xx_adc.c **** }
+ 678              		.loc 1 409 0
+ 679 0242 7047     		bx	lr
+ 680              		.cfi_endproc
+ 681              	.LFE68:
+ 683              		.align	1
+ 684              		.global	ADC_GlobalGetStatus
+ 685              		.thumb
+ 686              		.thumb_func
+ 688              	ADC_GlobalGetStatus:
+ 689              	.LFB69:
+ 410:../Source Files/lpc17xx_adc.c **** 
+ 411:../Source Files/lpc17xx_adc.c **** /*********************************************************************//**
+ 412:../Source Files/lpc17xx_adc.c **** * @brief 		Get ADC Chanel status from AD global data register
+ 413:../Source Files/lpc17xx_adc.c **** * @param[in]	ADCx pointer to LPC_ADC_TypeDef, should be: LPC_ADC
+ 414:../Source Files/lpc17xx_adc.c **** * @param[in]  	StatusType
+ 415:../Source Files/lpc17xx_adc.c **** *              		 	0:Burst status
+ 416:../Source Files/lpc17xx_adc.c **** *               		1:Done 	status
+ 417:../Source Files/lpc17xx_adc.c **** * @return 		SET / RESET
+ 418:../Source Files/lpc17xx_adc.c **** **********************************************************************/
+ 419:../Source Files/lpc17xx_adc.c **** FlagStatus	ADC_GlobalGetStatus(LPC_ADC_TypeDef *ADCx, uint32_t StatusType)
+ 420:../Source Files/lpc17xx_adc.c **** {
+ 690              		.loc 1 420 0
+ 691              		.cfi_startproc
+ 692              		@ args = 0, pretend = 0, frame = 0
+ 693              		@ frame_needed = 0, uses_anonymous_args = 0
+ 694              		@ link register save eliminated.
+ 695              	.LVL65:
+ 421:../Source Files/lpc17xx_adc.c **** 	uint32_t temp;
+ 422:../Source Files/lpc17xx_adc.c **** 
+ 423:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADCx(ADCx));
+ 424:../Source Files/lpc17xx_adc.c **** 	CHECK_PARAM(PARAM_ADC_DATA_STATUS(StatusType));
+ 425:../Source Files/lpc17xx_adc.c **** 
+ 426:../Source Files/lpc17xx_adc.c **** 	temp =  ADCx->ADGDR;
+ 696              		.loc 1 426 0
+ 697 0244 4068     		ldr	r0, [r0, #4]
+ 698              	.LVL66:
+ 427:../Source Files/lpc17xx_adc.c **** 	if (StatusType){
+ 699              		.loc 1 427 0
+ 700 0246 11B1     		cbz	r1, .L52
+ 428:../Source Files/lpc17xx_adc.c **** 		temp &= ADC_DR_DONE_FLAG;
+ 701              		.loc 1 428 0
+ 702 0248 00F00041 		and	r1, r0, #-2147483648
+ 703              	.LVL67:
+ 704 024c 01E0     		b	.L53
+ 705              	.LVL68:
+ 706              	.L52:
+ 429:../Source Files/lpc17xx_adc.c **** 	}else{
+ 430:../Source Files/lpc17xx_adc.c **** 		temp &= ADC_DR_OVERRUN_FLAG;
+ 707              		.loc 1 430 0
+ 708 024e 00F08041 		and	r1, r0, #1073741824
+ 709              	.LVL69:
+ 710              	.L53:
+ 431:../Source Files/lpc17xx_adc.c **** 	}
+ 432:../Source Files/lpc17xx_adc.c **** 	if (temp){
+ 433:../Source Files/lpc17xx_adc.c **** 		return SET;
+ 434:../Source Files/lpc17xx_adc.c **** 	}else{
+ 435:../Source Files/lpc17xx_adc.c **** 		return RESET;
+ 436:../Source Files/lpc17xx_adc.c **** 	}
+ 437:../Source Files/lpc17xx_adc.c **** }
+ 711              		.loc 1 437 0
+ 712 0252 081C     		adds	r0, r1, #0
+ 713 0254 18BF     		it	ne
+ 714 0256 0120     		movne	r0, #1
+ 715 0258 7047     		bx	lr
+ 716              		.cfi_endproc
+ 717              	.LFE69:
+ 719              		.comm	I2C_Rx_Buf,64,1
+ 720              		.comm	I2C_Tx_Buf,64,1
+ 721              		.comm	Rx_Buf1,64,1
+ 722              		.comm	Tx_Buf1,64,1
+ 723              		.comm	TxIntStat,1,1
+ 724              		.comm	rb,528,4
+ 725              		.comm	EscFlag,2,2
+ 726              	.Letext0:
+ 727              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 728              		.file 3 "../CM3 Core/LPC17xx.h"
+ 729              		.file 4 "../Header Files/lpc_types.h"
+ 730              		.file 5 "../Header Files/lpc17xx_pinsel.h"
+ 731              		.file 6 "../Header Files/lpc17xx_uart.h"
+ 732              		.file 7 "../Header Files/lpc17xx_adc.h"
+ 733              		.file 8 "../CM3 Core/core_cm3.h"
+ 734              		.file 9 "../Header Files/lpc17xx_ssp.h"
+ 735              		.file 10 "../Header Files/lpc17xx_i2c.h"
+ 736              		.file 11 "../Header Files/lpc17xx_clkpwr.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc17xx_adc.c
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:23     .text:00000000 ADC_Init
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:79     .text:0000002e ADC_DeInit
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:107    .text:00000040 ADC_GetData
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:126    .text:0000004c $d
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:130    .text:00000050 $t
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:135    .text:00000050 ADC_StartCmd
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:161    .text:00000062 ADC_BurstCmd
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:190    .text:00000076 ADC_PowerdownCmd
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:219    .text:0000008a ADC_EdgeStartConfig
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:248    .text:0000009e ADC_IntConfig
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:284    .text:000000b8 ADC_Channel_Config
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:318    .text:000000ce $d
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:324    .text:000000d4 $t
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:518    .text:000001d4 $d
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:522    .text:000001d8 $t
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:527    .text:000001d8 ADC_Config
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:556    .text:000001f4 $d
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:561    .text:000001fc $t
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:566    .text:000001fc ADC_ChannelCmd
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:604    .text:0000021a ADC_ChannelGetData
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:629    .text:00000226 ADC_ChannelGetStatus
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:667    .text:00000240 ADC_GlobalGetData
+C:\Users\raghav\AppData\Local\Temp\cciO5tko.s:688    .text:00000244 ADC_GlobalGetStatus
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.34082f268f216caa8d0bf2c0960ad4a6
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+                           .group:00000000 wm4.lpc17xx_adc.h.52.08fc4ce44d561e85576ad6887b177e6d
+
+UNDEFINED SYMBOLS
+CLKPWR_ConfigPPWR
+CLKPWR_GetPCLK
+PINSEL_ConfigPin

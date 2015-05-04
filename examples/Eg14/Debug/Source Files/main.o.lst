@@ -1,0 +1,308 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_ui2d
+  19              		.global	__aeabi_ddiv
+  20              		.global	__aeabi_d2uiz
+  21              		.section	.text.startup,"ax",%progbits
+  22              		.align	1
+  23              		.global	main
+  24              		.thumb
+  25              		.thumb_func
+  27              	main:
+  28              	.LFB55:
+  29              		.file 1 "../Source Files/main.c"
+   1:../Source Files/main.c **** /**********************************************************************
+   2:../Source Files/main.c **** * $Id$		main.c
+   3:../Source Files/main.c **** *//**
+   4:../Source Files/main.c **** * @file		main.c
+   5:../Source Files/main.c **** * @brief	Write a program to Display Bar Graph
+   6:../Source Files/main.c **** *           which vary according to ADC value
+   7:../Source Files/main.c **** * @version	1.0
+   8:../Source Files/main.c **** * @date		09. Dec. 2013
+   9:../Source Files/main.c **** * @author	Dwijay.Edutech Learning Solutions
+  10:../Source Files/main.c **** ***********************************************************************
+  11:../Source Files/main.c **** * Software that is described herein is for illustrative purposes only
+  12:../Source Files/main.c **** * which provides customers with programming information regarding the
+  13:../Source Files/main.c **** * products. This software is supplied "AS IS" without any warranties.
+  14:../Source Files/main.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  15:../Source Files/main.c **** * use of the software, conveys no license or title under any patent,
+  16:../Source Files/main.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  17:../Source Files/main.c **** * reserves the right to make changes in the software without
+  18:../Source Files/main.c **** * notification. NXP Semiconductors also make no representation or
+  19:../Source Files/main.c **** * warranty that such application will be suitable for the specified
+  20:../Source Files/main.c **** * use without further testing or modification.
+  21:../Source Files/main.c **** **********************************************************************/
+  22:../Source Files/main.c **** #include "lpc_system_init.h"
+  23:../Source Files/main.c **** 
+  24:../Source Files/main.c **** /* Example group ----------------------------------------------------------- */
+  25:../Source Files/main.c **** /** @defgroup TGLCD
+  26:../Source Files/main.c ****  * @ingroup TGLCD_Examples
+  27:../Source Files/main.c ****  * @{
+  28:../Source Files/main.c ****  */
+  29:../Source Files/main.c **** 
+  30:../Source Files/main.c **** 
+  31:../Source Files/main.c **** /*-------------------------PRIVATE Variables------------------------------*/
+  32:../Source Files/main.c **** 
+  33:../Source Files/main.c **** 
+  34:../Source Files/main.c **** /*-------------------------MAIN Page------------------------------*/
+  35:../Source Files/main.c **** /** @mainpage GLCD Test Example
+  36:../Source Files/main.c **** *   @par Description:
+  37:../Source Files/main.c **** *   - Display Bar Graph which vary according to ADC value
+  38:../Source Files/main.c **** *
+  39:../Source Files/main.c **** *   @par Activity - more information:
+  40:../Source Files/main.c **** *   - Connect GLCD with EPB1768 and as you move potentiometer
+  41:../Source Files/main.c **** *     you will see the bar graph responding with it
+  42:../Source Files/main.c **** */
+  43:../Source Files/main.c **** /*-------------------------MAIN FUNCTION------------------------------*/
+  44:../Source Files/main.c **** /*********************************************************************//**
+  45:../Source Files/main.c ****  * @brief	Main GLCD testing example sub-routine
+  46:../Source Files/main.c ****  **********************************************************************/
+  47:../Source Files/main.c **** 
+  48:../Source Files/main.c **** /* With ARM and GHS toolsets, the entry point is main() - this will
+  49:../Source Files/main.c ****    allow the linker to generate wrapper code to setup stacks, allocate
+  50:../Source Files/main.c ****    heap area, and initialize and copy code and data segments. For GNU
+  51:../Source Files/main.c ****    toolsets, the entry point is through __start() in the crt0_gnu.asm
+  52:../Source Files/main.c ****    file, and that startup code will setup stacks and data */
+  53:../Source Files/main.c **** int main(void)
+  54:../Source Files/main.c **** {
+  30              		.loc 1 54 0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              	.LVL0:
+  35 0000 73B5     		push	{r0, r1, r4, r5, r6, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 24
+  38              		.cfi_offset 0, -24
+  39              		.cfi_offset 1, -20
+  40              		.cfi_offset 4, -16
+  41              		.cfi_offset 5, -12
+  42              		.cfi_offset 6, -8
+  43              		.cfi_offset 14, -4
+  55:../Source Files/main.c **** 	uint32_t adc_value;
+  56:../Source Files/main.c **** 	uint16_t PercentBy2;
+  57:../Source Files/main.c **** 	int16_t prev=0,diff,y_ref;
+  58:../Source Files/main.c **** 	System_Init();                        // Initialize System
+  44              		.loc 1 58 0
+  45 0002 FFF7FEFF 		bl	System_Init
+  46              	.LVL1:
+  59:../Source Files/main.c **** 
+  60:../Source Files/main.c **** 	GLCD_Clear(White);
+  47              		.loc 1 60 0
+  48 0006 4FF6FF70 		movw	r0, #65535
+  49 000a FFF7FEFF 		bl	GLCD_Clear
+  50              	.LVL2:
+  61:../Source Files/main.c **** 
+  62:../Source Files/main.c **** 	y_ref=219;
+  63:../Source Files/main.c **** 	Show_BarGraph();                      // Show Bar Graph layout
+  51              		.loc 1 63 0
+  52 000e FFF7FEFF 		bl	Show_BarGraph
+  53              	.LVL3:
+  62:../Source Files/main.c **** 	y_ref=219;
+  54              		.loc 1 62 0
+  55 0012 DB24     		movs	r4, #219
+  57:../Source Files/main.c **** 	int16_t prev=0,diff,y_ref;
+  56              		.loc 1 57 0
+  57 0014 0025     		movs	r5, #0
+  58              	.LVL4:
+  59              	.L5:
+  64:../Source Files/main.c ****     while(1)
+  65:../Source Files/main.c ****     {
+  66:../Source Files/main.c **** 		// Start conversion
+  67:../Source Files/main.c **** 		ADC_StartCmd(LPC_ADC, ADC_START_NOW);  // start ADC conversion
+  60              		.loc 1 67 0
+  61 0016 1E48     		ldr	r0, .L15+8
+  62 0018 0121     		movs	r1, #1
+  63 001a FFF7FEFF 		bl	ADC_StartCmd
+  64              	.LVL5:
+  65              	.L2:
+  68:../Source Files/main.c **** 
+  69:../Source Files/main.c **** 		//Wait conversion complete
+  70:../Source Files/main.c **** 		while (!(ADC_ChannelGetStatus(LPC_ADC, ADC_CHANNEL_4, ADC_DATA_DONE)));
+  66              		.loc 1 70 0 discriminator 1
+  67 001e 1C48     		ldr	r0, .L15+8
+  68 0020 0421     		movs	r1, #4
+  69 0022 0122     		movs	r2, #1
+  70 0024 FFF7FEFF 		bl	ADC_ChannelGetStatus
+  71              	.LVL6:
+  72 0028 0028     		cmp	r0, #0
+  73 002a F8D0     		beq	.L2
+  71:../Source Files/main.c **** 		adc_value = ADC_ChannelGetData(LPC_ADC, ADC_CHANNEL_4); // store converted value
+  74              		.loc 1 71 0
+  75 002c 0421     		movs	r1, #4
+  76 002e 1848     		ldr	r0, .L15+8
+  77 0030 FFF7FEFF 		bl	ADC_ChannelGetData
+  78              	.LVL7:
+  72:../Source Files/main.c **** 		PercentBy2 = (uint16_t)(adc_value/20.475);              // scale value with respect to Bar height
+  79              		.loc 1 72 0
+  80 0034 FFF7FEFF 		bl	__aeabi_ui2d
+  81              	.LVL8:
+  82 0038 13A3     		adr	r3, .L15
+  83 003a D3E90023 		ldrd	r2, [r3]
+  84 003e FFF7FEFF 		bl	__aeabi_ddiv
+  85              	.LVL9:
+  86 0042 FFF7FEFF 		bl	__aeabi_d2uiz
+  87              	.LVL10:
+  88 0046 0646     		mov	r6, r0	@ movhi
+  89              	.LVL11:
+  73:../Source Files/main.c **** 		//Display the result of conversion on the UART0
+  74:../Source Files/main.c **** 	//	printf(LPC_UART0,"\x1b[1;1H ADC value on channel 4: %d04", adc_value);
+  75:../Source Files/main.c **** 
+  76:../Source Files/main.c **** 		diff = prev - PercentBy2;       // find difference
+  90              		.loc 1 76 0
+  91 0048 AD1B     		subs	r5, r5, r6
+  92              	.LVL12:
+  93 004a ADB2     		uxth	r5, r5
+  94 004c AAB2     		uxth	r2, r5
+  95              	.LVL13:
+  77:../Source Files/main.c **** 		if(diff < 0)   // negative diff shows bar value incresed over past value
+  96              		.loc 1 77 0
+  97 004e 13B2     		sxth	r3, r2
+  98 0050 002B     		cmp	r3, #0
+  99 0052 0ADA     		bge	.L3
+ 100              	.LVL14:
+  78:../Source Files/main.c **** 		{
+  79:../Source Files/main.c **** 			diff = -diff;   // change sign
+  80:../Source Files/main.c **** 			GLCD_LBar(1,24,y_ref,diff,0,Green); // Plot lines
+ 101              		.loc 1 80 0
+ 102 0054 0021     		movs	r1, #0
+ 103 0056 4FF4FC62 		mov	r2, #2016
+  79:../Source Files/main.c **** 			diff = -diff;   // change sign
+ 104              		.loc 1 79 0
+ 105 005a 6B42     		negs	r3, r5
+ 106              		.loc 1 80 0
+ 107 005c 8DE80600 		stmia	sp, {r1, r2}
+ 108 0060 0120     		movs	r0, #1
+ 109              	.LVL15:
+ 110 0062 1821     		movs	r1, #24
+ 111 0064 22B2     		sxth	r2, r4
+ 112 0066 1BB2     		sxth	r3, r3
+ 113 0068 07E0     		b	.L13
+ 114              	.LVL16:
+ 115              	.L3:
+  81:../Source Files/main.c **** 			y_ref=y_ref-diff;                   // new y_ref
+  82:../Source Files/main.c **** 		}
+  83:../Source Files/main.c **** 		else if(diff>0) // positive diff shows bar value decresed over past value
+ 116              		.loc 1 83 0
+ 117 006a 52B1     		cbz	r2, .L4
+  84:../Source Files/main.c **** 		{
+  85:../Source Files/main.c **** 			GLCD_LBar(1,24,y_ref,diff,1,White); // set decrement bar flag and plot lines
+ 118              		.loc 1 85 0
+ 119 006c 4FF6FF72 		movw	r2, #65535
+ 120 0070 0120     		movs	r0, #1
+ 121              	.LVL17:
+ 122 0072 8DE80500 		stmia	sp, {r0, r2}
+ 123 0076 1821     		movs	r1, #24
+ 124 0078 22B2     		sxth	r2, r4
+ 125              	.LVL18:
+ 126              	.L13:
+ 127 007a FFF7FEFF 		bl	GLCD_LBar
+ 128              	.LVL19:
+  86:../Source Files/main.c **** 			y_ref=y_ref+diff;                   // new y_ref
+ 129              		.loc 1 86 0
+ 130 007e 2C19     		adds	r4, r5, r4
+ 131              	.LVL20:
+ 132 0080 A4B2     		uxth	r4, r4
+ 133              	.LVL21:
+ 134              	.L4:
+  87:../Source Files/main.c **** 		}
+  88:../Source Files/main.c **** 
+  89:../Source Files/main.c **** 		prev = PercentBy2;   // store value as previous value
+ 135              		.loc 1 89 0
+ 136 0082 B5B2     		uxth	r5, r6
+ 137              	.LVL22:
+  90:../Source Files/main.c ****     }
+ 138              		.loc 1 90 0
+ 139 0084 C7E7     		b	.L5
+ 140              	.L16:
+ 141 0086 00BF     		.align	3
+ 142              	.L15:
+ 143 0088 9A999999 		.word	-1717986918
+ 144 008c 99793440 		.word	1077180825
+ 145 0090 00400340 		.word	1073954816
+ 146              		.cfi_endproc
+ 147              	.LFE55:
+ 149              		.comm	I2C_Rx_Buf,64,1
+ 150              		.comm	I2C_Tx_Buf,64,1
+ 151              		.comm	Rx_Buf1,64,1
+ 152              		.comm	Tx_Buf1,64,1
+ 153              		.comm	TxIntStat,1,1
+ 154              		.comm	rb,528,4
+ 155              		.comm	EscFlag,2,2
+ 156 0094 AFF30080 		.text
+ 157              	.Letext0:
+ 158              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 159              		.file 3 "../CM3 Core/LPC17xx.h"
+ 160              		.file 4 "../Header Files/lpc_types.h"
+ 161              		.file 5 "../Header Files/lpc17xx_uart.h"
+ 162              		.file 6 "../Header Files/lpc17xx_adc.h"
+ 163              		.file 7 "../CM3 Core/core_cm3.h"
+ 164              		.file 8 "../Header Files/lpc17xx_ssp.h"
+ 165              		.file 9 "../Header Files/lpc17xx_i2c.h"
+ 166              		.file 10 "../Header Files/lpc_system_init.h"
+ 167              		.file 11 "../Header Files/lpc_ssp_glcd.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\raghav\AppData\Local\Temp\ccIj2jmW.s:22     .text.startup:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\ccIj2jmW.s:27     .text.startup:00000000 main
+C:\Users\raghav\AppData\Local\Temp\ccIj2jmW.s:143    .text.startup:00000088 $d
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+C:\Users\raghav\AppData\Local\Temp\ccIj2jmW.s:156    .text.startup:00000094 $t
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.34082f268f216caa8d0bf2c0960ad4a6
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+                           .group:00000000 wm4.lpc17xx_adc.h.30.943bee91a8c97854e4279a602f57e741
+
+UNDEFINED SYMBOLS
+__aeabi_ui2d
+__aeabi_ddiv
+__aeabi_d2uiz
+System_Init
+GLCD_Clear
+Show_BarGraph
+ADC_StartCmd
+ADC_ChannelGetStatus
+ADC_ChannelGetData
+GLCD_LBar
