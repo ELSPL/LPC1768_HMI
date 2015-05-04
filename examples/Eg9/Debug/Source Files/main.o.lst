@@ -1,0 +1,195 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.startup,"ax",%progbits
+  19              		.align	1
+  20              		.global	main
+  21              		.thumb
+  22              		.thumb_func
+  24              	main:
+  25              	.LFB55:
+  26              		.file 1 "../Source Files/main.c"
+   1:../Source Files/main.c **** /**********************************************************************
+   2:../Source Files/main.c **** * $Id$		main.c
+   3:../Source Files/main.c **** *//**
+   4:../Source Files/main.c **** * @file		main.c
+   5:../Source Files/main.c **** * @brief	Draw a Frame with some width of different fill color
+   6:../Source Files/main.c **** * @version	1.0
+   7:../Source Files/main.c **** * @date		09. Dec. 2013
+   8:../Source Files/main.c **** * @author	Dwijay.Edutech Learning Solutions
+   9:../Source Files/main.c **** ***********************************************************************
+  10:../Source Files/main.c **** * Software that is described herein is for illustrative purposes only
+  11:../Source Files/main.c **** * which provides customers with programming information regarding the
+  12:../Source Files/main.c **** * products. This software is supplied "AS IS" without any warranties.
+  13:../Source Files/main.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  14:../Source Files/main.c **** * use of the software, conveys no license or title under any patent,
+  15:../Source Files/main.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  16:../Source Files/main.c **** * reserves the right to make changes in the software without
+  17:../Source Files/main.c **** * notification. NXP Semiconductors also make no representation or
+  18:../Source Files/main.c **** * warranty that such application will be suitable for the specified
+  19:../Source Files/main.c **** * use without further testing or modification.
+  20:../Source Files/main.c **** **********************************************************************/
+  21:../Source Files/main.c **** #include "lpc_system_init.h"
+  22:../Source Files/main.c **** 
+  23:../Source Files/main.c **** /* Example group ----------------------------------------------------------- */
+  24:../Source Files/main.c **** /** @defgroup TGLCD
+  25:../Source Files/main.c ****  * @ingroup TGLCD_Examples
+  26:../Source Files/main.c ****  * @{
+  27:../Source Files/main.c ****  */
+  28:../Source Files/main.c **** 
+  29:../Source Files/main.c **** 
+  30:../Source Files/main.c **** /*-------------------------PRIVATE Variables------------------------------*/
+  31:../Source Files/main.c **** 
+  32:../Source Files/main.c **** 
+  33:../Source Files/main.c **** /*-------------------------MAIN Page------------------------------*/
+  34:../Source Files/main.c **** /** @mainpage GLCD Test Example
+  35:../Source Files/main.c **** *   @par Description:
+  36:../Source Files/main.c **** *   - Use Empty Rectangles to create Frame of select-able
+  37:../Source Files/main.c **** *     fill and boundary color
+  38:../Source Files/main.c **** *
+  39:../Source Files/main.c **** *   @par Activity - more information:
+  40:../Source Files/main.c **** *   - Connect GLCD to EPB1768 and observe Frame drawn on TFT
+  41:../Source Files/main.c **** */
+  42:../Source Files/main.c **** /*-------------------------MAIN FUNCTION------------------------------*/
+  43:../Source Files/main.c **** /*********************************************************************//**
+  44:../Source Files/main.c ****  * @brief	Main GLCD testing example sub-routine
+  45:../Source Files/main.c ****  **********************************************************************/
+  46:../Source Files/main.c **** 
+  47:../Source Files/main.c **** /* With ARM and GHS toolsets, the entry point is main() - this will
+  48:../Source Files/main.c ****    allow the linker to generate wrapper code to setup stacks, allocate
+  49:../Source Files/main.c ****    heap area, and initialize and copy code and data segments. For GNU
+  50:../Source Files/main.c ****    toolsets, the entry point is through __start() in the crt0_gnu.asm
+  51:../Source Files/main.c ****    file, and that startup code will setup stacks and data */
+  52:../Source Files/main.c **** int main(void)
+  53:../Source Files/main.c **** {
+  27              		.loc 1 53 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 1FB5     		push	{r0, r1, r2, r3, r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 24
+  34              		.cfi_offset 0, -24
+  35              		.cfi_offset 1, -20
+  36              		.cfi_offset 2, -16
+  37              		.cfi_offset 3, -12
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  54:../Source Files/main.c **** 	COORDINATE_Type point1,point2;
+  55:../Source Files/main.c **** 	System_Init();                             // Initialize System
+  40              		.loc 1 55 0
+  41 0002 FFF7FEFF 		bl	System_Init
+  42              	.LVL0:
+  56:../Source Files/main.c **** 
+  57:../Source Files/main.c **** 	/*Coordinates*/
+  58:../Source Files/main.c **** 	point1.x = 20;
+  59:../Source Files/main.c **** 	point1.y = 20;
+  60:../Source Files/main.c **** 	point2.x = 80;
+  43              		.loc 1 60 0
+  44 0006 5020     		movs	r0, #80
+  58:../Source Files/main.c **** 	point1.x = 20;
+  45              		.loc 1 58 0
+  46 0008 1423     		movs	r3, #20
+  47              		.loc 1 60 0
+  48 000a ADF80C00 		strh	r0, [sp, #12]	@ movhi
+  61:../Source Files/main.c **** 	point2.y = 80;
+  49              		.loc 1 61 0
+  50 000e ADF80E00 		strh	r0, [sp, #14]	@ movhi
+  62:../Source Files/main.c **** 
+  63:../Source Files/main.c **** 	GLCD_Clear(White);
+  51              		.loc 1 63 0
+  52 0012 4FF6FF70 		movw	r0, #65535
+  58:../Source Files/main.c **** 	point1.x = 20;
+  53              		.loc 1 58 0
+  54 0016 ADF80830 		strh	r3, [sp, #8]	@ movhi
+  59:../Source Files/main.c **** 	point1.y = 20;
+  55              		.loc 1 59 0
+  56 001a ADF80A30 		strh	r3, [sp, #10]	@ movhi
+  57              		.loc 1 63 0
+  58 001e FFF7FEFF 		bl	GLCD_Clear
+  59              	.LVL1:
+  64:../Source Files/main.c **** 	GLCD_Frame (&point1,&point2,22,Blue,Green); // Draw a Frame with 3 fill width
+  60              		.loc 1 64 0
+  61 0022 4FF4FC61 		mov	r1, #2016
+  62 0026 0091     		str	r1, [sp, #0]
+  63 0028 02A8     		add	r0, sp, #8
+  64 002a 03A9     		add	r1, sp, #12
+  65 002c 1622     		movs	r2, #22
+  66 002e 1F23     		movs	r3, #31
+  67 0030 FFF7FEFF 		bl	GLCD_Frame
+  68              	.LVL2:
+  69              	.L2:
+  70 0034 FEE7     		b	.L2
+  71              		.cfi_endproc
+  72              	.LFE55:
+  74              		.comm	I2C_Rx_Buf,64,1
+  75              		.comm	I2C_Tx_Buf,64,1
+  76              		.comm	Rx_Buf1,64,1
+  77              		.comm	Tx_Buf1,64,1
+  78              		.comm	TxIntStat,1,1
+  79              		.comm	rb,528,4
+  80              		.comm	EscFlag,2,2
+  81              		.text
+  82              	.Letext0:
+  83              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+  84              		.file 3 "../Header Files/lpc_types.h"
+  85              		.file 4 "../Header Files/lpc17xx_uart.h"
+  86              		.file 5 "../Header Files/lpc_ssp_glcd.h"
+  87              		.file 6 "../CM3 Core/core_cm3.h"
+  88              		.file 7 "../Header Files/lpc17xx_ssp.h"
+  89              		.file 8 "../Header Files/lpc17xx_i2c.h"
+  90              		.file 9 "../Header Files/lpc_system_init.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\raghav\AppData\Local\Temp\ccY65UDm.s:19     .text.startup:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\ccY65UDm.s:24     .text.startup:00000000 main
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.34082f268f216caa8d0bf2c0960ad4a6
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+
+UNDEFINED SYMBOLS
+System_Init
+GLCD_Clear
+GLCD_Frame
