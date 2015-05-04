@@ -1,0 +1,682 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc_mat_kb.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	1
+  19              		.global	Mat_Kb_Config
+  20              		.thumb
+  21              		.thumb_func
+  23              	Mat_Kb_Config:
+  24              	.LFB55:
+  25              		.file 1 "../Source Files/lpc_mat_kb.c"
+   1:../Source Files/lpc_mat_kb.c **** /**********************************************************************
+   2:../Source Files/lpc_mat_kb.c **** * $Id$		lpc_mat_kb.c
+   3:../Source Files/lpc_mat_kb.c **** *//**
+   4:../Source Files/lpc_mat_kb.c **** * @file		lpc_mat_kb.c
+   5:../Source Files/lpc_mat_kb.c **** * @brief	Contains all functions support for Matrix Keyboard library
+   6:../Source Files/lpc_mat_kb.c **** * 			on LPC17xx
+   7:../Source Files/lpc_mat_kb.c **** * @version	1.0
+   8:../Source Files/lpc_mat_kb.c **** * @date		21. Nov. 2013
+   9:../Source Files/lpc_mat_kb.c **** * @author	Dwijay.Edutech Learning Solutions
+  10:../Source Files/lpc_mat_kb.c **** ***********************************************************************
+  11:../Source Files/lpc_mat_kb.c **** * Software that is described herein is for illustrative purposes only
+  12:../Source Files/lpc_mat_kb.c **** * which provides customers with programming information regarding the
+  13:../Source Files/lpc_mat_kb.c **** * products. This software is supplied "AS IS" without any warranties.
+  14:../Source Files/lpc_mat_kb.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  15:../Source Files/lpc_mat_kb.c **** * use of the software, conveys no license or title under any patent,
+  16:../Source Files/lpc_mat_kb.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  17:../Source Files/lpc_mat_kb.c **** * reserves the right to make changes in the software without
+  18:../Source Files/lpc_mat_kb.c **** * notification. NXP Semiconductors also make no representation or
+  19:../Source Files/lpc_mat_kb.c **** * warranty that such application will be suitable for the specified
+  20:../Source Files/lpc_mat_kb.c **** * use without further testing or modification.
+  21:../Source Files/lpc_mat_kb.c **** **********************************************************************/
+  22:../Source Files/lpc_mat_kb.c **** 
+  23:../Source Files/lpc_mat_kb.c **** /* Peripheral group ----------------------------------------------------------- */
+  24:../Source Files/lpc_mat_kb.c **** /** @addtogroup MAT_KB
+  25:../Source Files/lpc_mat_kb.c ****  * @{
+  26:../Source Files/lpc_mat_kb.c ****  */
+  27:../Source Files/lpc_mat_kb.c **** 
+  28:../Source Files/lpc_mat_kb.c **** /* Includes ------------------------------------------------------------------- */
+  29:../Source Files/lpc_mat_kb.c **** #include "lpc_system_init.h"
+  30:../Source Files/lpc_mat_kb.c **** #include "lpc_mat_kb.h"
+  31:../Source Files/lpc_mat_kb.c **** 
+  32:../Source Files/lpc_mat_kb.c **** /* If this source file built with example, the LPC17xx FW library configuration
+  33:../Source Files/lpc_mat_kb.c ****  * file in each example directory ("lpc17xx_libcfg.h") must be included,
+  34:../Source Files/lpc_mat_kb.c ****  * otherwise the default FW library configuration file must be included instead
+  35:../Source Files/lpc_mat_kb.c ****  */
+  36:../Source Files/lpc_mat_kb.c **** 
+  37:../Source Files/lpc_mat_kb.c **** uchar Find_Column (void);
+  38:../Source Files/lpc_mat_kb.c **** uchar Find_Row (void);
+  39:../Source Files/lpc_mat_kb.c **** void Col_High (void);
+  40:../Source Files/lpc_mat_kb.c **** void Row_High (void);
+  41:../Source Files/lpc_mat_kb.c **** void Row_Low (void);
+  42:../Source Files/lpc_mat_kb.c **** 
+  43:../Source Files/lpc_mat_kb.c **** 
+  44:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+  45:../Source Files/lpc_mat_kb.c ****  * @brief	    This routine configures pin assignment
+  46:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+  47:../Source Files/lpc_mat_kb.c ****  * @return 		None
+  48:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+  49:../Source Files/lpc_mat_kb.c **** void Mat_Kb_Config (void)
+  50:../Source Files/lpc_mat_kb.c **** {
+  26              		.loc 1 50 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  51:../Source Files/lpc_mat_kb.c **** 	GPIO_SetDir(0, _SBF(19,0x03), 1);  // Set P0.19 & P0.20 as ROW output
+  30              		.loc 1 51 0
+  31 0000 0020     		movs	r0, #0
+  32 0002 0122     		movs	r2, #1
+  50:../Source Files/lpc_mat_kb.c **** {
+  33              		.loc 1 50 0
+  34 0004 08B5     		push	{r3, lr}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 3, -8
+  38              		.cfi_offset 14, -4
+  39              		.loc 1 51 0
+  40 0006 4FF4C011 		mov	r1, #1572864
+  41 000a FFF7FEFF 		bl	GPIO_SetDir
+  42              	.LVL0:
+  52:../Source Files/lpc_mat_kb.c **** 	GPIO_SetDir(0, _SBF(21,0x03), 0);  // Set P0.21 & P0.22 as COL input
+  43              		.loc 1 52 0
+  44 000e 0020     		movs	r0, #0
+  45 0010 4FF4C001 		mov	r1, #6291456
+  46 0014 0246     		mov	r2, r0
+  53:../Source Files/lpc_mat_kb.c **** }
+  47              		.loc 1 53 0
+  48 0016 BDE80840 		pop	{r3, lr}
+  52:../Source Files/lpc_mat_kb.c **** 	GPIO_SetDir(0, _SBF(21,0x03), 0);  // Set P0.21 & P0.22 as COL input
+  49              		.loc 1 52 0
+  50 001a FFF7FEBF 		b	GPIO_SetDir
+  51              	.LVL1:
+  52              		.cfi_endproc
+  53              	.LFE55:
+  55              		.align	1
+  56              		.global	Scan_Key
+  57              		.thumb
+  58              		.thumb_func
+  60              	Scan_Key:
+  61              	.LFB57:
+  54:../Source Files/lpc_mat_kb.c **** 
+  55:../Source Files/lpc_mat_kb.c **** 
+  56:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+  57:../Source Files/lpc_mat_kb.c ****  * @brief	    This function initializes matrix keyboard.
+  58:../Source Files/lpc_mat_kb.c ****  *              Make ROWs as o/p & Columns as an i/p.
+  59:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+  60:../Source Files/lpc_mat_kb.c ****  * @return 		None
+  61:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+  62:../Source Files/lpc_mat_kb.c **** void Mat_Kb_Init (void)
+  63:../Source Files/lpc_mat_kb.c **** {
+  64:../Source Files/lpc_mat_kb.c **** 	Mat_Kb_Config();
+  65:../Source Files/lpc_mat_kb.c **** 
+  66:../Source Files/lpc_mat_kb.c ****     Col_High();
+  67:../Source Files/lpc_mat_kb.c **** 	Row_Low();
+  68:../Source Files/lpc_mat_kb.c **** }
+  69:../Source Files/lpc_mat_kb.c **** 
+  70:../Source Files/lpc_mat_kb.c **** 
+  71:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+  72:../Source Files/lpc_mat_kb.c ****  * @brief	    This function will scan whether any key is pressed or not
+  73:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+  74:../Source Files/lpc_mat_kb.c ****  * @return 		Returns Status of Key Pressed
+  75:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+  76:../Source Files/lpc_mat_kb.c **** uchar Scan_Key (void)
+  77:../Source Files/lpc_mat_kb.c **** {
+  62              		.loc 1 77 0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              	.LVL2:
+  67 001e 10B5     		push	{r4, lr}
+  68              	.LCFI1:
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 4, -8
+  71              		.cfi_offset 14, -4
+  78:../Source Files/lpc_mat_kb.c **** 	uchar ReadValue = 0,COL1,COL2;
+  79:../Source Files/lpc_mat_kb.c **** 	uint32_t col1,col2;
+  80:../Source Files/lpc_mat_kb.c **** 	col1 = GPIO_ReadValue(0);
+  72              		.loc 1 80 0
+  73 0020 0020     		movs	r0, #0
+  74 0022 FFF7FEFF 		bl	GPIO_ReadValue
+  75              	.LVL3:
+  76 0026 0446     		mov	r4, r0
+  77              	.LVL4:
+  81:../Source Files/lpc_mat_kb.c **** 	col2 = GPIO_ReadValue(0);
+  78              		.loc 1 81 0
+  79 0028 0020     		movs	r0, #0
+  80              	.LVL5:
+  81 002a FFF7FEFF 		bl	GPIO_ReadValue
+  82              	.LVL6:
+  82:../Source Files/lpc_mat_kb.c **** 	col1 &= 0x00200000;
+  83:../Source Files/lpc_mat_kb.c **** 	col2 &= 0x00400000;
+  84:../Source Files/lpc_mat_kb.c **** 	if(col1 == 0x00200000)
+  85:../Source Files/lpc_mat_kb.c **** 	{
+  86:../Source Files/lpc_mat_kb.c **** 		COL1 = 1;
+  87:../Source Files/lpc_mat_kb.c **** 	}
+  88:../Source Files/lpc_mat_kb.c **** 	else
+  89:../Source Files/lpc_mat_kb.c **** 	{
+  90:../Source Files/lpc_mat_kb.c **** 		COL1 = 0;
+  91:../Source Files/lpc_mat_kb.c **** 	}
+  92:../Source Files/lpc_mat_kb.c **** 
+  93:../Source Files/lpc_mat_kb.c **** 	if(col2 == 0x00400000)
+  83              		.loc 1 93 0
+  84 002e C0F38050 		ubfx	r0, r0, #22, #1
+  85              	.LVL7:
+  94:../Source Files/lpc_mat_kb.c **** 	{
+  95:../Source Files/lpc_mat_kb.c **** 		COL2 = 1;
+  96:../Source Files/lpc_mat_kb.c **** 	}
+  97:../Source Files/lpc_mat_kb.c **** 	else
+  98:../Source Files/lpc_mat_kb.c **** 	{
+  99:../Source Files/lpc_mat_kb.c **** 		COL2 = 0;
+ 100:../Source Files/lpc_mat_kb.c **** 	}
+ 101:../Source Files/lpc_mat_kb.c **** 
+ 102:../Source Files/lpc_mat_kb.c **** 	#if MATKB_2X2
+ 103:../Source Files/lpc_mat_kb.c **** 	    ReadValue = (COL1 & COL2);
+  86              		.loc 1 103 0
+  87 0032 00EA5451 		and	r1, r0, r4, lsr #21
+ 104:../Source Files/lpc_mat_kb.c **** 	#endif
+ 105:../Source Files/lpc_mat_kb.c **** 
+ 106:../Source Files/lpc_mat_kb.c **** 	if((ReadValue != 1))
+ 107:../Source Files/lpc_mat_kb.c **** 	    return(1);
+ 108:../Source Files/lpc_mat_kb.c **** 	else
+ 109:../Source Files/lpc_mat_kb.c **** 	    return(0);
+ 110:../Source Files/lpc_mat_kb.c **** }
+  88              		.loc 1 110 0
+  89 0036 81F00100 		eor	r0, r1, #1
+  90 003a 10BD     		pop	{r4, pc}
+  91              		.cfi_endproc
+  92              	.LFE57:
+  94              		.align	1
+  95              		.global	Find_Column
+  96              		.thumb
+  97              		.thumb_func
+  99              	Find_Column:
+ 100              	.LFB59:
+ 111:../Source Files/lpc_mat_kb.c **** 
+ 112:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+ 113:../Source Files/lpc_mat_kb.c ****  * @brief	    This function detects whether any key is pressed or
+ 114:../Source Files/lpc_mat_kb.c ****  *              not also returns its its location
+ 115:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+ 116:../Source Files/lpc_mat_kb.c ****  * @return 		Returns Pressed Key Code
+ 117:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+ 118:../Source Files/lpc_mat_kb.c **** uint16 Detect_Mat_Key(void)
+ 119:../Source Files/lpc_mat_kb.c **** {
+ 120:../Source Files/lpc_mat_kb.c ****     uchar Col = 0,Row = 0,Key = 0;
+ 121:../Source Files/lpc_mat_kb.c **** 
+ 122:../Source Files/lpc_mat_kb.c ****     Row = Find_Row();
+ 123:../Source Files/lpc_mat_kb.c ****     Col = Find_Column();
+ 124:../Source Files/lpc_mat_kb.c ****     Key = Col + (10 * Row);
+ 125:../Source Files/lpc_mat_kb.c ****     return(Key);
+ 126:../Source Files/lpc_mat_kb.c **** }
+ 127:../Source Files/lpc_mat_kb.c **** 
+ 128:../Source Files/lpc_mat_kb.c **** 
+ 129:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+ 130:../Source Files/lpc_mat_kb.c ****  * @brief	    This function will find the column from where key is pressed
+ 131:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+ 132:../Source Files/lpc_mat_kb.c ****  * @return 		Returns Column index
+ 133:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+ 134:../Source Files/lpc_mat_kb.c **** uchar Find_Column(void)
+ 135:../Source Files/lpc_mat_kb.c **** {
+ 101              		.loc 1 135 0
+ 102              		.cfi_startproc
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105 003c 10B5     		push	{r4, lr}
+ 106              	.LCFI2:
+ 107              		.cfi_def_cfa_offset 8
+ 108              		.cfi_offset 4, -8
+ 109              		.cfi_offset 14, -4
+ 136:../Source Files/lpc_mat_kb.c **** 	uint32_t col;
+ 137:../Source Files/lpc_mat_kb.c **** 
+ 138:../Source Files/lpc_mat_kb.c ****     if (Scan_Key() != 1)
+ 110              		.loc 1 138 0
+ 111 003e FFF7FEFF 		bl	Scan_Key
+ 112              	.LVL8:
+ 113 0042 0446     		mov	r4, r0
+ 139:../Source Files/lpc_mat_kb.c ****     {
+ 140:../Source Files/lpc_mat_kb.c ****         return(0);
+ 114              		.loc 1 140 0
+ 115 0044 0020     		movs	r0, #0
+ 138:../Source Files/lpc_mat_kb.c ****     if (Scan_Key() != 1)
+ 116              		.loc 1 138 0
+ 117 0046 012C     		cmp	r4, #1
+ 118 0048 0ED1     		bne	.L5
+ 141:../Source Files/lpc_mat_kb.c ****     }
+ 142:../Source Files/lpc_mat_kb.c ****     #if MATKB_2X2
+ 143:../Source Files/lpc_mat_kb.c ****         col = GPIO_ReadValue(0);
+ 119              		.loc 1 143 0
+ 120 004a FFF7FEFF 		bl	GPIO_ReadValue
+ 121              	.LVL9:
+ 144:../Source Files/lpc_mat_kb.c ****         col |= 0xFF9FFFFF;
+ 145:../Source Files/lpc_mat_kb.c ****         if (col == 0xFFDFFFFF) // if COL1 = 0
+ 122              		.loc 1 145 0
+ 123 004e 6FF40013 		mvn	r3, #2097152
+ 144:../Source Files/lpc_mat_kb.c ****         col |= 0xFF9FFFFF;
+ 124              		.loc 1 144 0
+ 125 0052 60F4C000 		orn	r0, r0, #6291456
+ 126              	.LVL10:
+ 127              		.loc 1 145 0
+ 128 0056 9842     		cmp	r0, r3
+ 129 0058 07D0     		beq	.L6
+ 146:../Source Files/lpc_mat_kb.c **** 	    {
+ 147:../Source Files/lpc_mat_kb.c ****             return(1);
+ 148:../Source Files/lpc_mat_kb.c ****         }
+ 149:../Source Files/lpc_mat_kb.c ****         if (col == 0xFFBFFFFF) // if COL2 = 0
+ 150:../Source Files/lpc_mat_kb.c ****         {
+ 151:../Source Files/lpc_mat_kb.c **** 	        return(2);
+ 130              		.loc 1 151 0
+ 131 005a 6FF48001 		mvn	r1, #4194304
+ 132 005e 8842     		cmp	r0, r1
+ 133 0060 0CBF     		ite	eq
+ 134 0062 0220     		moveq	r0, #2
+ 135 0064 0020     		movne	r0, #0
+ 136              	.LVL11:
+ 137 0066 10BD     		pop	{r4, pc}
+ 138              	.L5:
+ 139 0068 10BD     		pop	{r4, pc}
+ 140              	.LVL12:
+ 141              	.L6:
+ 147:../Source Files/lpc_mat_kb.c ****             return(1);
+ 142              		.loc 1 147 0
+ 143 006a 2046     		mov	r0, r4
+ 144              	.LVL13:
+ 152:../Source Files/lpc_mat_kb.c ****         }
+ 153:../Source Files/lpc_mat_kb.c ****     #endif
+ 154:../Source Files/lpc_mat_kb.c ****     return 0;
+ 155:../Source Files/lpc_mat_kb.c **** }
+ 145              		.loc 1 155 0
+ 146 006c 10BD     		pop	{r4, pc}
+ 147              		.cfi_endproc
+ 148              	.LFE59:
+ 150              		.align	1
+ 151              		.global	Col_High
+ 152              		.thumb
+ 153              		.thumb_func
+ 155              	Col_High:
+ 156              	.LFB61:
+ 156:../Source Files/lpc_mat_kb.c **** 
+ 157:../Source Files/lpc_mat_kb.c **** 
+ 158:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+ 159:../Source Files/lpc_mat_kb.c ****  * @brief	    This function will find the row from where key is pressed
+ 160:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+ 161:../Source Files/lpc_mat_kb.c ****  * @return 		Returns Row Index
+ 162:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+ 163:../Source Files/lpc_mat_kb.c **** uchar Find_Row(void)
+ 164:../Source Files/lpc_mat_kb.c **** {
+ 165:../Source Files/lpc_mat_kb.c ****     uchar i;
+ 166:../Source Files/lpc_mat_kb.c **** 
+ 167:../Source Files/lpc_mat_kb.c ****     for(i = 1; i <= ROW ;i++)
+ 168:../Source Files/lpc_mat_kb.c ****     {
+ 169:../Source Files/lpc_mat_kb.c ****         Row_High();
+ 170:../Source Files/lpc_mat_kb.c ****         switch (i)
+ 171:../Source Files/lpc_mat_kb.c ****         {
+ 172:../Source Files/lpc_mat_kb.c ****             case 1:
+ 173:../Source Files/lpc_mat_kb.c ****             	GPIO_ClearValue(0,_BIT(19)); // ROW1
+ 174:../Source Files/lpc_mat_kb.c **** 		        break;
+ 175:../Source Files/lpc_mat_kb.c **** 
+ 176:../Source Files/lpc_mat_kb.c **** 	        case 2:
+ 177:../Source Files/lpc_mat_kb.c **** 	        	GPIO_ClearValue(0,_BIT(20)); // ROW2
+ 178:../Source Files/lpc_mat_kb.c ****                 break;
+ 179:../Source Files/lpc_mat_kb.c ****         }
+ 180:../Source Files/lpc_mat_kb.c ****         if (Scan_Key() == 1)
+ 181:../Source Files/lpc_mat_kb.c ****         {
+ 182:../Source Files/lpc_mat_kb.c ****             Row_Low();
+ 183:../Source Files/lpc_mat_kb.c ****             return(i);
+ 184:../Source Files/lpc_mat_kb.c ****         }
+ 185:../Source Files/lpc_mat_kb.c ****     }
+ 186:../Source Files/lpc_mat_kb.c ****     return 0;
+ 187:../Source Files/lpc_mat_kb.c **** }
+ 188:../Source Files/lpc_mat_kb.c **** 
+ 189:../Source Files/lpc_mat_kb.c **** 
+ 190:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+ 191:../Source Files/lpc_mat_kb.c ****  * @brief	    This function will set all columns
+ 192:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+ 193:../Source Files/lpc_mat_kb.c ****  * @return 		None
+ 194:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+ 195:../Source Files/lpc_mat_kb.c **** void Col_High (void)
+ 196:../Source Files/lpc_mat_kb.c **** {
+ 157              		.loc 1 196 0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197:../Source Files/lpc_mat_kb.c ****     GPIO_SetValue(0,_BIT(21));  // COL1 High
+ 161              		.loc 1 197 0
+ 162 006e 0020     		movs	r0, #0
+ 196:../Source Files/lpc_mat_kb.c **** {
+ 163              		.loc 1 196 0
+ 164 0070 08B5     		push	{r3, lr}
+ 165              	.LCFI3:
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 3, -8
+ 168              		.cfi_offset 14, -4
+ 169              		.loc 1 197 0
+ 170 0072 4FF40011 		mov	r1, #2097152
+ 171 0076 FFF7FEFF 		bl	GPIO_SetValue
+ 172              	.LVL14:
+ 198:../Source Files/lpc_mat_kb.c ****     GPIO_SetValue(0,_BIT(22));  // COL2 High
+ 173              		.loc 1 198 0
+ 174 007a 0020     		movs	r0, #0
+ 175 007c 4FF48001 		mov	r1, #4194304
+ 199:../Source Files/lpc_mat_kb.c **** }
+ 176              		.loc 1 199 0
+ 177 0080 BDE80840 		pop	{r3, lr}
+ 198:../Source Files/lpc_mat_kb.c ****     GPIO_SetValue(0,_BIT(22));  // COL2 High
+ 178              		.loc 1 198 0
+ 179 0084 FFF7FEBF 		b	GPIO_SetValue
+ 180              	.LVL15:
+ 181              		.cfi_endproc
+ 182              	.LFE61:
+ 184              		.align	1
+ 185              		.global	Row_High
+ 186              		.thumb
+ 187              		.thumb_func
+ 189              	Row_High:
+ 190              	.LFB62:
+ 200:../Source Files/lpc_mat_kb.c **** 
+ 201:../Source Files/lpc_mat_kb.c **** 
+ 202:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+ 203:../Source Files/lpc_mat_kb.c ****  * @brief	    This function will set all Rows
+ 204:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+ 205:../Source Files/lpc_mat_kb.c ****  * @return 		None
+ 206:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+ 207:../Source Files/lpc_mat_kb.c **** void Row_High (void)
+ 208:../Source Files/lpc_mat_kb.c **** {
+ 191              		.loc 1 208 0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209:../Source Files/lpc_mat_kb.c ****     GPIO_SetValue(0,_BIT(19));  // ROW1 High
+ 195              		.loc 1 209 0
+ 196 0088 0020     		movs	r0, #0
+ 208:../Source Files/lpc_mat_kb.c **** {
+ 197              		.loc 1 208 0
+ 198 008a 08B5     		push	{r3, lr}
+ 199              	.LCFI4:
+ 200              		.cfi_def_cfa_offset 8
+ 201              		.cfi_offset 3, -8
+ 202              		.cfi_offset 14, -4
+ 203              		.loc 1 209 0
+ 204 008c 4FF40021 		mov	r1, #524288
+ 205 0090 FFF7FEFF 		bl	GPIO_SetValue
+ 206              	.LVL16:
+ 210:../Source Files/lpc_mat_kb.c ****     GPIO_SetValue(0,_BIT(20));  // ROW2 High
+ 207              		.loc 1 210 0
+ 208 0094 0020     		movs	r0, #0
+ 209 0096 4FF48011 		mov	r1, #1048576
+ 211:../Source Files/lpc_mat_kb.c **** }
+ 210              		.loc 1 211 0
+ 211 009a BDE80840 		pop	{r3, lr}
+ 210:../Source Files/lpc_mat_kb.c ****     GPIO_SetValue(0,_BIT(20));  // ROW2 High
+ 212              		.loc 1 210 0
+ 213 009e FFF7FEBF 		b	GPIO_SetValue
+ 214              	.LVL17:
+ 215              		.cfi_endproc
+ 216              	.LFE62:
+ 218              		.align	1
+ 219              		.global	Row_Low
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	Row_Low:
+ 224              	.LFB63:
+ 212:../Source Files/lpc_mat_kb.c **** 
+ 213:../Source Files/lpc_mat_kb.c **** 
+ 214:../Source Files/lpc_mat_kb.c **** /*********************************************************************//**
+ 215:../Source Files/lpc_mat_kb.c ****  * @brief	    This function will clear all Rows
+ 216:../Source Files/lpc_mat_kb.c ****  * @param[in]	None
+ 217:../Source Files/lpc_mat_kb.c ****  * @return 		None
+ 218:../Source Files/lpc_mat_kb.c ****  **********************************************************************/
+ 219:../Source Files/lpc_mat_kb.c **** void Row_Low (void)
+ 220:../Source Files/lpc_mat_kb.c **** {
+ 225              		.loc 1 220 0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 0, uses_anonymous_args = 0
+ 221:../Source Files/lpc_mat_kb.c ****     GPIO_ClearValue(0,_BIT(19));  // ROW1 Low
+ 229              		.loc 1 221 0
+ 230 00a2 0020     		movs	r0, #0
+ 220:../Source Files/lpc_mat_kb.c **** {
+ 231              		.loc 1 220 0
+ 232 00a4 08B5     		push	{r3, lr}
+ 233              	.LCFI5:
+ 234              		.cfi_def_cfa_offset 8
+ 235              		.cfi_offset 3, -8
+ 236              		.cfi_offset 14, -4
+ 237              		.loc 1 221 0
+ 238 00a6 4FF40021 		mov	r1, #524288
+ 239 00aa FFF7FEFF 		bl	GPIO_ClearValue
+ 240              	.LVL18:
+ 222:../Source Files/lpc_mat_kb.c ****     GPIO_ClearValue(0,_BIT(20));  // ROW2 Low
+ 241              		.loc 1 222 0
+ 242 00ae 0020     		movs	r0, #0
+ 243 00b0 4FF48011 		mov	r1, #1048576
+ 223:../Source Files/lpc_mat_kb.c **** }
+ 244              		.loc 1 223 0
+ 245 00b4 BDE80840 		pop	{r3, lr}
+ 222:../Source Files/lpc_mat_kb.c ****     GPIO_ClearValue(0,_BIT(20));  // ROW2 Low
+ 246              		.loc 1 222 0
+ 247 00b8 FFF7FEBF 		b	GPIO_ClearValue
+ 248              	.LVL19:
+ 249              		.cfi_endproc
+ 250              	.LFE63:
+ 252              		.align	1
+ 253              		.global	Find_Row
+ 254              		.thumb
+ 255              		.thumb_func
+ 257              	Find_Row:
+ 258              	.LFB60:
+ 164:../Source Files/lpc_mat_kb.c **** {
+ 259              		.loc 1 164 0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 0
+ 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 263              	.LVL20:
+ 264 00bc 10B5     		push	{r4, lr}
+ 265              	.LCFI6:
+ 266              		.cfi_def_cfa_offset 8
+ 267              		.cfi_offset 4, -8
+ 268              		.cfi_offset 14, -4
+ 167:../Source Files/lpc_mat_kb.c ****     for(i = 1; i <= ROW ;i++)
+ 269              		.loc 1 167 0
+ 270 00be 0124     		movs	r4, #1
+ 271              	.LVL21:
+ 272              	.L18:
+ 169:../Source Files/lpc_mat_kb.c ****         Row_High();
+ 273              		.loc 1 169 0
+ 274 00c0 FFF7FEFF 		bl	Row_High
+ 275              	.LVL22:
+ 177:../Source Files/lpc_mat_kb.c **** 	        	GPIO_ClearValue(0,_BIT(20)); // ROW2
+ 276              		.loc 1 177 0
+ 277 00c4 0020     		movs	r0, #0
+ 170:../Source Files/lpc_mat_kb.c ****         switch (i)
+ 278              		.loc 1 170 0
+ 279 00c6 022C     		cmp	r4, #2
+ 173:../Source Files/lpc_mat_kb.c ****             	GPIO_ClearValue(0,_BIT(19)); // ROW1
+ 280              		.loc 1 173 0
+ 281 00c8 14BF     		ite	ne
+ 282 00ca 4FF40021 		movne	r1, #524288
+ 177:../Source Files/lpc_mat_kb.c **** 	        	GPIO_ClearValue(0,_BIT(20)); // ROW2
+ 283              		.loc 1 177 0
+ 284 00ce 4FF48011 		moveq	r1, #1048576
+ 285 00d2 FFF7FEFF 		bl	GPIO_ClearValue
+ 286              	.LVL23:
+ 180:../Source Files/lpc_mat_kb.c ****         if (Scan_Key() == 1)
+ 287              		.loc 1 180 0
+ 288 00d6 FFF7FEFF 		bl	Scan_Key
+ 289              	.LVL24:
+ 290 00da 0128     		cmp	r0, #1
+ 291 00dc 02D1     		bne	.L16
+ 182:../Source Files/lpc_mat_kb.c ****             Row_Low();
+ 292              		.loc 1 182 0
+ 293 00de FFF7FEFF 		bl	Row_Low
+ 294              	.LVL25:
+ 183:../Source Files/lpc_mat_kb.c ****             return(i);
+ 295              		.loc 1 183 0
+ 296 00e2 04E0     		b	.L17
+ 297              	.L16:
+ 167:../Source Files/lpc_mat_kb.c ****     for(i = 1; i <= ROW ;i++)
+ 298              		.loc 1 167 0
+ 299 00e4 0134     		adds	r4, r4, #1
+ 300 00e6 E4B2     		uxtb	r4, r4
+ 301              	.LVL26:
+ 302 00e8 032C     		cmp	r4, #3
+ 303 00ea E9D1     		bne	.L18
+ 186:../Source Files/lpc_mat_kb.c ****     return 0;
+ 304              		.loc 1 186 0
+ 305 00ec 0024     		movs	r4, #0
+ 306              	.LVL27:
+ 307              	.L17:
+ 187:../Source Files/lpc_mat_kb.c **** }
+ 308              		.loc 1 187 0
+ 309 00ee 2046     		mov	r0, r4
+ 310 00f0 10BD     		pop	{r4, pc}
+ 311              		.cfi_endproc
+ 312              	.LFE60:
+ 314              		.align	1
+ 315              		.global	Detect_Mat_Key
+ 316              		.thumb
+ 317              		.thumb_func
+ 319              	Detect_Mat_Key:
+ 320              	.LFB58:
+ 119:../Source Files/lpc_mat_kb.c **** {
+ 321              		.loc 1 119 0
+ 322              		.cfi_startproc
+ 323              		@ args = 0, pretend = 0, frame = 0
+ 324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 325              	.LVL28:
+ 326 00f2 10B5     		push	{r4, lr}
+ 327              	.LCFI7:
+ 328              		.cfi_def_cfa_offset 8
+ 329              		.cfi_offset 4, -8
+ 330              		.cfi_offset 14, -4
+ 122:../Source Files/lpc_mat_kb.c ****     Row = Find_Row();
+ 331              		.loc 1 122 0
+ 332 00f4 FFF7FEFF 		bl	Find_Row
+ 333              	.LVL29:
+ 334 00f8 0446     		mov	r4, r0
+ 335              	.LVL30:
+ 123:../Source Files/lpc_mat_kb.c ****     Col = Find_Column();
+ 336              		.loc 1 123 0
+ 337 00fa FFF7FEFF 		bl	Find_Column
+ 338              	.LVL31:
+ 124:../Source Files/lpc_mat_kb.c ****     Key = Col + (10 * Row);
+ 339              		.loc 1 124 0
+ 340 00fe 0A23     		movs	r3, #10
+ 341 0100 03FB0400 		mla	r0, r3, r4, r0
+ 342              	.LVL32:
+ 126:../Source Files/lpc_mat_kb.c **** }
+ 343              		.loc 1 126 0
+ 344 0104 C0B2     		uxtb	r0, r0
+ 345 0106 10BD     		pop	{r4, pc}
+ 346              		.cfi_endproc
+ 347              	.LFE58:
+ 349              		.align	1
+ 350              		.global	Mat_Kb_Init
+ 351              		.thumb
+ 352              		.thumb_func
+ 354              	Mat_Kb_Init:
+ 355              	.LFB56:
+  63:../Source Files/lpc_mat_kb.c **** {
+ 356              		.loc 1 63 0
+ 357              		.cfi_startproc
+ 358              		@ args = 0, pretend = 0, frame = 0
+ 359              		@ frame_needed = 0, uses_anonymous_args = 0
+ 360 0108 08B5     		push	{r3, lr}
+ 361              	.LCFI8:
+ 362              		.cfi_def_cfa_offset 8
+ 363              		.cfi_offset 3, -8
+ 364              		.cfi_offset 14, -4
+  64:../Source Files/lpc_mat_kb.c **** 	Mat_Kb_Config();
+ 365              		.loc 1 64 0
+ 366 010a FFF7FEFF 		bl	Mat_Kb_Config
+ 367              	.LVL33:
+  66:../Source Files/lpc_mat_kb.c ****     Col_High();
+ 368              		.loc 1 66 0
+ 369 010e FFF7FEFF 		bl	Col_High
+ 370              	.LVL34:
+  68:../Source Files/lpc_mat_kb.c **** }
+ 371              		.loc 1 68 0
+ 372 0112 BDE80840 		pop	{r3, lr}
+  67:../Source Files/lpc_mat_kb.c **** 	Row_Low();
+ 373              		.loc 1 67 0
+ 374 0116 FFF7FEBF 		b	Row_Low
+ 375              	.LVL35:
+ 376              		.cfi_endproc
+ 377              	.LFE56:
+ 379              		.comm	I2C_Rx_Buf,64,1
+ 380              		.comm	I2C_Tx_Buf,64,1
+ 381              		.comm	Rx_Buf1,64,1
+ 382              		.comm	Tx_Buf1,64,1
+ 383              		.comm	TxIntStat,1,1
+ 384              		.comm	rb,528,4
+ 385              		.comm	EscFlag,2,2
+ 386              	.Letext0:
+ 387              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 388              		.file 3 "../Header Files/lpc_types.h"
+ 389              		.file 4 "../Header Files/lpc17xx_uart.h"
+ 390              		.file 5 "../CM3 Core/core_cm3.h"
+ 391              		.file 6 "../Header Files/lpc17xx_ssp.h"
+ 392              		.file 7 "../Header Files/lpc17xx_i2c.h"
+ 393              		.file 8 "../Header Files/lpc17xx_gpio.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc_mat_kb.c
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:23     .text:00000000 Mat_Kb_Config
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:60     .text:0000001e Scan_Key
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:99     .text:0000003c Find_Column
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:155    .text:0000006e Col_High
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:189    .text:00000088 Row_High
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:223    .text:000000a2 Row_Low
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:257    .text:000000bc Find_Row
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:319    .text:000000f2 Detect_Mat_Key
+C:\Users\raghav\AppData\Local\Temp\ccWEbTwQ.s:354    .text:00000108 Mat_Kb_Init
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.97f3f7cf57136a998c07fe66c226a2b2
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+                           .group:00000000 wm4.lpc_mat_kb.h.29.d2145316ae20cfb966196f27376a1703
+
+UNDEFINED SYMBOLS
+GPIO_SetDir
+GPIO_ReadValue
+GPIO_SetValue
+GPIO_ClearValue
