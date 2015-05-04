@@ -481,565 +481,565 @@
  258              		@ link register save eliminated.
  259              	.LBB10:
  260              	.LBB11:
- 261              		.file 2 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/core_cmFunc.h"
-   1:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /**************************************************************************//**
-   2:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @file     core_cmFunc.h
-   3:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @brief    CMSIS Cortex-M Core Function Access Header File
-   4:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @version  V2.01
-   5:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @date     06. December 2010
-   6:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  *
-   7:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @note
-   8:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * Copyright (C) 2009-2010 ARM Limited. All rights reserved.
-   9:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  *
-  10:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @par
-  11:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M 
-  12:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * processor based microcontrollers.  This file can be freely distributed 
-  13:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * within development tools that are supporting such ARM based processors. 
-  14:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  *
-  15:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * @par
-  16:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
-  17:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
-  18:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
-  19:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
-  20:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
-  21:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  *
-  22:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  ******************************************************************************/
-  23:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  24:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #ifndef __CORE_CMFUNC_H__
-  25:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #define __CORE_CMFUNC_H__
-  26:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  27:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* ###########################  Core Function Access  ########################### */
-  28:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \ingroup  CMSIS_Core_FunctionInterface   
-  29:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
-  30:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   @{
-  31:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
-  32:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  33:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if defined ( __CC_ARM   ) /*------------------ RealView Compiler ----------------*/
-  34:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* ARM armcc specific functions */
-  35:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  36:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic void __enable_irq();     */
-  37:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic void __disable_irq();    */
-  38:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  39:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Control Register
-  40:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  41:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the Control Register.
-  42:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  43:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               Control Register value
-  44:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
-  45:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
-  46:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_CONTROL(void);
-  47:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
-  48:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_CONTROL(void)
-  49:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
-  50:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regControl         __ASM("control");
-  51:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regControl);
-  52:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
-  53:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
-  54:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  55:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  56:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Control Register
-  57:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  58:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function writes the given value to the Control Register.
-  59:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  60:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    control  Control Register value to set
-  61:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
-  62:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
-  63:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          void __set_CONTROL(uint32_t control);
-  64:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
-  65:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_CONTROL(uint32_t control)
-  66:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
-  67:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regControl         __ASM("control");
-  68:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regControl = control;
-  69:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
-  70:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
-  71:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  72:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  73:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get ISPR Register
-  74:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  75:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the ISPR Register.
-  76:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  77:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               ISPR Register value
-  78:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
-  79:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
-  80:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_IPSR(void);
-  81:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
-  82:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_IPSR(void)
-  83:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
-  84:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regIPSR          __ASM("ipsr");
-  85:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regIPSR);
-  86:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
-  87:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
-  88:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  89:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  90:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get APSR Register
-  91:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  92:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the APSR Register.
-  93:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
-  94:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               APSR Register value
-  95:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
-  96:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
-  97:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_APSR(void);
-  98:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
-  99:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_APSR(void)
- 100:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 101:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regAPSR          __ASM("apsr");
- 102:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regAPSR);
- 103:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 104:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 105:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 106:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 107:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get xPSR Register
- 108:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 109:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the xPSR Register.
- 110:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 111:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               xPSR Register value
- 112:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 113:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 114:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_xPSR(void);
- 115:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 116:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_xPSR(void)
- 117:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 118:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regXPSR          __ASM("xpsr");
- 119:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regXPSR);
- 120:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 121:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 122:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 123:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 124:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Process Stack Pointer
- 125:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 126:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Process Stack Pointer (PSP).
- 127:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 128:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               PSP Register value
- 129:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 130:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 131:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_PSP(void);
- 132:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 133:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_PSP(void)
- 134:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 135:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regProcessStackPointer  __ASM("psp");
- 136:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regProcessStackPointer);
- 137:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 138:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 139:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 140:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 141:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Process Stack Pointer
- 142:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 143:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Process Stack Pointer (PSP).
- 144:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 145:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    topOfProcStack  Process Stack Pointer value to set
- 146:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 147:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 148:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          void __set_PSP(uint32_t topOfProcStack);
- 149:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 150:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_PSP(uint32_t topOfProcStack)
- 151:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 152:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regProcessStackPointer  __ASM("psp");
- 153:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regProcessStackPointer = topOfProcStack;
- 154:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 155:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 156:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 157:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 158:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Main Stack Pointer
- 159:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 160:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Main Stack Pointer (MSP).
- 161:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 162:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               MSP Register value
- 163:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 164:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 165:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_MSP(void);
- 166:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 167:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_MSP(void)
- 168:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 169:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regMainStackPointer     __ASM("msp");
- 170:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regMainStackPointer);
- 171:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 172:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 173:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 174:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 175:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Main Stack Pointer
- 176:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 177:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Main Stack Pointer (MSP).
- 178:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 179:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    topOfMainStack  Main Stack Pointer value to set
- 180:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 181:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 182:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          void __set_MSP(uint32_t topOfMainStack);
- 183:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 184:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_MSP(uint32_t topOfMainStack)
- 185:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 186:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regMainStackPointer     __ASM("msp");
- 187:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regMainStackPointer = topOfMainStack;
- 188:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 189:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 190:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 191:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 192:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Priority Mask
- 193:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 194:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current state of the priority mask bit from the Priority Mask Registe
- 195:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 196:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               Priority Mask value
- 197:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 198:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 199:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_PRIMASK(void);
- 200:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 201:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_PRIMASK(void)
- 202:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 203:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regPriMask         __ASM("primask");
- 204:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regPriMask);
- 205:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 206:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 207:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 208:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 209:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Priority Mask
- 210:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 211:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Priority Mask Register.
- 212:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 213:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    priMask  Priority Mask
- 214:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 215:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 216:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          void __set_PRIMASK(uint32_t priMask);
- 217:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 218:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_PRIMASK(uint32_t priMask)
- 219:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 220:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regPriMask         __ASM("primask");
- 221:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regPriMask = (priMask);
- 222:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 223:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 224:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  
- 225:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 226:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__CORTEX_M >= 0x03)
- 227:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 228:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Enable FIQ
- 229:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 230:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function enables FIQ interrupts by clearing the F-bit in the CPSR.
- 231:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     Can only be executed in Privileged modes.
- 232:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 233:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #define __enable_fault_irq                __enable_fiq
- 234:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 235:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 236:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Disable FIQ
- 237:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 238:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function disables FIQ interrupts by setting the F-bit in the CPSR.
- 239:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     Can only be executed in Privileged modes.
- 240:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 241:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #define __disable_fault_irq               __disable_fiq
- 242:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 243:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 244:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Base Priority
- 245:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 246:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Base Priority register.
- 247:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 248:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               Base Priority register value
- 249:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 250:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 251:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_BASEPRI(void);
- 252:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 253:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t  __get_BASEPRI(void)
- 254:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 255:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regBasePri         __ASM("basepri");
- 256:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regBasePri);
- 257:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 258:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 259:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 260:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 261:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Base Priority
- 262:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 263:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Base Priority register.
- 264:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 265:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    basePri  Base Priority value to set
- 266:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 267:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 268:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          void __set_BASEPRI(uint32_t basePri);
- 269:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 270:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_BASEPRI(uint32_t basePri)
- 271:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 272:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regBasePri         __ASM("basepri");
- 273:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regBasePri = (basePri & 0xff);
- 274:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 275:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 276:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  
- 277:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 278:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Fault Mask
- 279:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 280:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Fault Mask register.
- 281:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 282:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               Fault Mask register value
- 283:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 284:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 285:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          uint32_t __get_FAULTMASK(void);
- 286:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 287:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_FAULTMASK(void)
- 288:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 289:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regFaultMask       __ASM("faultmask");
- 290:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regFaultMask);
- 291:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 292:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 293:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 294:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 295:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Fault Mask
- 296:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 297:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Fault Mask register.
- 298:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 299:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    faultMask  Fault Mask value to set
- 300:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 301:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
- 302:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** extern          void __set_FAULTMASK(uint32_t faultMask);
- 303:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
- 304:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_FAULTMASK(uint32_t faultMask)
- 305:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 306:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regFaultMask       __ASM("faultmask");
- 307:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regFaultMask = (faultMask & 1);
- 308:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 309:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
- 310:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 311:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /* (__CORTEX_M >= 0x03) */
- 312:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 313:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 314:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__CORTEX_M == 0x04)
- 315:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 316:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get FPSCR
- 317:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 318:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Floating Point Status/Control register.
- 319:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 320:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               Floating Point Status/Control register value
- 321:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 322:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE uint32_t __get_FPSCR(void)
- 323:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 324:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if (__FPU_PRESENT == 1)
- 325:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regfpscr         __ASM("fpscr");
- 326:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(__regfpscr);
- 327:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else
- 328:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****    return(0);
- 329:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif
- 330:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 331:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 332:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 333:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set FPSCR
- 334:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 335:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Floating Point Status/Control register.
- 336:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 337:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    fpscr  Floating Point Status/Control value to set
- 338:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 339:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __set_FPSCR(uint32_t fpscr)
- 340:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 341:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if (__FPU_PRESENT == 1)
- 342:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   register uint32_t __regfpscr         __ASM("fpscr");
- 343:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __regfpscr = (fpscr);
- 344:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif
- 345:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 346:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 347:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /* (__CORTEX_M == 0x04) */
- 348:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 349:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 350:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  #elif (defined (__ICCARM__)) /*---------------- ICC Compiler ---------------------*/
- 351:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* IAR iccarm specific functions */
- 352:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 353:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if defined (__ICCARM__)
- 354:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   #include <intrinsics.h>                     /* IAR Intrinsics   */
- 355:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif
- 356:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 357:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #pragma diag_suppress=Pe940
- 358:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 359:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Enable IRQ Interrupts
- 360:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 361:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   This function enables IRQ interrupts by clearing the I-bit in the CPSR.
- 362:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   Can only be executed in Privileged modes.
- 363:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 364:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #define __enable_irq                              __enable_interrupt
- 365:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 366:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 367:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Disable IRQ Interrupts
- 368:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 369:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   This function disables IRQ interrupts by setting the I-bit in the CPSR.
- 370:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   Can only be executed in Privileged modes.
- 371:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 372:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #define __disable_irq                             __disable_interrupt
- 373:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 374:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 375:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic unsigned long __get_CONTROL( void ); (see intrinsic.h) */
- 376:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic void __set_CONTROL( unsigned long ); (see intrinsic.h) */
- 377:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 378:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 379:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get ISPR Register
- 380:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 381:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the ISPR Register.
- 382:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 383:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               ISPR Register value
- 384:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 385:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static uint32_t __get_IPSR(void)
- 386:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 387:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("mrs r0, ipsr");
- 388:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 389:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 390:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 391:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get APSR Register
- 392:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 393:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the APSR Register.
- 394:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 395:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               APSR Register value
- 396:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 397:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static uint32_t __get_APSR(void)
- 398:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 399:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("mrs r0, apsr");
- 400:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 401:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 402:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 403:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get xPSR Register
- 404:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 405:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the content of the xPSR Register.
- 406:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 407:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               xPSR Register value
- 408:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 409:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static uint32_t __get_xPSR(void)
- 410:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 411:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("mrs r0, psr");           // assembler does not know "xpsr"
- 412:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 413:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 414:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 415:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Process Stack Pointer
- 416:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 417:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Process Stack Pointer (PSP).
- 418:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 419:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               PSP Register value
- 420:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 421:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static uint32_t __get_PSP(void)
- 422:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 423:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("mrs r0, psp");
- 424:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 425:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  
- 426:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 427:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Process Stack Pointer
- 428:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 429:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Process Stack Pointer (PSP).
- 430:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 431:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    topOfProcStack  Process Stack Pointer value to set
- 432:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 433:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static void __set_PSP(uint32_t topOfProcStack)
- 434:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 435:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("msr psp, r0");
- 436:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 437:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 438:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 439:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get Main Stack Pointer
- 440:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 441:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Main Stack Pointer (MSP).
- 442:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 443:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               MSP Register value
- 444:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 445:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static uint32_t __get_MSP(void)
- 446:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 447:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("mrs r0, msp");
- 448:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 449:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  
- 450:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 451:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set Main Stack Pointer
- 452:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 453:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Main Stack Pointer (MSP).
- 454:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 455:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    topOfMainStack  Main Stack Pointer value to set
- 456:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 457:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static void __set_MSP(uint32_t topOfMainStack)
- 458:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 459:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("msr msp, r0");
- 460:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 461:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  
- 462:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 463:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic unsigned long __get_PRIMASK( void ); (see intrinsic.h) */
- 464:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic void __set_PRIMASK( unsigned long ); (see intrinsic.h) */
- 465:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  
- 466:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 467:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__CORTEX_M >= 0x03)
- 468:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 469:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Enable FIQ
- 470:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 471:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function enables FIQ interrupts by clearing the F-bit in the CPSR.
- 472:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     Can only be executed in Privileged modes.
- 473:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 474:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __enable_fault_irq(void)
- 475:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 476:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM ("cpsie f");
- 477:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 478:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 479:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 480:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Disable FIQ
- 481:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 482:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function disables FIQ interrupts by setting the F-bit in the CPSR.
- 483:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     Can only be executed in Privileged modes.
- 484:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 485:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static __INLINE void __disable_fault_irq(void)
- 486:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 487:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM ("cpsid f");
- 488:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 489:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 490:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 491:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic unsigned long __get_BASEPRI( void );   (see intrinsic.h) */
- 492:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic void __set_BASEPRI( unsigned long );   (see intrinsic.h) */
- 493:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic unsigned long __get_FAULTMASK( void ); (see intrinsic.h) */
- 494:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* intrinsic void __set_FAULTMASK(unsigned long);   (see intrinsic.h) */
- 495:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 496:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /* (__CORTEX_M >= 0x03) */
- 497:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 498:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 499:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if       (__CORTEX_M == 0x04)
- 500:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 501:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Get FPSCR
- 502:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 503:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function returns the current value of the Floating Point Status/Control register.
- 504:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 505:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \return               Floating Point Status/Control register value
- 506:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 507:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static uint32_t __get_FPSCR(void)
- 508:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 509:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if (__FPU_PRESENT == 1)
- 510:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("vmrs r0, fpscr"); 
- 511:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #else
- 512:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   return(0);
- 513:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif
- 514:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 515:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 516:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 517:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Set FPSCR
- 518:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 519:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     This function assigns the given value to the Floating Point Status/Control register.
- 520:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 521:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****     \param [in]    fpscr  Floating Point Status/Control value to set
- 522:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 523:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** static void __set_FPSCR(uint32_t fpscr)
- 524:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 525:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #if (__FPU_PRESENT == 1)
- 526:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM("vmsr fpscr, r0");
- 527:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif
- 528:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 529:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 530:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #endif /* (__CORTEX_M == 0x04) */
- 531:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 532:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #pragma diag_default=Pe940
- 533:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 534:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 535:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
- 536:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /* GNU gcc specific functions */
- 537:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 538:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Enable IRQ Interrupts
- 539:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 540:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   This function enables IRQ interrupts by clearing the I-bit in the CPSR.
- 541:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   Can only be executed in Privileged modes.
- 542:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 543:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** __attribute__( ( always_inline ) ) static __INLINE void __enable_irq(void)
- 544:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 545:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM volatile ("cpsie i");
- 546:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** }
- 547:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 548:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 549:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** /** \brief  Disable IRQ Interrupts
- 550:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** 
- 551:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   This function disables IRQ interrupts by setting the I-bit in the CPSR.
- 552:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   Can only be executed in Privileged modes.
- 553:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****  */
- 554:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** __attribute__( ( always_inline ) ) static __INLINE void __disable_irq(void)
- 555:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h **** {
- 556:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM volatile ("cpsid i");
+ 261              		.file 2 "../CM3 Core/core_cmFunc.h"
+   1:../CM3 Core/core_cmFunc.h **** /**************************************************************************//**
+   2:../CM3 Core/core_cmFunc.h ****  * @file     core_cmFunc.h
+   3:../CM3 Core/core_cmFunc.h ****  * @brief    CMSIS Cortex-M Core Function Access Header File
+   4:../CM3 Core/core_cmFunc.h ****  * @version  V2.01
+   5:../CM3 Core/core_cmFunc.h ****  * @date     06. December 2010
+   6:../CM3 Core/core_cmFunc.h ****  *
+   7:../CM3 Core/core_cmFunc.h ****  * @note
+   8:../CM3 Core/core_cmFunc.h ****  * Copyright (C) 2009-2010 ARM Limited. All rights reserved.
+   9:../CM3 Core/core_cmFunc.h ****  *
+  10:../CM3 Core/core_cmFunc.h ****  * @par
+  11:../CM3 Core/core_cmFunc.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M 
+  12:../CM3 Core/core_cmFunc.h ****  * processor based microcontrollers.  This file can be freely distributed 
+  13:../CM3 Core/core_cmFunc.h ****  * within development tools that are supporting such ARM based processors. 
+  14:../CM3 Core/core_cmFunc.h ****  *
+  15:../CM3 Core/core_cmFunc.h ****  * @par
+  16:../CM3 Core/core_cmFunc.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:../CM3 Core/core_cmFunc.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:../CM3 Core/core_cmFunc.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:../CM3 Core/core_cmFunc.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:../CM3 Core/core_cmFunc.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:../CM3 Core/core_cmFunc.h ****  *
+  22:../CM3 Core/core_cmFunc.h ****  ******************************************************************************/
+  23:../CM3 Core/core_cmFunc.h **** 
+  24:../CM3 Core/core_cmFunc.h **** #ifndef __CORE_CMFUNC_H__
+  25:../CM3 Core/core_cmFunc.h **** #define __CORE_CMFUNC_H__
+  26:../CM3 Core/core_cmFunc.h **** 
+  27:../CM3 Core/core_cmFunc.h **** /* ###########################  Core Function Access  ########################### */
+  28:../CM3 Core/core_cmFunc.h **** /** \ingroup  CMSIS_Core_FunctionInterface   
+  29:../CM3 Core/core_cmFunc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+  30:../CM3 Core/core_cmFunc.h ****   @{
+  31:../CM3 Core/core_cmFunc.h ****  */
+  32:../CM3 Core/core_cmFunc.h **** 
+  33:../CM3 Core/core_cmFunc.h **** #if defined ( __CC_ARM   ) /*------------------ RealView Compiler ----------------*/
+  34:../CM3 Core/core_cmFunc.h **** /* ARM armcc specific functions */
+  35:../CM3 Core/core_cmFunc.h **** 
+  36:../CM3 Core/core_cmFunc.h **** /* intrinsic void __enable_irq();     */
+  37:../CM3 Core/core_cmFunc.h **** /* intrinsic void __disable_irq();    */
+  38:../CM3 Core/core_cmFunc.h **** 
+  39:../CM3 Core/core_cmFunc.h **** /** \brief  Get Control Register
+  40:../CM3 Core/core_cmFunc.h **** 
+  41:../CM3 Core/core_cmFunc.h ****     This function returns the content of the Control Register.
+  42:../CM3 Core/core_cmFunc.h **** 
+  43:../CM3 Core/core_cmFunc.h ****     \return               Control Register value
+  44:../CM3 Core/core_cmFunc.h ****  */
+  45:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+  46:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_CONTROL(void);
+  47:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+  48:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_CONTROL(void)
+  49:../CM3 Core/core_cmFunc.h **** {
+  50:../CM3 Core/core_cmFunc.h ****   register uint32_t __regControl         __ASM("control");
+  51:../CM3 Core/core_cmFunc.h ****   return(__regControl);
+  52:../CM3 Core/core_cmFunc.h **** }
+  53:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+  54:../CM3 Core/core_cmFunc.h **** 
+  55:../CM3 Core/core_cmFunc.h **** 
+  56:../CM3 Core/core_cmFunc.h **** /** \brief  Set Control Register
+  57:../CM3 Core/core_cmFunc.h **** 
+  58:../CM3 Core/core_cmFunc.h ****     This function writes the given value to the Control Register.
+  59:../CM3 Core/core_cmFunc.h **** 
+  60:../CM3 Core/core_cmFunc.h ****     \param [in]    control  Control Register value to set
+  61:../CM3 Core/core_cmFunc.h ****  */
+  62:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+  63:../CM3 Core/core_cmFunc.h **** extern          void __set_CONTROL(uint32_t control);
+  64:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+  65:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_CONTROL(uint32_t control)
+  66:../CM3 Core/core_cmFunc.h **** {
+  67:../CM3 Core/core_cmFunc.h ****   register uint32_t __regControl         __ASM("control");
+  68:../CM3 Core/core_cmFunc.h ****   __regControl = control;
+  69:../CM3 Core/core_cmFunc.h **** }
+  70:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+  71:../CM3 Core/core_cmFunc.h **** 
+  72:../CM3 Core/core_cmFunc.h **** 
+  73:../CM3 Core/core_cmFunc.h **** /** \brief  Get ISPR Register
+  74:../CM3 Core/core_cmFunc.h **** 
+  75:../CM3 Core/core_cmFunc.h ****     This function returns the content of the ISPR Register.
+  76:../CM3 Core/core_cmFunc.h **** 
+  77:../CM3 Core/core_cmFunc.h ****     \return               ISPR Register value
+  78:../CM3 Core/core_cmFunc.h ****  */
+  79:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+  80:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_IPSR(void);
+  81:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+  82:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_IPSR(void)
+  83:../CM3 Core/core_cmFunc.h **** {
+  84:../CM3 Core/core_cmFunc.h ****   register uint32_t __regIPSR          __ASM("ipsr");
+  85:../CM3 Core/core_cmFunc.h ****   return(__regIPSR);
+  86:../CM3 Core/core_cmFunc.h **** }
+  87:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+  88:../CM3 Core/core_cmFunc.h **** 
+  89:../CM3 Core/core_cmFunc.h **** 
+  90:../CM3 Core/core_cmFunc.h **** /** \brief  Get APSR Register
+  91:../CM3 Core/core_cmFunc.h **** 
+  92:../CM3 Core/core_cmFunc.h ****     This function returns the content of the APSR Register.
+  93:../CM3 Core/core_cmFunc.h **** 
+  94:../CM3 Core/core_cmFunc.h ****     \return               APSR Register value
+  95:../CM3 Core/core_cmFunc.h ****  */
+  96:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+  97:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_APSR(void);
+  98:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+  99:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_APSR(void)
+ 100:../CM3 Core/core_cmFunc.h **** {
+ 101:../CM3 Core/core_cmFunc.h ****   register uint32_t __regAPSR          __ASM("apsr");
+ 102:../CM3 Core/core_cmFunc.h ****   return(__regAPSR);
+ 103:../CM3 Core/core_cmFunc.h **** }
+ 104:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 105:../CM3 Core/core_cmFunc.h **** 
+ 106:../CM3 Core/core_cmFunc.h **** 
+ 107:../CM3 Core/core_cmFunc.h **** /** \brief  Get xPSR Register
+ 108:../CM3 Core/core_cmFunc.h **** 
+ 109:../CM3 Core/core_cmFunc.h ****     This function returns the content of the xPSR Register.
+ 110:../CM3 Core/core_cmFunc.h **** 
+ 111:../CM3 Core/core_cmFunc.h ****     \return               xPSR Register value
+ 112:../CM3 Core/core_cmFunc.h ****  */
+ 113:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 114:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_xPSR(void);
+ 115:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 116:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_xPSR(void)
+ 117:../CM3 Core/core_cmFunc.h **** {
+ 118:../CM3 Core/core_cmFunc.h ****   register uint32_t __regXPSR          __ASM("xpsr");
+ 119:../CM3 Core/core_cmFunc.h ****   return(__regXPSR);
+ 120:../CM3 Core/core_cmFunc.h **** }
+ 121:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 122:../CM3 Core/core_cmFunc.h **** 
+ 123:../CM3 Core/core_cmFunc.h **** 
+ 124:../CM3 Core/core_cmFunc.h **** /** \brief  Get Process Stack Pointer
+ 125:../CM3 Core/core_cmFunc.h **** 
+ 126:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Process Stack Pointer (PSP).
+ 127:../CM3 Core/core_cmFunc.h **** 
+ 128:../CM3 Core/core_cmFunc.h ****     \return               PSP Register value
+ 129:../CM3 Core/core_cmFunc.h ****  */
+ 130:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 131:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_PSP(void);
+ 132:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 133:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_PSP(void)
+ 134:../CM3 Core/core_cmFunc.h **** {
+ 135:../CM3 Core/core_cmFunc.h ****   register uint32_t __regProcessStackPointer  __ASM("psp");
+ 136:../CM3 Core/core_cmFunc.h ****   return(__regProcessStackPointer);
+ 137:../CM3 Core/core_cmFunc.h **** }
+ 138:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 139:../CM3 Core/core_cmFunc.h **** 
+ 140:../CM3 Core/core_cmFunc.h **** 
+ 141:../CM3 Core/core_cmFunc.h **** /** \brief  Set Process Stack Pointer
+ 142:../CM3 Core/core_cmFunc.h **** 
+ 143:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Process Stack Pointer (PSP).
+ 144:../CM3 Core/core_cmFunc.h **** 
+ 145:../CM3 Core/core_cmFunc.h ****     \param [in]    topOfProcStack  Process Stack Pointer value to set
+ 146:../CM3 Core/core_cmFunc.h ****  */
+ 147:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 148:../CM3 Core/core_cmFunc.h **** extern          void __set_PSP(uint32_t topOfProcStack);
+ 149:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 150:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_PSP(uint32_t topOfProcStack)
+ 151:../CM3 Core/core_cmFunc.h **** {
+ 152:../CM3 Core/core_cmFunc.h ****   register uint32_t __regProcessStackPointer  __ASM("psp");
+ 153:../CM3 Core/core_cmFunc.h ****   __regProcessStackPointer = topOfProcStack;
+ 154:../CM3 Core/core_cmFunc.h **** }
+ 155:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 156:../CM3 Core/core_cmFunc.h **** 
+ 157:../CM3 Core/core_cmFunc.h **** 
+ 158:../CM3 Core/core_cmFunc.h **** /** \brief  Get Main Stack Pointer
+ 159:../CM3 Core/core_cmFunc.h **** 
+ 160:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Main Stack Pointer (MSP).
+ 161:../CM3 Core/core_cmFunc.h **** 
+ 162:../CM3 Core/core_cmFunc.h ****     \return               MSP Register value
+ 163:../CM3 Core/core_cmFunc.h ****  */
+ 164:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 165:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_MSP(void);
+ 166:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 167:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_MSP(void)
+ 168:../CM3 Core/core_cmFunc.h **** {
+ 169:../CM3 Core/core_cmFunc.h ****   register uint32_t __regMainStackPointer     __ASM("msp");
+ 170:../CM3 Core/core_cmFunc.h ****   return(__regMainStackPointer);
+ 171:../CM3 Core/core_cmFunc.h **** }
+ 172:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 173:../CM3 Core/core_cmFunc.h **** 
+ 174:../CM3 Core/core_cmFunc.h **** 
+ 175:../CM3 Core/core_cmFunc.h **** /** \brief  Set Main Stack Pointer
+ 176:../CM3 Core/core_cmFunc.h **** 
+ 177:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Main Stack Pointer (MSP).
+ 178:../CM3 Core/core_cmFunc.h **** 
+ 179:../CM3 Core/core_cmFunc.h ****     \param [in]    topOfMainStack  Main Stack Pointer value to set
+ 180:../CM3 Core/core_cmFunc.h ****  */
+ 181:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 182:../CM3 Core/core_cmFunc.h **** extern          void __set_MSP(uint32_t topOfMainStack);
+ 183:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 184:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_MSP(uint32_t topOfMainStack)
+ 185:../CM3 Core/core_cmFunc.h **** {
+ 186:../CM3 Core/core_cmFunc.h ****   register uint32_t __regMainStackPointer     __ASM("msp");
+ 187:../CM3 Core/core_cmFunc.h ****   __regMainStackPointer = topOfMainStack;
+ 188:../CM3 Core/core_cmFunc.h **** }
+ 189:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 190:../CM3 Core/core_cmFunc.h **** 
+ 191:../CM3 Core/core_cmFunc.h **** 
+ 192:../CM3 Core/core_cmFunc.h **** /** \brief  Get Priority Mask
+ 193:../CM3 Core/core_cmFunc.h **** 
+ 194:../CM3 Core/core_cmFunc.h ****     This function returns the current state of the priority mask bit from the Priority Mask Registe
+ 195:../CM3 Core/core_cmFunc.h **** 
+ 196:../CM3 Core/core_cmFunc.h ****     \return               Priority Mask value
+ 197:../CM3 Core/core_cmFunc.h ****  */
+ 198:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 199:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_PRIMASK(void);
+ 200:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 201:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_PRIMASK(void)
+ 202:../CM3 Core/core_cmFunc.h **** {
+ 203:../CM3 Core/core_cmFunc.h ****   register uint32_t __regPriMask         __ASM("primask");
+ 204:../CM3 Core/core_cmFunc.h ****   return(__regPriMask);
+ 205:../CM3 Core/core_cmFunc.h **** }
+ 206:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 207:../CM3 Core/core_cmFunc.h **** 
+ 208:../CM3 Core/core_cmFunc.h **** 
+ 209:../CM3 Core/core_cmFunc.h **** /** \brief  Set Priority Mask
+ 210:../CM3 Core/core_cmFunc.h **** 
+ 211:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Priority Mask Register.
+ 212:../CM3 Core/core_cmFunc.h **** 
+ 213:../CM3 Core/core_cmFunc.h ****     \param [in]    priMask  Priority Mask
+ 214:../CM3 Core/core_cmFunc.h ****  */
+ 215:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 216:../CM3 Core/core_cmFunc.h **** extern          void __set_PRIMASK(uint32_t priMask);
+ 217:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 218:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_PRIMASK(uint32_t priMask)
+ 219:../CM3 Core/core_cmFunc.h **** {
+ 220:../CM3 Core/core_cmFunc.h ****   register uint32_t __regPriMask         __ASM("primask");
+ 221:../CM3 Core/core_cmFunc.h ****   __regPriMask = (priMask);
+ 222:../CM3 Core/core_cmFunc.h **** }
+ 223:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 224:../CM3 Core/core_cmFunc.h ****  
+ 225:../CM3 Core/core_cmFunc.h **** 
+ 226:../CM3 Core/core_cmFunc.h **** #if       (__CORTEX_M >= 0x03)
+ 227:../CM3 Core/core_cmFunc.h **** 
+ 228:../CM3 Core/core_cmFunc.h **** /** \brief  Enable FIQ
+ 229:../CM3 Core/core_cmFunc.h **** 
+ 230:../CM3 Core/core_cmFunc.h ****     This function enables FIQ interrupts by clearing the F-bit in the CPSR.
+ 231:../CM3 Core/core_cmFunc.h ****     Can only be executed in Privileged modes.
+ 232:../CM3 Core/core_cmFunc.h ****  */
+ 233:../CM3 Core/core_cmFunc.h **** #define __enable_fault_irq                __enable_fiq
+ 234:../CM3 Core/core_cmFunc.h **** 
+ 235:../CM3 Core/core_cmFunc.h **** 
+ 236:../CM3 Core/core_cmFunc.h **** /** \brief  Disable FIQ
+ 237:../CM3 Core/core_cmFunc.h **** 
+ 238:../CM3 Core/core_cmFunc.h ****     This function disables FIQ interrupts by setting the F-bit in the CPSR.
+ 239:../CM3 Core/core_cmFunc.h ****     Can only be executed in Privileged modes.
+ 240:../CM3 Core/core_cmFunc.h ****  */
+ 241:../CM3 Core/core_cmFunc.h **** #define __disable_fault_irq               __disable_fiq
+ 242:../CM3 Core/core_cmFunc.h **** 
+ 243:../CM3 Core/core_cmFunc.h **** 
+ 244:../CM3 Core/core_cmFunc.h **** /** \brief  Get Base Priority
+ 245:../CM3 Core/core_cmFunc.h **** 
+ 246:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Base Priority register.
+ 247:../CM3 Core/core_cmFunc.h **** 
+ 248:../CM3 Core/core_cmFunc.h ****     \return               Base Priority register value
+ 249:../CM3 Core/core_cmFunc.h ****  */
+ 250:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 251:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_BASEPRI(void);
+ 252:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 253:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t  __get_BASEPRI(void)
+ 254:../CM3 Core/core_cmFunc.h **** {
+ 255:../CM3 Core/core_cmFunc.h ****   register uint32_t __regBasePri         __ASM("basepri");
+ 256:../CM3 Core/core_cmFunc.h ****   return(__regBasePri);
+ 257:../CM3 Core/core_cmFunc.h **** }
+ 258:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 259:../CM3 Core/core_cmFunc.h **** 
+ 260:../CM3 Core/core_cmFunc.h **** 
+ 261:../CM3 Core/core_cmFunc.h **** /** \brief  Set Base Priority
+ 262:../CM3 Core/core_cmFunc.h **** 
+ 263:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Base Priority register.
+ 264:../CM3 Core/core_cmFunc.h **** 
+ 265:../CM3 Core/core_cmFunc.h ****     \param [in]    basePri  Base Priority value to set
+ 266:../CM3 Core/core_cmFunc.h ****  */
+ 267:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 268:../CM3 Core/core_cmFunc.h **** extern          void __set_BASEPRI(uint32_t basePri);
+ 269:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 270:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_BASEPRI(uint32_t basePri)
+ 271:../CM3 Core/core_cmFunc.h **** {
+ 272:../CM3 Core/core_cmFunc.h ****   register uint32_t __regBasePri         __ASM("basepri");
+ 273:../CM3 Core/core_cmFunc.h ****   __regBasePri = (basePri & 0xff);
+ 274:../CM3 Core/core_cmFunc.h **** }
+ 275:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 276:../CM3 Core/core_cmFunc.h ****  
+ 277:../CM3 Core/core_cmFunc.h **** 
+ 278:../CM3 Core/core_cmFunc.h **** /** \brief  Get Fault Mask
+ 279:../CM3 Core/core_cmFunc.h **** 
+ 280:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Fault Mask register.
+ 281:../CM3 Core/core_cmFunc.h **** 
+ 282:../CM3 Core/core_cmFunc.h ****     \return               Fault Mask register value
+ 283:../CM3 Core/core_cmFunc.h ****  */
+ 284:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 285:../CM3 Core/core_cmFunc.h **** extern          uint32_t __get_FAULTMASK(void);
+ 286:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 287:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_FAULTMASK(void)
+ 288:../CM3 Core/core_cmFunc.h **** {
+ 289:../CM3 Core/core_cmFunc.h ****   register uint32_t __regFaultMask       __ASM("faultmask");
+ 290:../CM3 Core/core_cmFunc.h ****   return(__regFaultMask);
+ 291:../CM3 Core/core_cmFunc.h **** }
+ 292:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 293:../CM3 Core/core_cmFunc.h **** 
+ 294:../CM3 Core/core_cmFunc.h **** 
+ 295:../CM3 Core/core_cmFunc.h **** /** \brief  Set Fault Mask
+ 296:../CM3 Core/core_cmFunc.h **** 
+ 297:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Fault Mask register.
+ 298:../CM3 Core/core_cmFunc.h **** 
+ 299:../CM3 Core/core_cmFunc.h ****     \param [in]    faultMask  Fault Mask value to set
+ 300:../CM3 Core/core_cmFunc.h ****  */
+ 301:../CM3 Core/core_cmFunc.h **** #if       (__ARMCC_VERSION <  400000)
+ 302:../CM3 Core/core_cmFunc.h **** extern          void __set_FAULTMASK(uint32_t faultMask);
+ 303:../CM3 Core/core_cmFunc.h **** #else  /* (__ARMCC_VERSION >= 400000) */
+ 304:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_FAULTMASK(uint32_t faultMask)
+ 305:../CM3 Core/core_cmFunc.h **** {
+ 306:../CM3 Core/core_cmFunc.h ****   register uint32_t __regFaultMask       __ASM("faultmask");
+ 307:../CM3 Core/core_cmFunc.h ****   __regFaultMask = (faultMask & 1);
+ 308:../CM3 Core/core_cmFunc.h **** }
+ 309:../CM3 Core/core_cmFunc.h **** #endif /*  __ARMCC_VERSION  */ 
+ 310:../CM3 Core/core_cmFunc.h **** 
+ 311:../CM3 Core/core_cmFunc.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 312:../CM3 Core/core_cmFunc.h **** 
+ 313:../CM3 Core/core_cmFunc.h **** 
+ 314:../CM3 Core/core_cmFunc.h **** #if       (__CORTEX_M == 0x04)
+ 315:../CM3 Core/core_cmFunc.h **** 
+ 316:../CM3 Core/core_cmFunc.h **** /** \brief  Get FPSCR
+ 317:../CM3 Core/core_cmFunc.h **** 
+ 318:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Floating Point Status/Control register.
+ 319:../CM3 Core/core_cmFunc.h **** 
+ 320:../CM3 Core/core_cmFunc.h ****     \return               Floating Point Status/Control register value
+ 321:../CM3 Core/core_cmFunc.h ****  */
+ 322:../CM3 Core/core_cmFunc.h **** static __INLINE uint32_t __get_FPSCR(void)
+ 323:../CM3 Core/core_cmFunc.h **** {
+ 324:../CM3 Core/core_cmFunc.h **** #if (__FPU_PRESENT == 1)
+ 325:../CM3 Core/core_cmFunc.h ****   register uint32_t __regfpscr         __ASM("fpscr");
+ 326:../CM3 Core/core_cmFunc.h ****   return(__regfpscr);
+ 327:../CM3 Core/core_cmFunc.h **** #else
+ 328:../CM3 Core/core_cmFunc.h ****    return(0);
+ 329:../CM3 Core/core_cmFunc.h **** #endif
+ 330:../CM3 Core/core_cmFunc.h **** }
+ 331:../CM3 Core/core_cmFunc.h **** 
+ 332:../CM3 Core/core_cmFunc.h **** 
+ 333:../CM3 Core/core_cmFunc.h **** /** \brief  Set FPSCR
+ 334:../CM3 Core/core_cmFunc.h **** 
+ 335:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Floating Point Status/Control register.
+ 336:../CM3 Core/core_cmFunc.h **** 
+ 337:../CM3 Core/core_cmFunc.h ****     \param [in]    fpscr  Floating Point Status/Control value to set
+ 338:../CM3 Core/core_cmFunc.h ****  */
+ 339:../CM3 Core/core_cmFunc.h **** static __INLINE void __set_FPSCR(uint32_t fpscr)
+ 340:../CM3 Core/core_cmFunc.h **** {
+ 341:../CM3 Core/core_cmFunc.h **** #if (__FPU_PRESENT == 1)
+ 342:../CM3 Core/core_cmFunc.h ****   register uint32_t __regfpscr         __ASM("fpscr");
+ 343:../CM3 Core/core_cmFunc.h ****   __regfpscr = (fpscr);
+ 344:../CM3 Core/core_cmFunc.h **** #endif
+ 345:../CM3 Core/core_cmFunc.h **** }
+ 346:../CM3 Core/core_cmFunc.h **** 
+ 347:../CM3 Core/core_cmFunc.h **** #endif /* (__CORTEX_M == 0x04) */
+ 348:../CM3 Core/core_cmFunc.h **** 
+ 349:../CM3 Core/core_cmFunc.h **** 
+ 350:../CM3 Core/core_cmFunc.h ****  #elif (defined (__ICCARM__)) /*---------------- ICC Compiler ---------------------*/
+ 351:../CM3 Core/core_cmFunc.h **** /* IAR iccarm specific functions */
+ 352:../CM3 Core/core_cmFunc.h **** 
+ 353:../CM3 Core/core_cmFunc.h **** #if defined (__ICCARM__)
+ 354:../CM3 Core/core_cmFunc.h ****   #include <intrinsics.h>                     /* IAR Intrinsics   */
+ 355:../CM3 Core/core_cmFunc.h **** #endif
+ 356:../CM3 Core/core_cmFunc.h **** 
+ 357:../CM3 Core/core_cmFunc.h **** #pragma diag_suppress=Pe940
+ 358:../CM3 Core/core_cmFunc.h **** 
+ 359:../CM3 Core/core_cmFunc.h **** /** \brief  Enable IRQ Interrupts
+ 360:../CM3 Core/core_cmFunc.h **** 
+ 361:../CM3 Core/core_cmFunc.h ****   This function enables IRQ interrupts by clearing the I-bit in the CPSR.
+ 362:../CM3 Core/core_cmFunc.h ****   Can only be executed in Privileged modes.
+ 363:../CM3 Core/core_cmFunc.h ****  */
+ 364:../CM3 Core/core_cmFunc.h **** #define __enable_irq                              __enable_interrupt
+ 365:../CM3 Core/core_cmFunc.h **** 
+ 366:../CM3 Core/core_cmFunc.h **** 
+ 367:../CM3 Core/core_cmFunc.h **** /** \brief  Disable IRQ Interrupts
+ 368:../CM3 Core/core_cmFunc.h **** 
+ 369:../CM3 Core/core_cmFunc.h ****   This function disables IRQ interrupts by setting the I-bit in the CPSR.
+ 370:../CM3 Core/core_cmFunc.h ****   Can only be executed in Privileged modes.
+ 371:../CM3 Core/core_cmFunc.h ****  */
+ 372:../CM3 Core/core_cmFunc.h **** #define __disable_irq                             __disable_interrupt
+ 373:../CM3 Core/core_cmFunc.h **** 
+ 374:../CM3 Core/core_cmFunc.h **** 
+ 375:../CM3 Core/core_cmFunc.h **** /* intrinsic unsigned long __get_CONTROL( void ); (see intrinsic.h) */
+ 376:../CM3 Core/core_cmFunc.h **** /* intrinsic void __set_CONTROL( unsigned long ); (see intrinsic.h) */
+ 377:../CM3 Core/core_cmFunc.h **** 
+ 378:../CM3 Core/core_cmFunc.h **** 
+ 379:../CM3 Core/core_cmFunc.h **** /** \brief  Get ISPR Register
+ 380:../CM3 Core/core_cmFunc.h **** 
+ 381:../CM3 Core/core_cmFunc.h ****     This function returns the content of the ISPR Register.
+ 382:../CM3 Core/core_cmFunc.h **** 
+ 383:../CM3 Core/core_cmFunc.h ****     \return               ISPR Register value
+ 384:../CM3 Core/core_cmFunc.h ****  */
+ 385:../CM3 Core/core_cmFunc.h **** static uint32_t __get_IPSR(void)
+ 386:../CM3 Core/core_cmFunc.h **** {
+ 387:../CM3 Core/core_cmFunc.h ****   __ASM("mrs r0, ipsr");
+ 388:../CM3 Core/core_cmFunc.h **** }
+ 389:../CM3 Core/core_cmFunc.h **** 
+ 390:../CM3 Core/core_cmFunc.h **** 
+ 391:../CM3 Core/core_cmFunc.h **** /** \brief  Get APSR Register
+ 392:../CM3 Core/core_cmFunc.h **** 
+ 393:../CM3 Core/core_cmFunc.h ****     This function returns the content of the APSR Register.
+ 394:../CM3 Core/core_cmFunc.h **** 
+ 395:../CM3 Core/core_cmFunc.h ****     \return               APSR Register value
+ 396:../CM3 Core/core_cmFunc.h ****  */
+ 397:../CM3 Core/core_cmFunc.h **** static uint32_t __get_APSR(void)
+ 398:../CM3 Core/core_cmFunc.h **** {
+ 399:../CM3 Core/core_cmFunc.h ****   __ASM("mrs r0, apsr");
+ 400:../CM3 Core/core_cmFunc.h **** }
+ 401:../CM3 Core/core_cmFunc.h **** 
+ 402:../CM3 Core/core_cmFunc.h **** 
+ 403:../CM3 Core/core_cmFunc.h **** /** \brief  Get xPSR Register
+ 404:../CM3 Core/core_cmFunc.h **** 
+ 405:../CM3 Core/core_cmFunc.h ****     This function returns the content of the xPSR Register.
+ 406:../CM3 Core/core_cmFunc.h **** 
+ 407:../CM3 Core/core_cmFunc.h ****     \return               xPSR Register value
+ 408:../CM3 Core/core_cmFunc.h ****  */
+ 409:../CM3 Core/core_cmFunc.h **** static uint32_t __get_xPSR(void)
+ 410:../CM3 Core/core_cmFunc.h **** {
+ 411:../CM3 Core/core_cmFunc.h ****   __ASM("mrs r0, psr");           // assembler does not know "xpsr"
+ 412:../CM3 Core/core_cmFunc.h **** }
+ 413:../CM3 Core/core_cmFunc.h **** 
+ 414:../CM3 Core/core_cmFunc.h **** 
+ 415:../CM3 Core/core_cmFunc.h **** /** \brief  Get Process Stack Pointer
+ 416:../CM3 Core/core_cmFunc.h **** 
+ 417:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Process Stack Pointer (PSP).
+ 418:../CM3 Core/core_cmFunc.h **** 
+ 419:../CM3 Core/core_cmFunc.h ****     \return               PSP Register value
+ 420:../CM3 Core/core_cmFunc.h ****  */
+ 421:../CM3 Core/core_cmFunc.h **** static uint32_t __get_PSP(void)
+ 422:../CM3 Core/core_cmFunc.h **** {
+ 423:../CM3 Core/core_cmFunc.h ****   __ASM("mrs r0, psp");
+ 424:../CM3 Core/core_cmFunc.h **** }
+ 425:../CM3 Core/core_cmFunc.h ****  
+ 426:../CM3 Core/core_cmFunc.h **** 
+ 427:../CM3 Core/core_cmFunc.h **** /** \brief  Set Process Stack Pointer
+ 428:../CM3 Core/core_cmFunc.h **** 
+ 429:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Process Stack Pointer (PSP).
+ 430:../CM3 Core/core_cmFunc.h **** 
+ 431:../CM3 Core/core_cmFunc.h ****     \param [in]    topOfProcStack  Process Stack Pointer value to set
+ 432:../CM3 Core/core_cmFunc.h ****  */
+ 433:../CM3 Core/core_cmFunc.h **** static void __set_PSP(uint32_t topOfProcStack)
+ 434:../CM3 Core/core_cmFunc.h **** {
+ 435:../CM3 Core/core_cmFunc.h ****   __ASM("msr psp, r0");
+ 436:../CM3 Core/core_cmFunc.h **** }
+ 437:../CM3 Core/core_cmFunc.h **** 
+ 438:../CM3 Core/core_cmFunc.h **** 
+ 439:../CM3 Core/core_cmFunc.h **** /** \brief  Get Main Stack Pointer
+ 440:../CM3 Core/core_cmFunc.h **** 
+ 441:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Main Stack Pointer (MSP).
+ 442:../CM3 Core/core_cmFunc.h **** 
+ 443:../CM3 Core/core_cmFunc.h ****     \return               MSP Register value
+ 444:../CM3 Core/core_cmFunc.h ****  */
+ 445:../CM3 Core/core_cmFunc.h **** static uint32_t __get_MSP(void)
+ 446:../CM3 Core/core_cmFunc.h **** {
+ 447:../CM3 Core/core_cmFunc.h ****   __ASM("mrs r0, msp");
+ 448:../CM3 Core/core_cmFunc.h **** }
+ 449:../CM3 Core/core_cmFunc.h ****  
+ 450:../CM3 Core/core_cmFunc.h **** 
+ 451:../CM3 Core/core_cmFunc.h **** /** \brief  Set Main Stack Pointer
+ 452:../CM3 Core/core_cmFunc.h **** 
+ 453:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Main Stack Pointer (MSP).
+ 454:../CM3 Core/core_cmFunc.h **** 
+ 455:../CM3 Core/core_cmFunc.h ****     \param [in]    topOfMainStack  Main Stack Pointer value to set
+ 456:../CM3 Core/core_cmFunc.h ****  */
+ 457:../CM3 Core/core_cmFunc.h **** static void __set_MSP(uint32_t topOfMainStack)
+ 458:../CM3 Core/core_cmFunc.h **** {
+ 459:../CM3 Core/core_cmFunc.h ****   __ASM("msr msp, r0");
+ 460:../CM3 Core/core_cmFunc.h **** }
+ 461:../CM3 Core/core_cmFunc.h ****  
+ 462:../CM3 Core/core_cmFunc.h **** 
+ 463:../CM3 Core/core_cmFunc.h **** /* intrinsic unsigned long __get_PRIMASK( void ); (see intrinsic.h) */
+ 464:../CM3 Core/core_cmFunc.h **** /* intrinsic void __set_PRIMASK( unsigned long ); (see intrinsic.h) */
+ 465:../CM3 Core/core_cmFunc.h ****  
+ 466:../CM3 Core/core_cmFunc.h **** 
+ 467:../CM3 Core/core_cmFunc.h **** #if       (__CORTEX_M >= 0x03)
+ 468:../CM3 Core/core_cmFunc.h **** 
+ 469:../CM3 Core/core_cmFunc.h **** /** \brief  Enable FIQ
+ 470:../CM3 Core/core_cmFunc.h **** 
+ 471:../CM3 Core/core_cmFunc.h ****     This function enables FIQ interrupts by clearing the F-bit in the CPSR.
+ 472:../CM3 Core/core_cmFunc.h ****     Can only be executed in Privileged modes.
+ 473:../CM3 Core/core_cmFunc.h ****  */
+ 474:../CM3 Core/core_cmFunc.h **** static __INLINE void __enable_fault_irq(void)
+ 475:../CM3 Core/core_cmFunc.h **** {
+ 476:../CM3 Core/core_cmFunc.h ****   __ASM ("cpsie f");
+ 477:../CM3 Core/core_cmFunc.h **** }
+ 478:../CM3 Core/core_cmFunc.h **** 
+ 479:../CM3 Core/core_cmFunc.h **** 
+ 480:../CM3 Core/core_cmFunc.h **** /** \brief  Disable FIQ
+ 481:../CM3 Core/core_cmFunc.h **** 
+ 482:../CM3 Core/core_cmFunc.h ****     This function disables FIQ interrupts by setting the F-bit in the CPSR.
+ 483:../CM3 Core/core_cmFunc.h ****     Can only be executed in Privileged modes.
+ 484:../CM3 Core/core_cmFunc.h ****  */
+ 485:../CM3 Core/core_cmFunc.h **** static __INLINE void __disable_fault_irq(void)
+ 486:../CM3 Core/core_cmFunc.h **** {
+ 487:../CM3 Core/core_cmFunc.h ****   __ASM ("cpsid f");
+ 488:../CM3 Core/core_cmFunc.h **** }
+ 489:../CM3 Core/core_cmFunc.h **** 
+ 490:../CM3 Core/core_cmFunc.h **** 
+ 491:../CM3 Core/core_cmFunc.h **** /* intrinsic unsigned long __get_BASEPRI( void );   (see intrinsic.h) */
+ 492:../CM3 Core/core_cmFunc.h **** /* intrinsic void __set_BASEPRI( unsigned long );   (see intrinsic.h) */
+ 493:../CM3 Core/core_cmFunc.h **** /* intrinsic unsigned long __get_FAULTMASK( void ); (see intrinsic.h) */
+ 494:../CM3 Core/core_cmFunc.h **** /* intrinsic void __set_FAULTMASK(unsigned long);   (see intrinsic.h) */
+ 495:../CM3 Core/core_cmFunc.h **** 
+ 496:../CM3 Core/core_cmFunc.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 497:../CM3 Core/core_cmFunc.h **** 
+ 498:../CM3 Core/core_cmFunc.h **** 
+ 499:../CM3 Core/core_cmFunc.h **** #if       (__CORTEX_M == 0x04)
+ 500:../CM3 Core/core_cmFunc.h **** 
+ 501:../CM3 Core/core_cmFunc.h **** /** \brief  Get FPSCR
+ 502:../CM3 Core/core_cmFunc.h **** 
+ 503:../CM3 Core/core_cmFunc.h ****     This function returns the current value of the Floating Point Status/Control register.
+ 504:../CM3 Core/core_cmFunc.h **** 
+ 505:../CM3 Core/core_cmFunc.h ****     \return               Floating Point Status/Control register value
+ 506:../CM3 Core/core_cmFunc.h ****  */
+ 507:../CM3 Core/core_cmFunc.h **** static uint32_t __get_FPSCR(void)
+ 508:../CM3 Core/core_cmFunc.h **** {
+ 509:../CM3 Core/core_cmFunc.h **** #if (__FPU_PRESENT == 1)
+ 510:../CM3 Core/core_cmFunc.h ****   __ASM("vmrs r0, fpscr"); 
+ 511:../CM3 Core/core_cmFunc.h **** #else
+ 512:../CM3 Core/core_cmFunc.h ****   return(0);
+ 513:../CM3 Core/core_cmFunc.h **** #endif
+ 514:../CM3 Core/core_cmFunc.h **** }
+ 515:../CM3 Core/core_cmFunc.h **** 
+ 516:../CM3 Core/core_cmFunc.h **** 
+ 517:../CM3 Core/core_cmFunc.h **** /** \brief  Set FPSCR
+ 518:../CM3 Core/core_cmFunc.h **** 
+ 519:../CM3 Core/core_cmFunc.h ****     This function assigns the given value to the Floating Point Status/Control register.
+ 520:../CM3 Core/core_cmFunc.h **** 
+ 521:../CM3 Core/core_cmFunc.h ****     \param [in]    fpscr  Floating Point Status/Control value to set
+ 522:../CM3 Core/core_cmFunc.h ****  */
+ 523:../CM3 Core/core_cmFunc.h **** static void __set_FPSCR(uint32_t fpscr)
+ 524:../CM3 Core/core_cmFunc.h **** {
+ 525:../CM3 Core/core_cmFunc.h **** #if (__FPU_PRESENT == 1)
+ 526:../CM3 Core/core_cmFunc.h ****   __ASM("vmsr fpscr, r0");
+ 527:../CM3 Core/core_cmFunc.h **** #endif
+ 528:../CM3 Core/core_cmFunc.h **** }
+ 529:../CM3 Core/core_cmFunc.h **** 
+ 530:../CM3 Core/core_cmFunc.h **** #endif /* (__CORTEX_M == 0x04) */
+ 531:../CM3 Core/core_cmFunc.h **** 
+ 532:../CM3 Core/core_cmFunc.h **** #pragma diag_default=Pe940
+ 533:../CM3 Core/core_cmFunc.h **** 
+ 534:../CM3 Core/core_cmFunc.h **** 
+ 535:../CM3 Core/core_cmFunc.h **** #elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
+ 536:../CM3 Core/core_cmFunc.h **** /* GNU gcc specific functions */
+ 537:../CM3 Core/core_cmFunc.h **** 
+ 538:../CM3 Core/core_cmFunc.h **** /** \brief  Enable IRQ Interrupts
+ 539:../CM3 Core/core_cmFunc.h **** 
+ 540:../CM3 Core/core_cmFunc.h ****   This function enables IRQ interrupts by clearing the I-bit in the CPSR.
+ 541:../CM3 Core/core_cmFunc.h ****   Can only be executed in Privileged modes.
+ 542:../CM3 Core/core_cmFunc.h ****  */
+ 543:../CM3 Core/core_cmFunc.h **** __attribute__( ( always_inline ) ) static __INLINE void __enable_irq(void)
+ 544:../CM3 Core/core_cmFunc.h **** {
+ 545:../CM3 Core/core_cmFunc.h ****   __ASM volatile ("cpsie i");
+ 546:../CM3 Core/core_cmFunc.h **** }
+ 547:../CM3 Core/core_cmFunc.h **** 
+ 548:../CM3 Core/core_cmFunc.h **** 
+ 549:../CM3 Core/core_cmFunc.h **** /** \brief  Disable IRQ Interrupts
+ 550:../CM3 Core/core_cmFunc.h **** 
+ 551:../CM3 Core/core_cmFunc.h ****   This function disables IRQ interrupts by setting the I-bit in the CPSR.
+ 552:../CM3 Core/core_cmFunc.h ****   Can only be executed in Privileged modes.
+ 553:../CM3 Core/core_cmFunc.h ****  */
+ 554:../CM3 Core/core_cmFunc.h **** __attribute__( ( always_inline ) ) static __INLINE void __disable_irq(void)
+ 555:../CM3 Core/core_cmFunc.h **** {
+ 556:../CM3 Core/core_cmFunc.h ****   __ASM volatile ("cpsid i");
  262              		.loc 2 556 0
- 263              	@ 556 "C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core/core_cmFunc.h" 1
+ 263              	@ 556 "../CM3 Core/core_cmFunc.h" 1
  264 00c2 72B6     		cpsid i
  265              	@ 0 "" 2
  266              		.thumb
@@ -1061,9 +1061,9 @@
  277 00ce 1872     		strb	r0, [r3, #8]
  278              	.LBB12:
  279              	.LBB13:
- 545:C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core\core_cmFunc.h ****   __ASM volatile ("cpsie i");
+ 545:../CM3 Core/core_cmFunc.h ****   __ASM volatile ("cpsie i");
  280              		.loc 2 545 0
- 281              	@ 545 "C:\Edu_Workspace\LPC1768\Eg18i\CM3 Core/core_cmFunc.h" 1
+ 281              	@ 545 "../CM3 Core/core_cmFunc.h" 1
  282 00d0 62B6     		cpsie i
  283              	@ 0 "" 2
  284              		.thumb
@@ -1194,25 +1194,25 @@
  387              	.LFE62:
  389              	.Letext0:
  390              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
- 391              		.file 4 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/LPC17xx.h"
- 392              		.file 5 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\Header Files/lpc_types.h"
- 393              		.file 6 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\Header Files/lpc17xx_wdt.h"
- 394              		.file 7 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/core_cm3.h"
- 395              		.file 8 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\CM3 Core/system_LPC17xx.h"
- 396              		.file 9 "C:\\Edu_Workspace\\LPC1768\\Eg18i\\Header Files/lpc17xx_clkpwr.h"
+ 391              		.file 4 "../CM3 Core/LPC17xx.h"
+ 392              		.file 5 "../Header Files/lpc_types.h"
+ 393              		.file 6 "../Header Files/lpc17xx_wdt.h"
+ 394              		.file 7 "../CM3 Core/core_cm3.h"
+ 395              		.file 8 "../CM3 Core/system_LPC17xx.h"
+ 396              		.file 9 "../Header Files/lpc17xx_clkpwr.h"
 DEFINED SYMBOLS
                             *ABS*:00000000 lpc17xx_wdt.c
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:18     .text:00000000 $t
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:22     .text:00000000 WDT_SetTimeOut
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:146    .text:00000070 $d
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:151    .text:00000078 $t
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:156    .text:00000078 WDT_Init
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:210    .text:000000a8 WDT_ReadTimeOutFlag
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:231    .text:000000b4 WDT_ClrTimeOutFlag
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:252    .text:000000c2 WDT_Feed
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:296    .text:000000d4 WDT_UpdateTimeOut
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:333    .text:000000ee WDT_Start
-C:\Users\raghav\AppData\Local\Temp\ccEXOhpd.s:374    .text:00000110 WDT_GetCurrentCount
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:22     .text:00000000 WDT_SetTimeOut
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:146    .text:00000070 $d
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:151    .text:00000078 $t
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:156    .text:00000078 WDT_Init
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:210    .text:000000a8 WDT_ReadTimeOutFlag
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:231    .text:000000b4 WDT_ClrTimeOutFlag
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:252    .text:000000c2 WDT_Feed
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:296    .text:000000d4 WDT_UpdateTimeOut
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:333    .text:000000ee WDT_Start
+C:\Users\raghav\AppData\Local\Temp\ccnutTTC.s:374    .text:00000110 WDT_GetCurrentCount
                      .debug_frame:00000010 $d
                            .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
                            .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
