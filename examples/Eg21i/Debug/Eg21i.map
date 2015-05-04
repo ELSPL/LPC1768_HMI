@@ -1,0 +1,1718 @@
+Archive member included because of file (symbol)
+
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                              ./Source Files/lpc17xx_systick.o (__aeabi_ui2f)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
+                              ./Source Files/lpc17xx_systick.o (__aeabi_fcmpgt)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o)
+                              ./Source Files/lpc17xx_uart.o (__aeabi_uldivmod)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o)
+                              c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o) (__gnu_uldivmod_helper)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o) (__aeabi_ldiv0)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+                              c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o) (__divdi3)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+                              c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o) (__udivdi3)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+                              ./Source Files/lpc_ssp_glcd.o (memcpy)
+c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+                              ./Source Files/lpc17xx_uart.o (memset)
+
+Allocating common symbols
+Common symbol       size              file
+
+I2C_Rx_Buf          0x40              ./Source Files/lpc17xx_gpio.o
+irqn                0x1               ./Source Files/lpc17xx_i2c.o
+EscFlag             0x2               ./Source Files/lpc17xx_gpio.o
+rb                  0x210             ./Source Files/lpc17xx_gpio.o
+led_timer           0x4               ./Source Files/lpc17xx_systick.o
+I2C_Tx_Buf          0x40              ./Source Files/lpc17xx_gpio.o
+led_delay           0x4               ./Source Files/lpc_global.o
+Tx_Buf1             0x40              ./Source Files/lpc17xx_gpio.o
+cmatrix             0x1c              ./Source Files/lpc_glcd_cal.o
+Rx_Buf1             0x40              ./Source Files/lpc17xx_gpio.o
+gTouch              0x4               ./Source Files/lpc_glcd_cal.o
+delay_timer         0x4               ./Source Files/lpc17xx_systick.o
+TxIntStat           0x1               ./Source Files/lpc17xx_gpio.o
+regs                0x4               ./Source Files/lpc17xx_i2c.o
+
+Discarded input sections
+
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_clkpwr.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_gpio.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x94 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00000000       0xee ./Source Files/lpc17xx_i2c.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_nvic.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_pinsel.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x94 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000       0xee ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x00000000      0x2af ./Source Files/lpc17xx_ssp.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x2b5 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x94 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00000000       0xee ./Source Files/lpc17xx_systick.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc17xx_uart.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc17xx_wdt.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x2b5 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x94 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0xee ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_glcd_cal.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_global.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc_global.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc_global.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc_global.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc_global.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc_global.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc_global.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x2b5 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x94 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_i2c_tsc2004.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x2b5 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x00000000       0xee ./Source Files/lpc_ssp_glcd.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x80e ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x1c ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x2e ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x20e ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x18 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x7af ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x10f ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x146 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x4c ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x40 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x70 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x58 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x2b5 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x94 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x3a ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x52 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x19 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x16d ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000      0x1da ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0x10 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00000000       0xee ./Source Files/lpc_system_init.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .group         0x00000000        0x8 ./Source Files/main.o
+ .debug_macro   0x00000000      0x80e ./Source Files/main.o
+ .debug_macro   0x00000000       0x1c ./Source Files/main.o
+ .debug_macro   0x00000000       0x2e ./Source Files/main.o
+ .debug_macro   0x00000000       0x3a ./Source Files/main.o
+ .debug_macro   0x00000000       0x10 ./Source Files/main.o
+ .debug_macro   0x00000000       0x2e ./Source Files/main.o
+ .debug_macro   0x00000000       0xa3 ./Source Files/main.o
+ .debug_macro   0x00000000      0x20e ./Source Files/main.o
+ .debug_macro   0x00000000       0x18 ./Source Files/main.o
+ .debug_macro   0x00000000      0x7af ./Source Files/main.o
+ .debug_macro   0x00000000      0x2d5 ./Source Files/main.o
+ .debug_macro   0x00000000      0x10f ./Source Files/main.o
+ .debug_macro   0x00000000      0x146 ./Source Files/main.o
+ .debug_macro   0x00000000      0x2f8 ./Source Files/main.o
+ .debug_macro   0x00000000       0x4c ./Source Files/main.o
+ .debug_macro   0x00000000       0x40 ./Source Files/main.o
+ .debug_macro   0x00000000       0x70 ./Source Files/main.o
+ .debug_macro   0x00000000       0x58 ./Source Files/main.o
+ .debug_macro   0x00000000      0x3e3 ./Source Files/main.o
+ .debug_macro   0x00000000      0x2b5 ./Source Files/main.o
+ .debug_macro   0x00000000      0x1a5 ./Source Files/main.o
+ .debug_macro   0x00000000       0x94 ./Source Files/main.o
+ .debug_macro   0x00000000       0x3a ./Source Files/main.o
+ .debug_macro   0x00000000       0x52 ./Source Files/main.o
+ .debug_macro   0x00000000       0x19 ./Source Files/main.o
+ .debug_macro   0x00000000      0x16d ./Source Files/main.o
+ .debug_macro   0x00000000      0x1da ./Source Files/main.o
+ .debug_macro   0x00000000       0x10 ./Source Files/main.o
+ .debug_macro   0x00000000       0xee ./Source Files/main.o
+ .group         0x00000000        0x8 ./CM3 Core/core_cm3.o
+ .group         0x00000000        0x8 ./CM3 Core/core_cm3.o
+ .group         0x00000000        0x8 ./CM3 Core/core_cm3.o
+ .group         0x00000000        0x8 ./CM3 Core/core_cm3.o
+ .group         0x00000000        0x8 ./CM3 Core/core_cm3.o
+ .group         0x00000000        0x8 ./CM3 Core/core_cm3.o
+ .debug_macro   0x00000000      0x80e ./CM3 Core/core_cm3.o
+ .debug_macro   0x00000000       0x3a ./CM3 Core/core_cm3.o
+ .debug_macro   0x00000000       0x10 ./CM3 Core/core_cm3.o
+ .debug_macro   0x00000000       0x2e ./CM3 Core/core_cm3.o
+ .debug_macro   0x00000000       0xa3 ./CM3 Core/core_cm3.o
+ .debug_macro   0x00000000      0x20e ./CM3 Core/core_cm3.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000      0x80e ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0x3a ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0x10 ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0x2e ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0xa3 ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000      0x20e ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0x1c ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0x2e ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000       0x18 ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000      0x7af ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00000000      0x2d5 ./CM3 Core/system_LPC17xx.o
+ .group         0x00000000        0x8 ./startup_LPC17xx.o
+ .debug_macro   0x00000000      0x80e ./startup_LPC17xx.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x10000000         0x00008000         xrw
+RAMAHB           0x2007c000         0x00008000         xrw
+FLASH            0x00000000         0x00080000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./Source Files/lpc17xx_clkpwr.o
+LOAD ./Source Files/lpc17xx_gpio.o
+LOAD ./Source Files/lpc17xx_i2c.o
+LOAD ./Source Files/lpc17xx_nvic.o
+LOAD ./Source Files/lpc17xx_pinsel.o
+LOAD ./Source Files/lpc17xx_ssp.o
+LOAD ./Source Files/lpc17xx_systick.o
+LOAD ./Source Files/lpc17xx_uart.o
+LOAD ./Source Files/lpc17xx_wdt.o
+LOAD ./Source Files/lpc_glcd_cal.o
+LOAD ./Source Files/lpc_global.o
+LOAD ./Source Files/lpc_i2c_tsc2004.o
+LOAD ./Source Files/lpc_ssp_glcd.o
+LOAD ./Source Files/lpc_system_init.o
+LOAD ./Source Files/main.o
+LOAD ./CM3 Core/core_cm3.o
+LOAD ./CM3 Core/system_LPC17xx.o
+LOAD ./startup_LPC17xx.o
+START GROUP
+LOAD c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a
+LOAD c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a
+LOAD c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libc.a
+END GROUP
+                0x10008000                _estack = 0x10008000
+                0x000007d0                __Stack_Size = 0x7d0
+                0x000007d0                PROVIDE (_Stack_Size, __Stack_Size)
+                0x10007830                __Stack_Init = (_estack - __Stack_Size)
+                0x10007830                PROVIDE (_Stack_Init, __Stack_Init)
+                0x00000100                _Minimum_Stack_Size = 0x100
+
+.mios32_bsl     0x00000000        0x0
+                0x00000000                . = ALIGN (0x4)
+ *(.mios32_bsl)
+                0x00000000                . = ALIGN (0x4)
+
+.isr_vector     0x00000000       0xcc
+                0x00000000                _mios32_sys_isr_vector = .
+                0x00000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x00000000       0xcc ./startup_LPC17xx.o
+                0x00000000                g_pfnVectors
+                0x000000cc                . = ALIGN (0x4)
+                0x00000000                PROVIDE (mios32_sys_isr_vector, _mios32_sys_isr_vector)
+
+.flashtext      0x000000cc        0x0
+                0x000000cc                . = ALIGN (0x4)
+ *(.flashtext)
+                0x000000cc                . = ALIGN (0x4)
+
+.text           0x000000cc     0x5834
+                0x000000cc                . = ALIGN (0x4)
+ CREATE_OBJECT_SYMBOLS
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x000000cc      0x12c ./Source Files/lpc17xx_clkpwr.o
+                0x000000cc                CLKPWR_SetPCLKDiv
+                0x00000120                CLKPWR_GetPCLKSEL
+                0x00000140                CLKPWR_GetPCLK
+                0x00000160                CLKPWR_ConfigPPWR
+                0x00000194                CLKPWR_Sleep
+                0x000001a4                CLKPWR_DeepSleep
+                0x000001c0                CLKPWR_PowerDown
+                0x000001dc                CLKPWR_DeepPowerDown
+ .text          0x000001f8      0x35c ./Source Files/lpc17xx_gpio.o
+                0x000001f8                EINT3_IRQHandler
+                0x00000298                GPIO_SetDir
+                0x000002bc                GPIO_SetValue
+                0x000002d0                GPIO_ClearValue
+                0x000002e4                GPIO_ReadValue
+                0x000002fc                GPIO_IntCmd
+                0x0000032c                GPIO_GetIntStatus
+                0x00000364                GPIO_ClearInt
+                0x0000037c                FIO_SetDir
+                0x00000380                FIO_SetValue
+                0x00000384                FIO_ClearValue
+                0x00000388                FIO_ReadValue
+                0x0000038c                FIO_IntCmd
+                0x00000390                FIO_GetIntStatus
+                0x00000394                FIO_ClearInt
+                0x00000398                FIO_SetMask
+                0x000003bc                FIO_HalfWordSetDir
+                0x000003fc                FIO_HalfWordSetMask
+                0x0000043c                FIO_HalfWordSetValue
+                0x00000458                FIO_HalfWordClearValue
+                0x00000474                FIO_HalfWordReadValue
+                0x00000498                FIO_ByteSetDir
+                0x000004c8                FIO_ByteSetMask
+                0x000004fc                FIO_ByteSetValue
+                0x00000518                FIO_ByteClearValue
+                0x00000534                FIO_ByteReadValue
+ .text          0x00000554      0x7ec ./Source Files/lpc17xx_i2c.o
+                0x0000059e                Buffer_Init
+                0x000005bc                I2C_Init
+                0x00000638                I2C_Config
+                0x0000068c                I2C_DeInit
+                0x000006c4                I2C_Cmd
+                0x000006d2                I2C_IntCmd
+                0x00000738                I2C_MasterHandler
+                0x000008b4                I2C_SlaveHandler
+                0x00000998                I2C_MasterTransferData
+                0x00000b48                I2C_SlaveTransferData
+                0x00000c58                I2C_SetOwnSlaveAddr
+                0x00000ca8                I2C_MonitorModeConfig
+                0x00000cbc                I2C_MonitorModeCmd
+                0x00000ce8                I2C_MonitorGetDatabuffer
+                0x00000cee                I2C_MonitorHandler
+                0x00000d10                I2C_MasterTransferComplete
+                0x00000d28                I2C_SlaveTransferComplete
+ .text          0x00000d40       0x88 ./Source Files/lpc17xx_nvic.o
+                0x00000d40                NVIC_DeInit
+                0x00000d74                NVIC_SCBDeInit
+                0x00000db4                NVIC_SetVTOR
+ .text          0x00000dc8       0xcc ./Source Files/lpc17xx_pinsel.o
+                0x00000dc8                PINSEL_ConfigTraceFunc
+                0x00000de8                PINSEL_SetI2C0Pins
+                0x00000dfc                PINSEL_ConfigPin
+ .text          0x00000e94      0x47c ./Source Files/lpc17xx_ssp.o
+                0x00000e94                CS_Init1
+                0x00000ed8                CS_Force1
+                0x00000f14                Buffer_Init1
+                0x00000f30                SSP_Init
+                0x00000fcc                SSP_DeInit
+                0x00000ff4                SSP_GetDataSize
+                0x00000ffc                SSP_ConfigStructInit
+                0x00001014                SSP_Config
+                0x0000110c                SSP_Cmd
+                0x0000111e                SSP_LoopBackCmd
+                0x00001130                SSP_SlaveOutputCmd
+                0x00001142                SSP_SendData
+                0x00001146                SSP_ReceiveData
+                0x0000114c                SSP_ReadWrite
+                0x000012bc                SSP_GetStatus
+                0x000012c8                SSP_IntConfig
+                0x000012dc                SSP_GetRawIntStatus
+                0x000012e8                SSP_GetRawIntStatusReg
+                0x000012ec                SSP_GetIntStatus
+                0x000012f8                SSP_ClearIntPending
+                0x000012fc                SSP_DMACmd
+ .text          0x00001310      0x13c ./Source Files/lpc17xx_systick.o
+                0x00001310                delay_ms
+                0x00001320                SYSTICK_InternalInit
+                0x00001368                SYSTICK_ExternalInit
+                0x000013ac                SYSTICK_Cmd
+                0x000013c4                SYSTICK_IntCmd
+                0x000013dc                SYSTICK_Config
+                0x000013f4                SYSTICK_GetCurrentValue
+                0x00001400                SYSTICK_ClearCounterFlag
+                0x00001410                SysTick_Handler
+ .text          0x0000144c      0xd78 ./Source Files/lpc17xx_uart.o
+                0x0000144c                UART_Init
+                0x000016f0                UART_ConfigStructInit
+                0x00001702                UART_SendByte
+                0x00001706                UART_ReceiveByte
+                0x00001718                UART_ForceBreak
+                0x00001722                UART_IntConfig
+                0x00001788                UART_GetLineStatus
+                0x0000178c                UART_GetIntId
+                0x00001796                UART_CheckBusy
+                0x000017a2                UART_FIFOConfig
+                0x000017dc                UART_Config
+                0x00001914                UART_FIFOConfigStructInit
+                0x00001922                UART_ABCmd
+                0x00001974                UART_ABClearIntPending
+                0x0000197c                UART_TxCmd
+                0x0000199c                UART_DeInit
+                0x000019a2                UART_IrDAInvtInputCmd
+                0x000019c0                UART_IrDACmd
+                0x000019d6                UART_IrDAPulseDivConfig
+                0x000019f4                UART_FullModemForcePinState
+                0x00001a18                UART_FullModemConfigMode
+                0x00001a42                UART_FullModemGetStatus
+                0x00001a46                UART_RS485Config
+                0x00001a9e                UART_RS485ReceiverCmd
+                0x00001ab4                UART_IntReceive
+                0x00001aec                UART_IntTransmit
+                0x00001b74                UART2_IRQHandler
+                0x00001bb0                UART0_IRQHandler
+                0x00001bec                UART_Send
+                0x00001c4c                printf
+                0x00001e7c                UART_RS485SendSlvAddr
+                0x00001ea8                UART_RS485Send
+                0x00001ee0                UART_RS485SendData
+                0x00001ee6                UART_Receive
+                0x00001f34                getche
+                0x00001fb0                get_line
+                0x00002062                reset_cursor
+                0x0000206c                clear_screen
+                0x00002078                clr_scr_rst_cur
+                0x0000208a                Erase_Char
+                0x000020b4                Erase_Char_With_UnderScore
+                0x000020e0                Erase_BackLash
+                0x0000212c                Erase_SemiColon
+                0x00002178                Erase_And_RingTheBell
+ .text          0x000021c4      0x118 ./Source Files/lpc17xx_wdt.o
+                0x0000223c                WDT_Init
+                0x0000226c                WDT_ReadTimeOutFlag
+                0x00002278                WDT_ClrTimeOutFlag
+                0x00002286                WDT_Feed
+                0x00002298                WDT_UpdateTimeOut
+                0x000022b2                WDT_Start
+                0x000022d4                WDT_GetCurrentCount
+ .text          0x000022dc      0x4c8 ./Source Files/lpc_glcd_cal.o
+                0x000022dc                SetCalibrationMatrix
+                0x00002548                TSC2004_Cal_Init
+                0x00002754                TSC2004_Cal_Values
+ .text          0x000027a4        0x0 ./Source Files/lpc_global.o
+ .text          0x000027a4      0x1ec ./Source Files/lpc_i2c_tsc2004.o
+                0x000027a4                I2C_TSC2004_Write_Byte
+                0x000027dc                I2C_TSC2004_Write_Word
+                0x00002818                TSC2004_Init
+                0x0000283e                I2C_TSC2004_Read_Word
+                0x0000288c                TSC2004_Read_Reg
+                0x000028ae                TSC2004_Read_Values
+                0x00002914                TSC2004_Read_Value_Test
+                0x00002964                TSC2004_Draw_Test
+ .text          0x00002990     0x213c ./Source Files/lpc_ssp_glcd.o
+                0x000029e0                GLCD_Backlight
+                0x000029f6                GLCD_Reset
+                0x00002a20                GLCD_SetTextColor
+                0x00002a2c                GLCD_SetBackColor
+                0x00002a38                Keyboard1
+                0x00002c28                Keyboard2
+                0x00002e04                Keyboard3
+                0x00002ff2                Write_Command_Glcd
+                0x0000304c                Write_Data_Glcd
+                0x00003094                GLCD_Draw_Char
+                0x00003134                GLCD_Display_Char
+                0x0000315c                GLCD_PutPixel
+                0x0000318c                GLCD_Text
+                0x000032be                gprintf
+                0x000036c0                GLCD_Line
+                0x000037a8                GLCD_LBar
+                0x0000384e                GLCD_Triangle
+                0x00003d22                Show_BarGraph_VI
+                0x00003ef8                Show_BarGraph
+                0x000040bc                GLCD_Frame
+                0x000041da                GLCD_Circle
+                0x000043bc                GLCD_Window
+                0x00004406                GLCD_Display_String
+                0x00004436                GLCD_ClearLn
+                0x0000445c                GLCD_Clear
+                0x000044a6                GLCD_Set_Loc
+                0x000044d2                GLCD_Window_Fill
+                0x00004508                GLCD_Bar
+                0x0000453a                GLCD_Erase
+                0x00004576                GLCD_Rect
+                0x0000466a                GLCD_Bitmap
+                0x000046aa                GLCD_Getche
+                0x000047b0                GLCD_Get_Line
+                0x000048c8                GLCD_Display_Home
+                0x000048d6                GLCD_Driver_OutCtrl
+                0x0000490c                GLCD_Init
+ .text          0x00004acc       0x90 ./Source Files/lpc_system_init.o
+                0x00004acc                Port_Init
+                0x00004ad8                System_Init
+ .text          0x00004b5c        0x0 ./Source Files/main.o
+ .text.startup  0x00004b5c       0x54 ./Source Files/main.o
+                0x00004b5c                main
+ .text          0x00004bb0        0x0 ./CM3 Core/core_cm3.o
+ .text          0x00004bb0      0x17c ./CM3 Core/system_LPC17xx.o
+                0x00004bb0                SystemCoreClockUpdate
+                0x00004c54                SystemInit
+ .text          0x00004d2c       0x6c ./startup_LPC17xx.o
+                0x00004d2c                TIMER2_IRQHandler
+                0x00004d2c                DebugMon_Handler
+                0x00004d2c                RIT_IRQHandler
+                0x00004d2c                I2C0_IRQHandler
+                0x00004d2c                HardFault_Handler
+                0x00004d2c                USBActivity_IRQHandler
+                0x00004d2c                PWM1_IRQHandler
+                0x00004d2c                PendSV_Handler
+                0x00004d2c                NMI_Handler
+                0x00004d2c                I2C1_IRQHandler
+                0x00004d2c                EINT2_IRQHandler
+                0x00004d2c                UART1_IRQHandler
+                0x00004d2c                CANActivity_IRQHandler
+                0x00004d2c                TIMER3_IRQHandler
+                0x00004d2c                UsageFault_Handler
+                0x00004d2c                PLL0_IRQHandler
+                0x00004d2c                CAN_IRQHandler
+                0x00004d2c                PLL1_IRQHandler
+                0x00004d2c                SSP0_IRQHandler
+                0x00004d2c                I2S_IRQHandler
+                0x00004d2c                MCPWM_IRQHandler
+                0x00004d2c                I2C2_IRQHandler
+                0x00004d2c                RTC_IRQHandler
+                0x00004d2c                TIMER0_IRQHandler
+                0x00004d2c                UART3_IRQHandler
+                0x00004d2c                SPI_IRQHandler
+                0x00004d2c                EINT1_IRQHandler
+                0x00004d2c                TIMER1_IRQHandler
+                0x00004d2c                Default_Handler
+                0x00004d2c                ADC_IRQHandler
+                0x00004d2c                SSP1_IRQHandler
+                0x00004d2c                USB_IRQHandler
+                0x00004d2c                BOD_IRQHandler
+                0x00004d2c                MemManage_Handler
+                0x00004d2c                WDT_IRQHandler
+                0x00004d2c                SVC_Handler
+                0x00004d2c                QEI_IRQHandler
+                0x00004d2c                EINT0_IRQHandler
+                0x00004d2c                DMA_IRQHandler
+                0x00004d2c                BusFault_Handler
+                0x00004d2c                ENET_IRQHandler
+                0x00004d2e                Reset_Handler
+                0x00004d94                _init
+ .text          0x00004d98      0x21c c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                0x00004d98                __aeabi_frsub
+                0x00004da0                __subsf3
+                0x00004da0                __aeabi_fsub
+                0x00004da4                __aeabi_fadd
+                0x00004da4                __addsf3
+                0x00004f04                __aeabi_ui2f
+                0x00004f04                __floatunsisf
+                0x00004f0c                __aeabi_i2f
+                0x00004f0c                __floatsisf
+                0x00004f28                __aeabi_ul2f
+                0x00004f28                __floatundisf
+                0x00004f38                __aeabi_l2f
+                0x00004f38                __floatdisf
+ .text          0x00004fb4       0xec c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
+                0x00004fb4                __gesf2
+                0x00004fb4                __gtsf2
+                0x00004fbc                __lesf2
+                0x00004fbc                __ltsf2
+                0x00004fc4                __nesf2
+                0x00004fc4                __eqsf2
+                0x00004fc4                __cmpsf2
+                0x00005024                __aeabi_cfrcmple
+                0x0000502c                __aeabi_cfcmpeq
+                0x0000502c                __aeabi_cfcmple
+                0x0000503c                __aeabi_fcmpeq
+                0x00005050                __aeabi_fcmplt
+                0x00005064                __aeabi_fcmple
+                0x00005078                __aeabi_fcmpge
+                0x0000508c                __aeabi_fcmpgt
+ .text          0x000050a0       0x2c c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o)
+                0x000050a0                __aeabi_uldivmod
+ .text          0x000050cc       0x60 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o)
+                0x000050cc                __gnu_ldivmod_helper
+                0x000050fc                __gnu_uldivmod_helper
+ .text          0x0000512c        0x4 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_dvmd_tls.o)
+                0x0000512c                __aeabi_idiv0
+                0x0000512c                __aeabi_ldiv0
+ .text          0x00005130      0x2bc c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+                0x00005130                __divdi3
+ .text          0x000053ec      0x28c c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+                0x000053ec                __udivdi3
+ .text          0x00005678        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+ .text.memcpy   0x00005678      0x15c c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+                0x00005678                memcpy
+ .text          0x000057d4        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+ .text.memset   0x000057d4      0x12c c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+                0x000057d4                memset
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ .ARM.extab     0x00005900        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.extab     0x00005900        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+ *(.gcc_except_table)
+
+.v4_bx          0x00005900        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x00005900        0x0
+ .iplt          0x00000000        0x0 ./Source Files/lpc17xx_clkpwr.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+                0x00005900                __exidx_start = .
+
+.ARM.exidx      0x00005900        0x8
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+ .ARM.exidx     0x00005900        0x8 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00005908        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+                                  0x8 (size before relaxing)
+                0x00005908                __exidx_end = .
+
+.rodata         0x00005908    0x33b10
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x00005908       0x3c ./Source Files/lpc17xx_gpio.o
+ .rodata        0x00005944        0x5 ./Source Files/lpc17xx_uart.o
+ .rodata.str1.1
+                0x00005949       0x25 ./Source Files/lpc17xx_uart.o
+ .rodata        0x0000596e       0x14 ./Source Files/lpc_glcd_cal.o
+ .rodata.str1.1
+                0x00005982       0x68 ./Source Files/lpc_i2c_tsc2004.o
+ .rodata        0x000059ea    0x339d0 ./Source Files/lpc_ssp_glcd.o
+                0x000059ea                Font_24x16
+                0x00006eea                default5x7
+                0x000070da                key1
+                0x00017c7a                key2
+                0x0002881a                key3
+ .rodata.str1.1
+                0x000393ba       0x5c ./Source Files/lpc_ssp_glcd.o
+                                 0x70 (size before relaxing)
+                0x00039418                . = ALIGN (0x4)
+ *fill*         0x00039416        0x2 00
+ *(.init)
+                0x00039418                . = ALIGN (0x4)
+                0x00039418                __preinit_array_start = .
+ *(.preinit_array)
+                0x00039418                __preinit_array_end = .
+                0x00039418                . = ALIGN (0x4)
+                0x00039418                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x00039418                __init_array_end = .
+                0x00039418                . = ALIGN (0x4)
+ *(.fini)
+                0x00039418                . = ALIGN (0x4)
+                0x00039418                __fini_array_start = .
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x00039418                __fini_array_end = .
+                0x00039418                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x00039418                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+ *(.init .init.*)
+ *(.fini .fini.*)
+                0x00039418                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x00039418                PROVIDE (__preinit_array_end, .)
+                0x00039418                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x00039418                PROVIDE (__init_array_end, .)
+                0x00039418                PROVIDE (__fini_array_start, .)
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+                0x00039418                PROVIDE (__fini_array_end, .)
+                0x00039418                . = ALIGN (0x8)
+ *(.rom)
+ *(.rom.b)
+                0x00039418                _etext = .
+                0x00039418                _sidata = _etext
+
+.rel.dyn        0x00039418        0x0
+ .rel.iplt      0x00000000        0x0 ./Source Files/lpc17xx_clkpwr.o
+
+.bss            0x10000000      0x388 load address 0x00039418
+                0x10000000                . = ALIGN (0x4)
+                0x10000000                _sbss = .
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x10000000        0x0 ./Source Files/lpc17xx_clkpwr.o
+ .bss           0x10000000        0x0 ./Source Files/lpc17xx_gpio.o
+ .bss           0x10000000       0x34 ./Source Files/lpc17xx_i2c.o
+ .bss           0x10000034        0x0 ./Source Files/lpc17xx_nvic.o
+ .bss           0x10000034        0x0 ./Source Files/lpc17xx_pinsel.o
+ .bss           0x10000034        0x0 ./Source Files/lpc17xx_ssp.o
+ .bss           0x10000034        0x0 ./Source Files/lpc17xx_systick.o
+ .bss           0x10000034        0x0 ./Source Files/lpc17xx_uart.o
+ .bss           0x10000034        0x0 ./Source Files/lpc17xx_wdt.o
+ .bss           0x10000034        0x1 ./Source Files/lpc_glcd_cal.o
+                0x10000034                TReady
+ .bss           0x10000035        0x1 ./Source Files/lpc_global.o
+                0x10000035                status
+ .bss           0x10000036        0x0 ./Source Files/lpc_i2c_tsc2004.o
+ .bss           0x10000036        0x2 ./Source Files/lpc_ssp_glcd.o
+ .bss           0x10000038        0x0 ./Source Files/lpc_system_init.o
+ .bss           0x10000038        0x0 ./Source Files/main.o
+ .bss           0x10000038        0x0 ./CM3 Core/core_cm3.o
+ .bss           0x10000038        0x0 ./CM3 Core/system_LPC17xx.o
+ .bss           0x10000038        0x0 ./startup_LPC17xx.o
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+ .bss           0x10000038        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+ *(COMMON)
+ COMMON         0x10000038      0x315 ./Source Files/lpc17xx_gpio.o
+                0x10000038                I2C_Rx_Buf
+                0x10000078                EscFlag
+                0x1000007c                rb
+                0x1000028c                I2C_Tx_Buf
+                0x100002cc                Tx_Buf1
+                0x1000030c                Rx_Buf1
+                0x1000034c                TxIntStat
+ *fill*         0x1000034d        0x3 00
+ COMMON         0x10000350        0x8 ./Source Files/lpc17xx_i2c.o
+                0x10000350                irqn
+                0x10000354                regs
+ COMMON         0x10000358        0x8 ./Source Files/lpc17xx_systick.o
+                0x10000358                led_timer
+                0x1000035c                delay_timer
+ COMMON         0x10000360       0x20 ./Source Files/lpc_glcd_cal.o
+                0x10000360                cmatrix
+                0x1000037c                gTouch
+ COMMON         0x10000380        0x4 ./Source Files/lpc_global.o
+                0x10000380                led_delay
+                0x10000388                . = ALIGN (0x8)
+ *fill*         0x10000384        0x4 00
+ *(.ram.b)
+                0x10000388                . = ALIGN (0x4)
+                0x10000388                _ebss = .
+                0x10000388                _end = .
+                0x10000388                __end = .
+                0x10000388                PROVIDE (end, _ebss)
+                0x10000388                PROVIDE (_end, _ebss)
+                0x10000000                PROVIDE (__bss_start__, _sbss)
+                0x10000388                PROVIDE (__bss_end__, _ebss)
+
+._usrstack      0x10000388      0x100 load address 0x00039418
+                0x10000388                . = ALIGN (0x4)
+                0x10000388                _susrstack = .
+                0x10000488                . = (. + _Minimum_Stack_Size)
+ *fill*         0x10000388      0x100 00
+                0x10000488                . = ALIGN (0x4)
+                0x10000488                _eusrstack = .
+
+.data           0x2007c000       0x10 load address 0x00039418
+                0x2007c000                _sdata = .
+                0x2007c000                . = ALIGN (0x80)
+                0x00000000                _isr_vectorsram_offs = (. - 0x2007c000)
+ *(.isr_vectorsram)
+                0x2007c000                . = ALIGN (0x4)
+ *(.jcr)
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x2007c000        0x0 ./Source Files/lpc17xx_clkpwr.o
+ .data          0x2007c000        0x0 ./Source Files/lpc17xx_gpio.o
+ .data          0x2007c000        0x4 ./Source Files/lpc17xx_i2c.o
+                0x2007c000                ignore_data_nack
+ .data          0x2007c004        0x0 ./Source Files/lpc17xx_nvic.o
+ .data          0x2007c004        0x0 ./Source Files/lpc17xx_pinsel.o
+ .data          0x2007c004        0x0 ./Source Files/lpc17xx_ssp.o
+ .data          0x2007c004        0x0 ./Source Files/lpc17xx_systick.o
+ .data          0x2007c004        0x0 ./Source Files/lpc17xx_uart.o
+ .data          0x2007c004        0x0 ./Source Files/lpc17xx_wdt.o
+ .data          0x2007c004        0x1 ./Source Files/lpc_glcd_cal.o
+                0x2007c004                CalTouch
+ .data          0x2007c005        0x1 ./Source Files/lpc_global.o
+                0x2007c005                keybd
+ .data          0x2007c006        0x0 ./Source Files/lpc_i2c_tsc2004.o
+ .data          0x2007c006        0x2 ./Source Files/lpc_ssp_glcd.o
+ .data          0x2007c008        0x0 ./Source Files/lpc_system_init.o
+ .data          0x2007c008        0x0 ./Source Files/main.o
+ .data          0x2007c008        0x0 ./CM3 Core/core_cm3.o
+ .data          0x2007c008        0x4 ./CM3 Core/system_LPC17xx.o
+                0x2007c008                SystemCoreClock
+ .data          0x2007c00c        0x0 ./startup_LPC17xx.o
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+ .data          0x2007c00c        0x0 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+                0x2007c010                . = ALIGN (0x8)
+ *fill*         0x2007c00c        0x4 00
+ *(.ram)
+ *(.ramfunc*)
+                0x2007c010                . = ALIGN (0x4)
+                0x2007c010                _edata = .
+
+.igot.plt       0x2007c010        0x0 load address 0x00039428
+ .igot.plt      0x00000000        0x0 ./Source Files/lpc17xx_clkpwr.o
+
+.bss_ahb        0x2007c010        0x0 load address 0x00039428
+                0x2007c010                . = ALIGN (0x4)
+                0x2007c010                _sbss_ahb = .
+ *(.shbss_ahb)
+ *(.bss_ahb .bss_ahb.* .gnu.linkonce.b.*)
+                0x2007c010                . = ALIGN (0x8)
+ *(.ram_ahb.b)
+                0x2007c010                . = ALIGN (0x4)
+                0x2007c010                _ebss_ahb = .
+                0x2007c010                _end_ahb = .
+                0x2007c010                __end_ahb = .
+                0x2007c010                PROVIDE (end_ahb, _ebss_ahb)
+                0x2007c010                PROVIDE (_end_ahb, _ebss_ahb)
+                0x2007c010                PROVIDE (__bss_ahb_start__, _sbss_ahb)
+                0x2007c010                PROVIDE (__bss_ahb_end__, _ebss_ahb)
+
+/DISCARD/
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x70
+ *(.comment)
+ .comment       0x00000000       0x70 ./Source Files/lpc17xx_clkpwr.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_gpio.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_i2c.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_nvic.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_pinsel.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_ssp.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_systick.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_uart.o
+ .comment       0x00000000       0x71 ./Source Files/lpc17xx_wdt.o
+ .comment       0x00000000       0x71 ./Source Files/lpc_glcd_cal.o
+ .comment       0x00000000       0x71 ./Source Files/lpc_global.o
+ .comment       0x00000000       0x71 ./Source Files/lpc_i2c_tsc2004.o
+ .comment       0x00000000       0x71 ./Source Files/lpc_ssp_glcd.o
+ .comment       0x00000000       0x71 ./Source Files/lpc_system_init.o
+ .comment       0x00000000       0x71 ./Source Files/main.o
+ .comment       0x00000000       0x71 ./CM3 Core/core_cm3.o
+ .comment       0x00000000       0x71 ./CM3 Core/system_LPC17xx.o
+ .comment       0x00000000       0x71 ./startup_LPC17xx.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 ./Source Files/lpc17xx_clkpwr.o
+ .ARM.attributes
+                0x00000033       0x33 ./Source Files/lpc17xx_gpio.o
+ .ARM.attributes
+                0x00000066       0x33 ./Source Files/lpc17xx_i2c.o
+ .ARM.attributes
+                0x00000099       0x33 ./Source Files/lpc17xx_nvic.o
+ .ARM.attributes
+                0x000000cc       0x33 ./Source Files/lpc17xx_pinsel.o
+ .ARM.attributes
+                0x000000ff       0x33 ./Source Files/lpc17xx_ssp.o
+ .ARM.attributes
+                0x00000132       0x33 ./Source Files/lpc17xx_systick.o
+ .ARM.attributes
+                0x00000165       0x33 ./Source Files/lpc17xx_uart.o
+ .ARM.attributes
+                0x00000198       0x33 ./Source Files/lpc17xx_wdt.o
+ .ARM.attributes
+                0x000001cb       0x33 ./Source Files/lpc_glcd_cal.o
+ .ARM.attributes
+                0x000001fe       0x33 ./Source Files/lpc_global.o
+ .ARM.attributes
+                0x00000231       0x33 ./Source Files/lpc_i2c_tsc2004.o
+ .ARM.attributes
+                0x00000264       0x33 ./Source Files/lpc_ssp_glcd.o
+ .ARM.attributes
+                0x00000297       0x33 ./Source Files/lpc_system_init.o
+ .ARM.attributes
+                0x000002ca       0x33 ./Source Files/main.o
+ .ARM.attributes
+                0x000002fd       0x33 ./CM3 Core/core_cm3.o
+ .ARM.attributes
+                0x00000330       0x33 ./CM3 Core/system_LPC17xx.o
+ .ARM.attributes
+                0x00000363       0x33 ./startup_LPC17xx.o
+ .ARM.attributes
+                0x00000396       0x1d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x000003b3       0x1d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x000003d0       0x1d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x000003ed       0x2d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o)
+ .ARM.attributes
+                0x0000041a       0x1d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000437       0x2d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+ .ARM.attributes
+                0x00000464       0x2d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+ .ARM.attributes
+                0x00000491       0x2d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x000004be       0x2d c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x230
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 ./Source Files/lpc17xx_clkpwr.o
+ .debug_aranges
+                0x00000020       0x20 ./Source Files/lpc17xx_gpio.o
+ .debug_aranges
+                0x00000040       0x20 ./Source Files/lpc17xx_i2c.o
+ .debug_aranges
+                0x00000060       0x20 ./Source Files/lpc17xx_nvic.o
+ .debug_aranges
+                0x00000080       0x20 ./Source Files/lpc17xx_pinsel.o
+ .debug_aranges
+                0x000000a0       0x20 ./Source Files/lpc17xx_ssp.o
+ .debug_aranges
+                0x000000c0       0x20 ./Source Files/lpc17xx_systick.o
+ .debug_aranges
+                0x000000e0       0x20 ./Source Files/lpc17xx_uart.o
+ .debug_aranges
+                0x00000100       0x20 ./Source Files/lpc17xx_wdt.o
+ .debug_aranges
+                0x00000120       0x20 ./Source Files/lpc_glcd_cal.o
+ .debug_aranges
+                0x00000140       0x18 ./Source Files/lpc_global.o
+ .debug_aranges
+                0x00000158       0x20 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_aranges
+                0x00000178       0x20 ./Source Files/lpc_ssp_glcd.o
+ .debug_aranges
+                0x00000198       0x20 ./Source Files/lpc_system_init.o
+ .debug_aranges
+                0x000001b8       0x20 ./Source Files/main.o
+ .debug_aranges
+                0x000001d8       0x18 ./CM3 Core/core_cm3.o
+ .debug_aranges
+                0x000001f0       0x20 ./CM3 Core/system_LPC17xx.o
+ .debug_aranges
+                0x00000210       0x20 ./startup_LPC17xx.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0xd86d
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x6c8 ./Source Files/lpc17xx_clkpwr.o
+ .debug_info    0x000006c8     0x14fd ./Source Files/lpc17xx_gpio.o
+ .debug_info    0x00001bc5     0x1489 ./Source Files/lpc17xx_i2c.o
+ .debug_info    0x0000304e      0x3f8 ./Source Files/lpc17xx_nvic.o
+ .debug_info    0x00003446      0x542 ./Source Files/lpc17xx_pinsel.o
+ .debug_info    0x00003988      0xe58 ./Source Files/lpc17xx_ssp.o
+ .debug_info    0x000047e0      0x770 ./Source Files/lpc17xx_systick.o
+ .debug_info    0x00004f50     0x28e6 ./Source Files/lpc17xx_uart.o
+ .debug_info    0x00007836      0x43a ./Source Files/lpc17xx_wdt.o
+ .debug_info    0x00007c70      0x70a ./Source Files/lpc_glcd_cal.o
+ .debug_info    0x0000837a       0xfc ./Source Files/lpc_global.o
+ .debug_info    0x00008476      0xbb6 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_info    0x0000902c     0x3004 ./Source Files/lpc_ssp_glcd.o
+ .debug_info    0x0000c030      0xcc2 ./Source Files/lpc_system_init.o
+ .debug_info    0x0000ccf2      0x625 ./Source Files/main.o
+ .debug_info    0x0000d317       0x68 ./CM3 Core/core_cm3.o
+ .debug_info    0x0000d37f      0x379 ./CM3 Core/system_LPC17xx.o
+ .debug_info    0x0000d6f8      0x175 ./startup_LPC17xx.o
+
+.debug_abbrev   0x00000000     0x28ab
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x1b6 ./Source Files/lpc17xx_clkpwr.o
+ .debug_abbrev  0x000001b6      0x3ae ./Source Files/lpc17xx_gpio.o
+ .debug_abbrev  0x00000564      0x413 ./Source Files/lpc17xx_i2c.o
+ .debug_abbrev  0x00000977       0xf1 ./Source Files/lpc17xx_nvic.o
+ .debug_abbrev  0x00000a68      0x19f ./Source Files/lpc17xx_pinsel.o
+ .debug_abbrev  0x00000c07      0x3ae ./Source Files/lpc17xx_ssp.o
+ .debug_abbrev  0x00000fb5      0x239 ./Source Files/lpc17xx_systick.o
+ .debug_abbrev  0x000011ee      0x4d2 ./Source Files/lpc17xx_uart.o
+ .debug_abbrev  0x000016c0      0x22b ./Source Files/lpc17xx_wdt.o
+ .debug_abbrev  0x000018eb      0x1bf ./Source Files/lpc_glcd_cal.o
+ .debug_abbrev  0x00001aaa       0x6c ./Source Files/lpc_global.o
+ .debug_abbrev  0x00001b16      0x282 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_abbrev  0x00001d98      0x49f ./Source Files/lpc_ssp_glcd.o
+ .debug_abbrev  0x00002237      0x278 ./Source Files/lpc_system_init.o
+ .debug_abbrev  0x000024af      0x1e4 ./Source Files/main.o
+ .debug_abbrev  0x00002693       0x29 ./CM3 Core/core_cm3.o
+ .debug_abbrev  0x000026bc       0xd7 ./CM3 Core/system_LPC17xx.o
+ .debug_abbrev  0x00002793      0x118 ./startup_LPC17xx.o
+
+.debug_line     0x00000000     0x599b
+ *(.debug_line)
+ .debug_line    0x00000000      0x3a8 ./Source Files/lpc17xx_clkpwr.o
+ .debug_line    0x000003a8      0x578 ./Source Files/lpc17xx_gpio.o
+ .debug_line    0x00000920      0x7df ./Source Files/lpc17xx_i2c.o
+ .debug_line    0x000010ff      0x35e ./Source Files/lpc17xx_nvic.o
+ .debug_line    0x0000145d      0x361 ./Source Files/lpc17xx_pinsel.o
+ .debug_line    0x000017be      0x67c ./Source Files/lpc17xx_ssp.o
+ .debug_line    0x00001e3a      0x4c8 ./Source Files/lpc17xx_systick.o
+ .debug_line    0x00002302      0x82f ./Source Files/lpc17xx_uart.o
+ .debug_line    0x00002b31      0x3a3 ./Source Files/lpc17xx_wdt.o
+ .debug_line    0x00002ed4      0x550 ./Source Files/lpc_glcd_cal.o
+ .debug_line    0x00003424      0x2f9 ./Source Files/lpc_global.o
+ .debug_line    0x0000371d      0x4e6 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_line    0x00003c03      0xe3c ./Source Files/lpc_ssp_glcd.o
+ .debug_line    0x00004a3f      0x4b0 ./Source Files/lpc_system_init.o
+ .debug_line    0x00004eef      0x46c ./Source Files/main.o
+ .debug_line    0x0000535b      0x276 ./CM3 Core/core_cm3.o
+ .debug_line    0x000055d1      0x352 ./CM3 Core/system_LPC17xx.o
+ .debug_line    0x00005923       0x78 ./startup_LPC17xx.o
+
+.debug_frame    0x00000000     0x15bc
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xa8 ./Source Files/lpc17xx_clkpwr.o
+ .debug_frame   0x000000a8      0x1f0 ./Source Files/lpc17xx_gpio.o
+ .debug_frame   0x00000298      0x1e0 ./Source Files/lpc17xx_i2c.o
+ .debug_frame   0x00000478       0x40 ./Source Files/lpc17xx_nvic.o
+ .debug_frame   0x000004b8       0x50 ./Source Files/lpc17xx_pinsel.o
+ .debug_frame   0x00000508      0x1a8 ./Source Files/lpc17xx_ssp.o
+ .debug_frame   0x000006b0       0xcc ./Source Files/lpc17xx_systick.o
+ .debug_frame   0x0000077c      0x460 ./Source Files/lpc17xx_uart.o
+ .debug_frame   0x00000bdc       0xc8 ./Source Files/lpc17xx_wdt.o
+ .debug_frame   0x00000ca4       0x90 ./Source Files/lpc_glcd_cal.o
+ .debug_frame   0x00000d34       0xfc ./Source Files/lpc_i2c_tsc2004.o
+ .debug_frame   0x00000e30      0x578 ./Source Files/lpc_ssp_glcd.o
+ .debug_frame   0x000013a8       0x3c ./Source Files/lpc_system_init.o
+ .debug_frame   0x000013e4       0x38 ./Source Files/main.o
+ .debug_frame   0x0000141c       0x3c ./CM3 Core/system_LPC17xx.o
+ .debug_frame   0x00001458       0x50 ./startup_LPC17xx.o
+ .debug_frame   0x000014a8       0x50 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(bpabi.o)
+ .debug_frame   0x000014f8       0x34 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_divdi3.o)
+ .debug_frame   0x0000152c       0x34 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/armv7-m\libgcc.a(_udivdi3.o)
+ .debug_frame   0x00001560       0x30 c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memcpy.o)
+ .debug_frame   0x00001590       0x2c c:/program files (x86)/gnu tools arm embedded/4.7 2013q2/bin/../lib/gcc/arm-none-eabi/4.7.4/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+
+.debug_str      0x00000000    0x11c6c
+ *(.debug_str)
+ .debug_str     0x00000000     0x88ac ./Source Files/lpc17xx_clkpwr.o
+                               0x89f8 (size before relaxing)
+ .debug_str     0x000088ac     0x6b9d ./Source Files/lpc17xx_gpio.o
+                               0xf39e (size before relaxing)
+ .debug_str     0x0000f449      0x517 ./Source Files/lpc17xx_i2c.o
+                               0xf459 (size before relaxing)
+ .debug_str     0x0000f960       0x68 ./Source Files/lpc17xx_nvic.o
+                               0x767b (size before relaxing)
+ .debug_str     0x0000f9c8      0x1fa ./Source Files/lpc17xx_pinsel.o
+                               0x7c70 (size before relaxing)
+ .debug_str     0x0000fbc2      0x2a5 ./Source Files/lpc17xx_ssp.o
+                               0xeffd (size before relaxing)
+ .debug_str     0x0000fe67      0x114 ./Source Files/lpc17xx_systick.o
+                               0xeeca (size before relaxing)
+ .debug_str     0x0000ff7b      0xafc ./Source Files/lpc17xx_uart.o
+                               0xb64f (size before relaxing)
+ .debug_str     0x00010a77      0x174 ./Source Files/lpc17xx_wdt.o
+                               0x90aa (size before relaxing)
+ .debug_str     0x00010beb      0x16e ./Source Files/lpc_glcd_cal.o
+                               0xee44 (size before relaxing)
+ .debug_str     0x00010d59       0x23 ./Source Files/lpc_global.o
+                               0x7592 (size before relaxing)
+ .debug_str     0x00010d7c      0x255 ./Source Files/lpc_i2c_tsc2004.o
+                               0xf0b9 (size before relaxing)
+ .debug_str     0x00010fd1      0x422 ./Source Files/lpc_ssp_glcd.o
+                               0xf2e9 (size before relaxing)
+ .debug_str     0x000113f3       0x43 ./Source Files/lpc_system_init.o
+                               0xf0f1 (size before relaxing)
+ .debug_str     0x00011436       0x21 ./Source Files/main.o
+                               0xef52 (size before relaxing)
+ .debug_str     0x00011457       0x17 ./CM3 Core/core_cm3.o
+                               0x2f3a (size before relaxing)
+ .debug_str     0x0001146e      0x708 ./CM3 Core/system_LPC17xx.o
+                               0x78ac (size before relaxing)
+ .debug_str     0x00011b76       0xf6 ./startup_LPC17xx.o
+                               0x23a4 (size before relaxing)
+
+.debug_loc      0x00000000     0x713f
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x1d9 ./Source Files/lpc17xx_clkpwr.o
+ .debug_loc     0x000001d9      0xb7e ./Source Files/lpc17xx_gpio.o
+ .debug_loc     0x00000d57      0xc66 ./Source Files/lpc17xx_i2c.o
+ .debug_loc     0x000019bd       0x35 ./Source Files/lpc17xx_nvic.o
+ .debug_loc     0x000019f2      0x23c ./Source Files/lpc17xx_pinsel.o
+ .debug_loc     0x00001c2e      0x84b ./Source Files/lpc17xx_ssp.o
+ .debug_loc     0x00002479      0x13d ./Source Files/lpc17xx_systick.o
+ .debug_loc     0x000025b6     0x15b2 ./Source Files/lpc17xx_uart.o
+ .debug_loc     0x00003b68      0x302 ./Source Files/lpc17xx_wdt.o
+ .debug_loc     0x00003e6a      0x1cc ./Source Files/lpc_glcd_cal.o
+ .debug_loc     0x00004036      0x306 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_loc     0x0000433c     0x2d65 ./Source Files/lpc_ssp_glcd.o
+ .debug_loc     0x000070a1       0x20 ./Source Files/lpc_system_init.o
+ .debug_loc     0x000070c1       0x20 ./Source Files/main.o
+ .debug_loc     0x000070e1       0x20 ./CM3 Core/system_LPC17xx.o
+ .debug_loc     0x00007101       0x3e ./startup_LPC17xx.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+OUTPUT(Eg21i.elf elf32-littlearm)
+
+.debug_macro    0x00000000     0x4d75
+ .debug_macro   0x00000000       0xb5 ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x000000b5      0x80e ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x000008c3       0x1c ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x000008df       0x2e ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x0000090d       0x3a ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00000947       0x10 ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00000957       0x2e ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00000985       0xa3 ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00000a28      0x20e ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00000c36       0x18 ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00000c4e      0x7af ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x000013fd      0x2d5 ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x000016d2      0x10f ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x000017e1      0x2f2 ./Source Files/lpc17xx_clkpwr.o
+ .debug_macro   0x00001ad3      0x1a1 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00001c74      0x146 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00001dba      0x2f8 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x000020b2       0x4c ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x000020fe       0x70 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x0000216e       0x58 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x000021c6      0x3e3 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x000025a9      0x2af ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002858      0x1a5 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x000029fd       0x94 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002a91       0x3a ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002acb       0x52 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002b1d       0x19 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002b36      0x16d ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002ca3      0x1da ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002e7d       0x10 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002e8d       0xee ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002f7b       0x40 ./Source Files/lpc17xx_gpio.o
+ .debug_macro   0x00002fbb      0x1a1 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x0000315c      0x2b5 ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x00003411      0x19f ./Source Files/lpc17xx_i2c.o
+ .debug_macro   0x000035b0       0xb6 ./Source Files/lpc17xx_nvic.o
+ .debug_macro   0x00003666       0xb5 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x0000371b      0x140 ./Source Files/lpc17xx_pinsel.o
+ .debug_macro   0x0000385b      0x1a1 ./Source Files/lpc17xx_ssp.o
+ .debug_macro   0x000039fc      0x197 ./Source Files/lpc17xx_systick.o
+ .debug_macro   0x00003b93       0xda ./Source Files/lpc17xx_uart.o
+ .debug_macro   0x00003c6d       0xc7 ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00003d34       0x6a ./Source Files/lpc17xx_wdt.o
+ .debug_macro   0x00003d9e      0x195 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00003f33      0x214 ./Source Files/lpc_glcd_cal.o
+ .debug_macro   0x00004147       0xa6 ./Source Files/lpc_global.o
+ .debug_macro   0x000041ed      0x1a1 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x0000438e       0xe8 ./Source Files/lpc_i2c_tsc2004.o
+ .debug_macro   0x00004476      0x1c6 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x0000463c       0x8e ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x000046ca       0x16 ./Source Files/lpc_ssp_glcd.o
+ .debug_macro   0x000046e0      0x197 ./Source Files/lpc_system_init.o
+ .debug_macro   0x00004877      0x197 ./Source Files/main.o
+ .debug_macro   0x00004a0e       0x70 ./CM3 Core/core_cm3.o
+ .debug_macro   0x00004a7e      0x2d4 ./CM3 Core/system_LPC17xx.o
+ .debug_macro   0x00004d52       0x23 ./startup_LPC17xx.o
+
+.debug_ranges   0x00000000      0x3f0
+ .debug_ranges  0x00000000       0x30 ./Source Files/lpc17xx_gpio.o
+ .debug_ranges  0x00000030       0xa8 ./Source Files/lpc17xx_i2c.o
+ .debug_ranges  0x000000d8       0x60 ./Source Files/lpc17xx_pinsel.o
+ .debug_ranges  0x00000138       0x88 ./Source Files/lpc17xx_ssp.o
+ .debug_ranges  0x000001c0      0x160 ./Source Files/lpc17xx_uart.o
+ .debug_ranges  0x00000320       0x50 ./Source Files/lpc_ssp_glcd.o
+ .debug_ranges  0x00000370       0x70 ./Source Files/lpc_system_init.o
+ .debug_ranges  0x000003e0       0x10 ./Source Files/main.o
