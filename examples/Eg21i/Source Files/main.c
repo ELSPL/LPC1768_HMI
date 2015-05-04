@@ -2,8 +2,8 @@
 * $Id$		main.c
 *//**
 * @file		main.c
-* @brief	Write a program to store input from virtual keypad
-*           and display it to UART0.
+* @brief	Write a program to display circle using touched point as
+*           center of circle.
 * @version	1.0
 * @date		09. Dec. 2013
 * @author	Dwijay.Edutech Learning Solutions

@@ -1,0 +1,286 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.startup,"ax",%progbits
+  19              		.align	1
+  20              		.global	main
+  21              		.thumb
+  22              		.thumb_func
+  24              	main:
+  25              	.LFB55:
+  26              		.file 1 "../Source Files/main.c"
+   1:../Source Files/main.c **** /**********************************************************************
+   2:../Source Files/main.c **** * $Id$		main.c
+   3:../Source Files/main.c **** *//**
+   4:../Source Files/main.c **** * @file		main.c
+   5:../Source Files/main.c **** * @brief	Write a program to Draw Solid Triangle with boundary and
+   6:../Source Files/main.c **** *           also display its coordinates on TFT
+   7:../Source Files/main.c **** * @version	1.0
+   8:../Source Files/main.c **** * @date		09. Dec. 2013
+   9:../Source Files/main.c **** * @author	Dwijay.Edutech Learning Solutions
+  10:../Source Files/main.c **** ***********************************************************************
+  11:../Source Files/main.c **** * Software that is described herein is for illustrative purposes only
+  12:../Source Files/main.c **** * which provides customers with programming information regarding the
+  13:../Source Files/main.c **** * products. This software is supplied "AS IS" without any warranties.
+  14:../Source Files/main.c **** * NXP Semiconductors assumes no responsibility or liability for the
+  15:../Source Files/main.c **** * use of the software, conveys no license or title under any patent,
+  16:../Source Files/main.c **** * copyright, or mask work right to the product. NXP Semiconductors
+  17:../Source Files/main.c **** * reserves the right to make changes in the software without
+  18:../Source Files/main.c **** * notification. NXP Semiconductors also make no representation or
+  19:../Source Files/main.c **** * warranty that such application will be suitable for the specified
+  20:../Source Files/main.c **** * use without further testing or modification.
+  21:../Source Files/main.c **** **********************************************************************/
+  22:../Source Files/main.c **** #include "lpc_system_init.h"
+  23:../Source Files/main.c **** 
+  24:../Source Files/main.c **** /* Example group ----------------------------------------------------------- */
+  25:../Source Files/main.c **** /** @defgroup TGLCD
+  26:../Source Files/main.c ****  * @ingroup TGLCD_Examples
+  27:../Source Files/main.c ****  * @{
+  28:../Source Files/main.c ****  */
+  29:../Source Files/main.c **** 
+  30:../Source Files/main.c **** 
+  31:../Source Files/main.c **** /*-------------------------PRIVATE Variables------------------------------*/
+  32:../Source Files/main.c **** 
+  33:../Source Files/main.c **** 
+  34:../Source Files/main.c **** /*-------------------------MAIN Page------------------------------*/
+  35:../Source Files/main.c **** /** @mainpage GLCD Test Example
+  36:../Source Files/main.c **** *   @par Description:
+  37:../Source Files/main.c **** *   - Draw a solid triangle with boundary and display it coordinates
+  38:../Source Files/main.c **** *
+  39:../Source Files/main.c **** *   @par Activity - more information:
+  40:../Source Files/main.c **** *   - Connect GLCD to EPB1768 and observe triangle with coordinates
+  41:../Source Files/main.c **** */
+  42:../Source Files/main.c **** /*-------------------------MAIN FUNCTION------------------------------*/
+  43:../Source Files/main.c **** /*********************************************************************//**
+  44:../Source Files/main.c ****  * @brief	Main GLCD testing example sub-routine
+  45:../Source Files/main.c ****  **********************************************************************/
+  46:../Source Files/main.c **** 
+  47:../Source Files/main.c **** /* With ARM and GHS toolsets, the entry point is main() - this will
+  48:../Source Files/main.c ****    allow the linker to generate wrapper code to setup stacks, allocate
+  49:../Source Files/main.c ****    heap area, and initialize and copy code and data segments. For GNU
+  50:../Source Files/main.c ****    toolsets, the entry point is through __start() in the crt0_gnu.asm
+  51:../Source Files/main.c ****    file, and that startup code will setup stacks and data */
+  52:../Source Files/main.c **** int main(void)
+  53:../Source Files/main.c **** {
+  27              		.loc 1 53 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 24
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 30B5     		push	{r4, r5, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 5, -8
+  36              		.cfi_offset 14, -4
+  37 0002 8BB0     		sub	sp, sp, #44
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 56
+  54:../Source Files/main.c **** 	COORDINATE_Type point1,point2,point3;
+  55:../Source Files/main.c **** 	COLORCFG_Type tricfg;
+  56:../Source Files/main.c **** 	System_Init();                        // Initialize System
+  40              		.loc 1 56 0
+  41 0004 FFF7FEFF 		bl	System_Init
+  42              	.LVL0:
+  57:../Source Files/main.c **** 
+  58:../Source Files/main.c **** 	GLCD_Clear(White);
+  43              		.loc 1 58 0
+  44 0008 4FF6FF70 		movw	r0, #65535
+  45 000c FFF7FEFF 		bl	GLCD_Clear
+  46              	.LVL1:
+  59:../Source Files/main.c **** 	// Triangle coordinates
+  60:../Source Files/main.c **** 	point1.x = 20;
+  47              		.loc 1 60 0
+  48 0010 1423     		movs	r3, #20
+  61:../Source Files/main.c **** 	point1.y = 20;
+  62:../Source Files/main.c **** 	point2.x = 80;
+  49              		.loc 1 62 0
+  50 0012 5020     		movs	r0, #80
+  60:../Source Files/main.c **** 	point1.x = 20;
+  51              		.loc 1 60 0
+  52 0014 ADF81430 		strh	r3, [sp, #20]	@ movhi
+  61:../Source Files/main.c **** 	point1.y = 20;
+  53              		.loc 1 61 0
+  54 0018 ADF81630 		strh	r3, [sp, #22]	@ movhi
+  63:../Source Files/main.c **** 	point2.y = 80;
+  64:../Source Files/main.c **** 	point3.x = 30;
+  55              		.loc 1 64 0
+  56 001c 1E21     		movs	r1, #30
+  65:../Source Files/main.c **** 	point3.y = 120;
+  57              		.loc 1 65 0
+  58 001e 7822     		movs	r2, #120
+  66:../Source Files/main.c **** 	tricfg.fill = YES;
+  67:../Source Files/main.c **** 	tricfg.bndry= YES;
+  68:../Source Files/main.c **** 	tricfg.bcolor = Blue;
+  69:../Source Files/main.c **** 	tricfg.fill_color=Green;
+  59              		.loc 1 69 0
+  60 0020 4FF4FC63 		mov	r3, #2016
+  66:../Source Files/main.c **** 	tricfg.fill = YES;
+  61              		.loc 1 66 0
+  62 0024 0124     		movs	r4, #1
+  62:../Source Files/main.c **** 	point2.x = 80;
+  63              		.loc 1 62 0
+  64 0026 ADF81800 		strh	r0, [sp, #24]	@ movhi
+  63:../Source Files/main.c **** 	point2.y = 80;
+  65              		.loc 1 63 0
+  66 002a ADF81A00 		strh	r0, [sp, #26]	@ movhi
+  64:../Source Files/main.c **** 	point3.x = 30;
+  67              		.loc 1 64 0
+  68 002e ADF81C10 		strh	r1, [sp, #28]	@ movhi
+  65:../Source Files/main.c **** 	point3.y = 120;
+  69              		.loc 1 65 0
+  70 0032 ADF81E20 		strh	r2, [sp, #30]	@ movhi
+  68:../Source Files/main.c **** 	tricfg.bcolor = Blue;
+  71              		.loc 1 68 0
+  72 0036 1F25     		movs	r5, #31
+  73              		.loc 1 69 0
+  74 0038 ADF82430 		strh	r3, [sp, #36]	@ movhi
+  70:../Source Files/main.c **** 	// Display Triangle
+  71:../Source Files/main.c **** 	GLCD_Triangle(&point1,&point2,&point3,&tricfg);
+  75              		.loc 1 71 0
+  76 003c 05A8     		add	r0, sp, #20
+  77 003e 06A9     		add	r1, sp, #24
+  78 0040 07AA     		add	r2, sp, #28
+  79 0042 08AB     		add	r3, sp, #32
+  68:../Source Files/main.c **** 	tricfg.bcolor = Blue;
+  80              		.loc 1 68 0
+  81 0044 ADF82250 		strh	r5, [sp, #34]	@ movhi
+  66:../Source Files/main.c **** 	tricfg.fill = YES;
+  82              		.loc 1 66 0
+  83 0048 8DF82040 		strb	r4, [sp, #32]
+  67:../Source Files/main.c **** 	tricfg.bndry= YES;
+  84              		.loc 1 67 0
+  85 004c 8DF82140 		strb	r4, [sp, #33]
+  86              		.loc 1 71 0
+  87 0050 FFF7FEFF 		bl	GLCD_Triangle
+  88              	.LVL2:
+  72:../Source Files/main.c **** 
+  73:../Source Files/main.c **** 	// Display Coordinates
+  74:../Source Files/main.c ****     gprintf(point1.x+2,point1.y,1,Black,"(%d03,%d03)",point1.x,point1.y);
+  89              		.loc 1 74 0
+  90 0054 BDF81420 		ldrh	r2, [sp, #20]
+  91 0058 144D     		ldr	r5, .L4
+  92 005a BDF91610 		ldrsh	r1, [sp, #22]
+  93 005e 13B2     		sxth	r3, r2
+  94 0060 901C     		adds	r0, r2, #2
+  95 0062 0095     		str	r5, [sp, #0]
+  96 0064 0193     		str	r3, [sp, #4]
+  97 0066 0291     		str	r1, [sp, #8]
+  98 0068 2246     		mov	r2, r4
+  99 006a 0023     		movs	r3, #0
+ 100 006c 00B2     		sxth	r0, r0
+ 101 006e FFF7FEFF 		bl	gprintf
+ 102              	.LVL3:
+  75:../Source Files/main.c ****     gprintf(point2.x+2,point2.y,1,Black,"(%d03,%d03)",point2.x,point2.y);
+ 103              		.loc 1 75 0
+ 104 0072 BDF81820 		ldrh	r2, [sp, #24]
+ 105 0076 BDF91A10 		ldrsh	r1, [sp, #26]
+ 106 007a 13B2     		sxth	r3, r2
+ 107 007c 901C     		adds	r0, r2, #2
+ 108 007e 0095     		str	r5, [sp, #0]
+ 109 0080 0193     		str	r3, [sp, #4]
+ 110 0082 0291     		str	r1, [sp, #8]
+ 111 0084 2246     		mov	r2, r4
+ 112 0086 0023     		movs	r3, #0
+ 113 0088 00B2     		sxth	r0, r0
+ 114 008a FFF7FEFF 		bl	gprintf
+ 115              	.LVL4:
+  76:../Source Files/main.c ****     gprintf(point3.x+2,point3.y,1,Black,"(%d03,%d03)",point3.x,point3.y);
+ 116              		.loc 1 76 0
+ 117 008e BDF81C20 		ldrh	r2, [sp, #28]
+ 118 0092 BDF91E10 		ldrsh	r1, [sp, #30]
+ 119 0096 901C     		adds	r0, r2, #2
+ 120 0098 0095     		str	r5, [sp, #0]
+ 121 009a 15B2     		sxth	r5, r2
+ 122 009c 0195     		str	r5, [sp, #4]
+ 123 009e 0291     		str	r1, [sp, #8]
+ 124 00a0 00B2     		sxth	r0, r0
+ 125 00a2 2246     		mov	r2, r4
+ 126 00a4 0023     		movs	r3, #0
+ 127 00a6 FFF7FEFF 		bl	gprintf
+ 128              	.LVL5:
+ 129              	.L2:
+ 130 00aa FEE7     		b	.L2
+ 131              	.L5:
+ 132              		.align	2
+ 133              	.L4:
+ 134 00ac 00000000 		.word	.LC0
+ 135              		.cfi_endproc
+ 136              	.LFE55:
+ 138              		.comm	I2C_Rx_Buf,64,1
+ 139              		.comm	I2C_Tx_Buf,64,1
+ 140              		.comm	Rx_Buf1,64,1
+ 141              		.comm	Tx_Buf1,64,1
+ 142              		.comm	TxIntStat,1,1
+ 143              		.comm	rb,528,4
+ 144              		.comm	EscFlag,2,2
+ 145              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 146              	.LC0:
+ 147 0000 28256430 		.ascii	"(%d03,%d03)\000"
+ 147      332C2564 
+ 147      30332900 
+ 148              		.text
+ 149              	.Letext0:
+ 150              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+ 151              		.file 3 "../Header Files/lpc_types.h"
+ 152              		.file 4 "../Header Files/lpc17xx_uart.h"
+ 153              		.file 5 "../Header Files/lpc_ssp_glcd.h"
+ 154              		.file 6 "../CM3 Core/core_cm3.h"
+ 155              		.file 7 "../Header Files/lpc17xx_ssp.h"
+ 156              		.file 8 "../Header Files/lpc17xx_i2c.h"
+ 157              		.file 9 "../Header Files/lpc_system_init.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\raghav\AppData\Local\Temp\ccpFkr1Z.s:19     .text.startup:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\ccpFkr1Z.s:24     .text.startup:00000000 main
+C:\Users\raghav\AppData\Local\Temp\ccpFkr1Z.s:134    .text.startup:000000ac $d
+                            *COM*:00000040 I2C_Rx_Buf
+                            *COM*:00000040 I2C_Tx_Buf
+                            *COM*:00000040 Rx_Buf1
+                            *COM*:00000040 Tx_Buf1
+                            *COM*:00000001 TxIntStat
+                            *COM*:00000210 rb
+                            *COM*:00000002 EscFlag
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+                           .group:00000000 wm4.lpc17xx_pinsel.h.30.767cda9b27a5c688cd97e5947d664047
+                           .group:00000000 wm4.lpc17xx_clkpwr.h.30.8537d92ff6965961e80fda89ac5019f2
+                           .group:00000000 wm4.lpc17xx_systick.h.30.9f34c15ae315a203fed1d933040ad7b9
+                           .group:00000000 wm4.lpc17xx_gpio.h.30.0b884ee110dd20865784f12e1569ecf1
+                           .group:00000000 wm4.lpc17xx_wdt.h.34.a2dcafab9849854019efb51f717a8129
+                           .group:00000000 wm4.stdarg.h.31.b70f21342353634f7b44d85f85f13832
+                           .group:00000000 wm4.lpc17xx_uart.h.58.dbba6e724b29a6214e9cafbaf3ee8a9e
+                           .group:00000000 wm4.lpc17xx_ssp.h.48.cd045d667ab7b89d5d550d38997df61b
+                           .group:00000000 wm4.lpc17xx_i2c.h.30.8ecc2351e7cba41135ba36b3ad45f764
+                           .group:00000000 wm4.lpc_i2c_tsc2004.h.29.34082f268f216caa8d0bf2c0960ad4a6
+                           .group:00000000 wm4.lpc_ssp_glcd.h.29.0f086fd3ba564c80425f085247dfad00
+
+UNDEFINED SYMBOLS
+System_Init
+GLCD_Clear
+GLCD_Triangle
+gprintf

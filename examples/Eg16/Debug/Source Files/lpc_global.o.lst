@@ -1,0 +1,47 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"lpc_global.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	status
+  19              		.comm	led_delay,4,4
+  20              		.bss
+  23              	status:
+  24 0000 00       		.space	1
+  25              		.text
+  26              	.Letext0:
+  27              		.file 1 "c:\\program files (x86)\\gnu tools arm embedded\\4.7 2013q2\\bin\\../lib/gcc/arm-none-eab
+  28              		.file 2 "../Header Files/lpc_types.h"
+  29              		.file 3 "../CM3 Core/core_cm3.h"
+  30              		.file 4 "../Source Files/lpc_global.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 lpc_global.c
+C:\Users\raghav\AppData\Local\Temp\ccGBZafM.s:23     .bss:00000000 status
+                            *COM*:00000004 led_delay
+C:\Users\raghav\AppData\Local\Temp\ccGBZafM.s:24     .bss:00000000 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+                           .group:00000000 wm4.LPC17xx.h.27.964facdaadd4aa3f18ac78c8a78f0013
+                           .group:00000000 wm4.core_cm3.h.32.3cac756d6e704b813781f82afd94fa5f
+                           .group:00000000 wm4.newlib.h.8.a9901dc52d1357e3e94003403d43f8b5
+                           .group:00000000 wm4.features.h.22.b72b3baab2bb2eab3661375590100b6b
+                           .group:00000000 wm4.config.h.193.5fb8ef056cdff92dec3dee9552839d8c
+                           .group:00000000 wm4._ansi.h.23.7aefdac4826acebbfc9f3822a0aeb14c
+                           .group:00000000 wm4.stdint.h.20.54ad762faa59e3c05491630641c8d8bf
+                           .group:00000000 wm4.core_cmInstr.h.25.6beb15babd14c076008ec0890c26e21c
+                           .group:00000000 wm4.core_cm3.h.83.1a3cb9afc687cf157efeddb3d5f3109e
+                           .group:00000000 wm4.LPC17xx.h.953.82b7a9ed60bb594048bc8738cf1d3489
+                           .group:00000000 wm4.lpc_types.h.32.72d58ce80fabd1a5430c6ec0500a090b
+
+NO UNDEFINED SYMBOLS
