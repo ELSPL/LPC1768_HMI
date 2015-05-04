@@ -1,0 +1,640 @@
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"startup_LPC17xx.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.align	1
+  19              		.weak	Default_Handler
+  20              		.thumb
+  21              		.thumb_func
+  23              	Default_Handler:
+  24              	.LFB2:
+  25              		.file 1 "../startup_LPC17xx.c"
+   1:../startup_LPC17xx.c **** //$Id: startup_LPC17xx.c 1269 2011-07-22 22:51:08Z tk $
+   2:../startup_LPC17xx.c **** /**
+   3:../startup_LPC17xx.c ****  ******************************************************************************
+   4:../startup_LPC17xx.c ****  * @file      startup_LPC17xx.c
+   5:../startup_LPC17xx.c ****  ******************************************************************************
+   6:../startup_LPC17xx.c ****  */
+   7:../startup_LPC17xx.c **** 
+   8:../startup_LPC17xx.c **** #define STARTUP_FREERTOS	0
+   9:../startup_LPC17xx.c **** 
+  10:../startup_LPC17xx.c **** /* Includes ------------------------------------------------------------------*/
+  11:../startup_LPC17xx.c **** /* Private typedef -----------------------------------------------------------*/
+  12:../startup_LPC17xx.c **** typedef void( *const intfunc )( void );
+  13:../startup_LPC17xx.c **** 
+  14:../startup_LPC17xx.c **** /* Private define ------------------------------------------------------------*/
+  15:../startup_LPC17xx.c **** #define WEAK __attribute__ ((weak))
+  16:../startup_LPC17xx.c **** #define ALIAS(f) __attribute__ ((weak, alias (#f)))
+  17:../startup_LPC17xx.c **** 
+  18:../startup_LPC17xx.c **** /* Private macro -------------------------------------------------------------*/
+  19:../startup_LPC17xx.c **** extern unsigned long _etext;
+  20:../startup_LPC17xx.c **** /* start address for the initialization values of the .data section.
+  21:../startup_LPC17xx.c **** defined in linker script */
+  22:../startup_LPC17xx.c **** extern unsigned long _sidata;
+  23:../startup_LPC17xx.c **** 
+  24:../startup_LPC17xx.c **** /* start address for the .data section. defined in linker script */    
+  25:../startup_LPC17xx.c **** extern unsigned long _sdata;
+  26:../startup_LPC17xx.c **** 
+  27:../startup_LPC17xx.c **** /* end address for the .data section. defined in linker script */    
+  28:../startup_LPC17xx.c **** extern unsigned long _edata;
+  29:../startup_LPC17xx.c ****    
+  30:../startup_LPC17xx.c **** /* start address for the .bss section. defined in linker script */
+  31:../startup_LPC17xx.c **** extern unsigned long _sbss;
+  32:../startup_LPC17xx.c **** extern unsigned long _sbss_ahb;
+  33:../startup_LPC17xx.c **** 
+  34:../startup_LPC17xx.c **** /* end address for the .bss section. defined in linker script */      
+  35:../startup_LPC17xx.c **** extern unsigned long _ebss;  
+  36:../startup_LPC17xx.c **** extern unsigned long _ebss_ahb;  
+  37:../startup_LPC17xx.c ****    
+  38:../startup_LPC17xx.c **** /* init value for the stack pointer. defined in linker script */
+  39:../startup_LPC17xx.c **** extern unsigned long _estack;
+  40:../startup_LPC17xx.c **** 
+  41:../startup_LPC17xx.c **** /* Private variables ---------------------------------------------------------*/
+  42:../startup_LPC17xx.c **** /* Private function prototypes -----------------------------------------------*/
+  43:../startup_LPC17xx.c **** void Reset_Handler(void) __attribute__((__interrupt__));
+  44:../startup_LPC17xx.c **** extern int main(void);
+  45:../startup_LPC17xx.c **** extern void SystemInit(void);
+  46:../startup_LPC17xx.c **** extern void __libc_init_array(void);  /* calls CTORS of static objects */
+  47:../startup_LPC17xx.c **** void __Init_Data(void);
+  48:../startup_LPC17xx.c **** 
+  49:../startup_LPC17xx.c **** // for FreeRTOS
+  50:../startup_LPC17xx.c **** #if STARTUP_FREERTOS
+  51:../startup_LPC17xx.c **** extern void xPortPendSVHandler(void);
+  52:../startup_LPC17xx.c **** extern void xPortSysTickHandler(void);
+  53:../startup_LPC17xx.c **** extern void vPortSVCHandler( void );
+  54:../startup_LPC17xx.c **** #endif
+  55:../startup_LPC17xx.c **** 
+  56:../startup_LPC17xx.c **** /******************************************************************************
+  57:../startup_LPC17xx.c **** *
+  58:../startup_LPC17xx.c **** * Forward declaration of the default fault handlers.
+  59:../startup_LPC17xx.c **** *
+  60:../startup_LPC17xx.c **** *******************************************************************************/
+  61:../startup_LPC17xx.c **** void WEAK Reset_Handler(void);
+  62:../startup_LPC17xx.c **** void WEAK NMI_Handler(void);
+  63:../startup_LPC17xx.c **** void WEAK HardFault_Handler(void);
+  64:../startup_LPC17xx.c **** void WEAK MemManage_Handler(void);
+  65:../startup_LPC17xx.c **** void WEAK BusFault_Handler(void);
+  66:../startup_LPC17xx.c **** void WEAK UsageFault_Handler(void);
+  67:../startup_LPC17xx.c **** void WEAK MemManage_Handler(void);
+  68:../startup_LPC17xx.c **** void WEAK SVC_Handler(void);
+  69:../startup_LPC17xx.c **** void WEAK DebugMon_Handler(void);
+  70:../startup_LPC17xx.c **** void WEAK PendSV_Handler(void);
+  71:../startup_LPC17xx.c **** void WEAK SysTick_Handler(void);
+  72:../startup_LPC17xx.c **** 
+  73:../startup_LPC17xx.c **** void WEAK Default_Handler(void);
+  74:../startup_LPC17xx.c **** 
+  75:../startup_LPC17xx.c **** /* External Interrupts */
+  76:../startup_LPC17xx.c **** void WDT_IRQHandler(void) ALIAS(Default_Handler);
+  77:../startup_LPC17xx.c **** void TIMER0_IRQHandler(void) ALIAS(Default_Handler);
+  78:../startup_LPC17xx.c **** void TIMER1_IRQHandler(void) ALIAS(Default_Handler);
+  79:../startup_LPC17xx.c **** void TIMER2_IRQHandler(void) ALIAS(Default_Handler);
+  80:../startup_LPC17xx.c **** void TIMER3_IRQHandler(void) ALIAS(Default_Handler);
+  81:../startup_LPC17xx.c **** void UART0_IRQHandler(void) ALIAS(Default_Handler);
+  82:../startup_LPC17xx.c **** void UART1_IRQHandler(void) ALIAS(Default_Handler);
+  83:../startup_LPC17xx.c **** void UART2_IRQHandler(void) ALIAS(Default_Handler);
+  84:../startup_LPC17xx.c **** void UART3_IRQHandler(void) ALIAS(Default_Handler);
+  85:../startup_LPC17xx.c **** void PWM1_IRQHandler(void) ALIAS(Default_Handler);
+  86:../startup_LPC17xx.c **** void I2C0_IRQHandler(void) ALIAS(Default_Handler);
+  87:../startup_LPC17xx.c **** void I2C1_IRQHandler(void) ALIAS(Default_Handler);
+  88:../startup_LPC17xx.c **** void I2C2_IRQHandler(void) ALIAS(Default_Handler);
+  89:../startup_LPC17xx.c **** void SPI_IRQHandler(void) ALIAS(Default_Handler);
+  90:../startup_LPC17xx.c **** void SSP0_IRQHandler(void) ALIAS(Default_Handler);
+  91:../startup_LPC17xx.c **** void SSP1_IRQHandler(void) ALIAS(Default_Handler);
+  92:../startup_LPC17xx.c **** void PLL0_IRQHandler(void) ALIAS(Default_Handler);
+  93:../startup_LPC17xx.c **** void RTC_IRQHandler(void) ALIAS(Default_Handler);
+  94:../startup_LPC17xx.c **** void EINT0_IRQHandler(void) ALIAS(Default_Handler);
+  95:../startup_LPC17xx.c **** void EINT1_IRQHandler(void) ALIAS(Default_Handler);
+  96:../startup_LPC17xx.c **** void EINT2_IRQHandler(void) ALIAS(Default_Handler);
+  97:../startup_LPC17xx.c **** void EINT3_IRQHandler(void) ALIAS(Default_Handler);
+  98:../startup_LPC17xx.c **** void ADC_IRQHandler(void) ALIAS(Default_Handler);
+  99:../startup_LPC17xx.c **** void BOD_IRQHandler(void) ALIAS(Default_Handler);
+ 100:../startup_LPC17xx.c **** void USB_IRQHandler(void) ALIAS(Default_Handler);
+ 101:../startup_LPC17xx.c **** void CAN_IRQHandler(void) ALIAS(Default_Handler);
+ 102:../startup_LPC17xx.c **** void DMA_IRQHandler(void) ALIAS(Default_Handler);
+ 103:../startup_LPC17xx.c **** void I2S_IRQHandler(void) ALIAS(Default_Handler);
+ 104:../startup_LPC17xx.c **** void ENET_IRQHandler(void) ALIAS(Default_Handler);
+ 105:../startup_LPC17xx.c **** void RIT_IRQHandler(void) ALIAS(Default_Handler);
+ 106:../startup_LPC17xx.c **** void MCPWM_IRQHandler(void) ALIAS(Default_Handler);
+ 107:../startup_LPC17xx.c **** void QEI_IRQHandler(void) ALIAS(Default_Handler);
+ 108:../startup_LPC17xx.c **** void PLL1_IRQHandler(void) ALIAS(Default_Handler);
+ 109:../startup_LPC17xx.c **** void USBActivity_IRQHandler(void) ALIAS(Default_Handler);
+ 110:../startup_LPC17xx.c **** void CANActivity_IRQHandler(void) ALIAS(Default_Handler);
+ 111:../startup_LPC17xx.c **** 
+ 112:../startup_LPC17xx.c **** /* Private functions ---------------------------------------------------------*/
+ 113:../startup_LPC17xx.c **** /******************************************************************************
+ 114:../startup_LPC17xx.c **** *
+ 115:../startup_LPC17xx.c **** * The minimal vector table for a Cortex M3.  Note that the proper constructs
+ 116:../startup_LPC17xx.c **** * must be placed on this to ensure that it ends up at physical address
+ 117:../startup_LPC17xx.c **** * 0x0000.0000.
+ 118:../startup_LPC17xx.c **** *
+ 119:../startup_LPC17xx.c **** ******************************************************************************/
+ 120:../startup_LPC17xx.c **** 
+ 121:../startup_LPC17xx.c **** __attribute__ ((section(".isr_vector")))
+ 122:../startup_LPC17xx.c **** void (* const g_pfnVectors[])(void) =
+ 123:../startup_LPC17xx.c **** {      
+ 124:../startup_LPC17xx.c ****     (intfunc)((unsigned long)&_estack), /* The initial stack pointer */
+ 125:../startup_LPC17xx.c ****     Reset_Handler,              /* Reset Handler */
+ 126:../startup_LPC17xx.c ****     NMI_Handler,                /* NMI Handler */
+ 127:../startup_LPC17xx.c ****     HardFault_Handler,          /* Hard Fault Handler */
+ 128:../startup_LPC17xx.c ****     MemManage_Handler,          /* MPU Fault Handler */
+ 129:../startup_LPC17xx.c ****     BusFault_Handler,           /* Bus Fault Handler */
+ 130:../startup_LPC17xx.c ****     UsageFault_Handler,         /* Usage Fault Handler */
+ 131:../startup_LPC17xx.c ****     0,                          /* Reserved */
+ 132:../startup_LPC17xx.c ****     0,                          /* Reserved */
+ 133:../startup_LPC17xx.c ****     0,                          /* Reserved */
+ 134:../startup_LPC17xx.c ****     0,                          /* Reserved */
+ 135:../startup_LPC17xx.c **** 
+ 136:../startup_LPC17xx.c **** #if !STARTUP_FREERTOS
+ 137:../startup_LPC17xx.c ****     SVC_Handler,                /* SVCall Handler */
+ 138:../startup_LPC17xx.c **** #else
+ 139:../startup_LPC17xx.c ****     // for FreeRTOS
+ 140:../startup_LPC17xx.c ****     vPortSVCHandler,
+ 141:../startup_LPC17xx.c **** #endif
+ 142:../startup_LPC17xx.c **** 
+ 143:../startup_LPC17xx.c ****     DebugMon_Handler,           /* Debug Monitor Handler */
+ 144:../startup_LPC17xx.c ****     0,                          /* Reserved */
+ 145:../startup_LPC17xx.c **** 
+ 146:../startup_LPC17xx.c **** #if !STARTUP_FREERTOS
+ 147:../startup_LPC17xx.c ****     PendSV_Handler,             /* PendSV Handler */
+ 148:../startup_LPC17xx.c ****     SysTick_Handler,            /* SysTick Handler */
+ 149:../startup_LPC17xx.c **** #else
+ 150:../startup_LPC17xx.c ****     // for FreeRTOS
+ 151:../startup_LPC17xx.c ****     xPortPendSVHandler,
+ 152:../startup_LPC17xx.c ****     xPortSysTickHandler,
+ 153:../startup_LPC17xx.c **** #endif
+ 154:../startup_LPC17xx.c **** 
+ 155:../startup_LPC17xx.c ****     /* External Interrupts */
+ 156:../startup_LPC17xx.c ****     WDT_IRQHandler,                         // 16, 0x40 - WDT
+ 157:../startup_LPC17xx.c ****     TIMER0_IRQHandler,                      // 17, 0x44 - TIMER0
+ 158:../startup_LPC17xx.c ****     TIMER1_IRQHandler,                      // 18, 0x48 - TIMER1
+ 159:../startup_LPC17xx.c ****     TIMER2_IRQHandler,                      // 19, 0x4c - TIMER2
+ 160:../startup_LPC17xx.c ****     TIMER3_IRQHandler,                      // 20, 0x50 - TIMER3
+ 161:../startup_LPC17xx.c ****     UART0_IRQHandler,                       // 21, 0x54 - UART0
+ 162:../startup_LPC17xx.c ****     UART1_IRQHandler,                       // 22, 0x58 - UART1
+ 163:../startup_LPC17xx.c ****     UART2_IRQHandler,                       // 23, 0x5c - UART2
+ 164:../startup_LPC17xx.c ****     UART3_IRQHandler,                       // 24, 0x60 - UART3
+ 165:../startup_LPC17xx.c ****     PWM1_IRQHandler,                        // 25, 0x64 - PWM1
+ 166:../startup_LPC17xx.c ****     I2C0_IRQHandler,                        // 26, 0x68 - I2C0
+ 167:../startup_LPC17xx.c ****     I2C1_IRQHandler,                        // 27, 0x6c - I2C1
+ 168:../startup_LPC17xx.c ****     I2C2_IRQHandler,                        // 28, 0x70 - I2C2
+ 169:../startup_LPC17xx.c ****     SPI_IRQHandler,                         // 29, 0x74 - SPI
+ 170:../startup_LPC17xx.c ****     SSP0_IRQHandler,                        // 30, 0x78 - SSP0
+ 171:../startup_LPC17xx.c ****     SSP1_IRQHandler,                        // 31, 0x7c - SSP1
+ 172:../startup_LPC17xx.c ****     PLL0_IRQHandler,                        // 32, 0x80 - PLL0 (Main PLL)
+ 173:../startup_LPC17xx.c ****     RTC_IRQHandler,                         // 33, 0x84 - RTC
+ 174:../startup_LPC17xx.c ****     EINT0_IRQHandler,                       // 34, 0x88 - EINT0
+ 175:../startup_LPC17xx.c ****     EINT1_IRQHandler,                       // 35, 0x8c - EINT1
+ 176:../startup_LPC17xx.c ****     EINT2_IRQHandler,                       // 36, 0x90 - EINT2
+ 177:../startup_LPC17xx.c ****     EINT3_IRQHandler,                       // 37, 0x94 - EINT3
+ 178:../startup_LPC17xx.c ****     ADC_IRQHandler,                         // 38, 0x98 - ADC
+ 179:../startup_LPC17xx.c ****     BOD_IRQHandler,                         // 39, 0x9c - BOD
+ 180:../startup_LPC17xx.c ****     USB_IRQHandler,                         // 40, 0xA0 - USB
+ 181:../startup_LPC17xx.c ****     CAN_IRQHandler,                         // 41, 0xa4 - CAN
+ 182:../startup_LPC17xx.c ****     DMA_IRQHandler,                         // 42, 0xa8 - GP DMA
+ 183:../startup_LPC17xx.c ****     I2S_IRQHandler,                         // 43, 0xac - I2S
+ 184:../startup_LPC17xx.c ****     ENET_IRQHandler,                        // 44, 0xb0 - Ethernet
+ 185:../startup_LPC17xx.c ****     RIT_IRQHandler,                         // 45, 0xb4 - RITINT
+ 186:../startup_LPC17xx.c ****     MCPWM_IRQHandler,                       // 46, 0xb8 - Motor Control PWM
+ 187:../startup_LPC17xx.c ****     QEI_IRQHandler,                         // 47, 0xbc - Quadrature Encoder
+ 188:../startup_LPC17xx.c ****     PLL1_IRQHandler,                        // 48, 0xc0 - PLL1 (USB PLL)
+ 189:../startup_LPC17xx.c ****     USBActivity_IRQHandler,                 // 49, 0xc4 - USB Activity interrupt to wakeup
+ 190:../startup_LPC17xx.c ****     CANActivity_IRQHandler,                 // 50, 0xc8 - CAN Activity interrupt to wakeup
+ 191:../startup_LPC17xx.c **** };
+ 192:../startup_LPC17xx.c **** 
+ 193:../startup_LPC17xx.c **** /**
+ 194:../startup_LPC17xx.c ****  * @brief  This is the code that gets called when the processor first
+ 195:../startup_LPC17xx.c ****  *          starts execution following a reset event. Only the absolutely
+ 196:../startup_LPC17xx.c ****  *          necessary set is performed, after which the application
+ 197:../startup_LPC17xx.c ****  *          supplied main() routine is called.
+ 198:../startup_LPC17xx.c ****  * @param  None
+ 199:../startup_LPC17xx.c ****  * @retval : None
+ 200:../startup_LPC17xx.c **** */
+ 201:../startup_LPC17xx.c **** 
+ 202:../startup_LPC17xx.c **** void Reset_Handler(void)
+ 203:../startup_LPC17xx.c **** {
+ 204:../startup_LPC17xx.c ****   /* Initialize data and bss */
+ 205:../startup_LPC17xx.c ****   unsigned long *pulSrc, *pulDest;
+ 206:../startup_LPC17xx.c **** 
+ 207:../startup_LPC17xx.c ****   /* Copy the data segment initializers from flash to SRAM */
+ 208:../startup_LPC17xx.c ****   pulSrc = &_sidata;
+ 209:../startup_LPC17xx.c **** 
+ 210:../startup_LPC17xx.c ****   for(pulDest = &_sdata; pulDest < &_edata; )
+ 211:../startup_LPC17xx.c ****   {
+ 212:../startup_LPC17xx.c ****     *(pulDest++) = *(pulSrc++);
+ 213:../startup_LPC17xx.c ****   }
+ 214:../startup_LPC17xx.c **** 
+ 215:../startup_LPC17xx.c ****   /* Zero fill the bss segment. */
+ 216:../startup_LPC17xx.c ****   for(pulDest = &_sbss; pulDest < &_ebss; )
+ 217:../startup_LPC17xx.c ****   {
+ 218:../startup_LPC17xx.c ****     *(pulDest++) = 0;
+ 219:../startup_LPC17xx.c ****   }
+ 220:../startup_LPC17xx.c **** 
+ 221:../startup_LPC17xx.c ****   /* Zero fill the bss_ahb segment. */
+ 222:../startup_LPC17xx.c ****   for(pulDest = &_sbss_ahb; pulDest < &_ebss_ahb; )
+ 223:../startup_LPC17xx.c ****   {
+ 224:../startup_LPC17xx.c ****     *(pulDest++) = 0;
+ 225:../startup_LPC17xx.c ****   }
+ 226:../startup_LPC17xx.c **** 
+ 227:../startup_LPC17xx.c ****   /* Call the application's entry point.*/
+ 228:../startup_LPC17xx.c ****   SystemInit();
+ 229:../startup_LPC17xx.c ****   main();
+ 230:../startup_LPC17xx.c **** 
+ 231:../startup_LPC17xx.c ****   //
+ 232:../startup_LPC17xx.c ****   // we should never reach this point
+ 233:../startup_LPC17xx.c ****   // however, wait endless...
+ 234:../startup_LPC17xx.c ****   //
+ 235:../startup_LPC17xx.c ****   while( 1 );
+ 236:../startup_LPC17xx.c **** }
+ 237:../startup_LPC17xx.c **** 
+ 238:../startup_LPC17xx.c **** // dummy for newer gcc versions
+ 239:../startup_LPC17xx.c **** void _init()
+ 240:../startup_LPC17xx.c **** {
+ 241:../startup_LPC17xx.c **** }
+ 242:../startup_LPC17xx.c **** 
+ 243:../startup_LPC17xx.c **** /*******************************************************************************
+ 244:../startup_LPC17xx.c **** *
+ 245:../startup_LPC17xx.c **** * Provide weak aliases for each Exception handler to the Default_Handler.
+ 246:../startup_LPC17xx.c **** * As they are weak aliases, any function with the same name will override
+ 247:../startup_LPC17xx.c **** * this definition.
+ 248:../startup_LPC17xx.c **** *
+ 249:../startup_LPC17xx.c **** *******************************************************************************/
+ 250:../startup_LPC17xx.c **** #pragma weak NMI_Handler = Default_Handler
+ 251:../startup_LPC17xx.c **** #pragma weak MemManage_Handler = Default_Handler
+ 252:../startup_LPC17xx.c **** #pragma weak BusFault_Handler = Default_Handler
+ 253:../startup_LPC17xx.c **** #pragma weak HardFault_Handler = Default_Handler
+ 254:../startup_LPC17xx.c **** #pragma weak UsageFault_Handler = Default_Handler
+ 255:../startup_LPC17xx.c **** #pragma weak SVC_Handler = Default_Handler
+ 256:../startup_LPC17xx.c **** #pragma weak DebugMon_Handler = Default_Handler
+ 257:../startup_LPC17xx.c **** #pragma weak PendSV_Handler = Default_Handler
+ 258:../startup_LPC17xx.c **** #pragma weak SysTick_Handler = Default_Handler
+ 259:../startup_LPC17xx.c **** 
+ 260:../startup_LPC17xx.c **** /**
+ 261:../startup_LPC17xx.c ****  * @brief  This is the code that gets called when the processor receives an
+ 262:../startup_LPC17xx.c ****  *         unexpected interrupt.  This simply enters an infinite loop, preserving
+ 263:../startup_LPC17xx.c ****  *         the system state for examination by a debugger.
+ 264:../startup_LPC17xx.c ****  *
+ 265:../startup_LPC17xx.c ****  * @param  None    
+ 266:../startup_LPC17xx.c ****  * @retval : None      
+ 267:../startup_LPC17xx.c **** */
+ 268:../startup_LPC17xx.c **** 
+ 269:../startup_LPC17xx.c **** void Default_Handler(void)
+ 270:../startup_LPC17xx.c **** {
+  26              		.loc 1 270 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              	.L2:
+  32 0000 FEE7     		b	.L2
+  33              		.cfi_endproc
+  34              	.LFE2:
+  36              		.weak	TIMER0_IRQHandler
+  37              		.thumb_set TIMER0_IRQHandler,Default_Handler
+  38              		.weak	TIMER1_IRQHandler
+  39              		.thumb_set TIMER1_IRQHandler,Default_Handler
+  40              		.weak	TIMER2_IRQHandler
+  41              		.thumb_set TIMER2_IRQHandler,Default_Handler
+  42              		.weak	TIMER3_IRQHandler
+  43              		.thumb_set TIMER3_IRQHandler,Default_Handler
+  44              		.weak	UART0_IRQHandler
+  45              		.thumb_set UART0_IRQHandler,Default_Handler
+  46              		.weak	UART1_IRQHandler
+  47              		.thumb_set UART1_IRQHandler,Default_Handler
+  48              		.weak	UART2_IRQHandler
+  49              		.thumb_set UART2_IRQHandler,Default_Handler
+  50              		.weak	UART3_IRQHandler
+  51              		.thumb_set UART3_IRQHandler,Default_Handler
+  52              		.weak	PWM1_IRQHandler
+  53              		.thumb_set PWM1_IRQHandler,Default_Handler
+  54              		.weak	I2C0_IRQHandler
+  55              		.thumb_set I2C0_IRQHandler,Default_Handler
+  56              		.weak	I2C1_IRQHandler
+  57              		.thumb_set I2C1_IRQHandler,Default_Handler
+  58              		.weak	I2C2_IRQHandler
+  59              		.thumb_set I2C2_IRQHandler,Default_Handler
+  60              		.weak	SPI_IRQHandler
+  61              		.thumb_set SPI_IRQHandler,Default_Handler
+  62              		.weak	SSP0_IRQHandler
+  63              		.thumb_set SSP0_IRQHandler,Default_Handler
+  64              		.weak	SSP1_IRQHandler
+  65              		.thumb_set SSP1_IRQHandler,Default_Handler
+  66              		.weak	PLL0_IRQHandler
+  67              		.thumb_set PLL0_IRQHandler,Default_Handler
+  68              		.weak	RTC_IRQHandler
+  69              		.thumb_set RTC_IRQHandler,Default_Handler
+  70              		.weak	EINT0_IRQHandler
+  71              		.thumb_set EINT0_IRQHandler,Default_Handler
+  72              		.weak	EINT1_IRQHandler
+  73              		.thumb_set EINT1_IRQHandler,Default_Handler
+  74              		.weak	EINT2_IRQHandler
+  75              		.thumb_set EINT2_IRQHandler,Default_Handler
+  76              		.weak	EINT3_IRQHandler
+  77              		.thumb_set EINT3_IRQHandler,Default_Handler
+  78              		.weak	ADC_IRQHandler
+  79              		.thumb_set ADC_IRQHandler,Default_Handler
+  80              		.weak	BOD_IRQHandler
+  81              		.thumb_set BOD_IRQHandler,Default_Handler
+  82              		.weak	USB_IRQHandler
+  83              		.thumb_set USB_IRQHandler,Default_Handler
+  84              		.weak	CAN_IRQHandler
+  85              		.thumb_set CAN_IRQHandler,Default_Handler
+  86              		.weak	DMA_IRQHandler
+  87              		.thumb_set DMA_IRQHandler,Default_Handler
+  88              		.weak	I2S_IRQHandler
+  89              		.thumb_set I2S_IRQHandler,Default_Handler
+  90              		.weak	ENET_IRQHandler
+  91              		.thumb_set ENET_IRQHandler,Default_Handler
+  92              		.weak	RIT_IRQHandler
+  93              		.thumb_set RIT_IRQHandler,Default_Handler
+  94              		.weak	MCPWM_IRQHandler
+  95              		.thumb_set MCPWM_IRQHandler,Default_Handler
+  96              		.weak	QEI_IRQHandler
+  97              		.thumb_set QEI_IRQHandler,Default_Handler
+  98              		.weak	PLL1_IRQHandler
+  99              		.thumb_set PLL1_IRQHandler,Default_Handler
+ 100              		.weak	USBActivity_IRQHandler
+ 101              		.thumb_set USBActivity_IRQHandler,Default_Handler
+ 102              		.weak	CANActivity_IRQHandler
+ 103              		.thumb_set CANActivity_IRQHandler,Default_Handler
+ 104              		.weak	NMI_Handler
+ 105              		.thumb_set NMI_Handler,Default_Handler
+ 106              		.weak	MemManage_Handler
+ 107              		.thumb_set MemManage_Handler,Default_Handler
+ 108              		.weak	BusFault_Handler
+ 109              		.thumb_set BusFault_Handler,Default_Handler
+ 110              		.weak	HardFault_Handler
+ 111              		.thumb_set HardFault_Handler,Default_Handler
+ 112              		.weak	UsageFault_Handler
+ 113              		.thumb_set UsageFault_Handler,Default_Handler
+ 114              		.weak	SVC_Handler
+ 115              		.thumb_set SVC_Handler,Default_Handler
+ 116              		.weak	DebugMon_Handler
+ 117              		.thumb_set DebugMon_Handler,Default_Handler
+ 118              		.weak	PendSV_Handler
+ 119              		.thumb_set PendSV_Handler,Default_Handler
+ 120              		.weak	SysTick_Handler
+ 121              		.thumb_set SysTick_Handler,Default_Handler
+ 122              		.weak	WDT_IRQHandler
+ 123              		.thumb_set WDT_IRQHandler,Default_Handler
+ 124              		.align	1
+ 125              		.weak	Reset_Handler
+ 126              		.thumb
+ 127              		.thumb_func
+ 129              	Reset_Handler:
+ 130              	.LFB0:
+ 203:../startup_LPC17xx.c **** {
+ 131              		.loc 1 203 0
+ 132              		.cfi_startproc
+ 133              		@ Stack Align: May be called with mis-aligned SP.
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136              	.LVL0:
+ 203:../startup_LPC17xx.c **** {
+ 137              		.loc 1 203 0
+ 138 0002 6846     		mov	r0, sp
+ 139              		.cfi_register 13, 0
+ 140 0004 20F00701 		bic	r1, r0, #7
+ 141 0008 8D46     		mov	sp, r1
+ 142 000a 01B5     		push	{r0, lr}
+ 143              	.LCFI0:
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 13, -8
+ 146              		.cfi_offset 14, -4
+ 210:../startup_LPC17xx.c ****   for(pulDest = &_sdata; pulDest < &_edata; )
+ 147              		.loc 1 210 0
+ 148 000c 0023     		movs	r3, #0
+ 149              	.LVL1:
+ 150              	.L4:
+ 202:../startup_LPC17xx.c **** void Reset_Handler(void)
+ 151              		.loc 1 202 0 discriminator 1
+ 152 000e 0F4A     		ldr	r2, .L15
+ 210:../startup_LPC17xx.c ****   for(pulDest = &_sdata; pulDest < &_edata; )
+ 153              		.loc 1 210 0 discriminator 1
+ 154 0010 0F49     		ldr	r1, .L15+4
+ 202:../startup_LPC17xx.c **** void Reset_Handler(void)
+ 155              		.loc 1 202 0 discriminator 1
+ 156 0012 9818     		adds	r0, r3, r2
+ 210:../startup_LPC17xx.c ****   for(pulDest = &_sdata; pulDest < &_edata; )
+ 157              		.loc 1 210 0 discriminator 1
+ 158 0014 8842     		cmp	r0, r1
+ 159 0016 04D2     		bcs	.L12
+ 160              	.L5:
+ 212:../startup_LPC17xx.c ****     *(pulDest++) = *(pulSrc++);
+ 161              		.loc 1 212 0
+ 162 0018 0E49     		ldr	r1, .L15+8
+ 163 001a 5858     		ldr	r0, [r3, r1]
+ 164 001c 9850     		str	r0, [r3, r2]
+ 165 001e 0433     		adds	r3, r3, #4
+ 166 0020 F5E7     		b	.L4
+ 167              	.L12:
+ 210:../startup_LPC17xx.c ****   for(pulDest = &_sdata; pulDest < &_edata; )
+ 168              		.loc 1 210 0
+ 169 0022 0D48     		ldr	r0, .L15+12
+ 170              	.L6:
+ 171              	.LVL2:
+ 216:../startup_LPC17xx.c ****   for(pulDest = &_sbss; pulDest < &_ebss; )
+ 172              		.loc 1 216 0 discriminator 1
+ 173 0024 0D4A     		ldr	r2, .L15+16
+ 174 0026 9042     		cmp	r0, r2
+ 175 0028 03D2     		bcs	.L13
+ 176              	.L7:
+ 218:../startup_LPC17xx.c ****     *(pulDest++) = 0;
+ 177              		.loc 1 218 0
+ 178 002a 0022     		movs	r2, #0
+ 179 002c 40F8042B 		str	r2, [r0], #4
+ 180              	.LVL3:
+ 181 0030 F8E7     		b	.L6
+ 182              	.L13:
+ 216:../startup_LPC17xx.c ****   for(pulDest = &_sbss; pulDest < &_ebss; )
+ 183              		.loc 1 216 0
+ 184 0032 0B4B     		ldr	r3, .L15+20
+ 185              	.LVL4:
+ 186              	.L8:
+ 222:../startup_LPC17xx.c ****   for(pulDest = &_sbss_ahb; pulDest < &_ebss_ahb; )
+ 187              		.loc 1 222 0 discriminator 1
+ 188 0034 0B48     		ldr	r0, .L15+24
+ 189 0036 8342     		cmp	r3, r0
+ 190 0038 03D2     		bcs	.L14
+ 191              	.L9:
+ 224:../startup_LPC17xx.c ****     *(pulDest++) = 0;
+ 192              		.loc 1 224 0
+ 193 003a 0021     		movs	r1, #0
+ 194 003c 43F8041B 		str	r1, [r3], #4
+ 195              	.LVL5:
+ 196 0040 F8E7     		b	.L8
+ 197              	.L14:
+ 228:../startup_LPC17xx.c ****   SystemInit();
+ 198              		.loc 1 228 0
+ 199 0042 FFF7FEFF 		bl	SystemInit
+ 200              	.LVL6:
+ 229:../startup_LPC17xx.c ****   main();
+ 201              		.loc 1 229 0
+ 202 0046 FFF7FEFF 		bl	main
+ 203              	.LVL7:
+ 204              	.L10:
+ 205 004a FEE7     		b	.L10
+ 206              	.L16:
+ 207              		.align	2
+ 208              	.L15:
+ 209 004c 00000000 		.word	_sdata
+ 210 0050 00000000 		.word	_edata
+ 211 0054 00000000 		.word	_sidata
+ 212 0058 00000000 		.word	_sbss
+ 213 005c 00000000 		.word	_ebss
+ 214 0060 00000000 		.word	_sbss_ahb
+ 215 0064 00000000 		.word	_ebss_ahb
+ 216              		.cfi_endproc
+ 217              	.LFE0:
+ 219              		.align	1
+ 220              		.global	_init
+ 221              		.thumb
+ 222              		.thumb_func
+ 224              	_init:
+ 225              	.LFB1:
+ 240:../startup_LPC17xx.c **** {
+ 226              		.loc 1 240 0
+ 227              		.cfi_startproc
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230              		@ link register save eliminated.
+ 231 0068 7047     		bx	lr
+ 232              		.cfi_endproc
+ 233              	.LFE1:
+ 235              		.global	g_pfnVectors
+ 236              		.section	.isr_vector,"a",%progbits
+ 237              		.align	2
+ 240              	g_pfnVectors:
+ 241 0000 00000000 		.word	_estack
+ 242 0004 00000000 		.word	Reset_Handler
+ 243 0008 00000000 		.word	NMI_Handler
+ 244 000c 00000000 		.word	HardFault_Handler
+ 245 0010 00000000 		.word	MemManage_Handler
+ 246 0014 00000000 		.word	BusFault_Handler
+ 247 0018 00000000 		.word	UsageFault_Handler
+ 248 001c 00000000 		.word	0
+ 249 0020 00000000 		.word	0
+ 250 0024 00000000 		.word	0
+ 251 0028 00000000 		.word	0
+ 252 002c 00000000 		.word	SVC_Handler
+ 253 0030 00000000 		.word	DebugMon_Handler
+ 254 0034 00000000 		.word	0
+ 255 0038 00000000 		.word	PendSV_Handler
+ 256 003c 00000000 		.word	SysTick_Handler
+ 257 0040 00000000 		.word	WDT_IRQHandler
+ 258 0044 00000000 		.word	TIMER0_IRQHandler
+ 259 0048 00000000 		.word	TIMER1_IRQHandler
+ 260 004c 00000000 		.word	TIMER2_IRQHandler
+ 261 0050 00000000 		.word	TIMER3_IRQHandler
+ 262 0054 00000000 		.word	UART0_IRQHandler
+ 263 0058 00000000 		.word	UART1_IRQHandler
+ 264 005c 00000000 		.word	UART2_IRQHandler
+ 265 0060 00000000 		.word	UART3_IRQHandler
+ 266 0064 00000000 		.word	PWM1_IRQHandler
+ 267 0068 00000000 		.word	I2C0_IRQHandler
+ 268 006c 00000000 		.word	I2C1_IRQHandler
+ 269 0070 00000000 		.word	I2C2_IRQHandler
+ 270 0074 00000000 		.word	SPI_IRQHandler
+ 271 0078 00000000 		.word	SSP0_IRQHandler
+ 272 007c 00000000 		.word	SSP1_IRQHandler
+ 273 0080 00000000 		.word	PLL0_IRQHandler
+ 274 0084 00000000 		.word	RTC_IRQHandler
+ 275 0088 00000000 		.word	EINT0_IRQHandler
+ 276 008c 00000000 		.word	EINT1_IRQHandler
+ 277 0090 00000000 		.word	EINT2_IRQHandler
+ 278 0094 00000000 		.word	EINT3_IRQHandler
+ 279 0098 00000000 		.word	ADC_IRQHandler
+ 280 009c 00000000 		.word	BOD_IRQHandler
+ 281 00a0 00000000 		.word	USB_IRQHandler
+ 282 00a4 00000000 		.word	CAN_IRQHandler
+ 283 00a8 00000000 		.word	DMA_IRQHandler
+ 284 00ac 00000000 		.word	I2S_IRQHandler
+ 285 00b0 00000000 		.word	ENET_IRQHandler
+ 286 00b4 00000000 		.word	RIT_IRQHandler
+ 287 00b8 00000000 		.word	MCPWM_IRQHandler
+ 288 00bc 00000000 		.word	QEI_IRQHandler
+ 289 00c0 00000000 		.word	PLL1_IRQHandler
+ 290 00c4 00000000 		.word	USBActivity_IRQHandler
+ 291 00c8 00000000 		.word	CANActivity_IRQHandler
+ 292              		.text
+ 293              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 startup_LPC17xx.c
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:18     .text:00000000 $t
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 Default_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 TIMER0_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 TIMER1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 TIMER2_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 TIMER3_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 UART0_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 UART1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 UART2_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 UART3_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 PWM1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 I2C0_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 I2C1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 I2C2_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 SPI_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 SSP0_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 SSP1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 PLL0_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 RTC_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 EINT0_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 EINT1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 EINT2_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 EINT3_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 ADC_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 BOD_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 USB_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 CAN_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 DMA_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 I2S_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 ENET_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 RIT_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 MCPWM_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 QEI_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 PLL1_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 USBActivity_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 CANActivity_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 NMI_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 MemManage_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 BusFault_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 HardFault_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 UsageFault_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 SVC_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 DebugMon_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 PendSV_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 SysTick_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:23     .text:00000000 WDT_IRQHandler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:129    .text:00000002 Reset_Handler
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:209    .text:0000004c $d
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:219    .text:00000068 $t
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:224    .text:00000068 _init
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:240    .isr_vector:00000000 g_pfnVectors
+C:\Users\raghav\AppData\Local\Temp\cc0M0nhU.s:237    .isr_vector:00000000 $d
+                     .debug_frame:00000010 $d
+                           .group:00000000 wm4.1.549b84bf9d8399e395ff8216fcbb3d69
+
+UNDEFINED SYMBOLS
+SystemInit
+main
+_sdata
+_edata
+_sidata
+_sbss
+_ebss
+_sbss_ahb
+_ebss_ahb
+_estack
